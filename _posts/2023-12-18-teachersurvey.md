@@ -11,6 +11,8 @@ courses: {csa: {week: 17}}
 
 * Statistics teachers usually open
     - Jenkins, Edelstein
+* other math
+    - Hightwowerewrre
 * English
     - Erin Persil
     - Boehm more like poem (english teacher reference)
@@ -40,3 +42,12 @@ courses: {csa: {week: 17}}
 * What types of websites do you think students should be allowed to use in your class?
 * Do you have any programs that you think can be improved?
 * Have you ever wanted a website to exist but don't know how to make it? with squarespace,
+
+## Notes
+* Something that we can use to spread and teach computer science
+* csv files and python work well together
+* R jupyter language for math?
+* course with focus on computation with jupyter
+* portfolio for stem courses
+    - notebooks for each physics lab
+* school wants to build upon data science courses
