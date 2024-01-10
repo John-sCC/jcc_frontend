@@ -51,3 +51,23 @@ courses: {csa: {week: 17}}
 * portfolio for stem courses
     - notebooks for each physics lab
 * school wants to build upon data science courses
+
+## Ideas
+* Teacher resources page like Nighthawk Resources
+* "Yap translator," audio transcriptions of lectures with ChatGPT assisted simplification of words
+
+⠀⠀⠀⡔⠒⠖⣩⠿⢽⢿⠕⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⢰⠀⠀⢂⠡⠼⠊⠁⠈⠉⠉⠁⠐⢢⡀⠀
+⠀⠀⠘⡤⠤⠂⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣷⡄
+⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡏
+⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣻⠟⠀
+⠀⠀⠀⡔⠤⡀⠀⠀⠰⣶⠖⢰⠂⠀⠉⠀⠀⠀
+⠀⠀⡰⠉⠐⠠⠌⠉⠁⠠⡕⠺⡄⠀⠀⠀⠀⠀
+⠀⢰⠁⠀⠀⠀⠀⠀⠀⠸⠼⠀⢸⠀⠀⠀⠀⠀
+⠀⠘⡀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀
+⠀⢸⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⢰⢰⠀⠀⠀⠀
+⠀⠘⡦⠔⠤⠃⠀⠀⠀⠀⠀⠀⡟⠁⠀⠀⠀⠀
+⢠⣔⣉⠆⠀⠀⠀⠀⢄⠀⠀⠀⣇⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⠀⠀⠀⠀⢸⠆⠀⠀⢸⠀⠀⠀⠀⠀
+⠀⠀⠀⡆⠀⠀⠀⢀⠈⡢⠀⠀⢀⢕⠀⠀⠀⠀
+⠀⠀⠀⠑⠢⠄⣀⣀⣱⠸⠂⠀⠚⠉⠀⠀⠀⠀
