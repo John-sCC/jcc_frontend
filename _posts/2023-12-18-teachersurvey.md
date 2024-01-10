@@ -11,6 +11,8 @@ courses: {csa: {week: 17}}
 
 * Statistics teachers usually open
     - Jenkins, Edelstein
+* other math
+    - Hightwowerewrre
 * English
     - Erin Persil
     - Boehm more like poem (english teacher reference)
@@ -41,10 +43,39 @@ courses: {csa: {week: 17}}
 * Do you have any programs that you think can be improved?
 * Have you ever wanted a website to exist but don't know how to make it? with squarespace,
 
-
 ### Gusich:
 
 1. Students cheating by opening up another window in a quiz
 2. When you opened up a window for a quiz, you can't open anything else or a notifcation is sent
 3. Randomize questions
 4. 
+
+## Notes
+* Something that we can use to spread and teach computer science
+* csv files and python work well together
+* R jupyter language for math?
+* course with focus on computation with jupyter
+* portfolio for stem courses
+    - notebooks for each physics lab
+* school wants to build upon data science courses
+
+## Ideas
+* Teacher resources page like Nighthawk Resources
+* "Yap translator," audio transcriptions of lectures with ChatGPT assisted simplification of words
+
+⠀⠀⠀⡔⠒⠖⣩⠿⢽⢿⠕⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⢰⠀⠀⢂⠡⠼⠊⠁⠈⠉⠉⠁⠐⢢⡀⠀
+⠀⠀⠘⡤⠤⠂⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣷⡄
+⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡏
+⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣻⠟⠀
+⠀⠀⠀⡔⠤⡀⠀⠀⠰⣶⠖⢰⠂⠀⠉⠀⠀⠀
+⠀⠀⡰⠉⠐⠠⠌⠉⠁⠠⡕⠺⡄⠀⠀⠀⠀⠀
+⠀⢰⠁⠀⠀⠀⠀⠀⠀⠸⠼⠀⢸⠀⠀⠀⠀⠀
+⠀⠘⡀⠀⠀⡆⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀
+⠀⢸⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⢰⢰⠀⠀⠀⠀
+⠀⠘⡦⠔⠤⠃⠀⠀⠀⠀⠀⠀⡟⠁⠀⠀⠀⠀
+⢠⣔⣉⠆⠀⠀⠀⠀⢄⠀⠀⠀⣇⠀⠀⠀⠀⠀
+⠀⠀⠀⢰⠀⠀⠀⠀⢸⠆⠀⠀⢸⠀⠀⠀⠀⠀
+⠀⠀⠀⡆⠀⠀⠀⢀⠈⡢⠀⠀⢀⢕⠀⠀⠀⠀
+⠀⠀⠀⠑⠢⠄⣀⣀⣱⠸⠂⠀⠚⠉⠀⠀⠀⠀
+
