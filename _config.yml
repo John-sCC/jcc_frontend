@@ -1,9 +1,9 @@
-title: Sort Sort Sort!!
-description: "heres to the ones that we got"
-owner_name: Aiden Huynh, Toby Leeder, Ishi Singh
+title: JCC Frontend
+description: "heres to the ones that we gyat"
+owner_name: Aiden Huynh, Ekam Kaire, Toby Leeder, Drew Reed, AJ Ruiz, Ishi Singh
 github_username: aidenhuynh
-github_repo: "sortsortsort"
-baseurl: "/sortsortsort"
+github_repo: "jcc_frontend"
+baseurl: "/jcc_frontend"
 future: true
 remote_theme: jekyll/minima
 minima:
