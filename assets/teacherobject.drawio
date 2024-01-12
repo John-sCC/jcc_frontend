@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2024-01-12T05:30:19.469Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="ag2NyLP5tok--_3dRNma" version="22.1.18" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-12T05:36:16.359Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="87naq9g-BlOJyrk7h8ja" version="22.1.18" type="github">
   <diagram name="Page-1" id="15TTBoJJ_lV66m8lFySO">
     <mxGraphModel dx="954" dy="521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="gnhUbkvolNWlPmNGs9bA-1" value="Teacher" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="40" width="240" height="180" as="geometry">
+          <mxGeometry x="80" y="40" width="280" height="240" as="geometry">
             <mxRectangle x="80" y="40" width="80" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -20,19 +20,25 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="gnhUbkvolNWlPmNGs9bA-2" value="private long id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
-          <mxGeometry y="30" width="240" height="30" as="geometry" />
+          <mxGeometry y="30" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gnhUbkvolNWlPmNGs9bA-10" value="private String password (encrypted, of course)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
+          <mxGeometry y="60" width="280" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gnhUbkvolNWlPmNGs9bA-3" value="private String firstName" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
-          <mxGeometry y="60" width="240" height="30" as="geometry" />
+          <mxGeometry y="90" width="280" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gnhUbkvolNWlPmNGs9bA-4" value="private String lastName" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
-          <mxGeometry y="90" width="240" height="30" as="geometry" />
+          <mxGeometry y="120" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gnhUbkvolNWlPmNGs9bA-8" value="private String honorific" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
+          <mxGeometry y="150" width="280" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gnhUbkvolNWlPmNGs9bA-7" value="private ArrayList&amp;lt;ClassPeriod&amp;gt; periods" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
-          <mxGeometry y="120" width="240" height="30" as="geometry" />
+          <mxGeometry y="180" width="280" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="gnhUbkvolNWlPmNGs9bA-8" value="private&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
-          <mxGeometry y="150" width="240" height="30" as="geometry" />
+        <mxCell id="gnhUbkvolNWlPmNGs9bA-9" value="private ArrayList&amp;lt;Assignment&amp;gt; materials" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingLeft=4;" vertex="1" parent="gnhUbkvolNWlPmNGs9bA-1">
+          <mxGeometry y="210" width="280" height="30" as="geometry" />
         </mxCell>
         <mxCell id="gnhUbkvolNWlPmNGs9bA-6" value="Identifier for SQL" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="220" y="5" width="60" height="30" as="geometry" />
