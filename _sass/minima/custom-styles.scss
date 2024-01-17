@@ -25,3 +25,74 @@
 // @import "minima/hamilton/skins/midnight";
 // @import "minima/hamilton/skins/sunrise";
 // @import "minima/hamilton/skins/sunset"
+
+$nighthawk-blue: #002147ff;
+$nighthawk-green: #154734ff;
+$nighthawk-gold: #91976cff;
+
+$nighthawk-font1: "Becka Script Plain Regular";
+$nighthawk-font2: "Collegiate Inside";
+
+@font-face {
+    font-family: "Becka Script Plain Regular";
+    src: url(../../assets/fonts/Becka\ Script\ Plain\ Regular.otf);
+}
+
+@font-face {
+    font-family: "Collegiate Inside";
+    src: url(../../assets/fonts/CollegiateInsideFLF.ttf);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    width:100vw;
+    height: 40em;
+    background-color: $nighthawk-blue;
+    margin: 0;
+
+    .nav-top {
+        flex: 1;
+        border-bottom: 8px $nighthawk-gold solid;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .nav-title {
+            font-family: $nighthawk-font2;
+            font-size: 3em;
+            letter-spacing: -3px;
+            margin: auto;
+            margin-left: 7em;
+            margin-top: 0.45em;
+        }
+
+        .nav-search {
+            margin: auto;
+            margin-right: 0;
+            margin-left: auto;
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    .nav-img {
+        background-image: url(../../images/DNHS.jpeg);
+        flex: 4;
+        background-position-y: 30%;
+        background-size: 100vw;
+    }
+
+    .nav-bottom {
+        flex: 1;
+        border-top: 8px $nighthawk-gold solid;
+        border-bottom: 8px $nighthawk-gold solid;
+    }
+
+}
+
+.wrapper {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+}
