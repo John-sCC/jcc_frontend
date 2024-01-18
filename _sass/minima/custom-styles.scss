@@ -62,7 +62,6 @@ $nighthawk-font2: "Collegiate Inside";
             font-family: $nighthawk-font2;
             font-size: 3vw;
             margin: auto;
-            margin-left: 18vw;
             margin-right: 0;
             position: relative;
             top: .4vw;
@@ -76,14 +75,14 @@ $nighthawk-font2: "Collegiate Inside";
             margin: auto;
             display: flex;
             flex-direction: row;
-            margin-left: auto;
+            margin-left: 5vw;
             margin-right: 0;
 
             img {
                 height: 3vw;
                 width: 3vw;
                 margin: auto;
-                margin-right: 2vw;
+                margin-right: 3vw;
                 margin-left: 0;
             }
 
@@ -95,12 +94,15 @@ $nighthawk-font2: "Collegiate Inside";
                 margin-left: 2vw;
                 margin-right: 2vw;
                 width: 20vw;
-                height: 4vw;
+                height: 3vw;
                 border-radius: 1.5vw;
                 padding-left: 15px;
                 padding-right: 15px;
                 font-size: 1.5vw;
-            
+            }
+
+            input::placeholder {
+                font-style: italic;
             }
         }
     }
@@ -117,7 +119,6 @@ $nighthawk-font2: "Collegiate Inside";
         border-top: .5vw $nighthawk-gold solid;
         border-bottom: .5vw $nighthawk-gold solid;
     }
-
 }
 
 .nav-logo {
