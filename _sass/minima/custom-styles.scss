@@ -26,6 +26,9 @@
 // @import "minima/hamilton/skins/sunrise";
 // @import "minima/hamilton/skins/sunset"
 
+// 
+$baseurl: "/jcc_frontend";
+
 $nighthawk-blue: #002147ff;
 $nighthawk-green: #154734ff;
 $nighthawk-gold: #91976cff;
@@ -35,16 +38,13 @@ $nighthawk-font2: "Collegiate Inside";
 
 @font-face {
     font-family: "Becka Script Plain Regular";
-    src: url(../../assets/fonts/Becka\ Script\ Plain\ Regular.otf);
+    src: url($baseurl + "/assets/fonts/Becka\ Script\ Plain\ Regular.otf");
 }
 
 @font-face {
     font-family: "Collegiate Inside";
-    src: url(../../assets/fonts/CollegiateInsideFLF.ttf);
+    src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
 }
-
-
-
 
 // Navbar CSS!
 
@@ -72,7 +72,17 @@ $nighthawk-font2: "Collegiate Inside";
             position: relative;
             top: .4vw;
             user-select: none;
-            cursor: default;
+            cursor: pointer;
+        }
+
+        .nav-title:hover {
+            filter: brightness(80%);
+            transition: filter .2s;
+        }
+
+        .nav-title:not(:hover) {
+            filter: brightness(100%);
+            transition: filter .2s;
         }
 
         .nav-search {
@@ -121,7 +131,7 @@ $nighthawk-font2: "Collegiate Inside";
     }
 
     .nav-img {
-        background-image: url(../../images/DNHS.jpeg);
+        background-image: url($baseurl + "/images/DNHS.jpeg");
         flex: 4;
         background-position-y: 30%;
         background-size: 100vw;
@@ -166,7 +176,7 @@ $nighthawk-font2: "Collegiate Inside";
     top: 1vw;
     left: 2vw;
     border: .5vw solid $nighthawk-gold;
-    background-image: url(../../images/icons/dnhs_logo.png);
+    background-image: url($baseurl + "/images/icons/dnhs_logo.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 12vw;
