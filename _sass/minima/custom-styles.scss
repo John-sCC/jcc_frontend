@@ -65,6 +65,7 @@ $nighthawk-font2: "Collegiate Inside";
             margin-right: 0;
             position: relative;
             top: .4vw;
+            user-select: none;
         }
 
         .nav-title:hover {
@@ -84,6 +85,7 @@ $nighthawk-font2: "Collegiate Inside";
                 margin: auto;
                 margin-right: 3vw;
                 margin-left: 0;
+                user-select: none;
             }
 
             img:hover {
@@ -103,6 +105,7 @@ $nighthawk-font2: "Collegiate Inside";
 
             input::placeholder {
                 font-style: italic;
+                user-select: none;
             }
         }
     }
