@@ -43,6 +43,11 @@ $nighthawk-font2: "Collegiate Inside";
     src: url(../../assets/fonts/CollegiateInsideFLF.ttf);
 }
 
+
+
+
+// Navbar CSS!
+
 .nav {
     display: flex;
     flex-direction: column;
@@ -167,8 +172,18 @@ $nighthawk-font2: "Collegiate Inside";
     background-size: 12vw;
 }
 
+// End navbar CSS
+
+// Site-wide CSS
+
 .wrapper {
     margin: 0;
     padding: 0;
     max-width: unset;
 }
+
+html, body {
+    background-color: $nighthawk-green !important;
+}
+
+// End site-wide CSS
