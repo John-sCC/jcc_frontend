@@ -60,15 +60,13 @@ $nighthawk-font2: "Collegiate Inside";
 
         .nav-title {
             font-family: $nighthawk-font2;
+            color: white;
             font-size: 3vw;
             margin: auto;
             margin-right: 0;
             position: relative;
             top: .4vw;
             user-select: none;
-        }
-
-        .nav-title:hover {
             cursor: default;
         }
 
@@ -86,10 +84,17 @@ $nighthawk-font2: "Collegiate Inside";
                 margin-right: 3vw;
                 margin-left: 0;
                 user-select: none;
+                cursor: pointer;
             }
 
             img:hover {
-                cursor: pointer;
+                filter: brightness(80%);
+                transition: filter .2s;
+            }
+
+            img:not(:hover) {
+                filter: brightness(100%);
+                transition: filter .2s;
             }
 
             input {
@@ -121,6 +126,29 @@ $nighthawk-font2: "Collegiate Inside";
         flex: 1;
         border-top: .5vw $nighthawk-gold solid;
         border-bottom: .5vw $nighthawk-gold solid;
+        display: flex;
+        flex-direction: row;
+
+        .nav-button {
+            font-family: $nighthawk-font2;
+            color: white;
+            margin: auto;
+            font-size: 3vw;
+            position: relative;
+            top: 0.4vw;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-button:hover {
+            filter: brightness(80%);
+            transition: filter .2s;
+        }
+
+        .nav-button:not(:hover) {
+            filter: brightness(100%);
+            transition: filter .2s;
+        }
     }
 }
 
