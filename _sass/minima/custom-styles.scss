@@ -99,11 +99,8 @@ $nighthawk-font2: "Collegiate Inside";
                 border-radius: 1.5vw;
                 padding-left: 15px;
                 padding-right: 15px;
-                
-            }
-
-            input::placeholder {
                 font-size: 1.5vw;
+            
             }
         }
     }
@@ -124,13 +121,18 @@ $nighthawk-font2: "Collegiate Inside";
 }
 
 .nav-logo {
-    background-color: blue;
+    background-color: $nighthawk-green;
     border-radius: 50%;
     aspect-ratio: 1;
     width: 15vw;
     position: absolute;
     top: 1vw;
     left: 2vw;
+    border: .5vw solid $nighthawk-gold;
+    background-image: url(../../images/icons/dnhs_logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12vw;
 }
 
 .wrapper {
