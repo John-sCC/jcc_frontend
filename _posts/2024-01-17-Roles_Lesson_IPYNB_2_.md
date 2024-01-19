@@ -291,6 +291,8 @@ For an admin user, try:
 
 <button onclick="authenticate()">Login</button>
 
+<div id="userRole"></div>
+
 <script>
     function authenticate() {
         // Get values from input fields
@@ -321,6 +323,12 @@ For an admin user, try:
         .then(data => {
             // Handle the response data here
             console.log(data);
+            
+            // Extract user role from JWT
+            var userRole = data.role;
+
+            // Display user role
+            document.getElementById("userRole").innerText = 'User Role: ' + userRole;
         })
         .catch(error => {
             console.error('Error:', error);
