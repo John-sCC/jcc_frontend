@@ -323,15 +323,12 @@ For an admin user, try:
         .then(data => {
             // Handle the response data here
             console.log(data);
-            
+
             // Extract user role from JWT
             var userRole = data.role;
 
             // Display user role
             document.getElementById("userRole").innerText = 'User Role: ' + userRole;
-        })
-        .catch(error => {
-            console.error('Error:', error);
         });
     }
 </script>
