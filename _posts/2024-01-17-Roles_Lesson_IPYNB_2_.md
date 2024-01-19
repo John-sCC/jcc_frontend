@@ -303,14 +303,20 @@ For an admin user, try:
             password: password
         };
 
+        // set options for cross origin header request
+        const options = {
+        method: 'POST', // GET, *POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+        };
+
         // Make a POST request using fetch API
-        fetch('http://localhost:8085/api/person/authenticate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        fetch('http://localhost:8085/api/person/authenticate', options)
         .then(response => response.json())
         .then(data => {
             // Handle the response data here
