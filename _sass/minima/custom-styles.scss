@@ -46,6 +46,21 @@ $nighthawk-font2: "Collegiate Inside";
     src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
 }
 
+// Mixin for adjusting brightness of an element on hover
+@mixin basic-hover() {
+    // SASS parent selector!
+    &:hover {
+        filter: brightness(80%);
+        transition: filter .2s;
+    }
+
+    // not(hover) gives a transition on mouse leave as well!
+    &:not(hover) {
+        filter: brightness(100%);
+        transition: filter .2s;
+    }
+}
+
 // Navbar CSS!
 
 .nav {
@@ -64,6 +79,8 @@ $nighthawk-font2: "Collegiate Inside";
         width: 100%;
 
         .nav-title {
+            @include basic-hover();
+            
             font-family: $nighthawk-font2;
             color: white;
             font-size: 3vw;
@@ -75,15 +92,7 @@ $nighthawk-font2: "Collegiate Inside";
             cursor: pointer;
         }
 
-        .nav-title:hover {
-            filter: brightness(80%);
-            transition: filter .2s;
-        }
-
-        .nav-title:not(:hover) {
-            filter: brightness(100%);
-            transition: filter .2s;
-        }
+        
 
         .nav-search {
             margin: auto;
@@ -93,6 +102,8 @@ $nighthawk-font2: "Collegiate Inside";
             margin-right: 0;
 
             img {
+                @include basic-hover();
+
                 height: 3vw;
                 width: 3vw;
                 margin: auto;
@@ -100,16 +111,6 @@ $nighthawk-font2: "Collegiate Inside";
                 margin-left: 0;
                 user-select: none;
                 cursor: pointer;
-            }
-
-            img:hover {
-                filter: brightness(80%);
-                transition: filter .2s;
-            }
-
-            img:not(:hover) {
-                filter: brightness(100%);
-                transition: filter .2s;
             }
 
             input {
@@ -145,6 +146,8 @@ $nighthawk-font2: "Collegiate Inside";
         flex-direction: row;
 
         .nav-button {
+            @include basic-hover();
+            
             font-family: $nighthawk-font2;
             color: white;
             margin: auto;
@@ -154,16 +157,6 @@ $nighthawk-font2: "Collegiate Inside";
             cursor: pointer;
             user-select: none;
         }
-
-        .nav-button:hover {
-            filter: brightness(80%);
-            transition: filter .2s;
-        }
-
-        .nav-button:not(:hover) {
-            filter: brightness(100%);
-            transition: filter .2s;
-        }
     }
 }
 
@@ -171,7 +164,7 @@ $nighthawk-font2: "Collegiate Inside";
     background-color: $nighthawk-green;
     border-radius: 50%;
     aspect-ratio: 1;
-    width: 15vw;
+    width: 12vw;
     position: absolute;
     top: 1vw;
     left: 2vw;
@@ -179,7 +172,7 @@ $nighthawk-font2: "Collegiate Inside";
     background-image: url($baseurl + "/images/icons/dnhs_logo.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 12vw;
+    background-size: calc(12vw * 0.8);
 }
 
 // End navbar CSS
