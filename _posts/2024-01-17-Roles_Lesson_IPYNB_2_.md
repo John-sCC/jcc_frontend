@@ -316,7 +316,7 @@ For an admin user, try:
         };
 
         // Make a POST request using fetch API
-        fetch('http://localhost:8085/api/person/authenticate', options)
+        fetch('http://localhost:8085/authenticate', options)
         .then(response => response.json())
         .then(data => {
             // Handle the response data here
