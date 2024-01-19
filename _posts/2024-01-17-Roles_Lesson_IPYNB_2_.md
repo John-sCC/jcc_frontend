@@ -327,6 +327,8 @@ function authenticate() {
 
             // Continue with your code here
             console.log('Authentication successful. Now, open the "Application" tab (click the two arrows to see it). Look for a cookie called "jwt".');
+
+            return response.ok;
         })
         .catch(error => {
             console.error('Error:', error);
