@@ -4,4 +4,4 @@ title: About Us
 permalink: /about/
 ---
 
-Creators of Alien World
+The beginnings of a grand adventure...
