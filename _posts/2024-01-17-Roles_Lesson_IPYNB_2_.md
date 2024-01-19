@@ -291,46 +291,50 @@ For an admin user, try:
 
 <button onclick="authenticate()">Login</button>
 
-<div id="userRole"></div>
+After clicking the "Login" button, make sure to check the console to ensure the fetch worked correctly! You'll need to be running the localhost for the provided backend.
 
 <script>
-    function authenticate() {
-        // Get values from input fields
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+function authenticate() {
+    // Get values from input fields
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
 
-        // Create a JSON object with email and password
-        var data = {
-            email: email,
-            password: password
-        };
+    // Create a JSON object with email and password
+    var data = {
+        email: email,
+        password: password
+    };
 
-        // set options for cross origin header request
-        const options = {
-        method: 'POST', // GET, *POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
+    // set options for cross-origin header request
+    const authOptions = {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-        };
+    };
 
-        // Make a POST request using fetch API
-        fetch('http://localhost:8085/authenticate', options)
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response data here
-            console.log(data);
+    // Make a POST request using fetch API
+    fetch('http://localhost:8085/authenticate', authOptions)
+        .then(response => {
+            // Check if the response is successful (status code 2xx)
+            if (!response.ok) {
+                throw new Error('Authentication failed');
+            }
 
-            // Extract user role from JWT
-            var userRole = data.role;
+            // Continue with your code here
+            console.log('Authentication successful. Now, open the "Application" tab (click the two arrows to see it). Look for a cookie called "jwt".');
 
-            // Display user role
-            document.getElementById("userRole").innerText = 'User Role: ' + userRole;
+            // Additional code to run after authentication
+            fetch('')
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
-    }
+}
 </script>
 
 ## Anatomy of a JWT
@@ -339,11 +343,12 @@ The JWT token generated from the `/authenticate` endpont gives the server the co
 
 <img src="https://github.com/John-sCC/jcc_frontend/assets/142441804/b7af9114-2e3d-41e7-be3a-2fbd4c2276c1">
 
-You can customize JWT tokens while following certain structure. A token contains a Header, Payload, and Signature in the form `header.payload.signature`.
+You can customize JWT tokens while following certain structure. A token contains a Header, Payload, and Signature in the form `header.payload.signature`. You should be able to see this in the cookie you received after making the authenticate request!
 
 *Note: the following paramters are not the same in the Spring library we use. That library is ResponseCookie, which has separate online documentation for the specific paramters.
 
 ### Header
+
 Includes the type of token and signing/encryption algorithm. Ex:
 
 ```json
@@ -354,9 +359,11 @@ Includes the type of token and signing/encryption algorithm. Ex:
 ```
 
 ### Payload
+
 The payload contains the claims/description/customized properties of the token. They can be split into Registered Claims, Public Claims, and Custom Claims.
 
 #### Registered
+
 Predefined claims, basically mandatory for function.
 Include:
 - "iss" (Issuer)
@@ -366,6 +373,7 @@ Include:
 - "iat" (Time the token was issued at)
 
 #### Public
+
 Existing, predefined claims but optional.
 Include:
 - "name"
@@ -373,9 +381,14 @@ Include:
 - "email"
 
 #### Private
+
 Custom claims such as "admin"
 
 ### Signature
 
 Created by the encoded header, used to verify the token is consistent and sent by the same person.
 Automatically generated when using the Spring library.
+
+### Helpful Website
+
+If you visit [this website](https://jwt.io/) and enter your encoded JWT, it will give you information about it.
