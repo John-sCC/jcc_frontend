@@ -29,10 +29,13 @@
 // Temporary solution
 $baseurl: "/jcc_frontend";
 
+// Site colors
 $nighthawk-blue: #002147ff;
 $nighthawk-green: #154734ff;
 $nighthawk-gold: #91976cff;
 
+
+// Site fonts
 $nighthawk-font1: "Becka Script Plain Regular";
 $nighthawk-font2: "Collegiate Inside";
 
@@ -48,7 +51,9 @@ $nighthawk-font2: "Collegiate Inside";
 
 // Mixin for adjusting brightness of an element on hover
 @mixin basic-hover() {
-    // SASS parent selector!
+    cursor: pointer;
+    
+    // SASS parent selector! (&)
     &:hover {
         filter: brightness(80%);
         transition: filter .2s;
@@ -62,7 +67,6 @@ $nighthawk-font2: "Collegiate Inside";
 }
 
 // Navbar CSS!
-
 .nav {
     display: flex;
     flex-direction: column;
@@ -85,14 +89,11 @@ $nighthawk-font2: "Collegiate Inside";
             color: white;
             font-size: 3vw;
             margin: auto;
-            margin-right: 0;
+            margin-right: 2vw;
             position: relative;
             top: .4vw;
             user-select: none;
-            cursor: pointer;
         }
-
-        
 
         .nav-search {
             margin: auto;
@@ -110,7 +111,6 @@ $nighthawk-font2: "Collegiate Inside";
                 margin-right: 3vw;
                 margin-left: 0;
                 user-select: none;
-                cursor: pointer;
             }
 
             input {
@@ -147,20 +147,21 @@ $nighthawk-font2: "Collegiate Inside";
 
         .nav-button {
             @include basic-hover();
-            
+
             font-family: $nighthawk-font2;
             color: white;
             margin: auto;
             font-size: 3vw;
             position: relative;
             top: 0.4vw;
-            cursor: pointer;
             user-select: none;
         }
     }
 }
 
 .nav-logo {
+    @include basic-hover();
+
     background-color: $nighthawk-green;
     border-radius: 50%;
     aspect-ratio: 1;
