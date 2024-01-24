@@ -76,11 +76,11 @@ $nighthawk-font2: "Collegiate Inside";
     margin: 0;
 
     .nav-top {
-        flex: 1;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
         width: 100%;
+        height: calc(40vw/6);
 
         .nav-title {
             @include basic-hover();
@@ -133,13 +133,13 @@ $nighthawk-font2: "Collegiate Inside";
 
     .nav-img {
         background-image: url($baseurl + "/images/DNHS.jpeg");
-        flex: 4;
+        height: calc(40vw*4/6);
         background-position-y: 30%;
         background-size: 100vw;
     }
 
     .nav-bottom {
-        flex: 1;
+        height: calc(40vw/6);
         border-top: .5vw $nighthawk-gold solid;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
