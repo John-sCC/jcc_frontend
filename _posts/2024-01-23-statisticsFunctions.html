@@ -6,9 +6,19 @@
 
 
 <script>
+	const xArray = ["Italy","France","Spain","USA","Argentina"];
+	const yArray = [55, 49, 44, 24, 15];
+
+	const data = [{
+	x: xArray,
+	y: yArray,
+	type: "bar",
+	orientation:"v",
+	marker: {color:"rgba(0,0,255)"}
+	}];
+
+	const layout = {title:"World Wide Wine Production"};
+
 	TESTER = document.getElementById('tester');
-	Plotly.newPlot( TESTER, [{
-	x: [1, 2, 3, 4, 5],
-	y: [1, 2, 4, 8, 16] }], {
-	margin: { t: 0 } } );
+	Plotly.newPlot( TESTER, data, layout);
 </script>
