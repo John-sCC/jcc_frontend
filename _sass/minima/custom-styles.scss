@@ -26,19 +26,6 @@
 // @import "minima/hamilton/skins/sunrise";
 // @import "minima/hamilton/skins/sunset"
 
-// Temporary solution
-$baseurl: "/jcc_frontend";
-
-// Site colors
-$nighthawk-blue: #002147ff;
-$nighthawk-green: #154734ff;
-$nighthawk-gold: #91976cff;
-
-
-// Site fonts
-$nighthawk-font1: "Becka Script Plain Regular";
-$nighthawk-font2: "Collegiate Inside";
-
 @font-face {
     font-family: "Becka Script Plain Regular";
     src: url($baseurl + "/assets/fonts/Becka\ Script\ Plain\ Regular.otf");
