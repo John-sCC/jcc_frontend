@@ -1,6 +1,7 @@
-// I don't know why but {{site.baseurl}} isn't working here so this is a temporary fix
+// Temporary fix until we get a custom domain
 const baseurl = "/jcc_frontend"
 
+// Wait for HTML elements to load
 $(window).ready(function() {
     // Redirect buttons to respective pages
     for (let link of ["classes", "sign-in", "blogs", "about"]) {
