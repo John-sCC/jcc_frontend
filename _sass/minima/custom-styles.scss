@@ -49,6 +49,10 @@ $nighthawk-font2: "Collegiate Inside";
     src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
 }
 
+a:hover {
+    color: #22956b !important
+}
+
 // Mixin for adjusting brightness of an element on hover
 @mixin basic-hover() {
     cursor: pointer;
