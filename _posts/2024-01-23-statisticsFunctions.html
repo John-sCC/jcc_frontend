@@ -73,5 +73,10 @@
 	TESTER = document.getElementById('tester');
 	Plotly.newPlot( TESTER, data, layout);
 
-
+	function changeplot(event){
+		var update = {
+			type: "pie"
+		};
+		Plotly.restyle(document.getElementById('tester'), update, 0);
+	}
 </script>
