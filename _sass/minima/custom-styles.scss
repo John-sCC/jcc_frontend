@@ -61,7 +61,7 @@ a:hover {
 .nav {
     display: flex;
     flex-direction: column;
-    width:100vw;
+    width:100%;
     height: 40vw;
     background-color: $nighthawk-blue;
     margin: 0;
@@ -126,7 +126,7 @@ a:hover {
         background-image: url($baseurl + "/images/DNHS.jpeg");
         height: calc(40vw*4/6);
         background-position-y: 30%;
-        background-size: 100vw;
+        background-size: 100%;
     }
 
     .nav-bottom {
@@ -179,6 +179,15 @@ a:hover {
 
 html, body {
     background-color: $nighthawk-green !important;
+}
+
+section {
+    width: 90vw;
+    margin: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
 }
 
 // End site-wide CSS
