@@ -17,7 +17,9 @@ layout: post
 
 <script type="text/javascript">
     function Generate(){
-        new QRCode(document.getElementById("qrcode"), "{{ site.baseurl }}/2024/01/25/qrcodeaccept.html#" + document.getElementById("QR1").value + " " + document.getElementById("QR2").value)
+        var link = "{{ site.baseurl }}/2024/01/25/qrcodeaccept.html#" + document.getElementById("QR1").value + " " + document.getElementById("QR2").value
+        console.log(link)
+        new QRCode(document.getElementById("qrcode"), link)
     }
 </script>
     
