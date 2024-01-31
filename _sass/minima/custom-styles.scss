@@ -60,18 +60,21 @@ a:hover {
 // Navbar CSS!
 .nav {
     display: flex;
+    z-index: 1;
     flex-direction: column;
     width:100%;
     height: 40vw;
-    background-color: $nighthawk-blue;
     margin: 0;
 
     .nav-top {
+        background-color: $nighthawk-blue;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
         width: 100%;
         height: calc(40vw/6);
+        position: fixed;
+        z-index: 1;
 
         .nav-title {
             @include basic-hover();
@@ -127,14 +130,20 @@ a:hover {
         height: calc(40vw*4/6);
         background-position-y: 30%;
         background-size: 100%;
+        position: relative;
+        top: calc(40vw/6);
+        z-index: 0;
     }
 
     .nav-bottom {
+        background-color: $nighthawk-blue;
         height: calc(40vw/6);
         border-top: .5vw $nighthawk-gold solid;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
+        position: relative;
+        top: calc(40vw/6);
 
         .nav-button {
             @include basic-hover();
@@ -165,6 +174,21 @@ a:hover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: calc(12vw * 0.8);
+    z-index: 2;
+}
+
+.sticky {
+    position: fixed !important;
+    top: calc(40vw * 1/6 - 0.5vw) !important; 
+    width: 100%;
+
+    .leftmost {
+        margin-left: 16vw;
+    }
+}
+
+.sticky-logo {
+
 }
 
 // End navbar CSS
