@@ -7,9 +7,9 @@
 <div class="dropdown">
 	<button class="dropbtn">Dropdown</button>
 	<div class="dropdown-content">
-		<button id="barChart" onclick="changeplot(this)"> Bar Chart</button>
+		<button id="bar" onclick="changeplot(this)"> Bar Chart</button>
 		<button id="segmentedBar" onclick="changeplot(this)"> Segmented Bar Chart</button>
-		<button id="pieChart" onclick="changeplot(this)"> Pie Chart</button>
+		<button id="pie" onclick="changeplot(this)"> Pie Chart</button>
 	</div>
   </div>
 <style>
@@ -74,9 +74,19 @@
 	Plotly.newPlot( TESTER, data, layout);
 
 	function changeplot(event){
-		var update = {
-			type: "pie"
+		updateType = event.id;
+		if (updateType != segmentedBar){
+			var update = {
+			type: updateType
 		};
+		}
+		else {
+			var update = {
+				
+				type: "bar"
+			}
+		}
+
 		Plotly.restyle(document.getElementById('tester'), update, 0);
 	}
 </script>
