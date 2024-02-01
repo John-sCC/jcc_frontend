@@ -17,13 +17,20 @@ $(window).ready(function() {
     }
 
     window.onscroll = function () { 
-        if (window.pageYOffset >= 4 * ((window.innerWidth * .4) / 6) + (0.005 * window.innerWidth)) {
+        const base = ((window.innerWidth * .4) / 6) 
+
+        if (window.pageYOffset >= 4 * base) {
             navBottom.classList.add("sticky")
             console.log("yes")
         }
         else {
             navBottom.classList.remove("sticky")
             console.log("no")
+
+            if (window.pageYOffset >= 3 * base) {
+                const percent = 4 * (1 - (3 * base/window.pageYOffset))
+                $("#classes")[0].style.marginLeft = `${(6.3 + (15.2 * percent))}vw`
+            }
         }
     }
 })
