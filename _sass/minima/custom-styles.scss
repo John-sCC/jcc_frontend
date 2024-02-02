@@ -26,19 +26,6 @@
 // @import "minima/hamilton/skins/sunrise";
 // @import "minima/hamilton/skins/sunset"
 
-// Temporary solution
-$baseurl: "/jcc_frontend";
-
-// Site colors
-$nighthawk-blue: #002147ff;
-$nighthawk-green: #154734ff;
-$nighthawk-gold: #91976cff;
-
-
-// Site fonts
-$nighthawk-font1: "Becka Script Plain Regular";
-$nighthawk-font2: "Collegiate Inside";
-
 @font-face {
     font-family: "Becka Script Plain Regular";
     src: url($baseurl + "/assets/fonts/Becka\ Script\ Plain\ Regular.otf");
@@ -47,6 +34,10 @@ $nighthawk-font2: "Collegiate Inside";
 @font-face {
     font-family: "Collegiate Inside";
     src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
+}
+
+a:hover {
+    color: #22956b !important
 }
 
 // Mixin for adjusting brightness of an element on hover
@@ -69,18 +60,21 @@ $nighthawk-font2: "Collegiate Inside";
 // Navbar CSS!
 .nav {
     display: flex;
+    z-index: 1;
     flex-direction: column;
-    width:100vw;
+    width:100%;
     height: 40vw;
-    background-color: $nighthawk-blue;
     margin: 0;
 
     .nav-top {
-        flex: 1;
+        background-color: $nighthawk-blue;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
         width: 100%;
+        height: calc(40vw/6);
+        position: fixed;
+        z-index: 1;
 
         .nav-title {
             @include basic-hover();
@@ -133,17 +127,23 @@ $nighthawk-font2: "Collegiate Inside";
 
     .nav-img {
         background-image: url($baseurl + "/images/DNHS.jpeg");
-        flex: 4;
+        height: calc(40vw*4/6);
         background-position-y: 30%;
-        background-size: 100vw;
+        background-size: 100%;
+        position: relative;
+        top: calc(40vw/6);
+        z-index: 0;
     }
 
     .nav-bottom {
-        flex: 1;
+        background-color: $nighthawk-blue;
+        height: calc(40vw/6);
         border-top: .5vw $nighthawk-gold solid;
         border-bottom: .5vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
+        position: relative;
+        top: calc(40vw/6);
 
         .nav-button {
             @include basic-hover();
@@ -174,6 +174,21 @@ $nighthawk-font2: "Collegiate Inside";
     background-position: center;
     background-repeat: no-repeat;
     background-size: calc(12vw * 0.8);
+    z-index: 2;
+}
+
+.sticky {
+    position: fixed !important;
+    top: calc(40vw * 1/6 - 0.5vw) !important; 
+    width: 100%;
+
+    .leftmost {
+        margin-left: 16vw;
+    }
+}
+
+.sticky-logo {
+
 }
 
 // End navbar CSS
@@ -188,6 +203,15 @@ $nighthawk-font2: "Collegiate Inside";
 
 html, body {
     background-color: $nighthawk-green !important;
+}
+
+section {
+    width: 90vw;
+    margin: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
 }
 
 // End site-wide CSS
