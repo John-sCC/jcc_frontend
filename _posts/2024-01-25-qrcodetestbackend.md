@@ -37,8 +37,8 @@ layout: post
     var freqList = [];
 
     for (var i = 0; i < $("#inputDiv").find("input").length/2; i ++){
-        linkList.push(document.getElementById(`QR${i+1}`));
-        freqList.push(document.getElementById(`Freq${i+1}`));
+        linkList.push(document.getElementById(`QR${i+1}`).value);
+        freqList.push(document.getElementById(`Freq${i+1}`).value);
     }
     
     const payload = {
