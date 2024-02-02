@@ -54,7 +54,6 @@ hide: true
       <div>
           <img id="previewImage" alt="Preview" style="max-width: 100%;">
       </div>
-    <!-- Crop button -->
     <button class="button" id="cropButton" onclick="cropImage()">Crop Image</button>
     <div>
         <img id="croppedImage" alt="Cropped Image">
@@ -75,7 +74,6 @@ hide: true
 
     const reader = new FileReader();
     reader.onload = function (e) {
-        // Update the src attribute of the previewImage element
         document.getElementById('previewImage').src = reader.result;
 
         // Reset the Cropper instance with the new image
@@ -84,7 +82,7 @@ hide: true
         }
 
         cropper = new Cropper(document.getElementById('previewImage'), {
-        aspectRatio: 0, // You can adjust this for the desired aspect ratio
+        aspectRatio: 0,
         viewMode: 2,
         });
 
