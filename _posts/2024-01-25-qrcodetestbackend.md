@@ -14,8 +14,8 @@ layout: post
 <div id="inputDiv">
     <input type="text" id="QR1"> <input type="text" id="Freq1"> <br>
     <input type="text" id="QR2"> <input type="text" id="Freq2"><br>
-    <input type="text" id="QR3"> <input type="text" id="Freq3"><br>
-    <input type="text" id="QR4"> <input type="text" id="Freq4"><br>
+    <!-- <input type="text" id="QR3"> <input type="text" id="Freq3"><br>
+    <input type="text" id="QR4"> <input type="text" id="Freq4"><br> -->
 
 </div>
 <button onclick="Generate()"> generate </button>
@@ -31,20 +31,23 @@ layout: post
 
     function fetchId() {
     // Construct the URL for the POST request
-    const url = 'http://your-backend-domain.com/newCode';
+    const url = 'http://localhost:8911/api/qrcode/newCode';
 
     var linkList = [];
+    var freqList = [];
 
     for (var i = 0; i < $("#inputDiv").find("input").length/2; i ++){
-        linkList.add(document.getElementById(`QR${i}`));
+        linkList.push(document.getElementById(`QR${i+1}`));
+        freqList.push(document.getElementById(`Freq${i+1}`));
     }
     
     const payload = {
-        links: [links],
-        frequencies: frequencies
+        links: linkList,
+        frequencies: freqList
     };
 
-    // Use fetch API to send the POST request
+    console.log(payload);
+
     fetch(url, {
         method: 'POST', // Specify the method
         headers: {
