@@ -25,7 +25,7 @@ layout: post
     function Generate(){
         console.log($("#inputDiv").find("input").length);
         fetchId().then(id => {
-            var link = "{{ site.baseurl }}/2024/01/25/qrcodeaccept.html#" + id;
+            var link = "{{ site.baseurl }}/2024/01/25/qrcodeacceptbackend.html#" + id;
             console.log(link)
             new QRCode(document.getElementById("qrcode"), link)
         })
