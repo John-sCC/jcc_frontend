@@ -1,6 +1,6 @@
 ---
-title: QR Code Generator W/out Backend
-description: A qr code generator w/out backend
+title: QR Code Generator with Backend
+description: A qr code generator with backend
 toc: True
 layout: post
 ---

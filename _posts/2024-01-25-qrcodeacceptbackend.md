@@ -1,5 +1,5 @@
 ---
-title: QR Code Landing Page W/out backend
+title: QR Code Landing Page with backend
 description: A landing page to redirect users based on the qr code
 toc: True
 layout: post
