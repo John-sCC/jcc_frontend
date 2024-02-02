@@ -74,7 +74,7 @@ a:hover {
         flex-direction: row;
         width: 100%;
         height: calc(30vw/6);
-        position: fixed;
+        position: absolute;
         z-index: 1;
 
         .nav-title {
@@ -190,14 +190,12 @@ a:hover {
     position: fixed !important;
     top: calc(30vw * 1/6 - 0.5vw) !important; 
     width: 100%;
-
-    .leftmost {
-        margin-left: 16vw;
-    }
 }
 
-.sticky-logo {
-
+.sticky-top {
+    position: fixed !important;
+    top: 0 !important;
+    width: 100%;
 }
 
 // End navbar CSS
