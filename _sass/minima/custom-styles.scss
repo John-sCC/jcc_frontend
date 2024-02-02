@@ -63,17 +63,17 @@ a:hover {
     z-index: 1;
     flex-direction: column;
     width:100%;
-    height: 40vw;
+    height: 30vw;
     margin: 0;
     margin-bottom: 3vw;
 
     .nav-top {
         background-color: $nighthawk-blue;
-        border-bottom: .5vw $nighthawk-gold solid;
+        border-bottom: .3vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
         width: 100%;
-        height: calc(40vw/6);
+        height: calc(30vw/6);
         position: fixed;
         z-index: 1;
 
@@ -128,23 +128,23 @@ a:hover {
 
     .nav-img {
         background-image: url($baseurl + "/images/DNHS.jpeg");
-        height: calc(40vw*4/6);
+        height: calc(30vw*4/6);
         background-position-y: 30%;
         background-size: 100%;
         position: relative;
-        top: calc(40vw/6);
+        top: calc(30vw/6);
         z-index: 0;
     }
 
     .nav-bottom {
         background-color: $nighthawk-blue;
-        height: calc(40vw/6);
-        border-top: .5vw $nighthawk-gold solid;
-        border-bottom: .5vw $nighthawk-gold solid;
+        height: calc(30vw/6);
+        border-top: .3vw $nighthawk-gold solid;
+        border-bottom: .3vw $nighthawk-gold solid;
         display: flex;
         flex-direction: row;
         position: relative;
-        top: calc(40vw/6);
+        top: calc(30vw/6);
 
         .nav-button {
             @include basic-hover();
@@ -178,17 +178,17 @@ a:hover {
     position: absolute;
     top: 0.3vw;
     left: 2vw;
-    border: .5vw solid $nighthawk-gold;
+    border: .3vw solid $nighthawk-gold;
     background-image: url($baseurl + "/images/icons/dnhs_logo.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: calc(12vw * 0.8);
+    background-size: 9.6vw;
     z-index: 2;
 }
 
 .sticky {
     position: fixed !important;
-    top: calc(40vw * 1/6 - 0.5vw) !important; 
+    top: calc(30vw * 1/6 - 0.5vw) !important; 
     width: 100%;
 
     .leftmost {

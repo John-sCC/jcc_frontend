@@ -17,19 +17,46 @@ $(window).ready(function() {
     }
 
     window.onscroll = function () { 
-        const base = ((window.innerWidth * .4) / 6) 
+        // Calculate 1/6th of the header, as it is divided into segments of 1-4-1 (top-middle-bottom)
+        const base = ((window.innerWidth * .3) / 6) 
 
+        // Upon scrolling past the middle section,
         if (window.pageYOffset >= 4 * base) {
+            // Add sticky class to header
             navBottom.classList.add("sticky")
-            console.log("yes")
         }
-        else {
-            navBottom.classList.remove("sticky")
-            console.log("no")
 
-            if (window.pageYOffset >= 3 * base) {
-                const percent = 4 * (1 - (3 * base/window.pageYOffset))
-                $("#classes")[0].style.marginLeft = `${(6.3 + (15.2 * percent))}vw`
+        // When not past the image,
+        else {
+            // Define the farthest left button to move for logo
+            const classButton = $("#classes")[0]
+
+            // Define the logo
+            const logo = $(".nav-logo")[0]
+
+            // Remove sticky class from header
+            navBottom.classList.remove("sticky")
+
+            if (window.pageYOffset >= (base * 2.5)) {
+                // Calculate percentage from initial to final position based on scroll
+                    // I could not explain this to you, it's gibberish.
+                const percent =  (window.pageYOffset - (base * 2.5)) / (base * 1.5)
+
+                // Move button with margin left based on how far scrolled to animate
+                classButton.style.marginLeft = `${(6.3 + (15.2 * percent))}vw`
+
+                // Resize logo based on percent also
+                logo.style.width = `${12 - (3 * percent)}vw`
+
+                // Resize inner image in logo
+                logo.style.backgroundSize = `${9.6 - (2 * percent)}vw`
+            }
+
+            else {
+                // Set to defaults
+                classButton.style.marginLeft = `${6.3}vw`
+                logo.style.width = `${12}vw`
+                logo.style.backgroundSize = `${9.6}vw`
             }
         }
     }
