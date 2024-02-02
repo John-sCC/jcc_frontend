@@ -48,7 +48,7 @@ function updateDivs() {
             const percent =  (window.pageYOffset - (base * 2.5)) / (base * 1.5)
 
             // Move button with margin left based on how far scrolled to animate
-            classButton.style.marginLeft = `${(6.3 + (15.2 * percent))}vw`
+            classButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
 
             // Resize logo based on percent also
             logo.style.width = `${12 - (3.3 * percent)}vw`
@@ -59,7 +59,7 @@ function updateDivs() {
 
         else {
             // Set to initial positions
-            classButton.style.marginLeft = `${6.3}vw`
+            classButton.style.marginLeft = `${8}vw`
             logo.style.width = `${12}vw`
             logo.style.backgroundSize = `${9.6}vw`
         }

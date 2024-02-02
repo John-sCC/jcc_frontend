@@ -152,17 +152,17 @@ a:hover {
             font-family: $nighthawk-font2;
             color: white;
             margin: auto;
-            font-size: 3vw;
+            font-size: 2.5vw;
             position: relative;
             top: 0.4vw;
             user-select: none;
 
             &:last-child {
-                margin-right: 6.3vw
+                margin-right: 8vw
             }
             
             &:first-child {
-                margin-left: 6.3vw
+                margin-left: 8vw
             }
         }
     }
