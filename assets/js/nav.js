@@ -37,6 +37,18 @@ function updateDivs() {
     // Define the bottom segment
     var navBottom = $(".nav-bottom")[0]
 
+    // Define the top segment
+    var navTop = $(".nav-top")[0]
+
+    // Position absolute if not scrolled to prevent scrolling past div
+    if (window.pageYOffset > 0) {
+        navTop.classList.add("sticky-top")
+    }
+
+    else {
+        navTop.classList.remove("sticky-top")
+    }
+
     // Upon scrolling past the middle section,
     if (window.pageYOffset < 4 * base) {
         // Remove sticky class from header
