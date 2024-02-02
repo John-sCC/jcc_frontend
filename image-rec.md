@@ -67,23 +67,30 @@ hide: true
     document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
     function handleFileSelect(event) {
-      const fileInput = event.target;
-      const file = fileInput.files[0];
+    const fileInput = event.target;
+    const file = fileInput.files[0];
 
-      // Display selected file name
-      document.getElementById('fileName').innerHTML = `Selected File: ${file.name}`;
+    // Display selected file name
+    document.getElementById('fileName').innerHTML = `Selected File: ${file.name}`;
 
-      const reader = new FileReader();
-      reader.onload = function (e) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        // Update the src attribute of the previewImage element
         document.getElementById('previewImage').src = reader.result;
-        document.getElementById('cropButton').style.display = 'block';
+
+        // Reset the Cropper instance with the new image
+        if (cropper) {
+        cropper.destroy(); // Destroy the existing Cropper instance
+        }
 
         cropper = new Cropper(document.getElementById('previewImage'), {
-          aspectRatio: 0, // You can adjust this for the desired aspect ratio
-          viewMode: 2,
+        aspectRatio: 0, // You can adjust this for the desired aspect ratio
+        viewMode: 2,
         });
-      };
-      reader.readAsDataURL(file);
+
+        document.getElementById('cropButton').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
     }
 
     function cropImage() {
