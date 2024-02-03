@@ -43,6 +43,11 @@ layout: post
             freqList.push(parseFloat(document.getElementById(`Freq${i+1}`).value));
         }
         
+        if(freqList.reduce((partialSum, a) => partialSum + a, 0) != 1.0){
+            alert("Please ensure the sum of your frequencies is 1");
+            return;
+        }
+        
         const payload = {
             links: linkList,
             frequencies: freqList
