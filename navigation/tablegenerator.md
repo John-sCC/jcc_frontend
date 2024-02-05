@@ -4,6 +4,6 @@ title: Table Generator
 description: make tables for ya classessssss
 toc: false
 ---
-<link href="{{site.baseurl}}/assets/css/tablegenerator.css">
+<script href="{{site.baseurl}}/assets/js/tablegenerator.js"></script>
 <div>
 </div>
