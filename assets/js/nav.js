@@ -1,7 +1,5 @@
 // Wait for HTML elements to load
 $(window).ready(function() {
-    var navBottom = $(".nav-bottom")[0]
-
     // Redirect buttons to respective pages
     for (let link of ["classes", "sign-in", "blogs", "about"]) {
         $(`#${link}`).click( function() { 
@@ -16,14 +14,78 @@ $(window).ready(function() {
         })
     }
 
-    window.onscroll = function () { 
-        if (window.pageYOffset >= 4 * ((window.innerWidth * .4) / 6) + (0.005 * window.innerWidth)) {
-            navBottom.classList.add("sticky")
-            console.log("yes")
+    window.onscroll = function () { updateDivs() }
+
+    // Simulate a scroll event to update on refresh
+    window.dispatchEvent(new Event("scroll"))
+})
+
+// Function serves three purposes:
+    // Appropriately set margin-left for the button to make space for the logo
+    // Resize the logo to fit into the bottom
+    // Add and remove the sticky class
+function updateDivs() {
+    // Calculate 1/6th of the header, as it is divided into segments of 1-4-1 (top-middle-bottom)
+    const base = ((window.innerWidth * .3) / 6) 
+
+    // Define the farthest left button to move for logo
+    const classButton = $("#classes")[0]
+
+    // Define the logo
+    const logo = $(".nav-logo")[0]
+
+    // Define the bottom segment
+    var navBottom = $(".nav-bottom")[0]
+
+    // Define the top segment
+    var navTop = $(".nav-top")[0]
+
+    // Position absolute if not scrolled to prevent scrolling past div
+    if (window.pageYOffset > 0) {
+        navTop.classList.add("sticky-top")
+    }
+
+    else {
+        navTop.classList.remove("sticky-top")
+    }
+
+    // Upon scrolling past the middle section,
+    if (window.pageYOffset < 4 * base) {
+        // Remove sticky class from header
+        navBottom.classList.remove("sticky")
+
+        if (window.pageYOffset >= (base * 2.5)) {
+            // Calculate percentage from initial to final position based on scroll
+                // I could not explain this to you, it's gibberish.
+            const percent =  (window.pageYOffset - (base * 2.5)) / (base * 1.5)
+
+            // Move button with margin left based on how far scrolled to animate
+            classButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
+
+            // Resize logo based on percent also
+            logo.style.width = `${12 - (3.3 * percent)}vw`
+
+            // Resize inner image in logo
+            logo.style.backgroundSize = `${9.6 - (2.64 * percent)}vw`
         }
+
         else {
-            navBottom.classList.remove("sticky")
-            console.log("no")
+            // Set to initial positions
+            classButton.style.marginLeft = `${8}vw`
+            logo.style.width = `${12}vw`
+            logo.style.backgroundSize = `${9.6}vw`
         }
     }
-})
+
+    // When not past the image,
+    else {
+        // Add sticky class to header
+        navBottom.classList.add("sticky")
+        
+        // Offset margin and set logo size to final position
+        classButton.style.marginLeft = `${21.5}vw`
+        logo.style.width = `${8.7}vw`
+        logo.style.backgroundSize = `${6.96}vw`
+
+    }
+}
