@@ -192,6 +192,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         	.requestMatchers("/api/person/post/**", "/api/person/delete/**").hasAnyAuthority("ROLE_ADMIN")
         	.requestMatchers("/**").permitAll()
     	)
+}
 
 ```
 

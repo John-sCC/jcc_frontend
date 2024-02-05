@@ -1,30 +1,7 @@
-/*-----------------------------------*/
-/*--- IMPORT STYLES FOR Mortpages ---*/
+
 @import "minima/Nighthawkpages-styles";   
-
-/*-----------------------------------*/
-/*--- CUSTOM STYLES FOR Nighthawkpages ---*/
-// Uncomment out the following themes to use them 
-
-// @import "minima/hacker/jekyll-theme-hacker"; //Hacker theme 
-// @import "minima/minimal-mistakes"; //Minimal Mistakes theme 
-// @import "minima/monophase/main"; //Monophase theme 
-// @import "minima/leaf/_leaf";  //Leaf theme 
-// @import "minima/hamilton/main"; //Hamilton theme
-
-/*-----------------------------------*/
-/*----- ADD YOUR STYLES BELOW -------*/
-
-// If you want to turn off dark background for syntax highlighting, comment or delete the below line.
-// If you want to use dark themes uncomment out the following lines
 @import "minima/Nighthawkpages-dracula-highlight"; 
-@import "minima/dark-mode"; // Dracula Highlight recommended for dark mode
-
-// FOR HAMILTON
-// @import "minima/hamilton/skins/daylight";
-// @import "minima/hamilton/skins/midnight";
-// @import "minima/hamilton/skins/sunrise";
-// @import "minima/hamilton/skins/sunset"
+@import "minima/dark-mode";
 
 @font-face {
     font-family: "Becka Script Plain Regular";
@@ -57,144 +34,6 @@ a:hover {
     }
 }
 
-// Navbar CSS!
-.nav {
-    display: flex;
-    z-index: 1;
-    flex-direction: column;
-    width:100%;
-    height: 40vw;
-    margin: 0;
-
-    .nav-top {
-        background-color: $nighthawk-blue;
-        border-bottom: .5vw $nighthawk-gold solid;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: calc(40vw/6);
-        position: fixed;
-        z-index: 1;
-
-        .nav-title {
-            @include basic-hover();
-            
-            font-family: $nighthawk-font2;
-            color: white;
-            font-size: 3vw;
-            margin: auto;
-            margin-right: 2vw;
-            position: relative;
-            top: .4vw;
-            user-select: none;
-        }
-
-        .nav-search {
-            margin: auto;
-            display: flex;
-            flex-direction: row;
-            margin-left: 5vw;
-            margin-right: 0;
-
-            img {
-                @include basic-hover();
-
-                height: 3vw;
-                width: 3vw;
-                margin: auto;
-                margin-right: 3vw;
-                margin-left: 0;
-                user-select: none;
-            }
-
-            input {
-                margin-left: 2vw;
-                margin-right: 2vw;
-                width: 20vw;
-                height: 3vw;
-                border-radius: 1.5vw;
-                padding-left: 15px;
-                padding-right: 15px;
-                font-size: 1.5vw;
-            }
-
-            input::placeholder {
-                font-style: italic;
-                user-select: none;
-            }
-        }
-    }
-
-    .nav-img {
-        background-image: url($baseurl + "/images/DNHS.jpeg");
-        height: calc(40vw*4/6);
-        background-position-y: 30%;
-        background-size: 100%;
-        position: relative;
-        top: calc(40vw/6);
-        z-index: 0;
-    }
-
-    .nav-bottom {
-        background-color: $nighthawk-blue;
-        height: calc(40vw/6);
-        border-top: .5vw $nighthawk-gold solid;
-        border-bottom: .5vw $nighthawk-gold solid;
-        display: flex;
-        flex-direction: row;
-        position: relative;
-        top: calc(40vw/6);
-
-        .nav-button {
-            @include basic-hover();
-
-            font-family: $nighthawk-font2;
-            color: white;
-            margin: auto;
-            font-size: 3vw;
-            position: relative;
-            top: 0.4vw;
-            user-select: none;
-        }
-    }
-}
-
-.nav-logo {
-    @include basic-hover();
-
-    background-color: $nighthawk-green;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    width: 12vw;
-    position: absolute;
-    top: 1vw;
-    left: 2vw;
-    border: .5vw solid $nighthawk-gold;
-    background-image: url($baseurl + "/images/icons/dnhs_logo.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: calc(12vw * 0.8);
-    z-index: 2;
-}
-
-.sticky {
-    position: fixed !important;
-    top: calc(40vw * 1/6 - 0.5vw) !important; 
-    width: 100%;
-
-    .leftmost {
-        margin-left: 16vw;
-    }
-}
-
-.sticky-logo {
-
-}
-
-// End navbar CSS
-
-// Site-wide CSS
-
 .wrapper {
     margin: 0;
     padding: 0;
@@ -214,4 +53,5 @@ section {
     width: 0;
 }
 
-// End site-wide CSS
+@import "nav.scss";
+@import "footer.scss";
