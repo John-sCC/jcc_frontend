@@ -72,7 +72,7 @@ layout: post
     function Generate(){
         console.log($("#inputDiv").find("input").length);
         fetchId().then(id => {
-            var link = "{{ site.baseurl }}/2024/01/25/qrcodeacceptbackend.html#" + id;
+            var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
             console.log(link)
             new QRCode(document.getElementById("qrcode"), link)
         })
@@ -80,7 +80,7 @@ layout: post
 
     function fetchId() {
         // Construct the URL for the POST request
-        const url = 'http://localhost:8911/api/qrcode/newCode';
+        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
 
         var linkList = [];
         var freqList = [];
