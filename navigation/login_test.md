@@ -24,23 +24,31 @@ permalink: /login-test/
                 email: email,
                 password: password
             };
-            // Make fetch request
-            fetch('http://localhost:8911/authenticate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response data as needed
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle errors
-                console.error('Error:', error);
-            });
-        }
+            // Make the fetch request
+        fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {//'http://localhost:8911/authenticate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Assuming the response is in JSON format
+        })
+        .then(data => {
+            // Handle the authentication success
+            console.log('Authentication successful:', data);
+            // Now you can use the data as needed
+            // For example, redirect to a new page or update the UI
+        })
+        .catch(error => {
+            // Handle errors, such as authentication failure
+            console.error('Authentication error:', error.message);
+            // Display an error message to the user or handle the error in some way
+        });
+    }
     </script>
 </body>
