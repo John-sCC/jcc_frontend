@@ -11,7 +11,7 @@ layout: post
     var link;
     function fetchId(){
         // const url = 'http://localhost:8911/api/qrcode/';
-        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
+        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
         return fetch(url + window.location.hash.substring(1))
         .then(response => {
             if (!response.ok) {
