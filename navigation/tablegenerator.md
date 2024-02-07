@@ -14,7 +14,12 @@ permalink: /tablegenerator
             <b>STUDENTS:</b>
             <i>SELECT A CLASS TO GENERATE FROM</i>
         </div>
-        <div class="list"></div>
+        <div class="list">
+            <div class="list-item">
+                <div class="name">P3 Mortensen</div>
+                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+            </div>
+        </div>
         <div class="group-numbers">
             <span># OF GROUPS:</span>
             <input id="groupsInput" placeholder="#">
