@@ -46,6 +46,19 @@ a:hover {
     }
 }
 
+@mixin color-hover($before, $after) {
+    &:hover {
+        color: $after;
+        transition: color .2s;
+    }
+    
+    // not(hover) gives a transition on mouse leave as well!
+    &:not(hover) {
+        color: $before;
+        transition: color .2s;
+    }
+}
+
 .wrapper {
     margin: 0;
     padding: 0;
