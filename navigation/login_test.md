@@ -25,7 +25,7 @@ permalink: /login-test/
                 password: password
             };
             // Make the fetch request
-            fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {//'http://localhost:8911/authenticate', {
+            fetch('http://localhost:8911/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,19 +34,24 @@ permalink: /login-test/
             })
             .then(response => {
                 if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json(); // Assuming the response is in JSON format
+                // No need to parse response body since it's setting a cookie in the headers
+                // Handle the cookie in the headers instead
+                const tokenCookie = response.headers.get('Set-Cookie');
+                // Handle the cookie as needed
+                console.log('Token cookie:', tokenCookie);
+                // Optionally, you can return any relevant data from the backend
+                return response.json();
             })
             .then(data => {
-                // Handle the authentication success
-                console.log('Authentication successful:', data);
-                // Now you can use the data as needed
-                // For example, redirect to a new page or update the UI
+                // Optionally handle any JSON response from the backend
+                console.log('Additional data from backend:', data);
+                // Handle any further logic as needed
             })
             .catch(error => {
                 // Handle errors, such as authentication failure
-                console.error('Authentication error:', error.message);
+                console.log('Authentication error:', error.message);
                 // Display an error message to the user or handle the error in some way
             });
         }
