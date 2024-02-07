@@ -51,7 +51,7 @@ permalink: /login-test/
             })
             .catch(error => {
                 // Handle errors, such as authentication failure
-                console.log(error);
+                console.log("THERE WAS AN ERROR");
                 // Display an error message to the user or handle the error in some way
             });
         }
