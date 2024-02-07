@@ -5,7 +5,9 @@ description: make tables for ya classessssss
 toc: false
 permalink: /tablegenerator
 ---
-<script href="{{site.baseurl}}/assets/js/tablegenerator.js"></script>
+<head>
+    <script href="{{site.baseurl}}/assets/js/tablegenerator.js"></script>
+</head>
 <div class="table-generator">
     <div class="text-container">
         <div class="text">
@@ -17,7 +19,9 @@ permalink: /tablegenerator
             <span># OF GROUPS:</span>
             <input id="groupsInput" placeholder="#">
         </div>
-        <div class="button">GENERATE TEAMS!</div>
+        <div class="button-container">
+            <button id="submit">GENERATE TEAMS</button>
+        </div>
     </div>
     <div class="table-container" id="table-div">
     <!-- Tester tables for styling -->
