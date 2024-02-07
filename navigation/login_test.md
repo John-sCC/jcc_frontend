@@ -25,35 +25,20 @@ permalink: /login-test/
                 password: password
             };
             // Make the fetch request
-            fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
+            fetch('http://localhost:8911/authenticate', {//'https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(requestBody),
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                // No need to parse response body since it's setting a cookie in the headers
-                // Handle the cookie in the headers instead
-                const tokenCookie = response.headers.get('Set-Cookie');
-                // Handle the cookie as needed
-                console.log('Token cookie:', tokenCookie);
-                // Optionally, you can return any relevant data from the backend
-                return response.json();
-            })
-            .then(data => {
-                // Optionally handle any JSON response from the backend
-                console.log('Additional data from backend:', data);
-                // Handle any further logic as needed
-            })
-            .catch(error => {
-                // Handle errors, such as authentication failure
-                console.log("THERE WAS AN ERROR");
-                // Display an error message to the user or handle the error in some way
-            });
+            .then((data) => {
+                if (data.status == 200) {
+                        window.location.replace("{{site.baseurl}}/user-disp-test/");
+                    } else {
+                        document.getElementById('message').innerHTML = "Invalid email or password"
+                    }
+                )
         }
     </script>
 </body>
