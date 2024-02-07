@@ -36,7 +36,7 @@ permalink: /login-test/
                 if (data.status == 200) {
                         window.location.replace("{{site.baseurl}}/user-disp-test/");
                     } else {
-                        document.getElementById('message').innerHTML = "Invalid email or password"
+                        console.log("Error happened")
                     }
                 })
         }
