@@ -25,7 +25,7 @@ permalink: /login-test/
                 password: password
             };
             // Make the fetch request
-            fetch('http://localhost:8911/authenticate', {
+            fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
