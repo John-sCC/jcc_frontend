@@ -38,7 +38,7 @@ permalink: /login-test/
                     } else {
                         document.getElementById('message').innerHTML = "Invalid email or password"
                     }
-                )
+                })
         }
     </script>
 </body>
