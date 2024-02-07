@@ -18,12 +18,24 @@ a:hover {
 }
 
 // Mixin for adjusting brightness of an element on hover
-@mixin basic-hover() {
+@mixin basic-hover($type) {
     cursor: pointer;
     
     // SASS parent selector! (&)
     &:hover {
-        filter: brightness(80%);
+        // Default light hover preset
+        @if $type == light {
+            filter: brightness(120%);
+        } 
+        // Default dark hover preset
+        @else if $type == dark {
+            filter: brightness(80%);
+        }
+        // For custom brightnesses
+        @else {
+            filter: brightness($type)
+        };
+
         transition: filter .2s;
     }
 
