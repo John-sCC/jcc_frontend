@@ -80,6 +80,7 @@ layout: post
 
     function fetchId() {
         // Construct the URL for the POST request
+        // const url = 'http://localhost:8911/api/qrcode/newCode';
         const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
 
         var linkList = [];
