@@ -13,7 +13,8 @@ layout: post
     var hash = window.location.hash.substring(1)
     console.log(hash);
     // Define the URL of your endpoint
-    const url = 'http://localhost:8911/api/qrcode/';
+    // const url = 'http://localhost:8911/api/qrcode/';
+    const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
     // Use the Fetch API to send a GET request to your backend
     fetch(url)
     .then(response => {
