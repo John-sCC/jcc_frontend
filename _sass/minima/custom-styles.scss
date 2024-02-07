@@ -47,6 +47,8 @@ a:hover {
 }
 
 @mixin color-hover($before, $after) {
+    cursor: pointer;
+
     &:hover {
         color: $after;
         transition: color .2s;

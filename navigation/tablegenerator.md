@@ -17,48 +17,48 @@ permalink: /tablegenerator
         <div class="list">
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
 
             <div class="list-item">
                 <div class="name">P3 Mortensen</div>
-                <div class="edit"><img src="{{site.baseurl}}/images/edit-icon.png"></div>
+                <div class="edit"><img src="{{site.baseurl}}/images/icons/edit-icon.png"></div>
             </div>
         </div>
         <div class="group-numbers">
