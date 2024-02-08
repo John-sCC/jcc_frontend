@@ -59,8 +59,7 @@ permalink: /ass-request/
                 } else {
                     // If it's not JSON, handle it as per your requirement
                     console.log(data);
-                    alert('Assignment created successfully. However, the server response is not in JSON format.');
-                    // You might want to redirect or do something else here
+                    window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
                 }
             })
             .catch(error => {
