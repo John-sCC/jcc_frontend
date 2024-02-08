@@ -40,13 +40,28 @@ permalink: /ass-request/
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.json();
+                // Check if the response is JSON
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    // If the response is not JSON, return the text directly
+                    return response.text();
+                }
             })
             .then(data => {
                 // Handle the data here
-                console.log(data);
-                alert(`Assignment created successfully. ID: ${data.id}`);
-                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+                if (typeof data === 'object') {
+                    // If it's JSON, proceed as before
+                    console.log(data);
+                    alert(`Assignment created successfully. ID: ${data.id}`);
+                    window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+                } else {
+                    // If it's not JSON, handle it as per your requirement
+                    console.log(data);
+                    alert('Assignment created successfully. However, the server response is not in JSON format.');
+                    // You might want to redirect or do something else here
+                }
             })
             .catch(error => {
                 console.error('Error posting assignment:', error);
