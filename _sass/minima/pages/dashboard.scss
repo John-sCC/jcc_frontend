@@ -1,0 +1,63 @@
+.dashboard {
+
+    h1 {
+        font-family: $nighthawk-font2;
+        font-size: 3em;
+    }
+
+    h2 {
+        font-family: $nighthawk-font2;
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-family: 'Arial';
+        font-size: 120%;
+    }
+
+    .container {
+        font-family: $nighthawk-font2;
+        background-color: $nighthawk-blue;
+        border-radius: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        
+        .card {
+            flex: 0 0 33%; /* One-third width of the container */
+            margin-right: 10px;
+            background-color: $nighthawk-green;
+            border: 3px solid $nighthawk-gold;
+            border-radius: 5px;
+            padding: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+    
+            .main-name {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                transition: color 0.2s, cursor 0.2s; // for smoother transition
+    
+                &:hover {
+                    color: darken(white, 30%); // darkening for hover
+                    text-decoration: underline; // adding underline
+                    cursor: pointer;
+                }
+            }
+    
+            .second-name {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+    
+            .third-name {
+                font-size: 12px;
+                color: #aaa;
+            }
+        }
+    }
+}
