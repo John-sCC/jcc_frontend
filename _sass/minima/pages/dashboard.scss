@@ -40,6 +40,13 @@
                 font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 5px;
+                transition: color 0.2s, cursor 0.2s; // for smoother transition
+    
+                &:hover {
+                    color: darken(white, 30%); // darkening for hover
+                    text-decoration: underline; // adding underline
+                    cursor: pointer;
+                }
             }
     
             .second-name {

@@ -98,6 +98,9 @@ permalink: /user-disp-test/
                 var assignmentName = document.createElement('div');
                 assignmentName.classList.add('main-name');
                 assignmentName.textContent = assignment.name;
+                
+                // adding a click event listener to the assignmentName div
+                assignmentName.setAttribute("onclick", "assignmentRedirect(" + String(assignment.id) + ")");
 
                 var className = document.createElement('div');
                 className.classList.add('second-name');
@@ -161,6 +164,10 @@ permalink: /user-disp-test/
         } else {
             bigContainer.style.display = 'block';
         }
+    }
+
+    function assignmentRedirect(id) {
+        window.location.href = '{{site.baseurl}}/assignment-data?id=' + id;
     }
 
     /*
