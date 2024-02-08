@@ -46,6 +46,7 @@ permalink: /ass-request/
                 // Handle the data here
                 console.log(data);
                 alert(`Assignment created successfully. ID: ${data.id}`);
+                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
             })
             .catch(error => {
                 console.error('Error posting assignment:', error);
@@ -55,7 +56,12 @@ permalink: /ass-request/
     </script>
 </head>
 <body>
-    <div class="flexbox">
+    <div>
+        <label>heko 
+        <input type="number" name="classLeader" id="classLeader"></label>
+        <button>submit your class leader id</button>
+    </div>
+    <div class="flexbox" style="visibility: block">
         <p><label>
             Name of Assignment: <br>
             <input type="text" name="name" id="name" required>
