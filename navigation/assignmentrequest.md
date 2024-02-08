@@ -27,6 +27,7 @@ permalink: /ass-request/
                 dateDue: dateDue,  
                 content: content
             };
+            console.log(requestData);
             //a
             fetch(apiUrl, {
                 method: 'POST',
