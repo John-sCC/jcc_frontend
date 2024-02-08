@@ -15,7 +15,7 @@ permalink: /ass-request/
         function postAssignment() {
             const d = document;
             let name = d.getElementById("name").value;
-            let date = d.getElementById("dateDue").value;
+            let dateDue = d.getElementById("dateDue").value;
             let content = d.getElementById("content").value;
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
