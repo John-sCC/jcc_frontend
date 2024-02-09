@@ -136,6 +136,13 @@ permalink: /user-disp-test/
             classPeriodName.classList.add('main-name');
             classPeriodName.textContent = classPeriod.name;
 
+            // adding a click event listener to the assignmentName div
+            if (isLeader) {
+                classPeriodName.setAttribute("onclick", "classLeaderRedirect(" + String(classPeriod.id) + ")");
+            } else {
+                classPeriodName.setAttribute("onclick", "classStudentRedirect(" + String(classPeriod.id) + ")");
+            }
+
             var leaderNames = document.createElement('div');
             leaderNames.classList.add('second-name');
             leaderNames.textContent = "Leaders: ";
@@ -168,6 +175,14 @@ permalink: /user-disp-test/
 
     function assignmentRedirect(id) {
         window.location.href = '{{site.baseurl}}/assignment-data?id=' + id;
+    }
+
+    function classStudentRedirect(id) {
+        window.location.href = '{{site.baseurl}}/student-class-data?id=' + id;
+    }
+
+    function classLeaderRedirect(id) {
+        window.location.href = '{{site.baseurl}}/leader-class-data?id=' + id;
     }
 
     /*
