@@ -5,6 +5,7 @@ window.onload(function() {
     initialize()
 
     document.getElementsByClassName("add")[0].onclick = function () {addClass()}
+    $("#submit")[0].onclick = function() {makeGroups()}
 })
 
 function initialize() {
@@ -55,7 +56,7 @@ function makeClass(id, name = "Unnamed class") {
     const itemName = document.createElement("div")
     itemName.className = "name"
     itemName.innerHTML = name
-    itemName.onclick = function() { selected = id }
+    itemName.onclick = function() { setSelected(id) }
 
     const listItem = document.createElement("div")
     listItem.className = "list-item"
@@ -81,6 +82,16 @@ function getClassList() {
     }
 
     return classes
+}
+
+function setSelected(id) {
+    try {
+        document.getElementById(`class-${selected}`).children[0].style.color = "" // unsets
+    }
+    catch {}
+    selected = id
+
+    document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
 }
 
 function editClass(id) {
@@ -220,17 +231,34 @@ function saveEdits(id) {
 }
 
 function makeGroups() {
-    // Define variable for table div section
-    var tableDiv = $("#tables")[0]
+    if (selected == null) {
+        alert("Please select a class to generate from first")
+        return
+    }
 
-    // Reset tables
-    tableDiv.innerHTML = ""
-
-    // Get list of people, split by line then randomized
-    const people = $('#people-input')[0].value.split("\n").sort(() => Math.random() - 0.5)
-    
     // Get number of groups, n
-    const n = $("#groups")[0].value
+    const n = $("#groupsInput")[0].value
+
+    if (n != Math.abs(n) || n == "") {
+        alert("Please enter the desired amount of groups.")
+        return
+    }
+
+    // Define variable for table div section
+    $('#table-div')[0].innerHTML = ""
+
+    const classList = getClassList()
+
+    let thisClass
+    
+    for (let i = 0; i < classList.length; i ++) {
+        if (classList[i]["id"] == `class-${selected}`) {
+            thisClass = classList[i]
+        }
+    }
+
+    // Get list of people, then randomized
+    const people = thisClass["class"].sort(() => Math.random() - 0.5)
 
     // Define array for finalized groups array
     var groups = []
@@ -257,12 +285,6 @@ function makeGroups() {
 
     // Loops to create divs for each group, then putting them into the tableDiv
     for (group of groups) {
-        var table = document.createElement("div")
-
-        for (person of group) {
-            table.innerHTML += `${person} \n`
-        }
-
-        tableDiv.appendChild(table)
+        makeTable(group)
     }
 }

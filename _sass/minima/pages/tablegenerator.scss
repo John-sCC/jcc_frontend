@@ -76,10 +76,12 @@ $grayish: rgb(239, 239, 239);
                     @include color-hover(black, $nighthawk-green);
                     user-select: none;
                     margin-left: 1vw;
+                    height: 3vw;
                 }
 
                 .edit {
                     cursor: pointer;
+                    height: 3vw;
 
                     // Not using hover mixin because this is really specific, makes it look like changing color
                     &:hover {
@@ -169,6 +171,7 @@ $grayish: rgb(239, 239, 239);
                 width: 40%;
                 margin: auto;
                 display: table;
+                margin-top: 0;
 
                 &:first-child {
                     margin-left: 40px;
