@@ -244,6 +244,11 @@ function makeGroups() {
         return
     }
 
+    try {
+        saveEdits(`class-${selected}`)
+    }
+    catch {}
+
     // Define variable for table div section
     $('#table-div')[0].innerHTML = ""
 
