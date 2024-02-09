@@ -244,6 +244,7 @@ function makeGroups() {
         return
     }
 
+    // Try to save edits if possible
     try {
         saveEdits(`class-${selected}`)
     }
