@@ -47,6 +47,8 @@ a:hover {
 }
 
 @mixin color-hover($before, $after) {
+    cursor: pointer;
+
     &:hover {
         color: $after;
         transition: color .2s;
@@ -80,5 +82,6 @@ section {
 
 @import "pages/nav.scss";
 @import "pages/footer.scss";
+@import "pages/tablegenerator.scss";
 @import "pages/dashboard.scss";
 @import "pages/assignment.scss";
