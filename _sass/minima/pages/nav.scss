@@ -18,7 +18,7 @@
         z-index: 1;
 
         .nav-title {
-            @include basic-hover();
+            @include basic-hover(dark);
             
             font-family: $nighthawk-font2;
             color: white;
@@ -38,7 +38,7 @@
             margin-right: 0;
 
             img {
-                @include basic-hover();
+                @include basic-hover(dark);
 
                 height: 3vw;
                 width: 3vw;
@@ -87,7 +87,7 @@
         top: calc(30vw/6);
 
         .nav-button {
-            @include basic-hover();
+            @include basic-hover(dark);
 
             font-family: $nighthawk-font2;
             color: white;
@@ -109,7 +109,7 @@
 }
 
 .nav-logo {
-    @include basic-hover();
+    @include basic-hover(dark);
 
     background-color: $nighthawk-green;
     border-radius: 50%;

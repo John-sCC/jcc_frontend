@@ -18,12 +18,24 @@ a:hover {
 }
 
 // Mixin for adjusting brightness of an element on hover
-@mixin basic-hover() {
+@mixin basic-hover($type) {
     cursor: pointer;
     
     // SASS parent selector! (&)
     &:hover {
-        filter: brightness(80%);
+        // Default light hover preset
+        @if $type == light {
+            filter: brightness(120%);
+        } 
+        // Default dark hover preset
+        @else if $type == dark {
+            filter: brightness(80%);
+        }
+        // For custom brightnesses
+        @else {
+            filter: brightness($type)
+        };
+
         transition: filter .2s;
     }
 
@@ -31,6 +43,19 @@ a:hover {
     &:not(hover) {
         filter: brightness(100%);
         transition: filter .2s;
+    }
+}
+
+@mixin color-hover($before, $after) {
+    &:hover {
+        color: $after;
+        transition: color .2s;
+    }
+    
+    // not(hover) gives a transition on mouse leave as well!
+    &:not(hover) {
+        color: $before;
+        transition: color .2s;
     }
 }
 
@@ -55,3 +80,5 @@ section {
 
 @import "pages/nav.scss";
 @import "pages/footer.scss";
+@import "pages/dashboard.scss";
+@import "pages/assignment.scss";
