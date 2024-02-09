@@ -25,15 +25,18 @@ permalink: /login-test/
                 password: password
             };
             // Make the fetch request
-            fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
+            fetch('http://localhost:8911/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(requestBody),
             })
-            .then((data) => {
-                if (data.status == 200) {
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.status == 200) {
+                        console.log(data);
+                        document.cookie = "token=" + data.token + "; path=/";
                         window.location.replace("{{site.baseurl}}/user-disp-test/");
                     } else {
                         document.getElementById('message').innerHTML = "Invalid email or password"
