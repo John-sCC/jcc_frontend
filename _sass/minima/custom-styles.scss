@@ -13,10 +13,6 @@
     src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
 }
 
-a:hover {
-    color: #22956b !important
-}
-
 // Mixin for adjusting brightness of an element on hover
 @mixin basic-hover($type) {
     cursor: pointer;
@@ -80,8 +76,13 @@ section {
     width: 0;
 }
 
+a:hover {
+    @include basic-hover(light);
+}
+
 @import "pages/nav.scss";
 @import "pages/footer.scss";
 @import "pages/tablegenerator.scss";
 @import "pages/dashboard.scss";
 @import "pages/assignment.scss";
+@import "pages/blogs.scss";
