@@ -80,6 +80,11 @@ a:hover {
     @include basic-hover(light);
 }
 
+.page-heading {
+    font-family: $nighthawk-font2 !important;
+    margin-bottom: 2vw !important;
+}
+
 @import "pages/nav.scss";
 @import "pages/footer.scss";
 @import "pages/tablegenerator.scss";
