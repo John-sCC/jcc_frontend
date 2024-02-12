@@ -1,5 +1,9 @@
 $grayish: rgb(239, 239, 239);
 
+button {
+    @include basic-hover(light);
+}
+
 .table-generator {
     display: flex;
     flex-direction: row;
@@ -136,6 +140,7 @@ $grayish: rgb(239, 239, 239);
                 background-color: $grayish;
                 color: $nighthawk-green;
                 border-radius: 10px;
+                width: 28vw;
             }
         }
     }
@@ -207,30 +212,75 @@ $grayish: rgb(239, 239, 239);
         .class-title {
             margin: auto;
             margin-top: 1vw;
-            flex: 1
+            flex: 1;
+            display: flex;
+            font-family: $nighthawk-font2;
 
             input {
-
+                border-radius: 5px;
+                height: 100%;
+                flex: 4;
+                width: 30vw;
+                margin-right: 1vw;
+                border: none;
+                font-size: 2vw;
             }
 
             button {
-
+                border: none;
+                height: 100%;
+                flex: 1;
+                border-radius: 5px;
+                width: 18vw;
+                color: $nighthawk-green;
+                line-height: 0vw;
             }
         }
 
-        .text-container {
-            margin: auto;
-            flex: 4;
+        .text-area-container {
+            flex: 5;
+            align-items: center;
+            display: flex;
 
             textarea {
-                height: 90%
+                height: 90%;
+                width: 90%;
+                margin: auto;
+                border-radius: 5px;
+                border: none;
+
+                &::-webkit-scrollbar {
+                    width: .5vw;
+                }
+        
+                &::-webkit-scrollbar-thumb {
+                    background: gray;
+                }
             }
         }
 
         .save {
             margin: auto;
             margin-bottom: 1vw;
-            flex: 1
+            flex: 1;
+            font-family: $nighthawk-font2;
+
+            button {
+                height: 100%;
+                width: 23.6vw;
+                border-radius: 5px;
+                border: none;
+                line-height: 0vw;
+                color: $nighthawk-green;
+
+                &:first-child {
+                    margin-right: 1vw;
+                }
+
+                &:last-child {
+                    margin-left: 1vw;
+                }
+            }
         }
     }
 }
