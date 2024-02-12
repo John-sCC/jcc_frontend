@@ -1,43 +1,7 @@
-/*-----------------------------------*/
-/*--- IMPORT STYLES FOR Mortpages ---*/
+
 @import "minima/Nighthawkpages-styles";   
-
-/*-----------------------------------*/
-/*--- CUSTOM STYLES FOR Nighthawkpages ---*/
-// Uncomment out the following themes to use them 
-
-// @import "minima/hacker/jekyll-theme-hacker"; //Hacker theme 
-// @import "minima/minimal-mistakes"; //Minimal Mistakes theme 
-// @import "minima/monophase/main"; //Monophase theme 
-// @import "minima/leaf/_leaf";  //Leaf theme 
-// @import "minima/hamilton/main"; //Hamilton theme
-
-/*-----------------------------------*/
-/*----- ADD YOUR STYLES BELOW -------*/
-
-// If you want to turn off dark background for syntax highlighting, comment or delete the below line.
-// If you want to use dark themes uncomment out the following lines
 @import "minima/Nighthawkpages-dracula-highlight"; 
-@import "minima/dark-mode"; // Dracula Highlight recommended for dark mode
-
-// FOR HAMILTON
-// @import "minima/hamilton/skins/daylight";
-// @import "minima/hamilton/skins/midnight";
-// @import "minima/hamilton/skins/sunrise";
-// @import "minima/hamilton/skins/sunset"
-
-// Temporary solution
-$baseurl: "/jcc_frontend";
-
-// Site colors
-$nighthawk-blue: #002147ff;
-$nighthawk-green: #154734ff;
-$nighthawk-gold: #91976cff;
-
-
-// Site fonts
-$nighthawk-font1: "Becka Script Plain Regular";
-$nighthawk-font2: "Collegiate Inside";
+@import "minima/dark-mode";
 
 @font-face {
     font-family: "Becka Script Plain Regular";
@@ -49,13 +13,29 @@ $nighthawk-font2: "Collegiate Inside";
     src: url($baseurl + "/assets/fonts/CollegiateInsideFLF.ttf");
 }
 
+a:hover {
+    color: #22956b !important
+}
+
 // Mixin for adjusting brightness of an element on hover
-@mixin basic-hover() {
+@mixin basic-hover($type) {
     cursor: pointer;
     
     // SASS parent selector! (&)
     &:hover {
-        filter: brightness(80%);
+        // Default light hover preset
+        @if $type == light {
+            filter: brightness(120%);
+        } 
+        // Default dark hover preset
+        @else if $type == dark {
+            filter: brightness(80%);
+        }
+        // For custom brightnesses
+        @else {
+            filter: brightness($type)
+        };
+
         transition: filter .2s;
     }
 
@@ -66,119 +46,20 @@ $nighthawk-font2: "Collegiate Inside";
     }
 }
 
-// Navbar CSS!
-.nav {
-    display: flex;
-    flex-direction: column;
-    width:100vw;
-    height: 40vw;
-    background-color: $nighthawk-blue;
-    margin: 0;
+@mixin color-hover($before, $after) {
+    cursor: pointer;
 
-    .nav-top {
-        flex: 1;
-        border-bottom: .5vw $nighthawk-gold solid;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-
-        .nav-title {
-            @include basic-hover();
-            
-            font-family: $nighthawk-font2;
-            color: white;
-            font-size: 3vw;
-            margin: auto;
-            margin-right: 2vw;
-            position: relative;
-            top: .4vw;
-            user-select: none;
-        }
-
-        .nav-search {
-            margin: auto;
-            display: flex;
-            flex-direction: row;
-            margin-left: 5vw;
-            margin-right: 0;
-
-            img {
-                @include basic-hover();
-
-                height: 3vw;
-                width: 3vw;
-                margin: auto;
-                margin-right: 3vw;
-                margin-left: 0;
-                user-select: none;
-            }
-
-            input {
-                margin-left: 2vw;
-                margin-right: 2vw;
-                width: 20vw;
-                height: 3vw;
-                border-radius: 1.5vw;
-                padding-left: 15px;
-                padding-right: 15px;
-                font-size: 1.5vw;
-            }
-
-            input::placeholder {
-                font-style: italic;
-                user-select: none;
-            }
-        }
+    &:hover {
+        color: $after;
+        transition: color .2s;
     }
-
-    .nav-img {
-        background-image: url($baseurl + "/images/DNHS.jpeg");
-        flex: 4;
-        background-position-y: 30%;
-        background-size: 100vw;
-    }
-
-    .nav-bottom {
-        flex: 1;
-        border-top: .5vw $nighthawk-gold solid;
-        border-bottom: .5vw $nighthawk-gold solid;
-        display: flex;
-        flex-direction: row;
-
-        .nav-button {
-            @include basic-hover();
-
-            font-family: $nighthawk-font2;
-            color: white;
-            margin: auto;
-            font-size: 3vw;
-            position: relative;
-            top: 0.4vw;
-            user-select: none;
-        }
+    
+    // not(hover) gives a transition on mouse leave as well!
+    &:not(hover) {
+        color: $before;
+        transition: color .2s;
     }
 }
-
-.nav-logo {
-    @include basic-hover();
-
-    background-color: $nighthawk-green;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    width: 12vw;
-    position: absolute;
-    top: 1vw;
-    left: 2vw;
-    border: .5vw solid $nighthawk-gold;
-    background-image: url($baseurl + "/images/icons/dnhs_logo.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: calc(12vw * 0.8);
-}
-
-// End navbar CSS
-
-// Site-wide CSS
 
 .wrapper {
     margin: 0;
@@ -190,4 +71,17 @@ html, body {
     background-color: $nighthawk-green !important;
 }
 
-// End site-wide CSS
+section {
+    width: 90vw;
+    margin: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+@import "pages/nav.scss";
+@import "pages/footer.scss";
+@import "pages/tablegenerator.scss";
+@import "pages/dashboard.scss";
+@import "pages/assignment.scss";
