@@ -4,7 +4,6 @@ title: Sign-In
 permalink: /sign-in/
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,12 +13,16 @@ permalink: /sign-in/
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="signin.js"></script>
 
-  <style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<style>
     html,
     body {
       height: 100%;
       margin: 0;
-      font-family: "Lexend";
+      font-family: "Lexend", sans-serif;
       background-color: #154734;
     }
 
@@ -56,6 +59,7 @@ permalink: /sign-in/
 
     #login-header {
       color: #ffffff;
+      font-family: "Lexend", sans-serif;
       font-size: 35pt;
       margin-top: 50px;
       margin-bottom: 10px;
@@ -89,14 +93,14 @@ permalink: /sign-in/
     }
 
     #forgot-password {
-        font-family: "Lexend";
+      font-family: "Lexend", sans-serif;
         font-size: 15px;
         margin-bottom: 15px;
         color: #22956b;
     }
 
     .login-form-field {
-      width: calc(50% - 10px);
+      width: calc(70% - 10px);
       color: #3a3a3a;
       border: none;
       border-bottom: 1px solid #3a3a3a;
@@ -123,13 +127,13 @@ permalink: /sign-in/
     }
 
     #no-account {
-        font-family: "Lexend";
+      font-family: "Lexend", sans-serif;
         font-size: 15px;
         margin-bottom: 5px;
     }
 
     #create-account {
-        font-family: "Lexend";
+      font-family: "Lexend", sans-serif;
         font-size: 15px;
         margin-bottom: 60px;
         color: #22956b;
