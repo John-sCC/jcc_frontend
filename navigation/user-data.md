@@ -34,6 +34,24 @@ permalink: /user-disp-test/
             <!--contains classes in which the person leads-->
         </div>
     </div>
+    <div id="stats_resources_container_container" class="container-container">
+        <h2>Statistics/Data Resources</h2>
+        <p class="subtitle">Here are some resources for your statistical journey.</p>
+        <div id="stats_resources_container" class="container">
+            <div class="card">
+                <div class="main-name" onclick="generalRedirect('/2024/01/25/qrcodetestbackend.html')">QR Code Generator</div>
+                <div class="second-name">Great for stats projects!</div>
+            </div>
+            <div class="card">
+                <div class="main-name">Graphing Resources</div>
+                <div class="second-name">Stapplet but better!</div>
+            </div>
+            <div class="card">
+                <div class="main-name">Image Recognition</div>
+                <div class="second-name">Part of making Stapplet not suck!</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -44,7 +62,7 @@ permalink: /user-disp-test/
         // getting values from input fields
         var id = document.getElementById('id_number').value;
         // making the first fetch request
-        fetch(deployed + '/api/class_period/students/' + String(id), {
+        fetch(local + '/api/class_period/students/' + String(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +78,7 @@ permalink: /user-disp-test/
             console.log(JSON.stringify(data));
             populateAssignmentContainer(data);
             populateClassesContainer(data, false);
-            fetch(deployed + '/api/class_period/leaders/' + String(id), {
+            fetch(local + '/api/class_period/leaders/' + String(id), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -183,6 +201,10 @@ permalink: /user-disp-test/
 
     function classLeaderRedirect(id) {
         window.location.href = '{{site.baseurl}}/leader-class-data?id=' + id;
+    }
+
+    function generalRedirect(urlExtension) {
+        window.location.href = '{{site.baseurl}}' + urlExtension;
     }
 
     /*
