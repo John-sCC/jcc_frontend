@@ -2,6 +2,7 @@
 layout: default
 title: Image Recognition
 hide: true
+permalink: /image-rec/
 ---
 
 <style>
