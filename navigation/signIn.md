@@ -11,7 +11,7 @@ permalink: /sign-in/
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="signin.js"></script>
+  <script src="{{site.baseurl}}/assets/js/signin.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -165,6 +165,7 @@ permalink: /sign-in/
 
 </html>
 
+<!--
 <script>
   function signIn() {
 
@@ -207,3 +208,4 @@ permalink: /sign-in/
 }
 
 </script>
+-->
