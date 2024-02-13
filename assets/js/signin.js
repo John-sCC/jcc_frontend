@@ -2,10 +2,10 @@ $(document).ready(function () {
     $('#login-form-submit').click(function (event) {
         event.preventDefault();
 
-        var username = $('#username-field').val();
+        var name = $('#username-field').val();
         var password = $('#password-field').val();
         var data = {
-            "username": username,
+            "name": name,
             "password": password
         };
 
