@@ -16,7 +16,7 @@ permalink: /sign-in/
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-</head>
+
 <style>
     html,
     body {
@@ -48,7 +48,7 @@ permalink: /sign-in/
 
     #login-div {
       background-color: #002147; 
-      width: 40%;
+      width: 60%;
       border: 4px solid #91976C;
       padding: 20px;
       margin: 50px; 
