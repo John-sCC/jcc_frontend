@@ -26,28 +26,41 @@ permalink: /login-test/
             };
             // Make the fetch request
             fetch('http://localhost:8911/authenticate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody) // Add this line to include the request body
+<<<<<<< HEAD
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const tokenCookie = response.headers.get('Set-Cookie');
-                // Handle the cookie as needed
-                console.log('Token cookie:', tokenCookie);
-                // Optionally, you can return any relevant data from the backend
-                return response.json();
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.status == 200) {
+                        console.log(data);
+                        document.cookie = "token=" + data.token + "; path=/";
+                        window.location.replace("{{site.baseurl}}/user-disp-test/");
+                    } else {
+                        document.getElementById('message').innerHTML = "Invalid email or password"
+                    }
+                })
+=======
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
             })
-            .then(data => {
-                console.log('Additional data from backend:', data);
-            })
-            .catch(error => {
-                console.log('Authentication error:', error.message);
-            });
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.status == 200) {
+                        console.log(data);
+                        document.cookie = "token=" + data.token + "; path=/";
+                        window.location.replace("{{site.baseurl}}/user-disp-test/");
+                    } else {
+                        document.getElementById('message').innerHTML = "Invalid email or password"
+                    }
+                })
+>>>>>>> 80264cb (fixed login)
         }
     </script>
 </body>
