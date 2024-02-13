@@ -29,11 +29,13 @@ layout: post
         var inputQR = document.createElement('input');
         inputQR.type = 'text';
         inputQR.id = `QR${num}`;
+        inputQR.placeholder = "Link"
 
         // Create second input element
         var inputFreq = document.createElement('input');
         inputFreq.type = 'text';
         inputFreq.id = `Freq${num}`;
+        inputFreq.placeholder = "Link"
 
         // Create button element
         var button = document.createElement('button');
