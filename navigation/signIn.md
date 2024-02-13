@@ -152,7 +152,7 @@ permalink: /sign-in/
       <h1 id="login-header">Sign-in</h1>
       <div id="login-subheader">If you already have an account.</div>
       <form id="login-form">
-        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="email">
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
       </form>
       <div id="forgot-password">Forgot Password?</div>

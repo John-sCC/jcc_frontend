@@ -1,33 +1,39 @@
-$(document).ready(function () {
-    $('#login-form-submit').click(function (event) {
-        event.preventDefault();
+function signIn() {
 
-        var name = $('#username-field').val();
-        var password = $('#password-field').val();
-        var data = {
-            "name": name,
-            "password": password
-        };
+    var email = document.getElementById('username-field').value;
+    var password = document.getElementById('password-field').value;
 
-        $.ajax({
-            type: "POST",
-            url: "https://jcc.stu.nighthawkcodingsociety.com/authenticate",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (response) {
-                console.log("Success: " + response);
-            },
-            error: function (error) {
-                console.error("Error: " + JSON.stringify(error));
-            }
-        });
-    });
-
-    $('#username-field, #password-field').on('input', function () {
-        if ($('#username-field').val() && $('#password-field').val()) {
-            $('#login-form-submit').prop('disabled', false);
-        } else {
-            $('#login-form-submit').prop('disabled', true);
+    var requestBody = {
+        email: email,
+        password: password
+    };
+   
+    fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.json();
+    })
+    .then((data) => {
+        if (data.status == 200) {
+            console.log(data);
+
+            document.cookie = "token=" + data.token + "; path=/";
+            window.location.replace("{{site.baseurl}}/user-disp-test/");
+        } else {
+            console.log("Invalid email or password"); 
+        }
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+
+        console.log("Error occurred during sign-in");  
     });
-});
+}
