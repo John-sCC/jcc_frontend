@@ -10,16 +10,16 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="heres to the ones that we gyat" />
 <meta property="og:description" content="heres to the ones that we gyat" />
-<link rel="canonical" href="http://localhost:4000/jcc_frontend/" />
-<meta property="og:url" content="http://localhost:4000/jcc_frontend/" />
+<link rel="canonical" href="http://localhost:4100/jcc_frontend/" />
+<meta property="og:url" content="http://localhost:4100/jcc_frontend/" />
 <meta property="og:site_name" content="JCC Frontend" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Five Nights At Freddy’s Roleplay" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"heres to the ones that we gyat","headline":"Five Nights At Freddy’s Roleplay","name":"JCC Frontend","url":"http://localhost:4000/jcc_frontend/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"heres to the ones that we gyat","headline":"Five Nights At Freddy’s Roleplay","name":"JCC Frontend","url":"http://localhost:4100/jcc_frontend/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/jcc_frontend/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/jcc_frontend/feed.xml" title="JCC Frontend" /><link rel="shortcut icon" type="image/x-icon" href="/jcc_frontend/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="/jcc_frontend/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/jcc_frontend/feed.xml" title="JCC Frontend" /><link rel="shortcut icon" type="image/x-icon" href="/jcc_frontend/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
 <script>
@@ -51,14 +51,24 @@ window.onload = wrap_img;
     elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
     });
 </script>
-</head>
+
+<!-- Define baseurl for use in js -->
+<script>
+    const baseurl = "/jcc_frontend"
+</script>
+
+<!-- Link jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Navbar script -->
+<script src="/jcc_frontend/assets/js/nav.js"></script></head>
 <body>
 
   <div class="wrapper">
     <header><div class="nav">
     <div class="nav-top">
         <div class="nav-logo"></div>
-        <div class="nav-title" onclick="location.href='/jcc_frontend/'">
+        <div class="nav-title">
             NIGHTHAWK RESOURCES
         </div>
         <div class="nav-search">
@@ -68,10 +78,10 @@ window.onload = wrap_img;
     </div>
     <div class="nav-img"></div>
     <div class="nav-bottom">
-        <div class="nav-button" onclick="location.href='/jcc_frontend/classes'">CLASSES</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/sign-in'">SIGN-IN</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/blogs'">BLOGS</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/about'">ABOUT</div>
+        <div class="nav-button" id="classes">CLASSES</div>
+        <div class="nav-button" id="sign-in">SIGN-IN</div>
+        <div class="nav-button" id="blogs">BLOGS</div>
+        <div class="nav-button" id="about">ABOUT</div>
     </div>
 </div>
 </header>

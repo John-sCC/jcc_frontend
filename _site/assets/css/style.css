@@ -226,8 +226,6 @@ table td { border: 1px solid #e8e8e8; }
 
 /** Grid helpers */
 @media screen and (min-width: 1200px) { .one-half { width: calc(50% - (30px / 2)); } }
-/*-----------------------------------*/
-/*--- IMPORT STYLES FOR Mortpages ---*/
 .post img { display: block; vertical-align: top; margin-left: auto; margin-right: auto; }
 
 img.emoji { display: inline !important; vertical-align: baseline !important; }
@@ -328,10 +326,6 @@ pre code { font-size: 15px !important; }
 
 .youtube-iframe-wrapper iframe, .youtube-iframe-wrapper object, .youtube-iframe-wrapper embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/*-----------------------------------*/
-/*--- CUSTOM STYLES FOR Nighthawkpages ---*/
-/*-----------------------------------*/
-/*----- ADD YOUR STYLES BELOW -------*/
 .language-python + .language-plaintext { border-left: 1px solid grey; margin-left: 1rem !important; }
 
 [class^="language-"]:not(.language-plaintext) pre, [class^="language-"]:not(.language-plaintext) code { background-color: #323443 !important; color: #f8f8f2; }
@@ -417,8 +411,22 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 @font-face { font-family: "Becka Script Plain Regular"; src: url("/jcc_frontend/assets/fonts/Becka Script Plain Regular.otf"); }
 @font-face { font-family: "Collegiate Inside"; src: url("/jcc_frontend/assets/fonts/CollegiateInsideFLF.ttf"); }
-.nav { display: flex; flex-direction: column; width: 100vw; height: 40vw; background-color: #002147ff; margin: 0; }
-.nav .nav-top { flex: 1; border-bottom: 0.5vw #91976cff solid; display: flex; flex-direction: row; width: 100%; }
+.wrapper { margin: 0; padding: 0; max-width: unset; }
+
+html, body { background-color: #154734ff !important; }
+
+section { width: 90vw; margin: auto; }
+
+::-webkit-scrollbar { width: 0; }
+
+a:hover { cursor: pointer; }
+a:hover:hover { filter: brightness(120%); transition: filter .2s; }
+a:hover:not(hover) { filter: brightness(100%); transition: filter .2s; }
+
+.page-heading { font-family: "Collegiate Inside" !important; margin-bottom: 2vw !important; }
+
+.nav { display: flex; z-index: 1; flex-direction: column; width: 100%; height: 30vw; margin: 0; margin-bottom: 3vw; }
+.nav .nav-top { background-color: #002147ff; border-bottom: 0.3vw #91976cff solid; display: flex; flex-direction: row; width: 100%; height: calc(30vw/6); position: absolute; z-index: 1; }
 .nav .nav-top .nav-title { cursor: pointer; font-family: "Collegiate Inside"; color: white; font-size: 3vw; margin: auto; margin-right: 2vw; position: relative; top: .4vw; user-select: none; }
 .nav .nav-top .nav-title:hover { filter: brightness(80%); transition: filter .2s; }
 .nav .nav-top .nav-title:not(hover) { filter: brightness(100%); transition: filter .2s; }
@@ -428,16 +436,102 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 .nav .nav-top .nav-search img:not(hover) { filter: brightness(100%); transition: filter .2s; }
 .nav .nav-top .nav-search input { margin-left: 2vw; margin-right: 2vw; width: 20vw; height: 3vw; border-radius: 1.5vw; padding-left: 15px; padding-right: 15px; font-size: 1.5vw; }
 .nav .nav-top .nav-search input::placeholder { font-style: italic; user-select: none; }
-.nav .nav-img { background-image: url("/jcc_frontend/images/DNHS.jpeg"); flex: 4; background-position-y: 30%; background-size: 100vw; }
-.nav .nav-bottom { flex: 1; border-top: 0.5vw #91976cff solid; border-bottom: 0.5vw #91976cff solid; display: flex; flex-direction: row; }
-.nav .nav-bottom .nav-button { cursor: pointer; font-family: "Collegiate Inside"; color: white; margin: auto; font-size: 3vw; position: relative; top: 0.4vw; user-select: none; }
+.nav .nav-img { background-image: url("/jcc_frontend/images/DNHS.jpeg"); height: calc(30vw*4/6); background-position-y: 30%; background-size: 100%; position: relative; top: calc(30vw/6); z-index: 0; }
+.nav .nav-bottom { background-color: #002147ff; height: calc(30vw/6); border-top: 0.3vw #91976cff solid; border-bottom: 0.3vw #91976cff solid; display: flex; flex-direction: row; position: relative; top: calc(30vw/6); }
+.nav .nav-bottom .nav-button { cursor: pointer; font-family: "Collegiate Inside"; color: white; margin: auto; font-size: 2.5vw; position: relative; top: 0.4vw; user-select: none; }
 .nav .nav-bottom .nav-button:hover { filter: brightness(80%); transition: filter .2s; }
 .nav .nav-bottom .nav-button:not(hover) { filter: brightness(100%); transition: filter .2s; }
+.nav .nav-bottom .nav-button:last-child { margin-right: 8vw; }
+.nav .nav-bottom .nav-button:first-child { margin-left: 8vw; }
 
-.nav-logo { cursor: pointer; background-color: #154734ff; border-radius: 50%; aspect-ratio: 1; width: 12vw; position: absolute; top: 1vw; left: 2vw; border: 0.5vw solid #91976cff; background-image: url("/jcc_frontend/images/icons/dnhs_logo.png"); background-position: center; background-repeat: no-repeat; background-size: calc(12vw * 0.8); }
+.nav-logo { cursor: pointer; background-color: #154734ff; border-radius: 50%; aspect-ratio: 1; width: 12vw; position: absolute; top: 0.3vw; left: 2vw; border: 0.3vw solid #91976cff; background-image: url("/jcc_frontend/images/icons/dnhs_logo.png"); background-position: center; background-repeat: no-repeat; background-size: 9.6vw; z-index: 2; }
 .nav-logo:hover { filter: brightness(80%); transition: filter .2s; }
 .nav-logo:not(hover) { filter: brightness(100%); transition: filter .2s; }
 
-.wrapper { margin: 0; padding: 0; max-width: unset; }
+.sticky { position: fixed !important; top: calc(30vw * 1/6 - 0.5vw) !important; width: 100%; }
 
-html, body { background-color: #154734ff !important; }
+.sticky-top { position: fixed !important; top: 0 !important; width: 100%; }
+
+.footer .footer-container { background-color: rgba(0, 0, 0, 0.1); display: flex; margin: auto; padding: auto; align-items: flex-start; justify-content: center; }
+.footer .footer-div { margin: 2%; padding: 5%; text-align: left; vertical-align: middle; }
+
+button { cursor: pointer; }
+button:hover { filter: brightness(120%); transition: filter .2s; }
+button:not(hover) { filter: brightness(100%); transition: filter .2s; }
+
+.table-generator { display: flex; flex-direction: row; width: 85vw; margin: auto; height: 40vw; margin-bottom: 5vw; }
+.table-generator .text-container { display: flex; flex-direction: column; flex: 1; font-family: "Collegiate Inside"; margin-right: 3vw; justify-content: center; vertical-align: middle; }
+.table-generator .text-container .text { display: flex; flex-direction: column; flex: 1; justify-content: center; vertical-align: top; }
+.table-generator .text-container .text b { font-size: 3vw; }
+.table-generator .text-container .text i { font-size: 1vw; }
+.table-generator .text-container .list { display: flex; flex-direction: column; flex: 3; background-color: #efefef; border-radius: 5px; margin-top: 2vw; margin-bottom: 2vw; color: black; overflow: hidden; overflow-y: auto; }
+.table-generator .text-container .list::-webkit-scrollbar { width: .5vw; }
+.table-generator .text-container .list::-webkit-scrollbar-thumb { background: black; }
+.table-generator .text-container .list .add { cursor: pointer; user-select: none; margin-right: 1vw; text-align: right; margin-top: auto; font-size: 2vw; }
+.table-generator .text-container .list .add:hover { color: #154734ff; transition: color .2s; }
+.table-generator .text-container .list .add:not(hover) { color: black; transition: color .2s; }
+.table-generator .text-container .list .list-item { width: 100%; height: 3vw; display: flex; flex-direction: row; }
+.table-generator .text-container .list .list-item:first-child { margin-top: 1vw; }
+.table-generator .text-container .list .list-item .name { cursor: pointer; user-select: none; margin-left: 1vw; height: 3vw; }
+.table-generator .text-container .list .list-item .name:hover { color: #154734ff; transition: color .2s; }
+.table-generator .text-container .list .list-item .name:not(hover) { color: black; transition: color .2s; }
+.table-generator .text-container .list .list-item .edit { cursor: pointer; height: 3vw; user-select: none; margin-left: auto; margin-right: 1vw; }
+.table-generator .text-container .list .list-item .edit:hover { filter: brightness(100%); transition: filter 0.2s; }
+.table-generator .text-container .list .list-item .edit:not(hover) { filter: brightness(0%); transition: filter 0.2s; }
+.table-generator .text-container .list .list-item .edit img { aspect-ratio: 1; height: 1.5vw; }
+.table-generator .text-container .group-numbers { display: flex; flex-direction: row; flex: 1; justify-content: center; vertical-align: middle; font-size: 2.5vw; }
+.table-generator .text-container .group-numbers input { height: 3vw; width: 5vw; margin-left: auto; font-size: 1.5vw; text-align: center; }
+.table-generator .text-container .button-container { display: flex; flex: 1; margin: auto; justify-content: center; vertical-align: middle; }
+.table-generator .text-container .button-container button { font-size: 2vw; background-color: #efefef; color: #154734ff; border-radius: 10px; width: 28vw; }
+.table-generator .table-container { display: flex; flex-direction: column; flex: 2; background-color: #002147ff; border-radius: 10px; overflow-y: auto; }
+.table-generator .table-container::-webkit-scrollbar { width: 1vw; }
+.table-generator .table-container::-webkit-scrollbar-thumb { background: #efefef; }
+.table-generator .table-container .row { display: flex; flex-direction: row; margin: 0; }
+.table-generator .table-container .row:first-child { margin-top: 2vw; }
+.table-generator .table-container .row .table { display: flex; flex-direction: column; width: 40%; margin: auto; display: table; margin-top: 0; }
+.table-generator .table-container .row .table:first-child { margin-left: 40px; }
+.table-generator .table-container .row .table:last-child { margin-right: 40px; }
+.table-generator .table-container .row .table:only-child { margin-left: 40px; }
+.table-generator .table-container .row .table .title { color: white; font-family: "Collegiate Inside"; font-size: 1.5vw; }
+.table-generator .table-container .row .table table td { background-color: #efefef !important; color: black; width: 45%; table-layout: fixed; }
+.table-generator .table-container .row .table td:first-child { width: 30%; }
+.table-generator .table-container .class-title { margin: auto; margin-top: 1vw; flex: 1; display: flex; font-family: "Collegiate Inside"; }
+.table-generator .table-container .class-title input { border-radius: 5px; height: 100%; flex: 4; width: 30vw; margin-right: 1vw; border: none; font-size: 2vw; }
+.table-generator .table-container .class-title button { border: none; height: 100%; flex: 1; border-radius: 5px; width: 18vw; color: #154734ff; line-height: 0vw; }
+.table-generator .table-container .text-area-container { flex: 5; align-items: center; display: flex; }
+.table-generator .table-container .text-area-container textarea { height: 90%; width: 90%; margin: auto; border-radius: 5px; border: none; }
+.table-generator .table-container .text-area-container textarea::-webkit-scrollbar { width: .5vw; }
+.table-generator .table-container .text-area-container textarea::-webkit-scrollbar-thumb { background: gray; }
+.table-generator .table-container .save { margin: auto; margin-bottom: 1vw; flex: 1; font-family: "Collegiate Inside"; }
+.table-generator .table-container .save button { height: 100%; width: 23.6vw; border-radius: 5px; border: none; line-height: 0vw; color: #154734ff; }
+.table-generator .table-container .save button:first-child { margin-right: 1vw; }
+.table-generator .table-container .save button:last-child { margin-left: 1vw; }
+
+.dashboard h1 { font-family: "Collegiate Inside"; font-size: 3em; }
+.dashboard h2 { font-family: "Collegiate Inside"; font-size: 2em; }
+.dashboard .subtitle { font-family: 'Arial'; font-size: 120%; }
+.dashboard .container { font-family: "Collegiate Inside"; background-color: #002147ff; border-radius: 10px; overflow-x: auto; white-space: nowrap; padding: 10px; margin-bottom: 20px; display: flex; }
+.dashboard .container .card { flex: 0 0 33%; /* One-third width of the container */ margin-right: 10px; background-color: #154734ff; border: 3px solid #91976cff; border-radius: 5px; padding: 10px; color: white; display: flex; flex-direction: column; }
+.dashboard .container .card .main-name { font-size: 18px; font-weight: bold; margin-bottom: 5px; transition: color 0.2s, cursor 0.2s; }
+.dashboard .container .card .main-name:hover { color: #b3b3b3; text-decoration: underline; cursor: pointer; }
+.dashboard .container .card .second-name { font-size: 14px; margin-bottom: 5px; }
+.dashboard .container .card .third-name { font-size: 12px; color: #aaa; }
+
+.assignment h1 { font-family: "Collegiate Inside"; font-size: 3em; }
+.assignment h2 { font-family: "Collegiate Inside"; font-size: 1.5em; color: lightslategray; }
+.assignment p { font-family: 'Arial'; font-size: 120%; }
+
+.class-period h1 { font-family: "Becka Script Plain Regular"; font-size: 3em; }
+.class-period h2 { font-family: "Collegiate Inside"; font-size: 1.5em; }
+.class-period h3 { font-family: "Collegiate Inside"; font-size: 1.2em; }
+.class-period p { font-family: 'Arial'; font-size: 120%; }
+.class-period .container { font-family: "Collegiate Inside"; background-color: #002147ff; border-radius: 10px; overflow-x: auto; white-space: nowrap; padding: 10px; margin-bottom: 20px; display: flex; }
+.class-period .container .card { flex: 0 0 33%; /* One-third width of the container */ margin-right: 10px; background-color: #154734ff; border: 3px solid #91976cff; border-radius: 5px; padding: 10px; color: white; display: flex; flex-direction: column; }
+.class-period .container .card .main-name { font-size: 18px; font-weight: bold; margin-bottom: 5px; transition: color 0.2s, cursor 0.2s; }
+.class-period .container .card .main-name:hover { color: #b3b3b3; text-decoration: underline; cursor: pointer; }
+.class-period .container .card .second-name { font-size: 14px; margin-bottom: 5px; }
+.class-period .container .card .third-name { font-size: 12px; color: #aaa; }
+
+.post-list > li > div { background-color: #002147ff !important; font-family: "Collegiate Inside" !important; }
+
+.post-link { color: #22956b !important; }

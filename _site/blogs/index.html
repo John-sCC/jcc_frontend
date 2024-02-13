@@ -10,16 +10,16 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="heres to the ones that we gyat" />
 <meta property="og:description" content="heres to the ones that we gyat" />
-<link rel="canonical" href="http://localhost:4000/jcc_frontend/blogs/" />
-<meta property="og:url" content="http://localhost:4000/jcc_frontend/blogs/" />
+<link rel="canonical" href="http://localhost:4100/jcc_frontend/blogs/" />
+<meta property="og:url" content="http://localhost:4100/jcc_frontend/blogs/" />
 <meta property="og:site_name" content="JCC Frontend" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Blogs" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"heres to the ones that we gyat","headline":"Blogs","url":"http://localhost:4000/jcc_frontend/blogs/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"heres to the ones that we gyat","headline":"Blogs","url":"http://localhost:4100/jcc_frontend/blogs/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/jcc_frontend/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/jcc_frontend/feed.xml" title="JCC Frontend" /><link rel="shortcut icon" type="image/x-icon" href="/jcc_frontend/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="/jcc_frontend/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/jcc_frontend/feed.xml" title="JCC Frontend" /><link rel="shortcut icon" type="image/x-icon" href="/jcc_frontend/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
 <script>
@@ -51,14 +51,24 @@ window.onload = wrap_img;
     elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
     });
 </script>
-</head>
+
+<!-- Define baseurl for use in js -->
+<script>
+    const baseurl = "/jcc_frontend"
+</script>
+
+<!-- Link jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Navbar script -->
+<script src="/jcc_frontend/assets/js/nav.js"></script></head>
 <body>
 
   <div class="wrapper">
     <header><div class="nav">
     <div class="nav-top">
         <div class="nav-logo"></div>
-        <div class="nav-title" onclick="location.href='/jcc_frontend/'">
+        <div class="nav-title">
             NIGHTHAWK RESOURCES
         </div>
         <div class="nav-search">
@@ -68,10 +78,10 @@ window.onload = wrap_img;
     </div>
     <div class="nav-img"></div>
     <div class="nav-bottom">
-        <div class="nav-button" onclick="location.href='/jcc_frontend/classes'">CLASSES</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/sign-in'">SIGN-IN</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/blogs'">BLOGS</div>
-        <div class="nav-button" onclick="location.href='/jcc_frontend/about'">ABOUT</div>
+        <div class="nav-button" id="classes">CLASSES</div>
+        <div class="nav-button" id="sign-in">SIGN-IN</div>
+        <div class="nav-button" id="blogs">BLOGS</div>
+        <div class="nav-button" id="about">ABOUT</div>
     </div>
 </div>
 </header>
@@ -100,18 +110,74 @@ window.onload = wrap_img;
   
   <ul class="post-list"><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
         <h3>
-          <a class="post-link" href="/jcc_frontend/2024/01/17/Roles_Lesson_IPYNB_2_.html">
-            Spring Roles for User/Admin
+          <a class="post-link" href="/jcc_frontend/2024/02/02/table_generator_test.html">
+            Table Generator Testing
           </a>
         </h3>
-        <p class="post-meta-description">Lesson on roles.</p>
-          <p class="post-meta">Jan 17, 2024</p>
+        <p class="post-meta-description">Proof of concept for randomly generated table groups</p>
+          <p class="post-meta">Feb 2, 2024</p>
       </div>
   </div><!--<h3>
-    <a class="post-link" href="/jcc_frontend/2024/01/17/Roles_Lesson_IPYNB_2_.html">
-    Spring Roles for User/Admin
+    <a class="post-link" href="/jcc_frontend/2024/02/02/table_generator_test.html">
+    Table Generator Testing
     </a>
-</h3><p class="post-meta">Jan 17, 2024</p>
+</h3><p class="post-meta">Feb 2, 2024</p>
+--></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
+        <h3>
+          <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodeaccept.html">
+            QR Code Landing Page W/out backend
+          </a>
+        </h3>
+        <p class="post-meta-description">A landing page to redirect users based on the qr code</p>
+          <p class="post-meta">Jan 25, 2024</p>
+      </div>
+  </div><!--<h3>
+    <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodeaccept.html">
+    QR Code Landing Page W/out backend
+    </a>
+</h3><p class="post-meta">Jan 25, 2024</p>
+--></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
+        <h3>
+          <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodeacceptbackend.html">
+            QR Code Landing Page with backend
+          </a>
+        </h3>
+        <p class="post-meta-description">A landing page to redirect users based on the qr code</p>
+          <p class="post-meta">Jan 25, 2024</p>
+      </div>
+  </div><!--<h3>
+    <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodeacceptbackend.html">
+    QR Code Landing Page with backend
+    </a>
+</h3><p class="post-meta">Jan 25, 2024</p>
+--></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
+        <h3>
+          <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodetest.html">
+            QR Code Generator W/out Backend
+          </a>
+        </h3>
+        <p class="post-meta-description">A qr code generator w/out backend</p>
+          <p class="post-meta">Jan 25, 2024</p>
+      </div>
+  </div><!--<h3>
+    <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodetest.html">
+    QR Code Generator W/out Backend
+    </a>
+</h3><p class="post-meta">Jan 25, 2024</p>
+--></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
+        <h3>
+          <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodetestbackend.html">
+            QR Code Generator with Backend
+          </a>
+        </h3>
+        <p class="post-meta-description">A qr code generator with backend</p>
+          <p class="post-meta">Jan 25, 2024</p>
+      </div>
+  </div><!--<h3>
+    <a class="post-link" href="/jcc_frontend/2024/01/25/qrcodetestbackend.html">
+    QR Code Generator with Backend
+    </a>
+</h3><p class="post-meta">Jan 25, 2024</p>
 --></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
         <h3>
           <a class="post-link" href="/jcc_frontend/2023/12/18/teachersurvey.html">
