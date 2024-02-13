@@ -37,7 +37,7 @@ permalink: /login-test/
                     if (data.status == 200) {
                         console.log(data);
                         document.cookie = "token=" + data.token + "; path=/";
-                        window.location.replace("{{site.baseurl}}/user-disp-test/");
+                        window.location.replace("{{site.baseurl}}/dashboard/");
                     } else {
                         document.getElementById('message').innerHTML = "Invalid email or password"
                     }

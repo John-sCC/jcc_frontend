@@ -2,7 +2,7 @@
 layout: default
 title: User Display (Test)
 search_exclude: true
-permalink: /user-disp-test/
+permalink: /dashboard/
 ---
 
 <div id="debug_user_info_display">
