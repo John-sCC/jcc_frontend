@@ -35,7 +35,7 @@ layout: post
         var inputFreq = document.createElement('input');
         inputFreq.type = 'text';
         inputFreq.id = `Freq${num}`;
-        inputFreq.placeholder = "Link"
+        inputFreq.placeholder = "Frequency"
 
         // Create button element
         var button = document.createElement('button');
