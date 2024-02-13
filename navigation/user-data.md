@@ -47,8 +47,12 @@ permalink: /user-disp-test/
                 <div class="second-name">Stapplet but better!</div>
             </div>
             <div class="card">
-                <div class="main-name">Image Recognition</div>
+                <div class="main-name" onclick="generalRedirect('/image-rec/')">Image Recognition</div>
                 <div class="second-name">Part of making Stapplet not suck!</div>
+            </div>
+            <div class="card">
+                <div class="main-name" onclick="generalRedirect('/tablegenerator')">Table Generator</div>
+                <div class="second-name">Great for teachers like Mr. Jenkins!</div>
             </div>
         </div>
     </div>
@@ -62,7 +66,7 @@ permalink: /user-disp-test/
         // getting values from input fields
         var id = document.getElementById('id_number').value;
         // making the first fetch request
-        fetch(local + '/api/class_period/students/' + String(id), {
+        fetch(deployed + '/api/class_period/students/' + String(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -78,7 +82,7 @@ permalink: /user-disp-test/
             console.log(JSON.stringify(data));
             populateAssignmentContainer(data);
             populateClassesContainer(data, false);
-            fetch(local + '/api/class_period/leaders/' + String(id), {
+            fetch(deployed + '/api/class_period/leaders/' + String(id), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -38,7 +38,7 @@ permalink: /leader-class-data
         var classId = getParameterByName('id');
         if (classId) {
             // Fetch assignment data using the assignment ID
-            fetch(`${local}/api/class_period/${classId}`)
+            fetch(`${deployed}/api/class_period/${classId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
