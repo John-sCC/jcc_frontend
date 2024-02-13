@@ -116,7 +116,7 @@ permalink: /image-rec/
         const formData = new FormData();
         formData.append('image', file);
 
-        fetch('http://localhost:8103/image/upload', {
+        fetch('https://jcc.stu.nighthawkcodingsociety.com/image/upload', {
             method: 'POST',
             body: formData,
         })
