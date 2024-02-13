@@ -9,6 +9,17 @@ permalink: /ass-request/
     <style>
         .flexbox {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .insideFlexbox {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .button {
+            height: 40px;
+            width: 80px;
         }
     </style>
     <script>
@@ -67,27 +78,56 @@ permalink: /ass-request/
                 alert('Error posting assignment. Check the console for details.');
             });
         }
+        // filler
+        function getClassPeriodById() {
+        const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json()
+            })
+            .then(data => {
+                // Handle the data here
+                console.log(data);
+                for (classs in data) {
+                    console.log(classs)
+                    for (user in classs) {
+                        //
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching class period:', error);
+                alert('Error fetching class period. Check the console for details.');
+            });
+    }
     </script>
 </head>
 <body>
     <div>
         <label>heko 
         <input type="number" name="classLeader" id="classLeader"></label>
-        <button>submit your class leader id</button>
+        <button onclick="getClassPeriodById()">submit your class leader id</button>
     </div>
-    <div class="flexbox" style="visibility: block">
-        <p><label>
-            Name of Assignment: <br>
-            <input type="text" name="name" id="name" required>
-        </label></p>
-        <p><label>
-            Due Date: <br>
-            <input type="date" name="dateDue" id="dateDue" required>
-        </label></p>
-        <p><label>
-            Assignment Details:<br>
-            <textarea name="content" id="content" rows="4" cols="50" required></textarea>
-        </label></p>
-        <button onclick="postAssignment()">button</button>
+    <div class="flexbox" style="visibility: block;">
+        <div class="insideFlexbox">
+            <p><label>
+                Name of Assignment: <br>
+                <input type="text" name="name" id="name" size="50" required>
+            </label></p>
+            <p><label>
+                Due Date: <br>
+                <input type="date" name="dateDue" id="dateDue" required>
+            </label></p>
+        </div>
+        <div class="insideFlexbox">
+            <p><label>
+                Assignment Details:<br>
+                <textarea name="content" id="content" rows="8" cols="100" required></textarea>
+            </label></p>
+            <button onclick="postAssignment()" class="button">button</button>
+        </div>
     </div>
 </body>
