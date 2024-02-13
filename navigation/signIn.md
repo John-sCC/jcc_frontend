@@ -203,6 +203,8 @@ permalink: /sign-in/
 
         console.log("Error occurred during sign-in");  
     });
+
+    document.getElementById('login-form-submit').addEventListener('click', signIn);
 }
 
 </script>
