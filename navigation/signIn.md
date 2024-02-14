@@ -138,6 +138,20 @@ permalink: /sign-in/
         color: #22956b;
     }
 
+    .error-message {
+      background-color: rgba(201, 49, 49, 0.4);
+      font-family: "Lexend", sans-serif;
+      font-size: 15px;
+      width: calc(70% - 10px);
+      color: white;
+      border: none;
+      padding: 8px;
+      border-bottom: 1px solid #3a3a3a;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+
+
   </style>
 
 </head>
@@ -200,9 +214,17 @@ permalink: /sign-in/
     })
     .catch(error => {
         console.error('There was an error!', error);
+        displayErrorMessage("Invalid email or password");
 
         console.log("Error occurred during sign-in");  
     });
+
+    function displayErrorMessage(message) {
+      var errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.textContent = message;
+      document.getElementById('login-subheader').appendChild(errorDiv);
+    }
     
     /*
     document.getElementById('login-form-submit').onclick = function () {
