@@ -192,8 +192,7 @@ permalink: /sign-in/
     .then((data) => {
         // if (data.status == 200) {
             console.log(data);
-
-            document.cookie = "token=" + data.token + "; path=/";
+            document.cookie = "jwt=" + data.token + "; path=/";
             window.location.replace("{{site.baseurl}}/dashboard/");
         // } else {
         //     console.log("Invalid email or password"); 
