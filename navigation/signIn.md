@@ -193,7 +193,7 @@ permalink: /sign-in/
             console.log(data);
 
             document.cookie = "token=" + data.token + "; path=/";
-            window.location.replace("{{site.baseurl}}/user-disp-test/");
+            window.location.replace("{{site.baseurl}}/dashboard/");
         } else {
             console.log("Invalid email or password"); 
         }
