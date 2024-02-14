@@ -196,7 +196,7 @@ permalink: /sign-in/
             document.cookie = "token=" + data.token + "; path=/";
             window.location.replace("{{site.baseurl}}/dashboard/");
         } else {
-            console.log("Invalid email or password"); 
+            console.log("Invalid email or password", data.status); 
         }
     })
     .catch(error => {
