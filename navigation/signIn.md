@@ -155,7 +155,7 @@ permalink: /sign-in/
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
       </form>
       <div id="forgot-password">Forgot Password?</div>
-      <input type="submit" value="Sign In" id="login-form-submit">
+      <input type="submit" value="Sign In" id="login-form-submit" onclick="signIn()">
       <div id="no-account">No account?</div>
       <div id="create-account">Click here to make one!</div>
     </div>
@@ -167,6 +167,7 @@ permalink: /sign-in/
 <script>
   function signIn() {
 
+    console.log("button clicked");
     var email = document.getElementById('username-field').value;
     var password = document.getElementById('password-field').value;
 
@@ -203,8 +204,12 @@ permalink: /sign-in/
 
         console.log("Error occurred during sign-in");  
     });
-
-    document.getElementById('login-form-submit').onclick = function () {signIn()}
+    
+    /*
+    document.getElementById('login-form-submit').onclick = function () {
+      signIn();
+    };
+    */
 }
 
 </script>
