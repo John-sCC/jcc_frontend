@@ -190,14 +190,14 @@ permalink: /sign-in/
         return response.json();
     })
     .then((data) => {
-        if (data.status == 200) {
+        // if (data.status == 200) {
             console.log(data);
 
             document.cookie = "token=" + data.token + "; path=/";
             window.location.replace("{{site.baseurl}}/dashboard/");
-        } else {
-            console.log("Invalid email or password", data.status); 
-        }
+        // } else {
+        //     console.log("Invalid email or password"); 
+        // }
     })
     .catch(error => {
         console.error('There was an error!', error);
