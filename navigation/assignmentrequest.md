@@ -18,8 +18,9 @@ permalink: /ass-request/
             align-items: center;
         }
         .button {
-            height: 40px;
-            width: 80px;
+            height: 50px;
+            width: 100px;
+            font-family: Lexend, sans-serif;
         }
     </style>
     <script>
@@ -31,7 +32,8 @@ permalink: /ass-request/
             let classNames = [d.getElementById("className").value];
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
-            const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+            //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+            const apiUrl = 'http://localhost:8911/api/assignment/post';
             // a
             const requestData = {
                 name: name,
@@ -82,7 +84,8 @@ permalink: /ass-request/
         }
         // filler
         function getClassPeriodById() {
-        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
@@ -114,12 +117,12 @@ permalink: /ass-request/
 </head>
 <body>
     <div>
-        <label>Input your class leader ID:  
-        <input type="number" name="classLeader" id="classLeader"></label>
-        <button onclick="getClassPeriodById()">submit</button> <br> <br>
-        <div style="visibility: hidden"><label id="labelthatwontshow">Select which class to create an assignment for: </label><select name="className" id="className">  </select></div>
+        <label style="font-family: Lexend, sans-serif;">Input your class leader ID:  
+        <input type="number" name="classLeader" id="classLeader" style="font-family: Lexend, sans-serif;"></label>
+        <button onclick="getClassPeriodById()" style="font-family: Lexend, sans-serif;">submit</button> <br> <br>
+        <div style="visibility: hidden"><label id="labelthatwontshow" style="font-family: Lexend, sans-serif;">Select which class to create an assignment for: </label><select name="className" id="className" style="font-family: Lexend, sans-serif;">  </select></div>
     </div>
-    <div class="flexbox" id="bigblockthatcontainsacuatalassignmentstuff" style="visibility: hidden;">
+    <div class="flexbox" id="bigblockthatcontainsacuatalassignmentstuff" style="visibility: hidden; font-family: Lexend, sans-serif;">
         <div class="insideFlexbox">
             <p><label>
                 Name of Assignment: <br>
