@@ -28,7 +28,7 @@ permalink: /ass-request/
             let name = d.getElementById("name").value;
             let dateDue = d.getElementById("dateDue").value;
             let content = d.getElementById("content").value;
-            let className = [d.getElementById("className").value];
+            let classNames = [d.getElementById("className").value];
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
             const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
@@ -38,7 +38,7 @@ permalink: /ass-request/
                 dateCreated: dateCreated,
                 dateDue: dateDue,  
                 content: content,
-                className: className
+                classNames: classNames
             };
             console.log(requestData);
             //a
