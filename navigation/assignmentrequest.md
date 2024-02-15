@@ -28,7 +28,7 @@ permalink: /ass-request/
             let name = d.getElementById("name").value;
             let dateDue = d.getElementById("dateDue").value;
             let content = d.getElementById("content").value;
-            let classname = d.getElementById("className").value;
+            let className = d.getElementById("className").value;
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
             const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
@@ -104,7 +104,7 @@ permalink: /ass-request/
                     option.innerHTML = classs.name;
                     document.getElementById("className").appendChild(option);
                 }
-            })
+            })  
             .catch(error => {
                 console.error('Error fetching class period:', error);
                 alert('Error fetching class period. Check the console for details.');
