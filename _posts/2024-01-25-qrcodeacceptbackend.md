@@ -30,7 +30,7 @@ layout: post
         return fetchId().then(obj => {
             var num = Math.random()
             var intervals = [];
-            for (var i = 0; i < obj.linkFreqs.length; i ++){
+            for (var i = 0; i <= obj.linkFreqs.length; i ++){
                 if (i == 0){
                     intervals.push(obj.linkFreqs[i].frequency)
                 }
