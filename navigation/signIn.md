@@ -138,6 +138,20 @@ permalink: /sign-in/
         color: #22956b;
     }
 
+    .error-message {
+      background-color: rgba(201, 49, 49, 0.4);
+      font-family: "Lexend", sans-serif;
+      font-size: 15px;
+      width: calc(70% - 10px);
+      color: white;
+      border: none;
+      padding: 8px;
+      border-bottom: 1px solid #3a3a3a;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+
+
   </style>
 
 </head>
@@ -155,7 +169,7 @@ permalink: /sign-in/
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
       </form>
       <div id="forgot-password">Forgot Password?</div>
-      <input type="submit" value="Sign In" id="login-form-submit">
+      <input type="submit" value="Sign In" id="login-form-submit" onclick="signIn()">
       <div id="no-account">No account?</div>
       <div id="create-account">Click here to make one!</div>
     </div>
@@ -167,6 +181,7 @@ permalink: /sign-in/
 <script>
   function signIn() {
 
+    console.log("button clicked");
     var email = document.getElementById('username-field').value;
     var password = document.getElementById('password-field').value;
 
@@ -189,22 +204,33 @@ permalink: /sign-in/
         return response.json();
     })
     .then((data) => {
-        if (data.status == 200) {
+        // if (data.status == 200) {
             console.log(data);
-
-            document.cookie = "token=" + data.token + "; path=/";
-            window.location.replace("{{site.baseurl}}/user-disp-test/");
-        } else {
-            console.log("Invalid email or password"); 
-        }
+            document.cookie = "jwt=" + data.token + "; path=/";
+            window.location.replace("{{site.baseurl}}/dashboard/");
+        // } else {
+        //     console.log("Invalid email or password"); 
+        // }
     })
     .catch(error => {
         console.error('There was an error!', error);
+        displayErrorMessage("Invalid email or password");
 
         console.log("Error occurred during sign-in");  
     });
 
-    document.getElementById('login-form-submit').addEventListener('click', signIn);
+    function displayErrorMessage(message) {
+      var errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.textContent = message;
+      document.getElementById('login-subheader').appendChild(errorDiv);
+    }
+    
+    /*
+    document.getElementById('login-form-submit').onclick = function () {
+      signIn();
+    };
+    */
 }
 
 </script>
