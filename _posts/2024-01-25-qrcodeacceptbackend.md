@@ -47,6 +47,7 @@ layout: post
         })
     }
     getLink().then(link => {
+            console.log(link);
             var head = document.querySelector('head')
             var meta = document.createElement('meta')
             meta.httpEquiv = "refresh"
