@@ -39,6 +39,8 @@ layout: post
                 }
             }
             for (i in intervals){
+                console.log(num);
+                console.log(intervals[i])
                 if (num < intervals[i]){
                     link = obj.linkFreqs[i].link;
                     return link
