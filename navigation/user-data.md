@@ -29,7 +29,7 @@ permalink: /dashboard/
     </div>
     <div id="leader_class_container_container" class="container-container">
         <h2>Classes You Lead</h2>
-        <p class="subtitle">You play a leading role in these classes.</p>
+        <p class="subtitle">You play a leading role in these classes. <a href="{{site.baseurl}}/class-create/">Click here</a> to create a new class.</p>
         <div id="leader_class_container" class="container">
             <!--contains classes in which the person leads-->
         </div>

@@ -35,10 +35,12 @@ layout: post
                     intervals.push(obj.linkFreqs[i].frequency)
                 }
                 else {
-                    intervals.push(obj.linkFreqs[i].frequency + obj.linkFreqs[i-1].frequency)
+                    intervals.push(intervals[i - 1] + obj.linkFreqs[i-1].frequency)
                 }
             }
             for (i in intervals){
+                console.log(num);
+                console.log(intervals[i])
                 if (num < intervals[i]){
                     link = obj.linkFreqs[i].link;
                     return link
@@ -47,6 +49,7 @@ layout: post
         })
     }
     getLink().then(link => {
+            console.log(link);
             var head = document.querySelector('head')
             var meta = document.createElement('meta')
             meta.httpEquiv = "refresh"
