@@ -197,6 +197,7 @@ function makeTable(people) {
     }
 
     title.innerHTML = `GROUP #${n+1}`
+    table.id = `table-${n+1}`
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
@@ -211,6 +212,14 @@ function makeTable(people) {
     else {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
+}
+
+function dragDrop(table, dropzone) {
+    table.draggable({ revert: 'invalid' })
+
+    dropzone.droppable({drop: function() {
+        
+    }})
 }
 
 function saveName(id) {
