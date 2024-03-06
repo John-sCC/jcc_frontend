@@ -190,7 +190,7 @@ permalink: /sign-in/
         password: password
     };
    
-    fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
+    fetch('http://localhost:8911/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -198,39 +198,51 @@ permalink: /sign-in/
         body: JSON.stringify(requestBody),
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
+      if (!response.ok) {
+          if (response.status === 401) {
+              displayErrorMessage('Your account is unauthorized');
+          } else if (response.status === 403) {
+              displayErrorMessage('Forbidden request');
+          } else if (response.status === 404) {
+              displayErrorMessage('Not found');
+          } else {
+              // Other network errors
+              displayErrorMessage('Bad server request');
+          }
+      }
+      return response.json();
     })
     .then((data) => {
-        // if (data.status == 200) {
-            console.log(data);
-            document.cookie = "jwt=" + data.token + "; path=/";
-            window.location.replace("{{site.baseurl}}/dashboard/");
-        // } else {
-        //     console.log("Invalid email or password"); 
-        // }
+      // Check response status
+      if (data.status === 200) {
+          console.log(data);
+          document.cookie = "jwt=" + data.token + "; path=/";
+          window.location.replace("{{site.baseurl}}/dashboard/");
+      } else {
+          // Invalid email or password
+          displayErrorMessage("Invalid email or password");
+      }
     })
     .catch(error => {
-        console.error('There was an error!', error);
-        displayErrorMessage("Invalid email or password");
-
-        console.log("Error occurred during sign-in");  
+      console.error('there was an error!', error);
+      // Error occurred during sign-in
+      displayErrorMessage(error.message);
     });
 
     function displayErrorMessage(message) {
-      var errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.textContent = message;
-      document.getElementById('login-subheader').appendChild(errorDiv);
+      // check if error message already exists 
+      var existingErrorMessage = document.querySelector('.error-message');
+      if (!existingErrorMessage) {
+        var errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        document.getElementById('login-div').appendChild(errorDiv);
+      }
     }
-    
+  }  
     /*
     document.getElementById('login-form-submit').onclick = function () {
       signIn();
-    };
+    }; ^ 
     */
-}
-
 </script>
