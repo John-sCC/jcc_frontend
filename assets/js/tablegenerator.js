@@ -195,7 +195,7 @@ function makeTable(people) {
     for (let existingRow of existingRows) {
         n += existingRow.children.length
     }
-//test
+
     title.innerHTML = `GROUP #${n+1}`
     table.id = `table-${n+1}`
 
