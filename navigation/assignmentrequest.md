@@ -9,6 +9,18 @@ permalink: /ass-request/
     <style>
         .flexbox {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .insideFlexbox {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .button {
+            height: 50px;
+            width: 100px;
+            font-family: Lexend, sans-serif;
         }
     </style>
     <script>
@@ -17,15 +29,18 @@ permalink: /ass-request/
             let name = d.getElementById("name").value;
             let dateDue = d.getElementById("dateDue").value;
             let content = d.getElementById("content").value;
+            let classNames = [d.getElementById("className").value];
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
             const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+            //const apiUrl = 'http://localhost:8911/api/assignment/post';
             // a
             const requestData = {
                 name: name,
                 dateCreated: dateCreated,
                 dateDue: dateDue,  
-                content: content
+                content: content,
+                classNames: classNames
             };
             console.log(requestData);
             //a
@@ -67,27 +82,63 @@ permalink: /ass-request/
                 alert('Error posting assignment. Check the console for details.');
             });
         }
+        // filler
+        function getClassPeriodById() {
+        //const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json()
+            })
+            .then(data => {
+                // Handle the data here
+                console.log(data);
+                for (var classs of data) {
+                    console.log(classs);
+                    console.log(classs.name);   
+                    document.getElementById("className").style.visibility = "visible";
+                    document.getElementById("bigblockthatcontainsacuatalassignmentstuff").style.visibility = "visible";
+                    document.getElementById("labelthatwontshow").style.visibility = "visible";
+                    var option = document.createElement("option");
+                    option.value = classs.name;
+                    option.innerHTML = classs.name;
+                    document.getElementById("className").appendChild(option);
+                }
+            })  
+            .catch(error => {
+                console.error('Error fetching class period:', error);
+                alert('Error fetching class period. Check the console for details.');
+            });
+    }
     </script>
 </head>
 <body>
     <div>
-        <label>heko 
-        <input type="number" name="classLeader" id="classLeader"></label>
-        <button>submit your class leader id</button>
+        <label style="font-family: Lexend, sans-serif;">Input your class leader ID:  
+        <input type="number" name="classLeader" id="classLeader" style="font-family: Lexend, sans-serif;"></label>
+        <button onclick="getClassPeriodById()" style="font-family: Lexend, sans-serif;">submit</button> <br> <br>
+        <div style="visibility: hidden"><label id="labelthatwontshow" style="font-family: Lexend, sans-serif;">Select which class to create an assignment for: </label><select name="className" id="className" style="font-family: Lexend, sans-serif;">  </select></div>
     </div>
-    <div class="flexbox" style="visibility: block">
-        <p><label>
-            Name of Assignment: <br>
-            <input type="text" name="name" id="name" required>
-        </label></p>
-        <p><label>
-            Due Date: <br>
-            <input type="date" name="dateDue" id="dateDue" required>
-        </label></p>
-        <p><label>
-            Assignment Details:<br>
-            <textarea name="content" id="content" rows="4" cols="50" required></textarea>
-        </label></p>
-        <button onclick="postAssignment()">button</button>
+    <div class="flexbox" id="bigblockthatcontainsacuatalassignmentstuff" style="visibility: hidden; font-family: Lexend, sans-serif;">
+        <div class="insideFlexbox">
+            <p><label>
+                Name of Assignment: <br>
+                <input type="text" name="name" id="name" size="50" required>
+            </label></p>
+            <p><label>
+                Due Date: <br>
+                <input type="date" name="dateDue" id="dateDue" required>
+            </label></p>
+        </div>
+        <div class="insideFlexbox">
+            <p><label>
+                Assignment Details:<br>
+                <textarea name="content" id="content" rows="8" cols="100" required></textarea>
+            </label></p>
+            <button onclick="postAssignment()" class="button">Submit Assignment</button>
+        </div>
     </div>
 </body>

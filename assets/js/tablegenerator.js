@@ -134,7 +134,7 @@ function editClass(id) {
     }
 
     const textContainer = document.createElement("div")
-    textContainer.className = "text-container"
+    textContainer.className = "text-area-container"
     textContainer.appendChild(textarea)
 
     const saveButton = document.createElement("button")

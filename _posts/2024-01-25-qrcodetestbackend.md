@@ -12,10 +12,6 @@ layout: post
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
 <div id="inputDiv">
-    <input type="text" id="QR1"> <input type="text" id="Freq1"> <button id="btn1" onclick="Remove(this)"> X </button><br>
-    <input type="text" id="QR2"> <input type="text" id="Freq2"> <button id="btn2" onclick="Remove(this)"> X </button><br>
-    <!-- <input type="text" id="QR3"> <input type="text" id="Freq3"><br>
-    <input type="text" id="QR4"> <input type="text" id="Freq4"><br> -->
 </div>
 <button onclick="NewInput()">new thing</button>
 <button onclick="Generate()"> generate </button>
@@ -33,11 +29,13 @@ layout: post
         var inputQR = document.createElement('input');
         inputQR.type = 'text';
         inputQR.id = `QR${num}`;
+        inputQR.placeholder = "Link"
 
         // Create second input element
         var inputFreq = document.createElement('input');
         inputFreq.type = 'text';
         inputFreq.id = `Freq${num}`;
+        inputFreq.placeholder = "Frequency"
 
         // Create button element
         var button = document.createElement('button');
@@ -71,6 +69,9 @@ layout: post
 
     function Generate(){
         console.log($("#inputDiv").find("input").length);
+        if (document.getElementById("qrcode").innerHTML){
+            document.getElementById("qrcode").innerHTML = "";
+        }
         fetchId().then(id => {
             var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
             console.log(link)
@@ -129,6 +130,9 @@ layout: post
         });
     }
 
+    for (var i = 1; i <= 2; i ++){
+        NewInput(i);
+    }
 </script>
 
 <script>

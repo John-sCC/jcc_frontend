@@ -2,7 +2,7 @@
 layout: default
 title: User Display (Test)
 search_exclude: true
-permalink: /user-disp-test/
+permalink: /dashboard/
 ---
 
 <div id="debug_user_info_display">
@@ -29,9 +29,31 @@ permalink: /user-disp-test/
     </div>
     <div id="leader_class_container_container" class="container-container">
         <h2>Classes You Lead</h2>
-        <p class="subtitle">You play a leading role in these classes.</p>
+        <p class="subtitle">You play a leading role in these classes. <a href="{{site.baseurl}}/class-create/">Click here</a> to create a new class.</p>
         <div id="leader_class_container" class="container">
             <!--contains classes in which the person leads-->
+        </div>
+    </div>
+    <div id="stats_resources_container_container" class="container-container">
+        <h2>Statistics/Data Resources</h2>
+        <p class="subtitle">Here are some resources for your statistical journey.</p>
+        <div id="stats_resources_container" class="container">
+            <div class="card">
+                <div class="main-name" onclick="generalRedirect('/2024/01/25/qrcodetestbackend.html')">QR Code Generator</div>
+                <div class="second-name">Great for stats projects!</div>
+            </div>
+            <div class="card">
+                <div class="main-name">Graphing Resources</div>
+                <div class="second-name">Stapplet but better!</div>
+            </div>
+            <div class="card">
+                <div class="main-name" onclick="generalRedirect('/image-rec/')">Image Recognition</div>
+                <div class="second-name">Part of making Stapplet not suck!</div>
+            </div>
+            <div class="card">
+                <div class="main-name" onclick="generalRedirect('/tablegenerator')">Table Generator</div>
+                <div class="second-name">Great for teachers like Mr. Jenkins!</div>
+            </div>
         </div>
     </div>
 </div>
@@ -136,6 +158,13 @@ permalink: /user-disp-test/
             classPeriodName.classList.add('main-name');
             classPeriodName.textContent = classPeriod.name;
 
+            // adding a click event listener to the assignmentName div
+            if (isLeader) {
+                classPeriodName.setAttribute("onclick", "classLeaderRedirect(" + String(classPeriod.id) + ")");
+            } else {
+                classPeriodName.setAttribute("onclick", "classStudentRedirect(" + String(classPeriod.id) + ")");
+            }
+
             var leaderNames = document.createElement('div');
             leaderNames.classList.add('second-name');
             leaderNames.textContent = "Leaders: ";
@@ -168,6 +197,18 @@ permalink: /user-disp-test/
 
     function assignmentRedirect(id) {
         window.location.href = '{{site.baseurl}}/assignment-data?id=' + id;
+    }
+
+    function classStudentRedirect(id) {
+        window.location.href = '{{site.baseurl}}/student-class-data?id=' + id;
+    }
+
+    function classLeaderRedirect(id) {
+        window.location.href = '{{site.baseurl}}/leader-class-data?id=' + id;
+    }
+
+    function generalRedirect(urlExtension) {
+        window.location.href = '{{site.baseurl}}' + urlExtension;
     }
 
     /*
