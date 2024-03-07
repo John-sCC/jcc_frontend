@@ -185,52 +185,53 @@ permalink: /sign-in/
     var email = document.getElementById('username-field').value;
     var password = document.getElementById('password-field').value;
 
+    var local = "http://localhost:8911";
+    var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+
     var requestBody = {
         email: email,
         password: password
     };
    
-    fetch('https://jcc.stu.nighthawkcodingsociety.com/authenticate', {
+    fetch(local + '/authenticate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then((data) => {
-        // if (data.status == 200) {
-            console.log(data);
-            document.cookie = "jwt=" + data.token + "; path=/";
+    .then(response => response.text()) // Get response text
+    .then(data => {
+        // Check response status
+        console.log(data);
+        if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
             window.location.replace("{{site.baseurl}}/dashboard/");
-        // } else {
-        //     console.log("Invalid email or password"); 
-        // }
+        } else {
+            // Invalid email or password
+            displayErrorMessage("Invalid email or password");
+        }
     })
     .catch(error => {
-        console.error('There was an error!', error);
-        displayErrorMessage("Invalid email or password");
-
-        console.log("Error occurred during sign-in");  
+        console.error('There was an error:', error);
+        // Error occurred during sign-in
+        displayErrorMessage(error.message);
     });
+  }
 
     function displayErrorMessage(message) {
-      var errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.textContent = message;
-      document.getElementById('login-subheader').appendChild(errorDiv);
+      // check if error message already exists 
+      var existingErrorMessage = document.querySelector('.error-message');
+      if (!existingErrorMessage) {
+        var errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        document.getElementById('login-div').appendChild(errorDiv);
+      }
     }
-    
+
     /*
     document.getElementById('login-form-submit').onclick = function () {
       signIn();
-    };
+    }; ^ 
     */
-}
-
 </script>

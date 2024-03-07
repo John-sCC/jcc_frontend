@@ -29,7 +29,7 @@ permalink: /dashboard/
     </div>
     <div id="leader_class_container_container" class="container-container">
         <h2>Classes You Lead</h2>
-        <p class="subtitle">You play a leading role in these classes.</p>
+        <p class="subtitle">You play a leading role in these classes. <a href="{{site.baseurl}}/class-create/">Click here</a> to create a new class.</p>
         <div id="leader_class_container" class="container">
             <!--contains classes in which the person leads-->
         </div>
@@ -66,7 +66,7 @@ permalink: /dashboard/
         // getting values from input fields
         var id = document.getElementById('id_number').value;
         // making the first fetch request
-        fetch(deployed + '/api/class_period/students/' + String(id), {
+        fetch(local + '/api/class_period/students/' + String(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ permalink: /dashboard/
             console.log(JSON.stringify(data));
             populateAssignmentContainer(data);
             populateClassesContainer(data, false);
-            fetch(deployed + '/api/class_period/leaders/' + String(id), {
+            fetch(local + '/api/class_period/leaders/' + String(id), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
