@@ -165,6 +165,63 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
+// individual rows should be drag droppable not tables breuh
+function dragDropOLD(tableId) {
+    console.log("run")
+    const table = $(`#${tableId}`)
+
+    table.draggable({
+        revert: true,
+        scroll: true,
+        containment: $("#table-div")
+    })
+
+    table.droppable({
+        drop: function(event, ui) {
+            var draggable = ui.draggable
+            var droppable = $(this)
+
+            var parent1 = draggable.parent()
+            var parent2 = droppable.parent()
+
+            temp = draggable
+
+            parent1.children()[1].remove()
+            parent1.append(droppable)
+
+            parent2.append(temp)
+        }
+    })
+}
+
+function dragDrop(nameId) {
+    console.log("run")
+    const table = $(`#${tableId}`)
+
+    table.draggable({
+        revert: true,
+        scroll: true,
+        containment: $("#table-div")
+    })
+
+    table.droppable({
+        drop: function(event, ui) {
+            var draggable = ui.draggable
+            var droppable = $(this)
+
+            var parent1 = draggable.parent()
+            var parent2 = droppable.parent()
+
+            temp = draggable
+
+            parent1.children()[1].remove()
+            parent1.append(droppable)
+
+            parent2.append(temp)
+        }
+    })
+}
+
 function makeTable(people) {
     const main = document.getElementById("table-div")
 
@@ -196,8 +253,10 @@ function makeTable(people) {
         n += existingRow.children.length
     }
 
+    const tableId = `table-${n+1}`
     title.innerHTML = `GROUP #${n+1}`
-    table.id = `table-${n+1}`
+    table.id = tableId
+    console.log(tableId)
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
@@ -212,14 +271,8 @@ function makeTable(people) {
     else {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
-}
 
-function dragDrop(table, dropzone) {
-    table.draggable({ revert: 'invalid' })
-
-    dropzone.droppable({drop: function() {
-        
-    }})
+    dragDrop(tableId)
 }
 
 function saveName(id) {
