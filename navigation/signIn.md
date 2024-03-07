@@ -185,49 +185,38 @@ permalink: /sign-in/
     var email = document.getElementById('username-field').value;
     var password = document.getElementById('password-field').value;
 
+    var local = "http://localhost:8911";
+    var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+
     var requestBody = {
         email: email,
         password: password
     };
    
-    fetch('http://localhost:8911/', {
+    fetch(local + '/authenticate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
     })
-    .then(response => {
-      if (!response.ok) {
-          if (response.status === 401) {
-              displayErrorMessage('Your account is unauthorized');
-          } else if (response.status === 403) {
-              displayErrorMessage('Forbidden request');
-          } else if (response.status === 404) {
-              displayErrorMessage('Not found');
-          } else {
-              // Other network errors
-              displayErrorMessage('Bad server request');
-          }
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Check response status
-      if (data.status === 200) {
-          console.log(data);
-          document.cookie = "jwt=" + data.token + "; path=/";
-          window.location.replace("{{site.baseurl}}/dashboard/");
-      } else {
-          // Invalid email or password
-          displayErrorMessage("Invalid email or password");
-      }
+    .then(response => response.text()) // Get response text
+    .then(data => {
+        // Check response status
+        console.log(data);
+        if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
+            window.location.replace("{{site.baseurl}}/dashboard/");
+        } else {
+            // Invalid email or password
+            displayErrorMessage("Invalid email or password");
+        }
     })
     .catch(error => {
-      console.error('there was an error!', error);
-      // Error occurred during sign-in
-      displayErrorMessage(error.message);
+        console.error('There was an error:', error);
+        // Error occurred during sign-in
+        displayErrorMessage(error.message);
     });
+  }
 
     function displayErrorMessage(message) {
       // check if error message already exists 
@@ -239,7 +228,7 @@ permalink: /sign-in/
         document.getElementById('login-div').appendChild(errorDiv);
       }
     }
-  }  
+
     /*
     document.getElementById('login-form-submit').onclick = function () {
       signIn();
