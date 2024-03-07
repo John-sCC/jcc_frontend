@@ -165,7 +165,7 @@ permalink: /sign-in/
       <h1 id="login-header">Sign-in</h1>
       <div id="login-subheader">If you already have an account.</div>
       <form id="login-form">
-        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="email">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email">
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
       </form>
       <div id="forgot-password">Forgot Password?</div>
@@ -192,20 +192,26 @@ permalink: /sign-in/
         email: email,
         password: password
     };
-   
-    fetch(local + '/authenticate', {
+
+    var requestOptions = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
         body: JSON.stringify(requestBody),
-    })
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(local + '/authenticate', requestOptions)
     .then(response => response.text()) // Get response text
     .then(data => {
         // Check response status
         console.log(data);
         if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
-            window.location.replace("{{site.baseurl}}/dashboard/");
+            // window.location.replace("{{site.baseurl}}/dashboard/");
+            return;
         } else {
             // Invalid email or password
             displayErrorMessage("Invalid email or password");
