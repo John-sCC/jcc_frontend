@@ -10,8 +10,12 @@ layout: post
 <script>
     var link;
     function fetchId(){
-        // const url = 'http://localhost:8911/api/qrcode/';
-        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
+        if(window.location.href.includes("127.0.0.1")){
+            var url = 'http://localhost:8911/api/qrcode/';
+        }
+        else {
+            var url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
+        }
         return fetch(url + window.location.hash.substring(1))
         .then(response => {
             if (!response.ok) {
@@ -35,6 +39,7 @@ layout: post
                     intervals.push(obj.linkFreqs[i].frequency)
                 }
                 else {
+                    console.log(intervals)
                     intervals.push(intervals[i - 1] + obj.linkFreqs[i-1].frequency)
                 }
             }
