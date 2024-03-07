@@ -40,7 +40,7 @@ layout: post
                 }
                 else {
                     console.log(intervals)
-                    intervals.push(intervals[i - 1] + obj.linkFreqs[i-1].frequency)
+                    intervals.push(intervals[i - 1] + obj.linkFreqs[i].frequency)
                 }
             }
             for (i in intervals){
