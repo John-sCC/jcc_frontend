@@ -66,7 +66,7 @@ permalink: /dashboard/
         // getting values from input fields
         var id = document.getElementById('id_number').value;
         // making the first fetch request
-        fetch(local + '/api/class_period/students/' + String(id), {
+        fetch(deployed + '/api/class_period/students/' + String(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ permalink: /dashboard/
             console.log(JSON.stringify(data));
             populateAssignmentContainer(data);
             populateClassesContainer(data, false);
-            fetch(local + '/api/class_period/leaders/' + String(id), {
+            fetch(deployed + '/api/class_period/leaders/' + String(id), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
