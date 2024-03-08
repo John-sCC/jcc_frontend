@@ -210,7 +210,7 @@ permalink: /sign-in/
         // Check response status
         console.log(data);
         if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
-            // window.location.replace("{{site.baseurl}}/dashboard/");
+            window.location.replace("{{site.baseurl}}/dashboard/");
             return;
         } else {
             // Invalid email or password
