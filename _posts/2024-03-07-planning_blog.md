@@ -25,6 +25,7 @@ layout: post
 > Aiden is currently managing both triangles in P1 because we have an odd number
 
 #### Team 1
+
 | Name | Role |
 | --- | --- |
 | Aiden | Subteam Leader/Frontend lead/sass god/some backend |
@@ -32,6 +33,7 @@ layout: post
 | Ekam | Backend |
 
 #### Team 2
+
 | Name | Role |
 | --- | --- |
 | Aiden | same guy as before! |
@@ -39,6 +41,7 @@ layout: post
 | Edwin | Frontend |
 
 #### Team 3
+
 | Name | Role |
 | --- | --- |
 | Drew | Subteam Leader/Fully stacked 😱  |
@@ -47,6 +50,7 @@ layout: post
 | AJ | Full stack developer |
 
 #### Team 4
+
 | Name | Role |
 | --- | --- |
 | Toby | Subteam Leader/DevOps/Backend/Websocket/Branches/Maintainer |
