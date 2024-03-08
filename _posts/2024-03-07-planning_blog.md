@@ -101,6 +101,15 @@ Our lessons will be covered by subteam 2 (Aiden, Ryan, Edwin) and we will be tea
 * Subteam 3 (Drew, Raymond, Haoxuan, AJ) is working on deployment
 * Subteam 4 (Toby, Isabelle, Aaron, Kevin) is working on data science related features
 
+### Overall Project Goals
+
+In group discussions, we've determined three main goals for our site:
+- Finishing base Canvas features (class creation and management, assignment creation and submission, and styling)
+- Following through on data science/graphing features for stats
+- Adding new group members' project contributions
+    - Video call features between student and teacher in a class period
+    - Job search features may be mixed with user class period subjects or may be a separate feature for students to use (similar to what Naviance offers)
+
 ## Individual Contributions
 
 ### Debugging Events
