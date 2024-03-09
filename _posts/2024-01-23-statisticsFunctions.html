@@ -3,7 +3,10 @@
 </head>
 
 <div id="tester" style="width:600px;height:250px;"></div>
-
+<button onclick="makeGraph()">Make Thing</button> <br>
+<input type="text" id="x" > <br>
+<input type="text" id="y" >
+<br>
 <div class="dropdown">
 	<button class="dropbtn">Dropdown</button>
 	<div class="dropdown-content">
@@ -57,21 +60,23 @@
 </style>
 
 <script>
-	const xArray = ["Italy","France","Spain","USA","Argentina"];
-	const yArray = [55, 49, 44, 24, 15];
+	function makeGraph(){
+		const xArray = document.getElementById("x").value.split(",");
+		const yArray = document.getElementById("y").value.split(",");
 
-	const data = [{
-	x: xArray,
-	y: yArray,
-	type: "bar",
-	orientation:"v",
-	marker: {color:"rgba(0,0,255)"}
-	}];
+		const data = [{
+		x: xArray,
+		y: yArray,
+		type: "bar",
+		orientation:"v",
+		marker: {color:"rgba(0,0,255)"}
+		}];
 
-	const layout = {title:"World Wide Wine Production"};
+		const layout = {title:"World Wide Wine Production"};
 
-	TESTER = document.getElementById('tester');
-	Plotly.newPlot( TESTER, data, layout);
+		TESTER = document.getElementById('tester');
+		Plotly.newPlot( TESTER, data, layout);
+	}
 
 	function changeplot(event){
 		updateType = event.id;
@@ -87,6 +92,5 @@
 		}
 
 		Plotly.restyle(document.getElementById('tester'), update, 0);
-		console.log("lol")
 	}
 </script>
