@@ -4,8 +4,10 @@
 
 <div id="tester" style="width:600px;height:250px;"></div>
 <button onclick="makeGraph()">Make Thing</button> <br>
-<input type="text" id="x" > <br>
-<input type="text" id="y" >
+<input type="text" id="xTitle" >
+<input type="text" id="xValues" > <br>
+<input type="text" id="yTitle" >
+<input type="text" id="yValues" >
 <br>
 <div class="dropdown">
 	<button class="dropbtn">Dropdown</button>
@@ -61,18 +63,27 @@
 
 <script>
 	function makeGraph(){
-		const xArray = document.getElementById("x").value.split(",");
-		const yArray = document.getElementById("y").value.split(",");
+		const xArray = document.getElementById("xValues").value.split(",");
+		const yArray = document.getElementById("yValues").value.split(",");
 
 		const data = [{
 		x: xArray,
 		y: yArray,
 		type: "bar",
 		orientation:"v",
-		marker: {color:"rgba(0,0,255)"}
+		marker: {color:"rgba(0,0,255)"},
+		xaxis_title:"Date"
 		}];
 
-		const layout = {title:"World Wide Wine Production"};
+		const layout = {
+			title:"World Wide Wine Production",
+			xaxis: {
+				title: document.getElementById("xTitle").value
+			},
+			yaxis: {
+				title: document.getElementById("yTitle").value
+			}
+		};
 
 		TESTER = document.getElementById('tester');
 		Plotly.newPlot( TESTER, data, layout);
