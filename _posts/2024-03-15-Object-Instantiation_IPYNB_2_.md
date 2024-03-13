@@ -5,46 +5,8 @@ toc: True
 layout: post
 ---
 
-# Student Lesson (JCC)
-This lesson is focused on three different CollegeBoard Topics, two of which are very simple and the other one is something we see very commonly on past AP Exams. Since we all have been using these in our projects throughout the year, we will briefly remind you of each, but feel free to refer to this blog in case you don't understand or need a refresher.
-## Instances of Classes (Unit 2)
-- A class is a blueprint for creating objects with the same behavior and defined attributes.
-- An Object is a specific entity, made from a class, that you can manipulate in your programs.
-- Objects are instances of classes with variables used to name them.
-- Each object has behaviors and attributes that are defined by the class that was used to create it
-- Objects are individual instances of classes with their own attributes
-- Two variables can refer to the same object
-    - If one of those variables are changed, then the other variable is changed
-- A class is a blueprint for creating objects with the same behavior and defined attributes
-- An object is a specific entity, made from a class, that you can manipulate in your programs.
-- Objects are instances of classes with variables used to name them
-- Each object has behaviors and attributes that are defined by the class that was used to create it
 
-# Object Instantiation (Unit 2)
-- Constructors are used to initialize the attributes for an object
-```java
-public Person(String nm, int ag, boolean, ad) {
-    name = nm;
-    age = ag;
-    isAdult = ad;
-}
-
-Dog graceDog = new Dog("Grace", "lab", 1); // parameters
-```
-- We can have more than one constructor for an object or also known as overloading the constructor, it is used when you have multiple ways to create an object
-- A no-argument constructor has no parameters and sets the instance variables for the object to default values.
-
-# 2D Arrays (Unit 8)
-- An array is a data structure used to implement a collection of primitive or object reference data
-- An element is a single value of the array
-- The index of an element is the position of the element in the array
-- The first element of an array is 0 in Java
-- The length of the array is the number of elements in the array
-```java
-DataType[] // 1D Array
-DataType[][] // 2D Array
-```
-- Row is always before column
+[House Demo](https://john-scc.github.io/jcc_frontend/2024/03/13/house-demo.html)
 
 # Farming Simulator
 
@@ -84,7 +46,7 @@ field[i][j] = new Corn(age, moistureLevel);
 # Full Code:
 
 
-```Java
+```java
 public class Corn {
     private int age;
     private int moistureLevel;
@@ -189,8 +151,3 @@ farm.main(null);
     Age: 8
     Moisture Level: 90
 
-
-## Hacks
-Hacks will be found on the joint Homework Hacks page with all hacks from each lesson.
-
-CODE CODE CODE
