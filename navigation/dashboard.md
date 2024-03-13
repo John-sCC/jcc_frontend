@@ -59,7 +59,7 @@ permalink: /dashboard/
 
     function getUserData() {
         // making the fetch request
-        fetch(local + '/api/class_period/dashboard', {
+        fetch(deployed + '/api/class_period/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
