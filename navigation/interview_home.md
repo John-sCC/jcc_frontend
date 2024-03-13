@@ -29,7 +29,7 @@ layout: default
       </div>
     </div>
     <div class="connected-users">
-      <button id="logoutBtn">Logout</button>
+ <!--      <button id="logoutBtn">Logout</button> -->
       <h2>Connected Users</h2>
       <ul id="userList"></ul>
     </div>
@@ -40,14 +40,14 @@ layout: default
     // check if the user is connected
     const connectedUser = localStorage.getItem('connectedUser');
     if (!connectedUser) {
-        window.location = 'login/';
+        window.location = 'https://john-scc.github.io/jcc_frontend/sign-in/';
         return;
     }
-    const userListElement = document.getElementById("userList");
+    const userListElement = document.getElementById("list");
     // Clear any existing content in the userListElement
     userListElement.innerHTML = "Loading...";
     // Retrieve the userList from Local Storage
-    fetch('http://localhost:8911/api/v1/users')
+    fetch('http://localhost:8911/api/person/read')
         .then((response) => {
             return response.json();
         })
@@ -73,8 +73,8 @@ layout: default
   }
   // Call the loadAndDisplayUsers function when the page loads
   window.addEventListener("load", loadAndDisplayUsers);
-  function handleLogout() {
-      fetch('http://localhost:8911/api/v1/users/logout', {
+  /* function handleLogout() {
+      fetch('http://localhost:8911/api/person/logout', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ layout: default
           });
   }
   const logoutBtn = document.getElementById("logoutBtn");
-  logoutBtn.addEventListener("click", handleLogout);
+  logoutBtn.addEventListener("click", handleLogout); */
   function handleNewMeeting() {
     const connectedUserData = localStorage.getItem('connectedUser');
     if (!connectedUserData) {
