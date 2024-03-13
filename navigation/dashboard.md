@@ -1,16 +1,11 @@
 ---
 layout: default
-title: User Display (Test)
+title: Dashboard
 search_exclude: true
-permalink: /dashboard-debug/
+permalink: /dashboard/
 ---
 
-<div id="debug_user_info_display">
-    <h2>DEBUG USER SELCTOR</h2>
-    <label>Enter a User's ID for data display (will be automatic when JWT sends consistently)</label>
-    <input id="id_number" type="number" value="1">
-    <button id="find_user" onclick="getUserData()">Search User</button>
-</div>
+<button id="test_button" onclick="getUserData()">Click here for test</button>
 <div id="dashboard_container" class="dashboard" style="display:none;">
     <h1>DASHBOARD</h1>
     <div id="assignment_container_container" class="container-container">
@@ -63,13 +58,12 @@ permalink: /dashboard-debug/
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
     function getUserData() {
-        // getting values from input fields
-        var id = document.getElementById('id_number').value;
-        // making the first fetch request
-        fetch(deployed + '/api/class_period/students/' + String(id), {
+        // making the fetch request
+        fetch(deployed + '/api/class_period/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Cookie': 'jwt=' + encodeURIComponent(document.cookie)
             },
         })
         .then(response => {
@@ -80,28 +74,10 @@ permalink: /dashboard-debug/
         })
         .then(data => {
             console.log(JSON.stringify(data));
-            populateAssignmentContainer(data);
-            populateClassesContainer(data, false);
-            fetch(deployed + '/api/class_period/leaders/' + String(id), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(JSON.stringify(data));
-                populateClassesContainer(data, true);
-                document.getElementById("dashboard_container").style = "display:block;";
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+            populateAssignmentContainer(data.student);
+            populateClassesContainer(data.student, false);
+            populateClassesContainer(data.leader, true);
+            document.getElementById("dashboard_container").style = "display:block;";
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -210,31 +186,4 @@ permalink: /dashboard-debug/
     function generalRedirect(urlExtension) {
         window.location.href = '{{site.baseurl}}' + urlExtension;
     }
-
-    /*
-    function findUser() {
-        // Get values from input fields
-        var id = document.getElementById('id_number').value;
-        // Make the fetch request
-        fetch('http://localhost:8911/api/person/' + String(id), {//'https://jcc.stu.nighthawkcodingsociety.com/api/person/' + String(id), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Print user data as JSON in the console
-            console.log(JSON.stringify(data));
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
-    }
-    */
 </script>
