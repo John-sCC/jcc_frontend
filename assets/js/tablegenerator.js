@@ -6,10 +6,6 @@ window.onload(function() {
 
     document.getElementsByClassName("add")[0].onclick = function () {addClass()}
     $("#submit")[0].onclick = function() {makeGroups()}
-
-    selected = 2
-    $("#groupsInput")[0].value = 4
-    makeGroups()
 })
 
 function initialize() {
