@@ -32,8 +32,8 @@ permalink: /ass-request/
             let classNames = [d.getElementById("className").value];
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
-            const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
-            //const apiUrl = 'http://localhost:8911/api/assignment/post';
+            //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+            const apiUrl = 'http://localhost:8911/api/assignment/post';
             // a
             const requestData = {
                 name: name,
@@ -84,8 +84,8 @@ permalink: /ass-request/
         }
         // filler
         function getClassPeriodById() {
-        //const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
-        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
@@ -100,6 +100,7 @@ permalink: /ass-request/
                     console.log(classs);
                     console.log(classs.name);   
                     document.getElementById("className").style.visibility = "visible";
+                    document.getElementById("InputClassLeader").style.display = "none";
                     document.getElementById("bigblockthatcontainsacuatalassignmentstuff").style.visibility = "visible";
                     document.getElementById("labelthatwontshow").style.visibility = "visible";
                     var option = document.createElement("option");
@@ -116,12 +117,12 @@ permalink: /ass-request/
     </script>
 </head>
 <body>
-    <div>
+    <div id="InputClassLeader" style="display: block">    
         <label style="font-family: Lexend, sans-serif;">Input your class leader ID:  
         <input type="number" name="classLeader" id="classLeader" style="font-family: Lexend, sans-serif;"></label>
         <button onclick="getClassPeriodById()" style="font-family: Lexend, sans-serif;">submit</button> <br> <br>
-        <div style="visibility: hidden"><label id="labelthatwontshow" style="font-family: Lexend, sans-serif;">Select which class to create an assignment for: </label><select name="className" id="className" style="font-family: Lexend, sans-serif;">  </select></div>
     </div>
+    <div style="visibility: hidden; margin: auto;"><label id="labelthatwontshow" style="font-family: Lexend, sans-serif;">Select which class to create an assignment for: </label><select name="className" id="className" style="font-family: Lexend, sans-serif;">  </select></div>
     <div class="flexbox" id="bigblockthatcontainsacuatalassignmentstuff" style="visibility: hidden; font-family: Lexend, sans-serif;">
         <div class="insideFlexbox">
             <p><label>
