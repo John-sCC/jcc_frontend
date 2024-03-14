@@ -165,59 +165,48 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
-// individual rows should be drag droppable not tables breuh
-function dragDropOLD(tableId) {
-    console.log("run")
-    const table = $(`#${tableId}`)
+function dragDrop(studentId) {
+    const student = $(`#${studentId}`)
 
-    table.draggable({
+    student.draggable({
         revert: true,
         scroll: true,
-        containment: $("#table-div")
+        containment: $("#table-div"),
+        revertDuration: 0
     })
 
-    table.droppable({
+    student.droppable({
         drop: function(event, ui) {
+            // define starting row and ending row
             var draggable = ui.draggable
             var droppable = $(this)
 
+            // get parent objects and indexes of each element
             var parent1 = draggable.parent()
             var parent2 = droppable.parent()
 
-            temp = draggable
+            var index = draggable.index()
 
-            parent1.children()[1].remove()
-            parent1.append(droppable)
+            draggable.insertBefore(droppable)
+            temp = droppable.detach()
+            console.log(index)
+            console.log(parent1.children().length)
 
-            parent2.append(temp)
-        }
-    })
-}
+            if (parent1.children().length == index) {
+                droppable.insertAfter(parent1.children().eq(index - 1))
+            }
 
-function dragDrop(nameId) {
-    console.log("run")
-    const table = $(`#${tableId}`)
+            else {
+                droppable.insertBefore(parent1.children().eq(index))
+            }
 
-    table.draggable({
-        revert: true,
-        scroll: true,
-        containment: $("#table-div")
-    })
-
-    table.droppable({
-        drop: function(event, ui) {
-            var draggable = ui.draggable
-            var droppable = $(this)
-
-            var parent1 = draggable.parent()
-            var parent2 = droppable.parent()
-
-            temp = draggable
-
-            parent1.children()[1].remove()
-            parent1.append(droppable)
-
-            parent2.append(temp)
+            // renumber
+            for (parent of [parent1, parent2]) {
+                const rows = parent.children()
+                for (let i = 0; i < rows.length; i ++) {
+                    rows[i].children[0].innerHTML = i + 1
+                }
+            }
         }
     })
 }
@@ -232,19 +221,6 @@ function makeTable(people) {
     tableDiv.className = "table"
     title.className = "title"
 
-    for (let i = 0; i < people.length; i ++) {
-        const row = document.createElement("tr")
-        const number = document.createElement("td")
-        const name = document.createElement("td")
-
-        number.innerHTML = i + 1
-        name.innerHTML = people[i]
-
-        row.appendChild(number)
-        row.appendChild(name)
-        table.appendChild(row)
-    }
-
     var n = 0
 
     const existingRows = main.children
@@ -253,10 +229,23 @@ function makeTable(people) {
         n += existingRow.children.length
     }
 
-    const tableId = `table-${n+1}`
+    for (let i = 0; i < people.length; i ++) {
+        const row = document.createElement("tr")
+        const number = document.createElement("td")
+        const name = document.createElement("td")
+
+        number.innerHTML = i + 1
+        name.innerHTML = people[i]
+
+        
+        row.appendChild(number)
+        row.appendChild(name)
+        table.appendChild(row)
+        const rowId = `row-${n}-${i}`
+        row.id = rowId
+    }
+
     title.innerHTML = `GROUP #${n+1}`
-    table.id = tableId
-    console.log(tableId)
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
@@ -272,7 +261,9 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
-    dragDrop(tableId)
+    for (row of table.children) {
+        dragDrop(row.id)
+    }
 }
 
 function saveName(id) {

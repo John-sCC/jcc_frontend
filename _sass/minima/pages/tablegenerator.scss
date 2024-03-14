@@ -195,9 +195,13 @@ button {
                     font-family: $nighthawk-font2;
                     font-size: 1.5vw;
                 }
+
+                table tr {
+                    background-color: $grayish;
+                }
         
                 table td {
-                    background-color: $grayish !important; 
+                    background-color: unset !important;
                     color: black;
                     width: 45%;
                     table-layout: fixed;
@@ -283,4 +287,18 @@ button {
             }
         }
     }
+}
+
+.droppable-hover {
+    @include basic-hover(dark);
+}
+
+.ui-draggable-dragging {
+    z-index: 1;
+    background-color: rgba(239, 239, 239, .9) !important // grayish color with half opacity
+}
+
+.ui-droppable-hover {
+    filter: brightness(80%);
+    transition: filter(.2s)
 }
