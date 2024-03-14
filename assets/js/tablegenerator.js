@@ -194,20 +194,25 @@ function dragDropOLD(tableId) {
     })
 }
 
-function dragDrop(nameId) {
-    console.log("run")
-    const table = $(`#${tableId}`)
+function dragDrop(studentId) {
+    console.log(studentId)
+    const student = $(`#${studentId}`)
+    console.log(student)
 
-    table.draggable({
+    student.draggable({
         revert: true,
         scroll: true,
         containment: $("#table-div")
     })
 
-    table.droppable({
+    student.droppable({
         drop: function(event, ui) {
             var draggable = ui.draggable
             var droppable = $(this)
+
+            if (draggable.id == droppable.id) {
+                return
+            }
 
             var parent1 = draggable.parent()
             var parent2 = droppable.parent()
@@ -232,19 +237,6 @@ function makeTable(people) {
     tableDiv.className = "table"
     title.className = "title"
 
-    for (let i = 0; i < people.length; i ++) {
-        const row = document.createElement("tr")
-        const number = document.createElement("td")
-        const name = document.createElement("td")
-
-        number.innerHTML = i + 1
-        name.innerHTML = people[i]
-
-        row.appendChild(number)
-        row.appendChild(name)
-        table.appendChild(row)
-    }
-
     var n = 0
 
     const existingRows = main.children
@@ -253,10 +245,23 @@ function makeTable(people) {
         n += existingRow.children.length
     }
 
-    const tableId = `table-${n+1}`
+    for (let i = 0; i < people.length; i ++) {
+        const row = document.createElement("tr")
+        const number = document.createElement("td")
+        const name = document.createElement("td")
+
+        number.innerHTML = i + 1
+        name.innerHTML = people[i]
+
+        
+        row.appendChild(number)
+        row.appendChild(name)
+        table.appendChild(row)
+        const rowId = `row-${n}-${i}`
+        row.id = rowId
+    }
+
     title.innerHTML = `GROUP #${n+1}`
-    table.id = tableId
-    console.log(tableId)
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
@@ -272,7 +277,9 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
-    dragDrop(tableId)
+    for (row of table.children) {
+        dragDrop(row.id)
+    }
 }
 
 function saveName(id) {
