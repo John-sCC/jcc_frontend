@@ -63,7 +63,6 @@ permalink: /dashboard/
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Cookie': 'jwt=' + encodeURIComponent(document.cookie)
             },
         })
         .then(response => {

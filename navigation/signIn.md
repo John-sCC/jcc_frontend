@@ -204,12 +204,13 @@ permalink: /sign-in/
         },
     };
    
-    fetch(deployed + '/authenticate', requestOptions)
+    fetch(local + '/authenticate', requestOptions)
     .then(response => response.text()) // Get response text
     .then(data => {
         // Check response status
         console.log(data);
         if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
+            getUserDataTest();
             window.location.replace("{{site.baseurl}}/dashboard/");
             return;
         } else {
@@ -240,4 +241,27 @@ permalink: /sign-in/
       signIn();
     }; ^ 
     */
+
+    function getUserDataTest() {
+      // making the fetch request
+      fetch(deployed + '/api/class_period/dashboard', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          //console.log(JSON.stringify(data));
+          console.log(data);
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+    }
 </script>
