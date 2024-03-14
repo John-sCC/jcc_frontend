@@ -179,14 +179,14 @@ permalink: /sign-in/
 </html>
 
 <script>
-  function signIn() {
+  var local = "http://localhost:8911";
+  var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
 
+
+  function signIn() {
     console.log("button clicked");
     var email = document.getElementById('username-field').value;
     var password = document.getElementById('password-field').value;
-
-    var local = "http://localhost:8911";
-    var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
 
     var requestBody = {
         email: email,
