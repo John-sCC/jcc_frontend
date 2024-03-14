@@ -207,8 +207,7 @@ function dragDrop(studentId) {
                     rows[i].children[0].innerHTML = i + 1
                 }
             }
-        },
-        classes: {'ui-droppable-hover': 'droppable-hover'}
+        }
     })
 }
 
