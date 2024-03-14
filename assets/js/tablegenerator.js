@@ -171,7 +171,8 @@ function dragDrop(studentId) {
     student.draggable({
         revert: true,
         scroll: true,
-        containment: $("#table-div")
+        containment: $("#table-div"),
+        revertDuration: 0
     })
 
     student.droppable({
@@ -184,22 +185,20 @@ function dragDrop(studentId) {
             var parent1 = draggable.parent()
             var parent2 = droppable.parent()
 
-            var index1 = draggable.index()
-            var index2 = droppable.index()
+            var index = draggable.index()
 
+            draggable.insertBefore(droppable)
+            temp = droppable.detach()
+            console.log(index)
+            console.log(parent1.children().length)
 
-            // decrements if index would go out of bounds
-            if (parent1[0] === parent2[0] && index1 < index2) {
-                index2--;
+            if (parent1.children().length == index) {
+                droppable.insertAfter(parent1.children().eq(index - 1))
             }
-            
-            // detach removes from DOM but keeps data (jQuery is literally magic)
-            temp = draggable.detach()
 
-            // swap
-            droppable.insertBefore(parent1.children().eq(index1))
-
-            temp.insertBefore(parent2.children().eq(index2))
+            else {
+                droppable.insertBefore(parent1.children().eq(index))
+            }
 
             // renumber
             for (parent of [parent1, parent2]) {
