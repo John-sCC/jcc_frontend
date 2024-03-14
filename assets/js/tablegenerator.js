@@ -195,9 +195,7 @@ function dragDropOLD(tableId) {
 }
 
 function dragDrop(studentId) {
-    console.log(studentId)
     const student = $(`#${studentId}`)
-    console.log(student)
 
     student.draggable({
         revert: true,
@@ -207,22 +205,38 @@ function dragDrop(studentId) {
 
     student.droppable({
         drop: function(event, ui) {
+            // define starting row and ending row
             var draggable = ui.draggable
             var droppable = $(this)
 
-            if (draggable.id == droppable.id) {
-                return
-            }
-
+            // get parent objects and indexes of each element
             var parent1 = draggable.parent()
             var parent2 = droppable.parent()
 
-            temp = draggable
+            var index1 = draggable.index()
+            var index2 = droppable.index()
 
-            parent1.children()[1].remove()
-            parent1.append(droppable)
 
-            parent2.append(temp)
+            // decrements if index would go out of bounds
+            if (parent1[0] === parent2[0] && index1 < index2) {
+                index2--;
+            }
+            
+            // detach removes from DOM but keeps data (jQuery is literally magic)
+            temp = draggable.detach()
+
+            // swap
+            droppable.insertBefore(parent1.children().eq(index1))
+
+            temp.insertBefore(parent2.children().eq(index2))
+
+            // renumber
+            for (parent of [parent1, parent2]) {
+                const rows = parent.children()
+                for (let i = 0; i < rows.length; i ++) {
+                    rows[i].children[0].innerHTML = i + 1
+                }
+            }
         }
     })
 }
