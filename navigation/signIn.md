@@ -212,8 +212,11 @@ permalink: /sign-in/
         if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
             fetch(deployed + '/api/class_period/dashboard', {
                   method: 'GET',
+                  mode: 'cors', // no-cors, *cors, same-origin
+                  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                  credentials: 'include', // include, *same-origin, omit
                   headers: {
-                      'Content-Type': 'application/json',
+                      "content-type": "application/json",
                   },
               })
               .then(response => {
