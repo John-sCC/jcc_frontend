@@ -210,29 +210,8 @@ permalink: /sign-in/
         // Check response status
         console.log(data);
         if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
-            fetch(deployed + '/api/class_period/dashboard', {
-                  method: 'GET',
-                  mode: 'cors', // no-cors, *cors, same-origin
-                  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                  credentials: 'include', // include, *same-origin, omit
-                  headers: {
-                      "content-type": "application/json",
-                  },
-              })
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response.json();
-              })
-              .then(data => {
-                  console.log(JSON.stringify(data));
-                  window.location.replace("{{site.baseurl}}/dashboard/");
-                  return;
-               })
-              .catch(error => {
-                  console.error('There was a problem with the fetch operation:', error);
-              });
+            window.location.replace("{{site.baseurl}}/dashboard/");
+            return;
         } else {
             // Invalid email or password
             displayErrorMessage("Invalid email or password");

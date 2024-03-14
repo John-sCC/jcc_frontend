@@ -54,6 +54,19 @@ permalink: /dashboard/
 </div>
 
 <script>
+    // Check if the required cookie is present on page load
+    window.addEventListener('load', function() {
+        if (!hasCookie('jwt')) {
+            // Redirect to the login page if the cookie is not present
+            window.location.href = '/login'; // Replace '/login' with your actual login page URL
+        }
+    });
+
+    // Function to check if a cookie is present
+    function hasCookie(cookieName) {
+        return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(cookieName + '='));
+    }
+
     const local = 'http://localhost:8911';
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
@@ -61,8 +74,11 @@ permalink: /dashboard/
         // making the fetch request
         fetch(deployed + '/api/class_period/dashboard', {
             method: 'GET',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
             headers: {
-                'Content-Type': 'application/json',
+                "content-type": "application/json",
             },
         })
         .then(response => {
