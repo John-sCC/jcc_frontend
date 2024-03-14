@@ -165,35 +165,6 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
-// individual rows should be drag droppable not tables breuh
-function dragDropOLD(tableId) {
-    console.log("run")
-    const table = $(`#${tableId}`)
-
-    table.draggable({
-        revert: true,
-        scroll: true,
-        containment: $("#table-div")
-    })
-
-    table.droppable({
-        drop: function(event, ui) {
-            var draggable = ui.draggable
-            var droppable = $(this)
-
-            var parent1 = draggable.parent()
-            var parent2 = droppable.parent()
-
-            temp = draggable
-
-            parent1.children()[1].remove()
-            parent1.append(droppable)
-
-            parent2.append(temp)
-        }
-    })
-}
-
 function dragDrop(studentId) {
     const student = $(`#${studentId}`)
 
