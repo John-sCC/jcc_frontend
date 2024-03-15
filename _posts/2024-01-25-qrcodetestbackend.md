@@ -73,16 +73,24 @@ layout: post
             document.getElementById("qrcode").innerHTML = "";
         }
         fetchId().then(id => {
-            var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
+            if(window.location.href.includes("127.0.0.1")){
+                var link = "http://127.0.0.1:4100/jcc_frontend/2024/01/25/qrcodeacceptbackend.html" + id;
+            }
+            else {
+                var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
+            }
             console.log(link)
             new QRCode(document.getElementById("qrcode"), link)
         })
     }
 
     function fetchId() {
-        // Construct the URL for the POST request
-        // const url = 'http://localhost:8911/api/qrcode/newCode';
-        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
+        if(window.location.href.includes("127.0.0.1")){
+            var url = 'http://localhost:8911/api/qrcode/newCode';
+        }
+        else {
+            var url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
+        }
 
         var linkList = [];
         var freqList = [];
