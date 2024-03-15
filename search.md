@@ -79,7 +79,7 @@ function addStudent(event) {
         preferredLocation: formData.get('location'),
         internshipPreferred: formData.get('internship') === 'on'
     };
-    fetch('http://localhost:4100/api/student/add', {
+    fetch('http://localhost:8911/api/student/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ function findMostRelevantStudent(event) {
         internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
     };
     const k = formData.get('k');
-    fetch(`http://localhost:4100/api/student/findMostRelevant?k=${k}`, {
+    fetch(`http://localhost:8911/api/student/findMostRelevant?k=${k}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
