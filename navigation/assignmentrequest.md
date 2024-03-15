@@ -6,23 +6,6 @@ permalink: /ass-request/
 ---
 
 <head>
-    <style>
-        .flexbox {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .insideFlexbox {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .button {
-            height: 50px;
-            width: 100px;
-            font-family: Lexend, sans-serif;
-        }
-    </style>
     <script>
         function postAssignment() {
             const d = document;
@@ -118,26 +101,26 @@ permalink: /ass-request/
 </head>
 <body>
     <div id="InputClassLeader" style="display: block">    
-        <label style="font-family: Lexend, sans-serif;">Input your class leader ID:  
-        <input type="number" name="classLeader" id="classLeader" style="font-family: Lexend, sans-serif;"></label>
-        <button onclick="getClassPeriodById()" style="font-family: Lexend, sans-serif;">submit</button> <br> <br>
+        <label class="lable">Input your class leader ID:  
+        <input type="number" name="classLeader" id="classLeader" class="inphutbox"></label>
+        <button onclick="getClassPeriodById()" class="lable">submit</button>
     </div>
-    <div style="visibility: hidden; margin: auto;"><label id="labelthatwontshow" style="font-family: Lexend, sans-serif;">Select which class to create an assignment for: </label><select name="className" id="className" style="font-family: Lexend, sans-serif;">  </select></div>
+    <div id="divForClass"> <label id="labelthatwontshow" class="lable">Class to create an assignment for:</label> <select name="className" id="className" class="inphutbox"></select> </div>
     <div class="flexbox" id="bigblockthatcontainsacuatalassignmentstuff" style="visibility: hidden; font-family: Lexend, sans-serif;">
         <div class="insideFlexbox">
-            <p><label>
+            <p><label class="lable">
                 Name of Assignment: <br>
-                <input type="text" name="name" id="name" size="50" required>
+                <input class="inphutbox" type="text" name="name" id="name" size="50" required>
             </label></p>
-            <p><label>
+            <p><label class="lable">
                 Due Date: <br>
-                <input type="date" name="dateDue" id="dateDue" required>
+                <input class="inphutbox" type="date" name="dateDue" id="dateDue" required>
             </label></p>
         </div>
         <div class="insideFlexbox">
-            <p><label>
+            <p><label class="lable">
                 Assignment Details:<br>
-                <textarea name="content" id="content" rows="8" cols="100" required></textarea>
+                <textarea class="biginphutbox" name="content" id="content" rows="16" cols="125" required></textarea>
             </label></p>
             <button onclick="postAssignment()" class="button">Submit Assignment</button>
         </div>
