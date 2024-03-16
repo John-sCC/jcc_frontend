@@ -19,5 +19,4 @@ plugins:
 header_pages:
   - navigation/blog.md
   - navigation/search.html
-repository: jcc_frontend
 
