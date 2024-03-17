@@ -8,11 +8,11 @@ $(window).ready(function() {
     }
 
     //Redirect logo and title clicks to index
-    for (let home of ['nav-logo', 'nav-title']) {
-        $(`.${home}`).click( function() { 
-            location.href = `${baseurl}/`
-        })
-    }
+    // for (let home of ['nav-logo', 'nav-title']) {
+    //     $(`.${home}`).click( function() { 
+    //         location.href = `${baseurl}/`
+    //     })
+    // }
 
     window.onscroll = function () { updateDivs() }
 
