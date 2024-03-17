@@ -7,7 +7,7 @@ $(window).ready(function() {
         })
     }
 
-    // Redirect logo and title clicks to index
+    //Redirect logo and title clicks to index
     for (let home of ['nav-logo', 'nav-title']) {
         $(`.${home}`).click( function() { 
             location.href = `${baseurl}/`
