@@ -6,15 +6,16 @@ permalink: /ass-request/
 ---
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function postAssignment() {
             const d = document;
             let name = d.getElementById("name").value;
             let dateDue = d.getElementById("dateDue").value;
-            let content = d.getElementById("content").value;
             let classNames = [d.getElementById("className").value];
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
+            var formattedText = $('#content').html();
             //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
             const apiUrl = 'http://localhost:8911/api/assignment/post';
             // a
@@ -22,7 +23,7 @@ permalink: /ass-request/
                 name: name,
                 dateCreated: dateCreated,
                 dateDue: dateDue,  
-                content: content,
+                content: formattedText,
                 classNames: classNames
             };
             console.log(requestData);
@@ -97,6 +98,9 @@ permalink: /ass-request/
                 alert('Error fetching class period. Check the console for details.');
             });
     }
+    function formatText(command) {
+      document.execCommand(command);
+    }
     </script>
 </head>
 <body>
@@ -120,6 +124,12 @@ permalink: /ass-request/
         <div class="insideFlexbox">
             <p><label class="lable">
                 Assignment Details:<br>
+                <div id="formatting-options">
+                    <button onclick="formatText('bold')">Bold</button>
+                    <button onclick="formatText('italic')">Italic</button>
+                    <button onclick="formatText('underline')">Underline</button>
+                    <!-- Add more formatting options as needed -->
+                </div>
                 <textarea class="biginphutbox" name="content" id="content" rows="16" cols="125" required></textarea>
             </label></p>
             <button onclick="postAssignment()" class="button">Submit Assignment</button>
