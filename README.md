@@ -16,22 +16,16 @@ https://john-scc.github.io/jcc_frontend/
 
 ## Who was involved
 
-- [Aiden Huynh](https://github.com/aidenhuynh)🤓
-- [Drew Reed](https://github.com/drewreed2005)
-- [Toby Leeder](https://github.com/Toby-Leeder)
-- [AJ Ruiz](https://github.com/KKcbal)
-- [Ekam Kaire](https://github.com/Ekamjot-Kaire)
-- [Edwin Abraham](https://github.com/EdwinKuttappi)
-- [Ryan McWeeny](https://github.com/Ryanrob327)
-- [Raymond Sheng](https://github.com/raymondYsheng)
-- [Kevin Du](https://github.com/DasMoge124)
-- [Ishi Singh](https://github.com/Ishi-Singh)
-- [Tong Haoxuan]()
-- [???](https://github.com/JasoXDDD)
-
-### Who did what
-
-??? I dunno
-
-## License information
-
+- [Aiden Huynh](https://github.com/aidenhuynh)🤓 - Frontend Lead
+- [Drew Reed](https://github.com/drewreed2005) - Subteam Leader
+- [Toby Leeder](https://github.com/Toby-Leeder) - Subteam Leader/DevOps
+- [AJ Ruiz](https://github.com/KKcbal) - Full Stack Developer
+- [Ekam Kaire](https://github.com/Ekamjot-Kaire) - Frontend Developer
+- [Edwin Abraham](https://github.com/EdwinKuttappi) - Teacher
+- [Ryan McWeeny](https://github.com/Ryanrob327) - Teaching Master
+- [Raymond Sheng](https://github.com/raymondYsheng) - Backend Developer
+- [Kevin Du](https://github.com/DasMoge124) - full Stack Developer
+- [Ishi Singh](https://github.com/Ishi-Singh) - Backend Developer
+- [Tong Haoxuan]() - Backend Developer
+- [Aaron Rubin](https://github.com/aaron-rub) - ???
+- [Isabelle](https://github.com/isabelle926) - ??? no commits
