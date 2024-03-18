@@ -125,9 +125,9 @@ permalink: /ass-request/
             <p><label class="lable">
                 Assignment Details:<br>
                 <div id="formatting-options">
-                    <button onclick="formatText('bold')">Bold</button>
+                    <!-- <button onclick="formatText('bold')">Bold</button>
                     <button onclick="formatText('italic')">Italic</button>
-                    <button onclick="formatText('underline')">Underline</button>
+                    <button onclick="formatText('underline')">Underline</button> -->
                     <!-- Add more formatting options as needed -->
                 </div>
                 <textarea class="biginphutbox" name="content" id="content" rows="16" cols="125" required></textarea>
