@@ -19,7 +19,8 @@ function initialize() {
 
     $("#submit")[0].onclick = function() {makeGroups()}
 
-    $("#groupsInput").keyup("enterKey", function(e) {
+    // 
+    $("#groupsInput").keyup(function(e) {
         if (e.keyCode == 13) {
             makeGroups()
         }
