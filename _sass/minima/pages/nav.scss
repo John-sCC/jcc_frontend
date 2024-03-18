@@ -125,6 +125,11 @@
     background-repeat: no-repeat;
     background-size: 9.6vw;
     z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.nav-logo.active {
+    transform: translateX(-100%) translateY(-100%);
 }
 
 .section {
@@ -186,7 +191,7 @@
 }
 
 .section-color2 {
-    background: linear-gradient(135deg, #444, #9e935a);
+    background: linear-gradient(135deg, #444, #8a7845);
     clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
 }
 
@@ -196,7 +201,7 @@
 }
 
 .section-color4 {
-    background: linear-gradient(135deg, #444, #9e935a);
+    background: linear-gradient(135deg, #444, #8a7845);
     clip-path: polygon(200px 200px, 450px 280px, 400px 0);
 }
 

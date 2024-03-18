@@ -89,3 +89,11 @@ function updateDivs() {
 
     }
 }
+
+function toggleActive() {
+    document.body.classList.toggle('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.toggle('active');
+    });
+    document.querySelector('.nav-logo').classList.toggle('active');
+}
