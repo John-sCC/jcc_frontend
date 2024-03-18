@@ -4,43 +4,43 @@ title: Student Search
 hide: true
 permalink: /search/
 ---
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-h1, h2 {
-    margin-bottom: 10px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: inline-block;
-    width: 150px;
-    margin-bottom: 5px;
-}
-
-input[type="text"], input[type="number"] {
-    width: 300px;
-    padding: 5px;
-}
-
-button {
-    padding: 8px 15px;
-    cursor: pointer;
-}
-</style>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Selection</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Remove or correct CSS link if needed -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 300px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Student Selection</h1>
@@ -65,53 +65,56 @@ button {
         <button type="submit">Find Most Relevant Student</button>
     </form>
     <div id="result"></div>
+
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', addStudent);
+        document.getElementById('findStudentForm').addEventListener('submit', findMostRelevantStudent);
+
+        function addStudent(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const studentData = {
+                name: formData.get('name'),
+                subjectsKnown: formData.get('subjects').split(',').map(subject => subject.trim()),
+                preferredLocation: formData.get('location'),
+                internshipPreferred: formData.get('internship') === 'on'
+            };
+            fetch('http://localhost:8911/api/student/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(studentData),
+            })
+            .then(response => response.text())
+            .then(message => alert(message))
+            .catch(error => console.error('Error:', error));
+        }
+
+        function findMostRelevantStudent(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newStudentInfo = formData.get('newStudent').split(',').map(info => info.trim());
+            const newStudent = {
+                name: newStudentInfo[0],
+                subjectsKnown: newStudentInfo[1],
+                preferredLocation: newStudentInfo[2],
+                internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
+            };
+            const k = document.getElementById('k').value; // Get k value from input
+            fetch(`http://localhost:8911/api/student/findMostRelevant?k=${k}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newStudent),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = `Most relevant student: ${data.name}`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>
-<script>
-    document.getElementById('addStudentForm').addEventListener('submit', addStudent);
-document.getElementById('findStudentForm').addEventListener('submit', findMostRelevantStudent);
-function addStudent(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const studentData = {
-        name: formData.get('name'),
-        subjectsKnown: formData.get('subjects').split(',').map(subject => subject.trim()),
-        preferredLocation: formData.get('location'),
-        internshipPreferred: formData.get('internship') === 'on'
-    };
-    fetch('http://localhost:8911/api/student/add', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(studentData),
-    })
-    .then(response => response.text())
-    .then(message => alert(message))
-    .catch(error => console.error('Error:', error));
-}
-function findMostRelevantStudent(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const newStudentInfo = formData.get('newStudent').split(',').map(info => info.trim());
-    const newStudent = {
-        name: newStudentInfo[0],
-        subjectsKnown: newStudentInfo[1],
-        preferredLocation: newStudentInfo[2],
-        internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
-    };
-    const k = 3;
-    fetch(`http://localhost:8911/api/student/findMostRelevant?k=3`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newStudent),
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('result').innerText = `Most relevant student: ${data.name}`;
-    })
-    .catch(error => console.error('Error:', error));
-}
-</script>
