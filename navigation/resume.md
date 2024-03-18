@@ -49,7 +49,7 @@ permalink: /resume/
         font-size: 15px;
         border-radius: 4px;
         background-color: #c1b576;
-        width: 100px; 
+        width: 200px; 
         height: 30px;
         transition-duration: 0.4s;
     }
@@ -67,11 +67,11 @@ permalink: /resume/
 </head>
 <body>
     <div class="wrapper-div">
-<ul class="tab-header">
+    <ul class="tab-header">
             <button class="tab-button" onclick="switchTab(event, 'page1')">Personal Info</button>
             <button class="tab-button" onclick="switchTab(event, 'page2')">Skills</button>
             <!-- will add more tabs later-->
-        </ul>
+    </ul>
     <div id="page1" class="tab-content active">
         <div class="title"> Personal Information </div>
             <form id="personalDetails" class="formStyle">
@@ -85,7 +85,7 @@ permalink: /resume/
                 <input type="email" id="email" name="email" required><br><br>
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" required><br><br>
-            <!-- -->
+            <!--  -->
             </form>
         </div>
        <div id="page2" class="tab-content">

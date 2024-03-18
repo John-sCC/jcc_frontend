@@ -90,10 +90,21 @@ function updateDivs() {
     }
 }
 
+//for the menu 
 function toggleActive() {
     document.body.classList.toggle('active');
     document.querySelectorAll('.section').forEach(section => {
         section.classList.toggle('active');
     });
     document.querySelector('.nav-logo').classList.toggle('active');
+}
+
+function sectionClicked() {
+    document.body.classList.remove('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    setTimeout(() => {
+        document.querySelector('.nav-logo').classList.remove('active');
+    }, 300);
 }
