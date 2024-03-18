@@ -3,9 +3,6 @@ var selected = null
 
 window.onload(function() {
     initialize()
-
-    document.getElementsByClassName("add")[0].onclick = function () {addClass()}
-    $("#submit")[0].onclick = function() {makeGroups()}
 })
 
 function initialize() {
@@ -17,6 +14,16 @@ function initialize() {
 
         makeClass(id, name)
     }
+
+    document.getElementsByClassName("add")[0].onclick = function () {addClass()}
+
+    $("#submit")[0].onclick = function() {makeGroups()}
+
+    $("#groupsInput").keyup("enterKey", function(e) {
+        if (e.keyCode == 13) {
+            makeGroups()
+        }
+    })
 }
 
 // Adds to storage and makes div
