@@ -19,7 +19,7 @@ function initialize() {
 
     $("#submit")[0].onclick = function() {makeGroups()}
 
-    // 
+    // Event listener for pressing enter on the # of groups box
     $("#groupsInput").keyup(function(e) {
         if (e.keyCode == 13) {
             makeGroups()
@@ -164,7 +164,6 @@ function editClass(id) {
 }
 
 function deleteClass(id) {
-    console.log(id)
     localStorage.removeItem(id)
     document.getElementById(id).remove()
 
@@ -197,8 +196,6 @@ function dragDrop(studentId) {
 
             draggable.insertBefore(droppable)
             temp = droppable.detach()
-            console.log(index)
-            console.log(parent1.children().length)
 
             if (parent1.children().length == index) {
                 droppable.insertAfter(parent1.children().eq(index - 1))
