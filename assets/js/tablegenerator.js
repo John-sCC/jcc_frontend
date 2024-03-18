@@ -164,6 +164,10 @@ function editClass(id) {
 }
 
 function deleteClass(id) {
+    if (!confirm(`Are you sure you want to delete "${$(`#${id}`).children()[0].innerHTML}"?`)) {
+        return
+    }
+
     localStorage.removeItem(id)
     document.getElementById(id).remove()
 
