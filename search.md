@@ -101,7 +101,7 @@ function findMostRelevantStudent(event) {
         internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
     };
     const k = 3;
-    fetch(`http://localhost:8911/api/student/findMostRelevant?k=${k}`, {
+    fetch(`http://localhost:8911/api/student/findMostRelevant?k=3`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
