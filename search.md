@@ -64,6 +64,9 @@ permalink: /search/
         <input type="number" id="k" name="k" min="1" value="1"><br><br>
         <button type="submit">Find Most Relevant Student</button>
     </form>
+    <h2>Display All Students</h2>
+        <button onclick="getAllStudents()">Get All Students</button>
+        <ul id="studentList"></ul>
     <div id="result"></div>
 
     <script>
@@ -114,6 +117,30 @@ permalink: /search/
                 document.getElementById('result').innerText = `Most relevant student: ${data.name}`;
             })
             .catch(error => console.error('Error:', error));
+        }
+         // Function to fetch all students and display them
+        function getAllStudents() {
+            fetch('http://localhost:8911/api/student/allStudents')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const studentList = document.getElementById('studentList');
+                // Clear previous list items if any
+                studentList.innerHTML = '';
+                data.forEach(student => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Name: ${student.name}, Subjects: ${student.subjectsKnown.join(', ')}, Location: ${student.preferredLocation}`;
+                    studentList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching students:', error);
+                alert('Error fetching students. Please try again.');
+            });
         }
     </script>
 </body>
