@@ -341,11 +341,12 @@ body {
         const phone = localStorage.getItem('phone');
         const email = localStorage.getItem('email');
         const address = localStorage.getItem('address');
-
+        const skills = localStorage.getItem('skills');
         // Insert user's information into the resume template
         document.getElementById('name').innerText = `${firstName} ${lastName}`;
         document.getElementById('phone').innerText = phone;
         document.getElementById('email').innerText = email;
         document.getElementById('address').innerText = address;
+        document.getElementById('skills').innerText = skills;
     </script>
 </html>
