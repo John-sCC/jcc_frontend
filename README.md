@@ -24,8 +24,8 @@ https://john-scc.github.io/jcc_frontend/
 - [Edwin Abraham](https://github.com/EdwinKuttappi) - Teacher
 - [Ryan McWeeny](https://github.com/Ryanrob327) - Teaching Master
 - [Raymond Sheng](https://github.com/raymondYsheng) - Backend Developer
-- [Kevin Du](https://github.com/DasMoge124) - full Stack Developer
+- [Kevin Du](https://github.com/DasMoge124) - Full Stack Developer
 - [Ishi Singh](https://github.com/Ishi-Singh) - Backend Developer
 - [Tong Haoxuan]() - Backend Developer
-- [Aaron Rubin](https://github.com/aaron-rub) - ???
-- [Isabelle](https://github.com/isabelle926) - ??? no commits
+- [Aaron Rubin](https://github.com/aaron-rub) - Backend Developer
+- [Isabelle](https://github.com/isabelle926) - Full Stack Developer
