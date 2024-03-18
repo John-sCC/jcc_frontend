@@ -16,8 +16,8 @@ permalink: /ass-request/
             const currentDate = new Date();
             const dateCreated = currentDate.toISOString().slice(0, 10);
             var formattedText = $('#content').html();
-            //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
-            const apiUrl = 'http://localhost:8911/api/assignment/post';
+            const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+            //const apiUrl = 'http://localhost:8911/api/assignment/post';
             // a
             const requestData = {
                 name: name,
@@ -68,8 +68,8 @@ permalink: /ass-request/
         }
         // filler
         function getClassPeriodById() {
-        const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
-        //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        //const apiUrl = 'http://localhost:8911/api/class_period/leaders/' + document.getElementById("classLeader").value;
+        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/class_period/leaders/' + document.getElementById("classLeader").value;
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
