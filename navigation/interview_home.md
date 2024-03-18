@@ -43,10 +43,10 @@ layout: default
         window.location = 'https://john-scc.github.io/jcc_frontend/sign-in/';
         return;
     }
-    const userListElement = document.getElementById("list");
+    const userListElement = document.getElementById("userList");
     // Clear any existing content in the userListElement
     userListElement.innerHTML = "Loading...";
-    // Retrieve the userList from Local Storage
+    // Retrieve the userList from your backend
     fetch('http://localhost:8911/api/person/read')
         .then((response) => {
             return response.json();
@@ -59,63 +59,22 @@ layout: default
   function displayUsers(userList, userListElement) {
       userListElement.innerHTML = "";
       // Loop through the userList and create list items to display each user
-      userList.forEach(user => {
+      userList.forEach(person => {
           const listItem = document.createElement("li");
           listItem.innerHTML = `
                   <div>
                       <i class="fa fa-user-circle"></i>
-                      ${user.username} <i class="user-email">(${user.email})</i>
+                      ${person.name} <i class="user-email">(${person.email})</i>
                   </div>
-                  <i class="fa fa-lightbulb-o ${user.status === "online" ? "online" : "offline"}"></i>
+                  <i class="fa fa-lightbulb-o ${person.online ? "online" : "offline"}"></i>
               `;
           userListElement.appendChild(listItem);
       });
   }
   // Call the loadAndDisplayUsers function when the page loads
   window.addEventListener("load", loadAndDisplayUsers);
-  /* function handleLogout() {
-      fetch('http://localhost:8911/api/person/logout', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: localStorage.getItem('connectedUser')
-      })
-          .then((response) => {
-              return response;
-          })
-          .then((data) => {
-              localStorage.removeItem('connectedUser');
-              window.location.href = "login/";
-          });
-  }
-  const logoutBtn = document.getElementById("logoutBtn");
-  logoutBtn.addEventListener("click", handleLogout); */
-  function handleNewMeeting() {
-    const connectedUserData = localStorage.getItem('connectedUser');
-    if (!connectedUserData) {
-        console.error('No connected user data found in local storage.');
-        return;
-    }
-    try {
-        const connectedUser = JSON.parse(connectedUserData);
-        window.open(`videocall?username=${connectedUser.username}`, "_blank");
-    } catch (error) {
-        console.error('Error parsing connected user data:', error);
-    }
-  }
-  // Attach the handleNewMeeting function to the "Create a New Meeting" button
-  const newMeetingBtn = document.getElementById("newMeetingBtn");
-  newMeetingBtn.addEventListener("click", handleNewMeeting);
-  function handleJoinMeeting() {
-      const roomId = document.getElementById("meetingName").value;
-      const connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
-      const url = `videocall?roomID=${roomId}&username=${connectedUser.username}`;
-      window.open(url, "_blank");
-  }
-  const joinMeetingBtn = document.getElementById("joinMeetingBtn");
-  joinMeetingBtn.addEventListener("click", handleJoinMeeting);
 </script>
+
 </body>
 </html>
 
