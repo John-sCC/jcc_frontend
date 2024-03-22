@@ -235,11 +235,9 @@ function makeTable(people) {
     const tableDiv = document.createElement("div")
     const title = document.createElement("div")
     const table = document.createElement("table")
-    const dropzone = document.createElement("div")
 
     tableDiv.className = "table"
     title.className = "title"
-    dropzone.classname = "dropzone"
 
     var n = 0
 
@@ -264,11 +262,20 @@ function makeTable(people) {
         row.id = rowId
     }
 
+    const dropzone = document.createElement("tr")
+    dropzone.id = `dropzone-${n+1}`
+    dropzone.className = "dropzone"
+
+    const dropzoneData = document.createElement("td")
+    dropzoneData.colSpan = "2"
+
+    dropzone.appendChild(dropzoneData)
+    table.appendChild(dropzone)
+
     title.innerHTML = `GROUP #${n+1}`
 
-    for (div of [title, table, dropzone]) {
-        tableDiv.appendChild(div)
-    }
+    tableDiv.appendChild(title)
+    tableDiv.appendChild(table)
 
     if (n % 2 == 0) {
         const rowSection = document.createElement("div")
@@ -286,6 +293,7 @@ function makeTable(people) {
     for (row of table.children) {
         studentDraggable(row.id)
         studentDroppable(row.id)
+        tableDroppable(dropzone.id)
     }
 }
 
