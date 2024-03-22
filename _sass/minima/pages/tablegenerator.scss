@@ -215,6 +215,10 @@ button {
                         }
                     }
 
+                    .dropzone-hover {
+                        background-color: #001937 !important;
+                    }
+
                     tr {
                         background-color: $grayish;
                     }
@@ -312,6 +316,3 @@ button {
     transition: filter(.2s)
 }
 
-.dropzone-hover {
-    background-color: $nighthawk-green !important;
-}
