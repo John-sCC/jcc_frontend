@@ -302,10 +302,6 @@ button {
     }
 }
 
-.droppable-hover {
-    @include basic-hover(dark);
-}
-
 .ui-draggable-dragging {
     z-index: 1;
     background-color: rgba(239, 239, 239, .9) !important // grayish color with half opacity
@@ -314,4 +310,8 @@ button {
 .ui-droppable-hover {
     filter: brightness(80%);
     transition: filter(.2s)
+}
+
+.dropzone-hover {
+    background-color: $nighthawk-green !important;
 }
