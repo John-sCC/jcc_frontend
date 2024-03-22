@@ -176,6 +176,15 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
+function renumber(parents) {
+    for (parent of parents) {
+        const rows = parent.children()
+        for (let i = 0; i < rows.length - 1; i ++) {
+            rows[i].children[0].innerHTML = i + 1
+        }
+    }
+}
+
 function tableDroppable(id) {
     $(`#${id}`).droppable({
         classes: {"ui-droppable-hover":"dropzone-hover"},
@@ -195,13 +204,7 @@ function tableDroppable(id) {
             temp = draggable.detach()
             temp.insertBefore(droppable)
 
-            // renumber
-            for (parent of [parent1, parent2]) {
-                const rows = parent.children()
-                for (let i = 0; i < rows.length - 1; i ++) {
-                    rows[i].children[0].innerHTML = i + 1
-                }
-            }
+            renumber([parent1, parent2])
         }
     })
 }
@@ -239,13 +242,7 @@ function studentDroppable(id) {
                 droppable.insertBefore(parent1.children().eq(index))
             }
 
-            // renumber
-            for (parent of [parent1, parent2]) {
-                const rows = parent.children()
-                for (let i = 0; i < rows.length; i ++) {
-                    rows[i].children[0].innerHTML = i + 1
-                }
-            }
+            renumber([parent1, parent2])
         }
     })
 }
