@@ -176,17 +176,26 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
-function dragDrop(studentId) {
-    const student = $(`#${studentId}`)
+function tableDroppable(id) {
+    $(`#${id}`).droppable({
+        drop: function(event, ui) {
+            var draggable = ui.draggable
+            var droppable = $(this)
+        }
+    })
+}
 
-    student.draggable({
+function studentDraggable(id) {
+    $(`#${id}`).draggable({
         revert: true,
         scroll: true,
         containment: $("#table-div"),
         revertDuration: 0
     })
+}
 
-    student.droppable({
+function studentDroppable(id) {
+    $(`#${id}`).droppable({
         drop: function(event, ui) {
             // define starting row and ending row
             var draggable = ui.draggable
@@ -226,9 +235,11 @@ function makeTable(people) {
     const tableDiv = document.createElement("div")
     const title = document.createElement("div")
     const table = document.createElement("table")
+    const dropzone = document.createElement("div")
 
     tableDiv.className = "table"
     title.className = "title"
+    dropzone.classname = "dropzone"
 
     var n = 0
 
@@ -245,7 +256,6 @@ function makeTable(people) {
 
         number.innerHTML = i + 1
         name.innerHTML = people[i]
-
         
         row.appendChild(number)
         row.appendChild(name)
@@ -256,8 +266,9 @@ function makeTable(people) {
 
     title.innerHTML = `GROUP #${n+1}`
 
-    tableDiv.appendChild(title)
-    tableDiv.appendChild(table)
+    for (div of [title, table, dropzone]) {
+        tableDiv.appendChild(div)
+    }
 
     if (n % 2 == 0) {
         const rowSection = document.createElement("div")
@@ -270,8 +281,11 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
+    
+
     for (row of table.children) {
-        dragDrop(row.id)
+        studentDraggable(row.id)
+        studentDroppable(row.id)
     }
 }
 
