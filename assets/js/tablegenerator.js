@@ -187,7 +187,7 @@ function renumber(parents) {
 
 function tableDroppable(id) {
     $(`#${id}`).droppable({
-        classes: {"ui-droppable-hover":"dropzone-hover"},
+        classes: {"ui-droppable-hover":"dropzone-hover"}, // changes background color to dark blue on hover
         drop: function(event, ui) {
             var draggable = ui.draggable
             var droppable = $(this)
@@ -201,6 +201,7 @@ function tableDroppable(id) {
                 return
             }
 
+            // Detach from old table and insert before the dropzone
             temp = draggable.detach()
             temp.insertBefore(droppable)
 
@@ -248,23 +249,29 @@ function studentDroppable(id) {
 }
 
 function makeTable(people) {
+    // Get main div
     const main = document.getElementById("table-div")
 
+    // Create new table with divs
     const tableDiv = document.createElement("div")
     const title = document.createElement("div")
     const table = document.createElement("table")
 
+    // Set classes for styling
     tableDiv.className = "table"
     title.className = "title"
 
+    // Define variable for number of existing tables
     var n = 0
 
+    // Count number of existing tables
     const existingRows = main.children
 
     for (let existingRow of existingRows) {
         n += existingRow.children.length
     }
 
+    // Insert members into newly created table
     for (let i = 0; i < people.length; i ++) {
         const row = document.createElement("tr")
         const number = document.createElement("td")
@@ -280,21 +287,25 @@ function makeTable(people) {
         row.id = rowId
     }
 
+    // invisible dropzone beneath last student for adding more to table
     const dropzone = document.createElement("tr")
     dropzone.id = `dropzone-${n+1}`
     dropzone.className = "dropzone"
 
+    // empty <td> that spans whole row
     const dropzoneData = document.createElement("td")
     dropzoneData.colSpan = "2"
 
     dropzone.appendChild(dropzoneData)
     table.appendChild(dropzone)
 
+    // Number group text
     title.innerHTML = `GROUP #${n+1}`
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
 
+    // Create a new row if needed (2 per row)
     if (n % 2 == 0) {
         const rowSection = document.createElement("div")
         rowSection.className = "row"
@@ -306,6 +317,7 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
+    // apply drag/drop to all students after they have been loaded
     for (let i = 0; i < table.children.length - 1; i ++) {
         const row = table.children[i].id
 
@@ -313,6 +325,7 @@ function makeTable(people) {
         studentDroppable(row)
     }
 
+    // add dropzone to the dropzone
     tableDroppable(dropzone.id)
 }
 
