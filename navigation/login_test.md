@@ -26,7 +26,6 @@ permalink: /login-test/
             };
             // Make the fetch request
             fetch('http://localhost:8911/authenticate', {
-<<<<<<< HEAD
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,29 +37,11 @@ permalink: /login-test/
                     if (data.status == 200) {
                         console.log(data);
                         document.cookie = "token=" + data.token + "; path=/";
-                        window.location.replace("{{site.baseurl}}/user-disp-test/");
+                        window.location.replace("{{site.baseurl}}/dashboard/");
                     } else {
                         document.getElementById('message').innerHTML = "Invalid email or password"
                     }
                 })
-=======
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
-            })
-                .then(response => response.json())
-                .then((data) => {
-                    if (data.status == 200) {
-                        console.log(data);
-                        document.cookie = "token=" + data.token + "; path=/";
-                        window.location.replace("{{site.baseurl}}/user-disp-test/");
-                    } else {
-                        document.getElementById('message').innerHTML = "Invalid email or password"
-                    }
-                })
->>>>>>> 80264cb (fixed login)
         }
     </script>
 </body>

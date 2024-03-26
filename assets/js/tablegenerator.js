@@ -165,6 +165,52 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
+function dragDrop(studentId) {
+    const student = $(`#${studentId}`)
+
+    student.draggable({
+        revert: true,
+        scroll: true,
+        containment: $("#table-div"),
+        revertDuration: 0
+    })
+
+    student.droppable({
+        drop: function(event, ui) {
+            // define starting row and ending row
+            var draggable = ui.draggable
+            var droppable = $(this)
+
+            // get parent objects and indexes of each element
+            var parent1 = draggable.parent()
+            var parent2 = droppable.parent()
+
+            var index = draggable.index()
+
+            draggable.insertBefore(droppable)
+            temp = droppable.detach()
+            console.log(index)
+            console.log(parent1.children().length)
+
+            if (parent1.children().length == index) {
+                droppable.insertAfter(parent1.children().eq(index - 1))
+            }
+
+            else {
+                droppable.insertBefore(parent1.children().eq(index))
+            }
+
+            // renumber
+            for (parent of [parent1, parent2]) {
+                const rows = parent.children()
+                for (let i = 0; i < rows.length; i ++) {
+                    rows[i].children[0].innerHTML = i + 1
+                }
+            }
+        }
+    })
+}
+
 function makeTable(people) {
     const main = document.getElementById("table-div")
 
@@ -175,6 +221,14 @@ function makeTable(people) {
     tableDiv.className = "table"
     title.className = "title"
 
+    var n = 0
+
+    const existingRows = main.children
+
+    for (let existingRow of existingRows) {
+        n += existingRow.children.length
+    }
+
     for (let i = 0; i < people.length; i ++) {
         const row = document.createElement("tr")
         const number = document.createElement("td")
@@ -183,17 +237,12 @@ function makeTable(people) {
         number.innerHTML = i + 1
         name.innerHTML = people[i]
 
+        
         row.appendChild(number)
         row.appendChild(name)
         table.appendChild(row)
-    }
-
-    var n = 0
-
-    const existingRows = main.children
-
-    for (let existingRow of existingRows) {
-        n += existingRow.children.length
+        const rowId = `row-${n}-${i}`
+        row.id = rowId
     }
 
     title.innerHTML = `GROUP #${n+1}`
@@ -210,6 +259,10 @@ function makeTable(people) {
 
     else {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
+    }
+
+    for (row of table.children) {
+        dragDrop(row.id)
     }
 }
 

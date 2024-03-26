@@ -10,8 +10,12 @@ layout: post
 <script>
     var link;
     function fetchId(){
-        // const url = 'http://localhost:8911/api/qrcode/';
-        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
+        if(window.location.href.includes("127.0.0.1")){
+            var url = 'http://localhost:8911/api/qrcode/';
+        }
+        else {
+            var url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/';
+        }
         return fetch(url + window.location.hash.substring(1))
         .then(response => {
             if (!response.ok) {
@@ -35,10 +39,13 @@ layout: post
                     intervals.push(obj.linkFreqs[i].frequency)
                 }
                 else {
-                    intervals.push(obj.linkFreqs[i].frequency + obj.linkFreqs[i-1].frequency)
+                    console.log(intervals)
+                    intervals.push(intervals[i - 1] + obj.linkFreqs[i].frequency)
                 }
             }
             for (i in intervals){
+                console.log(num);
+                console.log(intervals[i])
                 if (num < intervals[i]){
                     link = obj.linkFreqs[i].link;
                     return link
@@ -47,6 +54,7 @@ layout: post
         })
     }
     getLink().then(link => {
+            console.log(link);
             var head = document.querySelector('head')
             var meta = document.createElement('meta')
             meta.httpEquiv = "refresh"
