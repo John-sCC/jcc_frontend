@@ -62,8 +62,8 @@ permalink: /sign-in/
       font-size: 35pt;
       margin-top: 50px;
       margin-bottom: 10px;
-      margin-left: 20%; /* Set margin-left to 20% */
-      width: 60%; /* Set width to 60% */
+      margin-left: 20%; 
+      width: 60%; 
     }
 
 
@@ -72,8 +72,8 @@ permalink: /sign-in/
     #no-account,
     #create-account {
       color: #ffffff;
-      margin-left: 20%; /* Set margin-left to 20% */
-      width: 80%; /* Set width to 60% */
+      margin-left: 20%; 
+      width: 80%; 
     }
     
     #login-subheader {

@@ -106,5 +106,5 @@ function sectionClicked() {
     });
     setTimeout(() => {
         document.querySelector('.nav-logo').classList.remove('active');
-    }, 300);
+    }, 100);
 }

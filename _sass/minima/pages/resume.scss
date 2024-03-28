@@ -1,0 +1,56 @@
+    .wrapper-div {
+        width: 80%;
+        height: 80%;
+        background-color: rgba(255, 255, 255, 0);
+        border: 2px solid #c1b576;
+        padding: 30px;
+        padding-top: 10px;
+        padding-left: 10%;
+    }
+
+    .formStyle {
+        font-size: 13px;
+        margin-bottom: 30px;
+        width: 500px;
+    }
+
+    .title {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .instruction {
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+
+    .tab-header {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .tab-button {
+        position: relative;
+        margin-bottom: 30px;
+        margin-left: -40px;
+        margin-right: 40px;
+        font-size: 15px;
+        border-radius: 4px;
+        background-color: #c1b576;
+        width: 200px; 
+        height: 30px;
+        transition-duration: 0.4s;
+    }
+
+    .tab-button:hover {
+        background-color: #002147ff; 
+        color: white;
+    }
