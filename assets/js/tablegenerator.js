@@ -3,9 +3,6 @@ var selected = null
 
 window.onload(function() {
     initialize()
-
-    document.getElementsByClassName("add")[0].onclick = function () {addClass()}
-    $("#submit")[0].onclick = function() {makeGroups()}
 })
 
 function initialize() {
@@ -17,6 +14,17 @@ function initialize() {
 
         makeClass(id, name)
     }
+
+    document.getElementsByClassName("add")[0].onclick = function () {addClass()}
+
+    $("#submit")[0].onclick = function() {makeGroups()}
+
+    // Event listener for pressing enter on the # of groups box
+    $("#groupsInput").keyup(function(e) {
+        if (e.keyCode == 13) {
+            makeGroups()
+        }
+    })
 }
 
 // Adds to storage and makes div
@@ -156,7 +164,10 @@ function editClass(id) {
 }
 
 function deleteClass(id) {
-    console.log(id)
+    if (!confirm(`Are you sure you want to delete "${$(`#${id}`).children()[0].innerHTML}"?`)) {
+        return
+    }
+
     localStorage.removeItem(id)
     document.getElementById(id).remove()
 
@@ -165,17 +176,50 @@ function deleteClass(id) {
     main.innerHTML = ""
 }
 
-function dragDrop(studentId) {
-    const student = $(`#${studentId}`)
+function renumber(parents) {
+    for (parent of parents) {
+        const rows = parent.children()
+        for (let i = 0; i < rows.length - 1; i ++) {
+            rows[i].children[0].innerHTML = i + 1
+        }
+    }
+}
 
-    student.draggable({
+function tableDroppable(id) {
+    $(`#${id}`).droppable({
+        classes: {"ui-droppable-hover":"dropzone-hover"},
+        drop: function(event, ui) {
+            var draggable = ui.draggable
+            var droppable = $(this)
+
+            // get parent objects and indexes of each element
+            var parent1 = draggable.parent()
+            var parent2 = droppable.parent()
+
+            // if same parent do not run
+            if (parent1.children().is(droppable)) {
+                return
+            }
+
+            temp = draggable.detach()
+            temp.insertBefore(droppable)
+
+            renumber([parent1, parent2])
+        }
+    })
+}
+
+function studentDraggable(id) {
+    $(`#${id}`).draggable({
         revert: true,
         scroll: true,
         containment: $("#table-div"),
         revertDuration: 0
     })
+}
 
-    student.droppable({
+function studentDroppable(id) {
+    $(`#${id}`).droppable({
         drop: function(event, ui) {
             // define starting row and ending row
             var draggable = ui.draggable
@@ -189,8 +233,6 @@ function dragDrop(studentId) {
 
             draggable.insertBefore(droppable)
             temp = droppable.detach()
-            console.log(index)
-            console.log(parent1.children().length)
 
             if (parent1.children().length == index) {
                 droppable.insertAfter(parent1.children().eq(index - 1))
@@ -200,13 +242,7 @@ function dragDrop(studentId) {
                 droppable.insertBefore(parent1.children().eq(index))
             }
 
-            // renumber
-            for (parent of [parent1, parent2]) {
-                const rows = parent.children()
-                for (let i = 0; i < rows.length; i ++) {
-                    rows[i].children[0].innerHTML = i + 1
-                }
-            }
+            renumber([parent1, parent2])
         }
     })
 }
@@ -236,7 +272,6 @@ function makeTable(people) {
 
         number.innerHTML = i + 1
         name.innerHTML = people[i]
-
         
         row.appendChild(number)
         row.appendChild(name)
@@ -244,6 +279,16 @@ function makeTable(people) {
         const rowId = `row-${n}-${i}`
         row.id = rowId
     }
+
+    const dropzone = document.createElement("tr")
+    dropzone.id = `dropzone-${n+1}`
+    dropzone.className = "dropzone"
+
+    const dropzoneData = document.createElement("td")
+    dropzoneData.colSpan = "2"
+
+    dropzone.appendChild(dropzoneData)
+    table.appendChild(dropzone)
 
     title.innerHTML = `GROUP #${n+1}`
 
@@ -261,9 +306,14 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
-    for (row of table.children) {
-        dragDrop(row.id)
+    for (let i = 0; i < table.children.length - 1; i ++) {
+        const row = table.children[i].id
+
+        studentDraggable(row)
+        studentDroppable(row)
     }
+
+    tableDroppable(dropzone.id)
 }
 
 function saveName(id) {
