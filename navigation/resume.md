@@ -11,12 +11,12 @@ permalink: /resume/
 </head>
 <body>
     <div class="tab-header">
-            <span><button class="tab-button" onclick="switchTab(event, 'page1')">Personal Info</button></span>
-            <span><button class="tab-button" onclick="switchTab(event, 'page2')">Skills</button></span>
-            <span><button class="tab-button" onclick="switchTab(event, 'page3')">About Me</button></span>
-            <span><button class="tab-button" onclick="switchTab(event, 'page4')">Experiences</button></span>
-            <span><button class="tab-button" onclick="switchTab(event, 'page5')">Education</button></span>
-            <span><button class="tab-button" onclick="switchTab(event, 'page6')">Hobbies</button></span>
+        <button class="tab-button" onclick="switchTab(event, 'page1')">Personal Info</button>
+        <button class="tab-button" onclick="switchTab(event, 'page2')">Skills</button>
+        <button class="tab-button" onclick="switchTab(event, 'page3')">About Me</button>
+        <button class="tab-button" onclick="switchTab(event, 'page4')">Experiences</button>
+        <button class="tab-button" onclick="switchTab(event, 'page5')">Education</button>
+        <button class="tab-button" onclick="switchTab(event, 'page6')">Hobbies</button>
             <!-- will add more tabs later-->
     </div>
     <div class="wrapper-div">
@@ -176,8 +176,8 @@ permalink: /resume/
                 <input type="text" id="hobbies" name="hobbies"><br><br>
             </form>
         </div>
-        <button type="button" onclick="save()">Save Info</button>
-        <button type="button" onclick="seeResume()">See The Resume</button>
+        <button type="button" class="bottomButtons" onclick="save()">Save Info</button>
+        <button type="button" class="bottomButtons" onclick="seeResume()">See The Resume</button>
     </div>
 </body>
 <script src="{{site.baseurl}}/assets/js/resume.js"></script>
