@@ -7,12 +7,12 @@ $(window).ready(function() {
         })
     }
 
-    // Redirect logo and title clicks to index
-    for (let home of ['nav-logo', 'nav-title']) {
-        $(`.${home}`).click( function() { 
-            location.href = `${baseurl}/`
-        })
-    }
+    //Redirect logo and title clicks to index
+    // for (let home of ['nav-logo', 'nav-title']) {
+    //     $(`.${home}`).click( function() { 
+    //         location.href = `${baseurl}/`
+    //     })
+    // }
 
     window.onscroll = function () { updateDivs() }
 
@@ -88,4 +88,23 @@ function updateDivs() {
         logo.style.backgroundSize = `${6.96}vw`
 
     }
+}
+
+//for the menu 
+function toggleActive() {
+    document.body.classList.toggle('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.toggle('active');
+    });
+    document.querySelector('.nav-logo').classList.toggle('active');
+}
+
+function sectionClicked() {
+    document.body.classList.remove('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    setTimeout(() => {
+        document.querySelector('.nav-logo').classList.remove('active');
+    }, 100);
 }
