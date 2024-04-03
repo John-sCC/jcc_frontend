@@ -196,19 +196,36 @@ button {
                     font-size: 1.5vw;
                 }
 
-                table tr {
-                    background-color: $grayish;
-                }
-        
-                table td {
-                    background-color: unset !important;
-                    color: black;
-                    width: 45%;
-                    table-layout: fixed;
-                }
+                table {
+                    margin-bottom: 0;
 
-                td:first-child {
-                    width: 30%;
+                    td {
+                        background-color: unset !important;
+                        color: black;
+                        width: 45%;
+                        table-layout: fixed;
+                        height: 3em;
+                    }
+    
+                    .dropzone {
+                        background-color: unset !important;
+
+                        td {
+                            border: none;
+                        }
+                    }
+
+                    .dropzone-hover {
+                        background-color: #001937 !important;
+                    }
+
+                    tr {
+                        background-color: $grayish;
+                    }
+
+                    &:first-child {
+                        width: 30%;
+                    }
                 }
             }
         }
@@ -289,10 +306,6 @@ button {
     }
 }
 
-.droppable-hover {
-    @include basic-hover(dark);
-}
-
 .ui-draggable-dragging {
     z-index: 1;
     background-color: rgba(239, 239, 239, .9) !important // grayish color with half opacity
@@ -302,3 +315,4 @@ button {
     filter: brightness(80%);
     transition: filter(.2s)
 }
+
