@@ -94,30 +94,31 @@ permalink: /search/
             .catch(error => console.error('Error:', error));
         }
 
-        function findMostRelevantStudent(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const newStudentInfo = formData.get('newStudent').split(',').map(info => info.trim());
-            const newStudent = {
-                name: newStudentInfo[0],
-                subjectsKnown: newStudentInfo[1],
-                preferredLocation: newStudentInfo[2],
-                internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
-            };
-            const k = document.getElementById('k').value; // Get k value from input
-            fetch('http://localhost:8911/api/student/findMostRelevant', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ newStudent: newStudent, k: k }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('result').innerText = `Most relevant student: ${data.name}`;
-            })
-            .catch(error => console.error('Error:', error));
-        }
+       function findMostRelevantStudent(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const newStudentInfo = formData.get('newStudent').split(',').map(info => info.trim());
+    const newStudent = {
+        name: newStudentInfo[0],
+        subjectsKnown: newStudentInfo[1].split(','), // Split subjects by comma
+        preferredLocation: newStudentInfo[2],
+        internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
+    };
+    const k = document.getElementById('k').value; // Get k value from input
+    fetch('http://localhost:8911/api/student/findMostRelevant', { // Corrected endpoint URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newStudent: newStudent, k: k }), // Send newStudent and k as an object
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText = `Most relevant student: ${data.name}`;
+    })
+    .catch(error => console.error('Error:', error));
+}
+
          // Function to fetch all students and display them
         function getAllStudents() {
             fetch('http://localhost:8911/api/student/allStudents')
