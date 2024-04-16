@@ -410,3 +410,11 @@ function makeGroups() {
         makeTable(group)
     }
 }
+
+function makeExistingGroups(groups) {
+    $('#table-div')[0].innerHTML = ""
+    
+    for (group of groups) {
+        makeTable(group)
+    }
+}
