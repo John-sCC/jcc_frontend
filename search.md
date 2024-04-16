@@ -105,12 +105,12 @@ permalink: /search/
         internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
     };
     const k = document.getElementById('k').value; // Get k value from input
-    fetch('http://localhost:8911/api/student/findMostRelevant', { // Corrected endpoint URL
+    fetch('http://localhost:8911/api/student/findMostRelevant?k=3', { // Corrected endpoint URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ newStudent: newStudent, k: k }), // Send newStudent and k as an object
+        body: JSON.stringify(newStudent), // Send newStudent and k as an object
     })
     .then(response => response.json())
     .then(data => {
