@@ -100,7 +100,7 @@ permalink: /search/
     const newStudentInfo = formData.get('newStudent').split(',').map(info => info.trim());
     const newStudent = {
         name: newStudentInfo[0],
-        subjectsKnown: newStudentInfo[1].split(','), // Split subjects by comma
+        subjectsKnown: newStudentInfo[1], // Split subjects by comma
         preferredLocation: newStudentInfo[2],
         internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
     };
