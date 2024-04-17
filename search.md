@@ -67,11 +67,15 @@ permalink: /search/
         <button type="button" onclick="addStudent()">Add Student</button>
     </form>
     <h2>Find Most Relevant Student</h2>
-    <form id="findStudentForm">
-        <label for="newStudent">New Student Information:</label><br>
-        <input type="text" id="newStudent" name="newStudent" placeholder="Enter name, subjects, location, internship preference"><br><br>
-        <label for="k">Number of Neighbors (k):</label>
-        <input type="number" id="k" name="k" min="1" value="1"><br><br>
+    <form id="findMostRelevantStudentForm">
+        <label for="newStudentName">Name:</label>
+        <input type="text" id="newStudentName" required><br><br>
+        <label for="newStudentSubjects">Subjects Known (comma-separated):</label>
+        <input type="text" id="newStudentSubjects" required><br><br>
+        <label for="newStudentLocation">Preferred Location:</label>
+        <input type="text" id="newStudentLocation" required><br><br>
+        <label for="newStudentInternship">Internship Preferred:</label>
+        <input type="checkbox" id="newStudentInternship"><br><br>
         <button type="button" onclick="findMostRelevantStudent()">Find Most Relevant Student</button>
     </form>
     <h2>Display All Students</h2>
@@ -103,27 +107,28 @@ permalink: /search/
 
         // Function to find the most relevant student
         function findMostRelevantStudent() {
-            const newStudentInfo = $('#newStudent').val().split(',').map(info => info.trim());
-            const newStudent = {
-                name: newStudentInfo[0],
-                subjectsKnown: newStudentInfo[1],
-                preferredLocation: newStudentInfo[2],
-                internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
+            const newStudentData = {
+                name: $('#newStudentName').val(),
+                subjectsKnown: $('#newStudentSubjects').val().split(',').map(subject => subject.trim()),
+                preferredLocation: $('#newStudentLocation').val(),
+                internshipPreferred: $('#newStudentInternship').is(':checked')
             };
-            const k = $('#k').val(); // Get k value from input
 
-            fetch('http://localhost:8911/api/student/findMostRelevant?k=' + k, {
+            fetch('http://localhost:8911/api/student/findMostRelevant?k=3', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newStudent),
+                body: JSON.stringify(newStudentData),
             })
             .then(response => response.json())
             .then(data => {
                 $('#result').text(`Most relevant student: ${data.name}`);
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                $('#result').text('Error finding the most relevant student.');
+            });
         }
 
         // Function to fetch all students and display them
