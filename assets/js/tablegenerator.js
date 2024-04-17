@@ -418,3 +418,21 @@ function makeExistingGroups(groups) {
         makeTable(group)
     }
 }
+
+// tester for getting uid
+function getUid() {
+    uid = document.getElementById("uid-input").value
+}
+
+var classId = null
+
+function updateChart() {
+    var newChart = {
+        classId:classId,
+        chart:{}
+    }
+
+    const main = $("#table-div")[0]
+
+    
+}
