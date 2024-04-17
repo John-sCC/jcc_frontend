@@ -106,7 +106,7 @@ permalink: /search/
             const newStudentInfo = $('#newStudent').val().split(',').map(info => info.trim());
             const newStudent = {
                 name: newStudentInfo[0],
-                subjectsKnown: newStudentInfo[1].split(',').map(subject => subject.trim()), // Split subjects by comma
+                subjectsKnown: newStudentInfo[1],
                 preferredLocation: newStudentInfo[2],
                 internshipPreferred: newStudentInfo[3] === 'true' || newStudentInfo[3] === '1' || newStudentInfo[3] === 'on'
             };
