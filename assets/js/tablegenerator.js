@@ -434,5 +434,47 @@ function updateChart() {
 
     const main = $("#table-div")[0]
 
-    
+
 }
+
+const url = 'http://localhost:8911';
+// const url = 'https://jcc.stu.nighthawkcodingsociety.com';
+
+async function getClasses() {
+    const classList = null;
+
+    // making the fetch request
+    await fetch(url + '/api/class_period/dashboard', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Cookie': 'jwt=' + encodeURIComponent(document.cookie)
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(JSON.stringify(data));
+        classList = data.leader
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    })
+
+    return classList
+}
+
+// fetch(`${url}/api/student/add`, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(studentData),
+// })
+// .then(response => response.text())
+// .then(message => alert(message))
+// .catch(error => console.error('Error:', error));
