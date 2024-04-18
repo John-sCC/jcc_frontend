@@ -485,30 +485,3 @@ async function makeGroups() {
         makeTable(group)
     }
 }
-
-function makeExistingGroups(groups) {
-    $('#table-div')[0].innerHTML = ""
-    
-    for (group of groups) {
-        makeTable(group)
-    }
-}
-
-// tester for getting uid
-function getUid() {
-    uid = document.getElementById("uid-input").value
-}
-
-var classId = null
-
-
-// fetch(`${url}/api/student/add`, {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(studentData),
-// })
-// .then(response => response.text())
-// .then(message => alert(message))
-// .catch(error => console.error('Error:', error));

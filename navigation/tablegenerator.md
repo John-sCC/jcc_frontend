@@ -24,6 +24,5 @@ permalink: /tablegenerator
     </div>
     <div class="table-container" id="table-div"></div>
 </div>
-<input placeholder="user id" id="uid-input">
-<button id="uid-submit" onclick="getUid()">enter</button>
+
 <script src="{{site.baseurl}}/assets/js/tablegenerator.js"></script>
