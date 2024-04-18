@@ -4,12 +4,11 @@
     justify-content: center;
 }
 .div0 > div {
-    margin: 10px;
+    margin: 5px;
 }
 .div1 {
     display: flex;
     flex-direction: column;
-    background-color: red;
     padding: 12px 20px;
 }
 .div1 > div {
@@ -17,15 +16,28 @@
     padding: 12px 20px;
 }
 .variables {
-    background-color: blue;
+    background-color: $nighthawk-blue;
+    border-radius: 15px;
+}
+.variables > input {
+    border-radius: 15px;
+}
+.insert {
+    font-size: 20px;
+    padding: 5px;
+}
+.insert > input {
+    border-radius: 15px;
+    padding: 5px;
+    width: 650px;
 }
 .tablee {
-    background-color: pink;
-}
-.tablee {
+    background-color: $nighthawk-blue;
+    border-radius: 15px;
     border:1px solid black;
     border-collapse: collapse;
     padding: 6px 10px;
+    font-size: 20px;
 }
 .tablee > th {
     border:1px solid black;
@@ -37,32 +49,46 @@
     border-collapse: collapse;
     padding: 6px 10px;
 }
+.bigboyheader {
+    font-family: $nighthawk-font2;
+    font-weight: bold;
+    font-size: 25px;
+}
 .div2 {
     display: flex;
     flex-direction: column;
-    background-color: blue;
     padding: 12px 20px;
+}
+.div2 > div {
+    margin-bottom: 1px;
+    margin-top: 1px;
 }
 .several {
     display: flex;
     flex-direction: row;
-    background-color: red;
-    padding: 12px 20px;
     align-items:flex-start;
+    justify-content: space-between;
 }
 .several > div {
-    background-color: red;
-    margin: 5px;
-    padding: 10px;
-    background-color: pink;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 20px 40px;
+    background-color: $nighthawk-blue;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 15px;
+    font-family: $nighthawk-font2;
+    font-size: 25px;
 }
 .subnav-content {
-  display: none;
+    display: none;
+    font-size: 20px;
 }
 .subnav:hover .subnav-content {
-  display: block;
+    display: block;
 }
 .graph {
-    background-color: purple;
+    background-color: white;
     padding: 12px 20px;
+    border-radius: 15px;
 }
