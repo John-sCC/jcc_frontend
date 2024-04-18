@@ -1,14 +1,15 @@
-console.log("loaded")
 var selected = null
+
+// change url based on need
+const url = 'http://localhost:8911'
+// const url = 'https://jcc.stu.nighthawkcodingsociety.com'
 
 window.onload(function() {
     initialize()
 })
 
 async function getClassList() {
-    var classes = [];
-    // const url = 'http://localhost:8911'
-    const url = 'https://jcc.stu.nighthawkcodingsociety.com'
+    var classes = []
 
     try {
         const response = await fetch(url + '/api/class_period/dashboard', {
@@ -40,7 +41,8 @@ async function getClassList() {
     } 
     catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-        return [];  // Return an empty array or other suitable default in case of error
+        // redirect to site if brokey
+        window.location.replace(`${baseurl}/sign-in/`);
     }
 
     return classes;
@@ -132,14 +134,7 @@ function setSelected(id) {
 }
 
 async function editClass(id) {
-    const classList = await getClassList()
-    let thisClass
-    
-    for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == id) {
-            thisClass = classList[i]
-        }
-    }
+    var thisClass = await getClass(id)
 
     const main = $("#table-div")[0]
 
@@ -197,13 +192,34 @@ function deleteClass(id) {
         return
     }
 
-    localStorage.removeItem(id)
     document.getElementById(id).remove()
 
     const main = $("#table-div")[0]
 
     main.innerHTML = ""
+
+    fetch(`${url}/api/class_period/delete/${id.slice(6)}`, {
+        method: 'DELETE',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
+        }
+        if (response.status === 204) return 'No content'; // Common for DELETE
+        return response.json();
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
+
 
 function renumber(parents) {
     for (parent of parents) {
@@ -358,11 +374,51 @@ function makeTable(people) {
     tableDroppable(dropzone.id)
 }
 
-function saveName(id) {
+function updateClass(id, data) {
+    fetch(`${url}/api/class_period/update/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        console.log('Class period updated successfully:', data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the update:', error);
+      });
+}
+
+async function getClass(id) {
+    const classList = await getClassList()
+    let thisClass
+
+    for (let i = 0; i < classList.length; i ++) {
+        if (classList[i]["id"] == id.slice(6)) {
+            thisClass = classList[i]
+        }
+    }
+
+    return thisClass
+}
+
+async function saveName(id) {
+    var thisClass = await getClass(id)    
+    
     const newName = document.getElementById('name-input').value
     const classItem = document.getElementById(id)
     const nameElement = classItem.children[0]
     nameElement.innerHTML = newName
+
+
+
     const classData = JSON.parse(localStorage.getItem(id))
     classData.name = newName
     localStorage.setItem(id, JSON.stringify(classData))
@@ -398,15 +454,7 @@ async function makeGroups() {
     // Define variable for table div section
     $('#table-div')[0].innerHTML = ""
 
-    const classList = await getClassList()
-
-    let thisClass
-    
-    for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == `class-${selected}`) {
-            thisClass = classList[i]
-        }
-    }
+    var thisClass = await getClass(id)
 
     // Get list of people, then randomized
     const people = thisClass["class"].sort(() => Math.random() - 0.5)
