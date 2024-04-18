@@ -375,7 +375,7 @@ function makeTable(people) {
 }
 
 function updateClass(id, data) {
-    fetch(`${url}/api/class_period/update/${id}`, {
+    fetch(`${url}/api/class_period/update/${id.slice(6)}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -399,9 +399,9 @@ function updateClass(id, data) {
 async function getClass(id) {
     const classList = await getClassList()
     let thisClass
-
+    console.log(classList)
     for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == id.slice(6)) {
+        if (classList[i]["id"] == id) {
             thisClass = classList[i]
         }
     }
@@ -410,18 +410,16 @@ async function getClass(id) {
 }
 
 async function saveName(id) {
-    var thisClass = await getClass(id)    
-    
+    // Visual changes
     const newName = document.getElementById('name-input').value
     const classItem = document.getElementById(id)
     const nameElement = classItem.children[0]
     nameElement.innerHTML = newName
 
-
-
-    const classData = JSON.parse(localStorage.getItem(id))
-    classData.name = newName
-    localStorage.setItem(id, JSON.stringify(classData))
+    // Database changes
+    var thisClass = await getClass(id)
+    thisClass["name"] = newName
+    updateClass(id, thisClass)
 }
 
 function saveEdits(id) {
