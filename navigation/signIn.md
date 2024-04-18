@@ -66,11 +66,12 @@ permalink: /sign-in/
     };
    
     fetch(deployed + '/authenticate', requestOptions)
-    .then(response => response.text()) // Get response text
+    .then(response => response.json()) // Get response text
     .then(data => {
         // Check response status
-        console.log(data);
-        if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
+        console.log(data.message);
+        if (data.message.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
+            localStorage.setItem('jwtToken', data.cookie);
             window.location.replace("{{site.baseurl}}/dashboard/");
             return;
         } else {
