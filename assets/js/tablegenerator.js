@@ -1,12 +1,56 @@
-console.log("loaded")
 var selected = null
+
+// change url based on need
+// const url = 'http://localhost:8911'
+const url = 'https://jcc.stu.nighthawkcodingsociety.com'
 
 window.onload(function() {
     initialize()
 })
 
-function initialize() {
-    const classList = getClassList()
+async function getClassList() {
+    var classes = []
+
+    try {
+        const response = await fetch(url + '/api/class_period/dashboard', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(JSON.stringify(data));
+        var classList = data.leader;  // Assuming data.leader is the correct path
+
+        for (let classData of classList) {
+            var studentList = [];
+            for (let student of classData.students) {  // Assuming classData.students is an array
+                studentList.push(student.name);  // Assuming each student has a name property
+            }
+
+            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name});  // Ensure classData has id and name properties
+        }
+    } 
+    catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        // redirect to site if brokey
+        window.location.replace(`${baseurl}/sign-in/`);
+    }
+
+    return classes;
+}
+
+
+async function initialize() {
+    const classList = await getClassList()
 
     for (let i = 0; i < classList.length; i ++) {
         const id = classList[i]["id"].slice(6)
@@ -28,8 +72,8 @@ function initialize() {
 }
 
 // Adds to storage and makes div
-function addClass() {
-    const current = getClassList()
+async function addClass() {
+    const current = await getClassList()
     var existingIds = []
 
     for (let temp of current) {
@@ -77,20 +121,7 @@ function makeClass(id, name = "Unnamed class") {
     list.insertBefore(listItem, list.children[list.children.length - 1])
 }
 
-function getClassList() {
-    var classes = []
 
-    for (let i = localStorage.length - 1; i >= 0; i --) {
-        const key = localStorage.key(i)
-
-        if (key.includes("class")) {
-            const data = JSON.parse(localStorage.getItem(key))
-            classes.push({id : key, class : data["class"], name : data["name"]})
-        }
-    }
-
-    return classes
-}
 
 function setSelected(id) {
     try {
@@ -102,15 +133,8 @@ function setSelected(id) {
     document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
 }
 
-function editClass(id) {
-    const classList = getClassList()
-    let thisClass
-    
-    for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == id) {
-            thisClass = classList[i]
-        }
-    }
+async function editClass(id) {
+    var thisClass = await getClass(id)
 
     const main = $("#table-div")[0]
 
@@ -168,13 +192,34 @@ function deleteClass(id) {
         return
     }
 
-    localStorage.removeItem(id)
     document.getElementById(id).remove()
 
     const main = $("#table-div")[0]
 
     main.innerHTML = ""
+
+    fetch(`${url}/api/class_period/delete/${id.slice(6)}`, {
+        method: 'DELETE',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
+        }
+        if (response.status === 204) return 'No content'; // Common for DELETE
+        return response.json();
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
+
 
 function renumber(parents) {
     for (parent of parents) {
@@ -187,7 +232,7 @@ function renumber(parents) {
 
 function tableDroppable(id) {
     $(`#${id}`).droppable({
-        classes: {"ui-droppable-hover":"dropzone-hover"},
+        classes: {"ui-droppable-hover":"dropzone-hover"}, // changes background color to dark blue on hover
         drop: function(event, ui) {
             var draggable = ui.draggable
             var droppable = $(this)
@@ -201,6 +246,7 @@ function tableDroppable(id) {
                 return
             }
 
+            // Detach from old table and insert before the dropzone
             temp = draggable.detach()
             temp.insertBefore(droppable)
 
@@ -248,23 +294,29 @@ function studentDroppable(id) {
 }
 
 function makeTable(people) {
+    // Get main div
     const main = document.getElementById("table-div")
 
+    // Create new table with divs
     const tableDiv = document.createElement("div")
     const title = document.createElement("div")
     const table = document.createElement("table")
 
+    // Set classes for styling
     tableDiv.className = "table"
     title.className = "title"
 
+    // Define variable for number of existing tables
     var n = 0
 
+    // Count number of existing tables
     const existingRows = main.children
 
     for (let existingRow of existingRows) {
         n += existingRow.children.length
     }
 
+    // Insert members into newly created table
     for (let i = 0; i < people.length; i ++) {
         const row = document.createElement("tr")
         const number = document.createElement("td")
@@ -280,21 +332,25 @@ function makeTable(people) {
         row.id = rowId
     }
 
+    // invisible dropzone beneath last student for adding more to table
     const dropzone = document.createElement("tr")
     dropzone.id = `dropzone-${n+1}`
     dropzone.className = "dropzone"
 
+    // empty <td> that spans whole row
     const dropzoneData = document.createElement("td")
     dropzoneData.colSpan = "2"
 
     dropzone.appendChild(dropzoneData)
     table.appendChild(dropzone)
 
+    // Number group text
     title.innerHTML = `GROUP #${n+1}`
 
     tableDiv.appendChild(title)
     tableDiv.appendChild(table)
 
+    // Create a new row if needed (2 per row)
     if (n % 2 == 0) {
         const rowSection = document.createElement("div")
         rowSection.className = "row"
@@ -306,6 +362,7 @@ function makeTable(people) {
         existingRows[existingRows.length - 1].appendChild(tableDiv)
     }
 
+    // apply drag/drop to all students after they have been loaded
     for (let i = 0; i < table.children.length - 1; i ++) {
         const row = table.children[i].id
 
@@ -313,17 +370,56 @@ function makeTable(people) {
         studentDroppable(row)
     }
 
+    // add dropzone to the dropzone
     tableDroppable(dropzone.id)
 }
 
-function saveName(id) {
+function updateClass(id, data) {
+    fetch(`${url}/api/class_period/update/${id.slice(6)}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        console.log('Class period updated successfully:', data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the update:', error);
+      });
+}
+
+async function getClass(id) {
+    const classList = await getClassList()
+    let thisClass
+    console.log(classList)
+    for (let i = 0; i < classList.length; i ++) {
+        if (classList[i]["id"] == id) {
+            thisClass = classList[i]
+        }
+    }
+
+    return thisClass
+}
+
+async function saveName(id) {
+    // Visual changes
     const newName = document.getElementById('name-input').value
     const classItem = document.getElementById(id)
     const nameElement = classItem.children[0]
     nameElement.innerHTML = newName
-    const classData = JSON.parse(localStorage.getItem(id))
-    classData.name = newName
-    localStorage.setItem(id, JSON.stringify(classData))
+
+    // Database changes
+    var thisClass = await getClass(id)
+    thisClass["name"] = newName
+    updateClass(id, thisClass)
 }
 
 function saveEdits(id) {
@@ -333,7 +429,7 @@ function saveEdits(id) {
     localStorage.setItem(id, JSON.stringify(classData))
 }
 
-function makeGroups() {
+async function makeGroups() {
     if (selected == null) {
         alert("Please select a class to generate from first")
         return
@@ -356,15 +452,7 @@ function makeGroups() {
     // Define variable for table div section
     $('#table-div')[0].innerHTML = ""
 
-    const classList = getClassList()
-
-    let thisClass
-    
-    for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == `class-${selected}`) {
-            thisClass = classList[i]
-        }
-    }
+    var thisClass = await getClass(id)
 
     // Get list of people, then randomized
     const people = thisClass["class"].sort(() => Math.random() - 0.5)
