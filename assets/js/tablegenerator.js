@@ -5,8 +5,50 @@ window.onload(function() {
     initialize()
 })
 
-function initialize() {
-    const classList = getClassList()
+async function getClassList() {
+    var classes = [];
+    // const url = 'http://localhost:8911'
+    const url = 'https://jcc.stu.nighthawkcodingsociety.com'
+
+    try {
+        const response = await fetch(url + '/api/class_period/dashboard', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(JSON.stringify(data));
+        var classList = data.leader;  // Assuming data.leader is the correct path
+
+        for (let classData of classList) {
+            var studentList = [];
+            for (let student of classData.students) {  // Assuming classData.students is an array
+                studentList.push(student.name);  // Assuming each student has a name property
+            }
+
+            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name});  // Ensure classData has id and name properties
+        }
+    } 
+    catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        return [];  // Return an empty array or other suitable default in case of error
+    }
+
+    return classes;
+}
+
+
+async function initialize() {
+    const classList = await getClassList()
 
     for (let i = 0; i < classList.length; i ++) {
         const id = classList[i]["id"].slice(6)
@@ -28,8 +70,8 @@ function initialize() {
 }
 
 // Adds to storage and makes div
-function addClass() {
-    const current = getClassList()
+async function addClass() {
+    const current = await getClassList()
     var existingIds = []
 
     for (let temp of current) {
@@ -77,20 +119,7 @@ function makeClass(id, name = "Unnamed class") {
     list.insertBefore(listItem, list.children[list.children.length - 1])
 }
 
-function getClassList() {
-    var classes = []
 
-    for (let i = localStorage.length - 1; i >= 0; i --) {
-        const key = localStorage.key(i)
-
-        if (key.includes("class")) {
-            const data = JSON.parse(localStorage.getItem(key))
-            classes.push({id : key, class : data["class"], name : data["name"]})
-        }
-    }
-
-    return classes
-}
 
 function setSelected(id) {
     try {
@@ -102,8 +131,8 @@ function setSelected(id) {
     document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
 }
 
-function editClass(id) {
-    const classList = getClassList()
+async function editClass(id) {
+    const classList = await getClassList()
     let thisClass
     
     for (let i = 0; i < classList.length; i ++) {
@@ -346,7 +375,7 @@ function saveEdits(id) {
     localStorage.setItem(id, JSON.stringify(classData))
 }
 
-function makeGroups() {
+async function makeGroups() {
     if (selected == null) {
         alert("Please select a class to generate from first")
         return
@@ -369,7 +398,7 @@ function makeGroups() {
     // Define variable for table div section
     $('#table-div')[0].innerHTML = ""
 
-    const classList = getClassList()
+    const classList = await getClassList()
 
     let thisClass
     
@@ -426,47 +455,6 @@ function getUid() {
 
 var classId = null
 
-function updateChart() {
-    var newChart = {
-        classId:classId,
-        chart:{}
-    }
-
-    const main = $("#table-div")[0]
-
-
-}
-
-const url = 'http://localhost:8911';
-// const url = 'https://jcc.stu.nighthawkcodingsociety.com';
-
-async function getClasses() {
-    const classList = null;
-
-    // making the fetch request
-    await fetch(url + '/api/class_period/dashboard', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Cookie': 'jwt=' + encodeURIComponent(document.cookie)
-        },
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(JSON.stringify(data));
-        classList = data.leader
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    })
-
-    return classList
-}
 
 // fetch(`${url}/api/student/add`, {
 //     method: 'POST',
