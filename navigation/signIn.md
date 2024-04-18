@@ -72,7 +72,7 @@ permalink: /sign-in/
         console.log(data.message);
         if (data.message.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
             localStorage.setItem('jwtToken', data.cookie);
-            // window.location.replace("{{site.baseurl}}/dashboard/");
+            window.location.replace("{{site.baseurl}}/dashboard/");
             return;
         } else {
             // Invalid email or password
