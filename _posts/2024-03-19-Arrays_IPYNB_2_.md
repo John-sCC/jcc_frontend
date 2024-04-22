@@ -24,7 +24,7 @@ In Java, the last element of an array list is at index <code>list.length - 1</co
 [View FRQ here](https://apcentral.collegeboard.org/media/pdf/ap-computer-science-a-frq-2017.pdf)
 
 
-## Part A
+## Syntax to remember
 
 - This part importantly declares an array and references the '.add' function
 
@@ -55,7 +55,7 @@ int intValue = integerValue.intValue(); // Extracting the int value from the Int
 ```
 
 
-```Java
+```java
 public class Digits
 {
     private ArrayList<Integer> digitList;
@@ -103,7 +103,7 @@ public class Digits
 ## CollegeBoard MCQs
 
 
-```Java
+```java
 public static int findMiddle (String[] arr, String find) {
     return  // a, b, c, d,or e
 }
@@ -115,7 +115,7 @@ public static int findMiddle (String[] arr, String find) {
 ```
 
 
-```Java
+```java
 public static int mystery(int[] arr) {
     return arr[1] + arr[3]/2;
 }

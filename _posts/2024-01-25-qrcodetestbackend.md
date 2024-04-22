@@ -17,7 +17,7 @@ layout: post
 <button onclick="Generate()"> generate </button>
 
 <script type="text/javascript">
-    function NewInput(numb){
+    function NewInput(numb, link, freq){
         var num;
         if (numb === undefined){
             num =  $("#inputDiv").find("input").length/2 + 1;
@@ -30,12 +30,18 @@ layout: post
         inputQR.type = 'text';
         inputQR.id = `QR${num}`;
         inputQR.placeholder = "Link"
+        if (link){
+            inputQR.innerHTML = link;
+        }
 
         // Create second input element
         var inputFreq = document.createElement('input');
         inputFreq.type = 'text';
         inputFreq.id = `Freq${num}`;
         inputFreq.placeholder = "Frequency"
+        if (freq){
+            inputQR.innerHTML = freq;
+        }
 
         // Create button element
         var button = document.createElement('button');
@@ -59,7 +65,7 @@ layout: post
     
     function Remove(event){
         var length = $("#inputDiv").find("input").length/2 - 1
-        console.log(length);
+        console.log(document.getElementById("inputDiv"));
         document.getElementById(`inputDiv`).innerHTML = "";
         for (var i = 1; i <= length; i ++){
             NewInput(i);
