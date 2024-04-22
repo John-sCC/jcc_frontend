@@ -195,16 +195,37 @@ button {
                     font-family: $nighthawk-font2;
                     font-size: 1.5vw;
                 }
-        
-                table td {
-                    background-color: $grayish !important; 
-                    color: black;
-                    width: 45%;
-                    table-layout: fixed;
-                }
 
-                td:first-child {
-                    width: 30%;
+                table {
+                    margin-bottom: 0;
+
+                    td {
+                        background-color: unset !important;
+                        color: black;
+                        width: 45%;
+                        table-layout: fixed;
+                        height: 3em;
+                    }
+    
+                    .dropzone {
+                        background-color: unset !important;
+
+                        td {
+                            border: none;
+                        }
+                    }
+
+                    .dropzone-hover {
+                        background-color: #001937 !important;
+                    }
+
+                    tr {
+                        background-color: $grayish;
+                    }
+
+                    &:first-child {
+                        width: 30%;
+                    }
                 }
             }
         }
@@ -284,3 +305,14 @@ button {
         }
     }
 }
+
+.ui-draggable-dragging {
+    z-index: 1;
+    background-color: rgba(239, 239, 239, .9) !important // grayish color with half opacity
+}
+
+.ui-droppable-hover {
+    filter: brightness(80%);
+    transition: filter(.2s)
+}
+

@@ -4,7 +4,7 @@ REPO_NAME ?= jcc_frontend
 LOG_FILE = /tmp/jekyll$(PORT).log
 
 SHELL = /bin/bash -c
-.SHELLFLAGS = -e # Exceptions will stop make, works on MacOS
+#.SHELLFLAGS = -e # Exceptions will stop make, works on MacOS
 
 # Phony Targets, makefile housekeeping for below definitions
 .PHONY: default server convert clean stop
@@ -34,6 +34,7 @@ default: server
 			if ($$0 ~ /_notebooks\/.*\.ipynb/) { system("make convert &") } \
 		} \
 	}') 2>/dev/null &
+# @python -c 'import sys; from scripts.pull_issues import create_issues; create_issues()' "$<"
 	@# start an infinite loop with timeout to check log status
 	@for ((COUNTER = 0; ; COUNTER++)); do \
 		if grep -q "Server address:" $(LOG_FILE); then \

@@ -17,7 +17,7 @@ layout: post
 <button onclick="Generate()"> generate </button>
 
 <script type="text/javascript">
-    function NewInput(numb){
+    function NewInput(numb, link, freq){
         var num;
         if (numb === undefined){
             num =  $("#inputDiv").find("input").length/2 + 1;
@@ -30,12 +30,18 @@ layout: post
         inputQR.type = 'text';
         inputQR.id = `QR${num}`;
         inputQR.placeholder = "Link"
+        if (link){
+            inputQR.innerHTML = link;
+        }
 
         // Create second input element
         var inputFreq = document.createElement('input');
         inputFreq.type = 'text';
         inputFreq.id = `Freq${num}`;
         inputFreq.placeholder = "Frequency"
+        if (freq){
+            inputQR.innerHTML = freq;
+        }
 
         // Create button element
         var button = document.createElement('button');
@@ -59,7 +65,7 @@ layout: post
     
     function Remove(event){
         var length = $("#inputDiv").find("input").length/2 - 1
-        console.log(length);
+        console.log(document.getElementById("inputDiv"));
         document.getElementById(`inputDiv`).innerHTML = "";
         for (var i = 1; i <= length; i ++){
             NewInput(i);
@@ -73,16 +79,24 @@ layout: post
             document.getElementById("qrcode").innerHTML = "";
         }
         fetchId().then(id => {
-            var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
+            if(window.location.href.includes("127.0.0.1")){
+                var link = "http://127.0.0.1:4100/jcc_frontend/2024/01/25/qrcodeacceptbackend.html" + id;
+            }
+            else {
+                var link = "https://john-scc.github.io/jcc_frontend/2024/01/25/qrcodeacceptbackend.html#" + id;
+            }
             console.log(link)
             new QRCode(document.getElementById("qrcode"), link)
         })
     }
 
     function fetchId() {
-        // Construct the URL for the POST request
-        // const url = 'http://localhost:8911/api/qrcode/newCode';
-        const url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
+        if(window.location.href.includes("127.0.0.1")){
+            var url = 'http://localhost:8911/api/qrcode/newCode';
+        }
+        else {
+            var url = 'https://jcc.stu.nighthawkcodingsociety.com/api/qrcode/newCode';
+        }
 
         var linkList = [];
         var freqList = [];

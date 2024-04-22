@@ -112,6 +112,7 @@
     @include basic-hover(dark);
 
     background-color: $nighthawk-green;
+    cursor: pointer;
     border-radius: 50%;
     aspect-ratio: 1;
     width: 12vw;
@@ -124,7 +125,90 @@
     background-repeat: no-repeat;
     background-size: 9.6vw;
     z-index: 2;
+    transition: transform 0.5s ease;
 }
+
+.nav-logo.active {
+    transform: translateX(-100%) translateY(-100%);
+}
+
+.section {
+    -webkit-tap-highlight-color: transparent;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 400px;
+    left: -200px;
+    position: absolute;
+    top: -200px;
+    width: 400px;
+    transform: translateX(-200px) translateY(-200px);
+    transition: transform 300ms;
+}
+
+.section-color:hover {
+    opacity: 0.85;
+}
+
+.section-color:active {
+    opacity: 0.7;
+}
+
+.section1 {
+    position: absolute;
+    clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+    transition-delay: 30ms;
+}
+
+.section2 {
+    position: absolute;
+    clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+    transition-delay: 60ms;
+}
+
+.section3 {
+    position: absolute;
+    clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+    transition-delay: 90ms;
+}
+
+.section4 {
+    position: absolute;
+    clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+    transition-delay: 120ms;
+}
+
+.section-color {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.section-color1 {
+    background: linear-gradient(135deg, #444, #c1b576);
+    clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+}
+
+.section-color2 {
+    background: linear-gradient(135deg, #444, #8a7845);
+    clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+}
+
+.section-color3 {
+    background: linear-gradient(135deg, #444, #c1b576);
+    clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+}
+
+.section-color4 {
+    background: linear-gradient(135deg, #444, #8a7845);
+    clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+}
+
+.active .section {
+    transform: translateX(0) translateY(0);
+}
+
 
 .sticky {
     position: fixed !important;
