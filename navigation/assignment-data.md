@@ -72,7 +72,7 @@ permalink: /assignment-data
         const submissionTime = new Date().toISOString();
 
         try {
-            const response = await fetch(`${deployed}/assignment/submit/${getParameterByName('id')}/${submissionTime}`, {
+            const response = await fetch(`${deployed}/api/assignment/submit/${getParameterByName('id')}/${submissionTime}`, {
                 method: 'POST',
                 body: formData,
                 mode: 'cors', // no-cors, *cors, same-origin
