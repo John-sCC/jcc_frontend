@@ -16,7 +16,16 @@ permalink: /search/
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-
+        .title-container {
+            text-align: center;
+             margin-top: 50px;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
         h1, h2 {
             margin-bottom: 10px;
         }

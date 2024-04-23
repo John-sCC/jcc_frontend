@@ -5,7 +5,7 @@ toc: True
 layout: post
 ---
 
-# Arrays Overview
+# ArraysList Overview
 
 ## Important Vocabulary
 **Array** is a data structure used to implement a list of primitive or object data
@@ -31,21 +31,21 @@ In Java, the last element of an array list is at index <code>list.length - 1</co
 Remember the syntax:
 ```Java 
 // declare the array list
-[arrayName] = new ArrayList<Integer>();
+[arrayListName] = new ArrayList<Integer>();
 
 // add to the list
-[arrayName].add([position], [value])
+[arrayListName].add([position], [value])
 // ---OR---
-[arrayName].add([value])
+[arrayListName].add([value])
 
 // get from the list at a position
-[arrayName].get([position]);
+[arrayListName].get([position]);
 
 // modify a list at a specific position
-[arrayName].set([position], [value]);
+[arrayListName].set([position], [value]);
 
 // get the size of an array
-[arrayName].size();
+[arrayListName].size();
 
 // not pertaining to arrays but still good to know
 // the .intValue() method is used to convert an object of a wrapper class for primitive types (such as Integer, Double, Float, etc.) into its corresponding primitive int value.
@@ -99,34 +99,3 @@ public class Digits
    - These lines are meant to target the last digit to either add to the arrayList or to remove from the integer 
 
 
-
-## CollegeBoard MCQs
-
-
-```java
-public static int findMiddle (String[] arr, String find) {
-    return  // a, b, c, d,or e
-}
-// a: arr[].indexOf(find);
-// b: arr.indexOf(find);
-// c: arr[arr.length/2 + 1].indexOf(find);
-// d: arr[arr.length].indexOf(find);
-// e: arr[arr.length/2].indexOf(find);
-```
-
-
-```java
-public static int mystery(int[] arr) {
-    return arr[1] + arr[3]/2;
-}
-
-int[] list = {3, 7, 2, 9, 8};
-int result = mystery(list);
-
-// What is stored after running this code?
-// a: 2.5
-// b: 4
-// c: 8
-// d: 11
-// e: 11.5
-```
