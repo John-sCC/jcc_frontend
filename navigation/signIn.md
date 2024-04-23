@@ -65,7 +65,7 @@ permalink: /sign-in/
         },
     };
    
-    fetch(local + '/authenticate', requestOptions)
+    fetch(deployed + '/authenticate', requestOptions)
     .then(response => response.json()) // Get response text
     .then(data => {
         // Check response status

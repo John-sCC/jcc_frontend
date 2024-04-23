@@ -3,8 +3,8 @@ var selected = null
 var selectedExistingClass = null
 
 // change url based on need
-const url = 'http://localhost:8911'
-// const url = 'https://jcc.stu.nighthawkcodingsociety.com'
+// const url = 'http://localhost:8911'
+const url = 'https://jcc.stu.nighthawkcodingsociety.com'
 
 window.onload(function() {
     initialize()
