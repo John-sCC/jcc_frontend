@@ -47,8 +47,8 @@ async function fetchClassList() {
     } 
     catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-        // redirect to site if brokey
-        window.location.replace(`${baseurl}/sign-in/`);
+        // return an empty array
+        return [];
     }
 
     return classes;
@@ -121,6 +121,7 @@ function addExistingClass() {
 
 async function addClass() {
     const existingClasses = await fetchClassList()
+
     console.log(existingClasses)
 
     const main = $("#table-div")[0]
@@ -165,6 +166,15 @@ async function addClass() {
         }
 
         classes.appendChild(existingList)
+    }
+
+    else {
+        classes.innerHTML = "No existing classes found, try "
+        const redirect = document.createElement("a")
+        redirect.href = `${baseurl}/sign-in`
+        redirect.innerHTML = "signing in"
+        classes.appendChild(redirect)
+        classes.innerHTML += " or creating a new class"
     }
 
     const createButton = document.createElement("button")
