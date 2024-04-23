@@ -156,11 +156,10 @@ async function addClass() {
             const listItem = document.createElement("li")
             listItem.innerHTML = existingClass["name"]
 
-            const shortId = existingClass["id"].slice(6)
-            listItem.id = `existing-class-${shortId}`
+            listItem.id = `existing-class-${existingClass["id"].slice(6)}`
 
             // select the class on click
-            listItem.onclick = function() { setSelectedExisting(shortId) }
+            listItem.onclick = function() { setSelectedExisting(existingClass) }
 
             existingList.appendChild(listItem)
         }
@@ -239,7 +238,9 @@ function setSelected(id) {
     document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
 }
 
-function setSelectedExisting(id) {
+function setSelectedExisting(existing) {
+    const id = existing["id"].slice(6)
+    
     console.log(id)
     try {
         document.getElementById(`existing-class-${selected}`).style.color = "" // unsets
