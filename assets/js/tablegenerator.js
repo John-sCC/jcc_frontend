@@ -1,5 +1,6 @@
 console.log("loaded")
 var selected = null
+var selectedExistingClass = null
 
 // change url based on need
 const url = 'http://localhost:8911'
@@ -100,11 +101,20 @@ function addNewClass() {
     editClass(`class-${id}`)
 }
 
-function addExistingClass(id, name, classList) {
-    localStorage.setItem(`class-${id}`, JSON.stringify({name:name, class:classList}))
+function addExistingClass() {
+    if (selectedExistingClass == null) {
+        alert("Please select an existing class first, or create a new class with the button at the bottom.")
+        return
+    }
 
-    makeClass(id, name)
-    editClass(`class-${id}`)
+    const id = selectedExistingClass["id"]
+    const name = selectedExistingClass["name"]
+    const classList = selectedExistingClass["class"]
+
+    localStorage.setItem(id, JSON.stringify({name:name, class:classList}))
+
+    makeClass(id.slice(6), name)
+    editClass(id)
 }
 
 async function addClass() {
@@ -136,14 +146,17 @@ async function addClass() {
 
     // i have given up on naming variables in an intuitive way, good luck soldiers!
     if (existingClasses.length != 0) {
+        // bullet point list to include all existing classes
         const existingList = document.createElement("ul")
 
+        // Add each existing class to this list
         for (existingClass of existingClasses) {
             const listItem = document.createElement("li")
             listItem.innerHTML = existingClass["name"]
-            listItem.onclick() = function() {
-                addExistingClass(existingClass["id"], existingClass["name"], existingClass["class"])
-            }
+
+            // select the class on click
+            listItem.onclick = function() { selectedExistingClass = existingClass }
+
             existingList.appendChild(listItem)
         }
 
