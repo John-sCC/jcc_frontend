@@ -242,11 +242,12 @@ function setSelectedExisting(existing) {
     const id = existing["id"].slice(6)
     
     console.log(id)
+    console.log(existing)
     try {
-        document.getElementById(`existing-class-${selected}`).style.color = "" // unsets
+        document.getElementById(`existing-class-${id}`).style.color = "" // unsets
     }
     catch {}
-    selectedExistingClass = id
+    selectedExistingClass = existing
 
     document.getElementById(`existing-class-${id}`).style.color = "#154734ff"
 }
