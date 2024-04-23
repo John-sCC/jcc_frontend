@@ -115,6 +115,8 @@ function addExistingClass() {
 
     makeClass(id.slice(6), name)
     editClass(id)
+
+    selectedExistingClass = null
 }
 
 async function addClass() {
@@ -154,8 +156,11 @@ async function addClass() {
             const listItem = document.createElement("li")
             listItem.innerHTML = existingClass["name"]
 
+            const shortId = existingClass["id"].slice(6)
+            listItem.id = `existing-class-${shortId}`
+
             // select the class on click
-            listItem.onclick = function() { selectedExistingClass = existingClass }
+            listItem.onclick = function() { setSelectedExisting(shortId) }
 
             existingList.appendChild(listItem)
         }
@@ -232,6 +237,17 @@ function setSelected(id) {
     selected = id
 
     document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
+}
+
+function setSelectedExisting(id) {
+    console.log(id)
+    try {
+        document.getElementById(`existing-class-${selected}`).style.color = "" // unsets
+    }
+    catch {}
+    selectedExistingClass = id
+
+    document.getElementById(`existing-class-${id}`).style.color = "#154734ff"
 }
 
 function editClass(id) {

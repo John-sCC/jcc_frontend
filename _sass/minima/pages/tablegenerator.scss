@@ -286,6 +286,18 @@ button {
 
             textarea {
                 resize: none;
+                padding: 10px;
+            }
+
+            ul {
+                margin-top: 1em;
+
+                li {
+                    color: black;
+                    list-style-type: circle;
+
+                    @include color-hover(black, $nighthawk-green)
+                }
             }
         }
 
