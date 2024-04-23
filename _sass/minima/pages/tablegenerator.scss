@@ -237,7 +237,7 @@ button {
             display: flex;
             font-family: $nighthawk-font2;
 
-            input {
+            input, div {
                 border-radius: 5px;
                 height: 100%;
                 flex: 4;
@@ -245,6 +245,10 @@ button {
                 margin-right: 1vw;
                 border: none;
                 font-size: 2vw;
+                background: $grayish;
+                padding-left: 10px;
+                color: $nighthawk-green;
+                line-height: 2.5;
             }
 
             button {
@@ -263,12 +267,13 @@ button {
             align-items: center;
             display: flex;
 
-            textarea {
+            textarea, div {
                 height: 90%;
                 width: 90%;
                 margin: auto;
                 border-radius: 5px;
                 border: none;
+                background: $grayish;
 
                 &::-webkit-scrollbar {
                     width: .5vw;
@@ -277,6 +282,10 @@ button {
                 &::-webkit-scrollbar-thumb {
                     background: gray;
                 }
+            }
+
+            textarea {
+                resize: none;
             }
         }
 
