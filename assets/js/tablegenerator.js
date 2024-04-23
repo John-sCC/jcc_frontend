@@ -131,14 +131,17 @@ async function addClass() {
     const topText = document.createElement("div")
     topText.innerHTML = "Choose existing class:"
 
-    const selectButton = document.createElement("button")
-    selectButton.innerHTML = "SELECT"
-    selectButton.onclick = function() {addExistingClass()}
+    const cancelButton = document.createElement("button")
+    cancelButton.innerHTML = "CANCEL"
+    cancelButton.onclick = function() {
+        main.innerHTML = ""
+        selectedExistingClass = null
+    }
 
     const title = document.createElement("div")
     title.className = "class-title"
     title.appendChild(topText)
-    title.appendChild(selectButton)
+    title.appendChild(cancelButton)
 
     const classes = document.createElement("div")
     classes.id = "classes-div"
@@ -181,16 +184,14 @@ async function addClass() {
     createButton.innerHTML = "CREATE NEW CLASS"
     createButton.onclick = function() {addNewClass()}
 
-    const cancelButton = document.createElement("button")
-    cancelButton.innerHTML = "CANCEL"
-    cancelButton.onclick = function() {
-        main.innerHTML = ""
-    }
+    const selectButton = document.createElement("button")
+    selectButton.innerHTML = "SELECT"
+    selectButton.onclick = function() {addExistingClass()}
 
     const bottomContainer= document.createElement("div")
     bottomContainer.className = "save"
+    bottomContainer.appendChild(selectButton)
     bottomContainer.appendChild(createButton)
-    bottomContainer.appendChild(cancelButton)
 
     main.appendChild(title)
     main.appendChild(textContainer)
