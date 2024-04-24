@@ -13,10 +13,10 @@ window.onload(function() {
 
 
 async function fetchClassList() {
+    // Create array of classes
     var classes = []
 
-    const classesDiv = $("#classes-div")
-
+    // Fetch backend
     try {
         const response = await fetch(url + '/api/class_period/dashboard', {
             method: 'GET',
@@ -26,32 +26,41 @@ async function fetchClassList() {
             headers: {
                 "content-type": "application/json",
             },
-        });
+        })
 
+        // Error check
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok')
         }
 
-        const data = await response.json();
-        console.log(JSON.stringify(data));
-        var classList = data.leader;  // Assuming data.leader is the correct path
+        // Convert response to JSON, which contains classes that user is the leader of
+        const data = await response.json()
+        console.log(JSON.stringify(data))
+        var classList = data.leader
 
+        // For each class of the user
         for (let classData of classList) {
-            var studentList = [];
-            for (let student of classData.students) {  // Assuming classData.students is an array
-                studentList.push(student.name);  // Assuming each student has a name property
+            // Define list of students in each class
+            var studentList = []
+
+            // Push students from response into class array
+            for (let student of classData.students) {
+                studentList.push(student.name)
             }
 
-            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name});  // Ensure classData has id and name properties
+            // Add each class from response into frontend class array
+            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name})
         }
     } 
+    // If there is an error, return an empty array
     catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-        // return an empty array
-        return [];
+        console.error('There was a problem with the fetch operation:', error)
+
+        // This only occurs when not signed in
+        return []
     }
 
-    return classes;
+    return classes
 }
 
 function initialize() {
