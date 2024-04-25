@@ -19,18 +19,21 @@ permalink: /inbox/
             margin-bottom: 10px;
         }
         .compose-btn {
-            background-color: #007bff;
+            background-color: #002147;
             color: white;
             padding: 10px 20px;
-            border: none;
+            border: 2px solid black;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            margin-bottom: 32px;
+            border-color: #91976cff;
         }
     </style>
 </head>
 <body>
     <h1>Inbox</h1>
+    <a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>
     <div id="inbox-messages"></div>
     <script>
         fetch('http://localhost:8911/api/messages')
