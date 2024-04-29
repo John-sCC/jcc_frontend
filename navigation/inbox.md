@@ -33,7 +33,7 @@ permalink: /inbox/
 </head>
 <body>
     <h1>Inbox</h1>
-    <a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>
+    <!--<a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>-->
     <div id="inbox-messages"></div>
     <script>
         fetch('http://localhost:8911/api/messages')
