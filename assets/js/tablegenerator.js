@@ -30,7 +30,7 @@ async function fetchClassList() {
 
         // Error check
         if (!response.ok) {
-            throw new Error('Network response was not ok')
+            throw new Error(`HTTP error! Status: ${response.status}`)
         }
 
         // Convert response to JSON, which contains classes that user is the leader of
