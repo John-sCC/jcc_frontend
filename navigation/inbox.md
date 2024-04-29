@@ -36,7 +36,9 @@ permalink: /inbox/
     <!--<a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>-->
     <div id="inbox-messages"></div>
     <script>
-        fetch('http://localhost:8911/api/messages')
+        var local = "http://localhost:8911";
+        var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+        fetch(deployed + '/api/messages')
             .then(response => response.json())
             .then(data => {
                 // Loop through the received data and create HTML elements to display each message
