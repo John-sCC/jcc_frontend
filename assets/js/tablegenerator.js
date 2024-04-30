@@ -1,4 +1,6 @@
+console.log("loaded")
 var selected = null
+var selectedExistingClass = null
 
 // change url based on need
 // const url = 'http://localhost:8911'
@@ -8,9 +10,13 @@ window.onload(function() {
     initialize()
 })
 
-async function getClassList() {
+
+
+async function fetchClassList() {
+    // Create array of classes
     var classes = []
 
+    // Fetch backend
     try {
         const response = await fetch(url + '/api/class_period/dashboard', {
             method: 'GET',
@@ -20,37 +26,45 @@ async function getClassList() {
             headers: {
                 "content-type": "application/json",
             },
-        });
+        })
 
+        // Error check
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`HTTP error! Status: ${response.status}`)
         }
 
-        const data = await response.json();
-        console.log(JSON.stringify(data));
-        var classList = data.leader;  // Assuming data.leader is the correct path
+        // Convert response to JSON, which contains classes that user is the leader of
+        const data = await response.json()
+        console.log(JSON.stringify(data))
+        var classList = data.leader
 
+        // For each class of the user
         for (let classData of classList) {
-            var studentList = [];
-            for (let student of classData.students) {  // Assuming classData.students is an array
-                studentList.push(student.name);  // Assuming each student has a name property
+            // Define list of students in each class
+            var studentList = []
+
+            // Push students from response into class array
+            for (let student of classData.students) {
+                studentList.push(student.name)
             }
 
-            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name});  // Ensure classData has id and name properties
+            // Add each class from response into frontend class array
+            classes.push({id: `class-${classData.id}`, class: studentList, name: classData.name})
         }
     } 
+    // If there is an error, return an empty array
     catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-        // redirect to site if brokey
-        window.location.replace(`${baseurl}/sign-in/`);
+        console.error('There was a problem with the fetch operation:', error)
+
+        // This only occurs when not signed in
+        return []
     }
 
-    return classes;
+    return classes
 }
 
-
-async function initialize() {
-    const classList = await getClassList()
+function initialize() {
+    const classList = getClassList()
 
     for (let i = 0; i < classList.length; i ++) {
         const id = classList[i]["id"].slice(6)
@@ -72,8 +86,8 @@ async function initialize() {
 }
 
 // Adds to storage and makes div
-async function addClass() {
-    const current = await getClassList()
+function addNewClass() {
+    const current = getClassList()
     var existingIds = []
 
     for (let temp of current) {
@@ -93,6 +107,119 @@ async function addClass() {
     localStorage.setItem(`class-${id}`, JSON.stringify({name:"Unnamed class", class:[]}))
 
     makeClass(id)
+    editClass(`class-${id}`)
+}
+
+function addExistingClass() {
+    if (selectedExistingClass == null) {
+        alert("Please select an existing class first, or create a new class with the button at the bottom.")
+        return
+    }
+
+    const id = selectedExistingClass["id"]
+    const name = selectedExistingClass["name"]
+    const classList = selectedExistingClass["class"]
+
+    localStorage.setItem(id, JSON.stringify({name:name, class:classList}))
+
+    makeClass(id.slice(6), name)
+    editClass(id)
+
+    selectedExistingClass = null
+}
+
+async function addClass() {
+    const existingClasses = await fetchClassList()
+
+    console.log(existingClasses)
+
+    const main = $("#table-div")[0]
+
+    main.innerHTML = ""
+
+    const topText = document.createElement("div")
+    topText.innerHTML = "Choose existing class:"
+
+    const cancelButton = document.createElement("button")
+    cancelButton.innerHTML = "CANCEL"
+    cancelButton.onclick = function() {
+        main.innerHTML = ""
+        selectedExistingClass = null
+    }
+
+    const title = document.createElement("div")
+    title.className = "class-title"
+    title.appendChild(topText)
+    title.appendChild(cancelButton)
+
+    const classes = document.createElement("div")
+    classes.id = "classes-div"
+
+    const textContainer = document.createElement("div")
+    textContainer.className = "text-area-container"
+    textContainer.appendChild(classes)
+
+    // i have given up on naming variables in an intuitive way, good luck soldiers!
+    if (existingClasses.length != 0) {
+        // bullet point list to include all existing classes
+        const existingList = document.createElement("ul")
+
+        // Add each existing class to this list
+        for (existingClass of existingClasses) {
+            const listItem = document.createElement("li")
+            listItem.innerHTML = existingClass["name"]
+
+            listItem.id = `existing-class-${existingClass["id"].slice(6)}`
+
+            // select the class on click
+            listItem.onclick = function() { setSelectedExisting(existingClass) }
+
+            existingList.appendChild(listItem)
+        }
+
+        classes.appendChild(existingList)
+    }
+
+    else {
+        classes.innerHTML = "No existing classes found, try "
+        const redirect = document.createElement("a")
+        redirect.href = `${baseurl}/sign-in`
+        redirect.innerHTML = "signing in"
+        classes.appendChild(redirect)
+        classes.innerHTML += " or creating a new class"
+    }
+
+    const createButton = document.createElement("button")
+    createButton.innerHTML = "CREATE NEW CLASS"
+    createButton.onclick = function() {addNewClass()}
+
+    const selectButton = document.createElement("button")
+    selectButton.innerHTML = "SELECT"
+    selectButton.onclick = function() {addExistingClass()}
+
+    const bottomContainer= document.createElement("div")
+    bottomContainer.className = "save"
+    bottomContainer.appendChild(selectButton)
+    bottomContainer.appendChild(createButton)
+
+    main.appendChild(title)
+    main.appendChild(textContainer)
+    main.appendChild(bottomContainer)
+}
+
+function getClassList() {
+    var classes = []
+
+    for (let i = localStorage.length - 1; i >= 0; i --) {
+        const key = localStorage.key(i)
+
+        if (key.includes("class")) {
+            const data = JSON.parse(localStorage.getItem(key))
+            classes.push({id : key, class : data["class"], name : data["name"]})
+        }
+    }
+
+    return classes
 }
 
 // makes div
@@ -121,8 +248,6 @@ function makeClass(id, name = "Unnamed class") {
     list.insertBefore(listItem, list.children[list.children.length - 1])
 }
 
-
-
 function setSelected(id) {
     try {
         document.getElementById(`class-${selected}`).children[0].style.color = "" // unsets
@@ -133,8 +258,29 @@ function setSelected(id) {
     document.getElementById(`class-${id}`).children[0].style.color = "#154734ff"
 }
 
-async function editClass(id) {
-    var thisClass = await getClass(id)
+function setSelectedExisting(existing) {
+    const id = existing["id"].slice(6)
+    
+    console.log(id)
+    console.log(existing)
+    try {
+        document.getElementById(`existing-class-${id}`).style.color = "" // unsets
+    }
+    catch {}
+    selectedExistingClass = existing
+
+    document.getElementById(`existing-class-${id}`).style.color = "#154734ff"
+}
+
+function editClass(id) {
+    const classList = getClassList()
+    let thisClass
+    
+    for (let i = 0; i < classList.length; i ++) {
+        if (classList[i]["id"] == id) {
+            thisClass = classList[i]
+        }
+    }
 
     const main = $("#table-div")[0]
 
@@ -155,13 +301,21 @@ async function editClass(id) {
 
     const textarea = document.createElement("textarea")
     textarea.id = "text-input"
-    
-    for (let i = 0; i < thisClass["class"].length; i ++) {
-        const student = thisClass["class"][i]
-        textarea.innerHTML += student
 
-        if (i != thisClass["class"].length - 1) {
-            textarea.innerHTML += "\n"
+    const studentNum = thisClass["class"].length
+
+    if (studentNum == 0) {
+        textarea.innerHTML = "Enter student names separated by line"
+    }
+
+    else {
+        for (let i = 0; i < studentNum; i ++) {
+            const student = thisClass["class"][i]
+            textarea.innerHTML += student
+
+            if (i != studentNum - 1) {
+                textarea.innerHTML += "\n"
+            }
         }
     }
 
@@ -192,34 +346,13 @@ function deleteClass(id) {
         return
     }
 
+    localStorage.removeItem(id)
     document.getElementById(id).remove()
 
     const main = $("#table-div")[0]
 
     main.innerHTML = ""
-
-    fetch(`${url}/api/class_period/delete/${id.slice(6)}`, {
-        method: 'DELETE',
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-        },
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
-        }
-        if (response.status === 204) return 'No content'; // Common for DELETE
-        return response.json();
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
 }
-
 
 function renumber(parents) {
     for (parent of parents) {
@@ -374,52 +507,14 @@ function makeTable(people) {
     tableDroppable(dropzone.id)
 }
 
-function updateClass(id, data) {
-    fetch(`${url}/api/class_period/update/${id.slice(6)}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
-        console.log('Class period updated successfully:', data);
-      })
-      .catch(error => {
-        console.error('There was a problem with the update:', error);
-      });
-}
-
-async function getClass(id) {
-    const classList = await getClassList()
-    let thisClass
-    console.log(classList)
-    for (let i = 0; i < classList.length; i ++) {
-        if (classList[i]["id"] == id) {
-            thisClass = classList[i]
-        }
-    }
-
-    return thisClass
-}
-
-async function saveName(id) {
-    // Visual changes
+function saveName(id) {
     const newName = document.getElementById('name-input').value
     const classItem = document.getElementById(id)
     const nameElement = classItem.children[0]
     nameElement.innerHTML = newName
-
-    // Database changes
-    var thisClass = await getClass(id)
-    thisClass["name"] = newName
-    updateClass(id, thisClass)
+    const classData = JSON.parse(localStorage.getItem(id))
+    classData.name = newName
+    localStorage.setItem(id, JSON.stringify(classData))
 }
 
 function saveEdits(id) {
@@ -429,7 +524,7 @@ function saveEdits(id) {
     localStorage.setItem(id, JSON.stringify(classData))
 }
 
-async function makeGroups() {
+function makeGroups() {
     if (selected == null) {
         alert("Please select a class to generate from first")
         return
@@ -452,7 +547,15 @@ async function makeGroups() {
     // Define variable for table div section
     $('#table-div')[0].innerHTML = ""
 
-    var thisClass = await getClass(id)
+    const classList = getClassList()
+
+    let thisClass
+    
+    for (let i = 0; i < classList.length; i ++) {
+        if (classList[i]["id"] == `class-${selected}`) {
+            thisClass = classList[i]
+        }
+    }
 
     // Get list of people, then randomized
     const people = thisClass["class"].sort(() => Math.random() - 0.5)
@@ -481,6 +584,14 @@ async function makeGroups() {
     }
 
     // Loops to create divs for each group, then putting them into the tableDiv
+    for (group of groups) {
+        makeTable(group)
+    }
+}
+
+function makeExistingGroups(groups) {
+    $('#table-div')[0].innerHTML = ""
+    
     for (group of groups) {
         makeTable(group)
     }
