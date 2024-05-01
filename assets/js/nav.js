@@ -29,7 +29,7 @@ function updateDivs() {
     const base = ((window.innerWidth * .3) / 6) 
 
     // Define the farthest left button to move for logo
-    const dashboardButton = $("#classes")[0]
+    const dashboardButton = $("#dashboard")[0]
 
     // Define the logo
     const logo = $(".nav-logo")[0]
