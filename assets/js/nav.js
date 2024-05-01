@@ -29,7 +29,7 @@ function updateDivs() {
     const base = ((window.innerWidth * .3) / 6) 
 
     // Define the farthest left button to move for logo
-    const classButton = $("#classes")[0]
+    const dashboardButton = $("#classes")[0]
 
     // Define the logo
     const logo = $(".nav-logo")[0]
@@ -60,7 +60,7 @@ function updateDivs() {
             const percent =  (window.pageYOffset - (base * 2.5)) / (base * 1.5)
 
             // Move button with margin left based on how far scrolled to animate
-            classButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
+            dashboardButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
 
             // Resize logo based on percent also
             logo.style.width = `${12 - (3.3 * percent)}vw`
@@ -71,7 +71,7 @@ function updateDivs() {
 
         else {
             // Set to initial positions
-            classButton.style.marginLeft = `${8}vw`
+            dashboardButton.style.marginLeft = `${8}vw`
             logo.style.width = `${12}vw`
             logo.style.backgroundSize = `${9.6}vw`
         }
