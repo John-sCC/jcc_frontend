@@ -166,13 +166,15 @@ async function addClass() {
 
         // Add each existing class to this list
         for (existingClass of existingClasses) {
+            console.log(existingClass)
+            const currentClass = existingClass
             const listItem = document.createElement("li")
-            listItem.innerHTML = existingClass["name"]
+            listItem.innerHTML = currentClass["name"]
 
-            listItem.id = `existing-class-${existingClass["id"].slice(6)}`
+            listItem.id = `existing-class-${currentClass["id"].slice(6)}`
 
             // select the class on click
-            listItem.onclick = function() { setSelectedExisting(existingClass) }
+            listItem.onclick = function() { setSelectedExisting(currentClass) }
 
             existingList.appendChild(listItem)
         }
@@ -264,7 +266,7 @@ function setSelectedExisting(existing) {
     console.log(id)
     console.log(existing)
     try {
-        document.getElementById(`existing-class-${id}`).style.color = "" // unsets
+        document.getElementById(`existing-class-${selectedExistingClass["id"].slice(6)}`).style.color = "" // unsets
     }
     catch {}
     selectedExistingClass = existing
