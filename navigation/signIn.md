@@ -66,18 +66,25 @@ permalink: /sign-in/
     };
    
     fetch(deployed + '/authenticate', requestOptions)
-    .then(response => response.text()) // Get response text
-    .then(data => {
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid email or password")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
         // Check response status
-        console.log(data);
-        if (data.includes("authenticated successfully")) { // Assuming this string indicates successful authentication
-            window.location.replace("{{site.baseurl}}/dashboard/");
-            return;
-        } else {
-            // Invalid email or password
-            displayErrorMessage("Invalid email or password");
-        }
-    })
+        console.log(data.message);
+        localStorage.setItem('jwtToken', data.cookie);
+        window.location.replace("{{site.baseurl}}/dashboard/");
+        return;
+      }
+    )
     .catch(error => {
         console.error('There was an error:', error);
         // Error occurred during sign-in
