@@ -33,14 +33,54 @@ permalink: /message/
 </head>
 <body>
     <h1>Compose New Message</h1>
-    <form action="send_message.php" method="post">
-        <label for="to">To:</label><br>
-            <input type="text" id="to" name="to" placeholder="Username" required><br><br>
-        <label for="subject">Subject:</label><br>
-            <input type="text" id="subject" name="subject" placeholder="Subject" required><br><br>
-        <label for="message">Message:</label><br>
-            <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <input type="submit" value="Send Message">
-    </form>
+<form id="composeForm">
+    <div>
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+    </div>
+    <div>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+    </div>
+    <div>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea>
+    </div>
+    <button type="submit">Send</button>
+</form>
+
 </body>
+<script>
+    // Function to handle form submission
+document.getElementById('composeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(this); // Get form data
+    // Convert form data to JSON
+    const message = {};
+    formData.forEach((value, key) => {
+        message[key] = value;
+    });
+    // Send message data to API
+    fetch('http://localhost:8911/api/messages', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(message)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Message sent successfully!');
+            // Clear form fields
+            this.reset();
+        } else {
+            throw new Error('Failed to send message.');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending message:', error);
+        alert('Failed to send message. Please try again later.');
+    });
+});
+</script>
 </html>
