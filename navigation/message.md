@@ -36,7 +36,7 @@ permalink: /message/
 <form id="composeForm">
     <div>
         <label for="to">To:</label>
-        <input type="text" id="to" name="to" required>
+        <input type="text" id="from" name="from" required>
     </div>
     <div>
         <label for="subject">Subject:</label>
@@ -60,6 +60,7 @@ document.getElementById('composeForm').addEventListener('submit', function(event
     formData.forEach((value, key) => {
         message[key] = value;
     });
+    console.log(message);
     // Send message data to API
     fetch('http://localhost:8911/api/messages', {
         method: 'POST',

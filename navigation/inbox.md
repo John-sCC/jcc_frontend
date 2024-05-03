@@ -38,26 +38,26 @@ permalink: /inbox/
     <script>
         var local = "http://localhost:8911";
         var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
-        fetch(deployed + '/api/messages')
-            .then(response => response.json())
-            .then(data => {
-                // Loop through the received data and create HTML elements to display each message
-                const messageList = document.getElementById('inbox-messages');
-                data.forEach(message => {
-                    const listItem = document.createElement('div');
-                    listItem.classList.add('message');
-                    listItem.innerHTML = `
-                        <strong>ID:</strong> ${message.id}<br>
-                        <strong>From:</strong> ${message.from}<br>
-                        <strong>Subject:</strong> ${message.subject}<br>
-                        <p>${message.content}</p>
-                    `;
-                    messageList.appendChild(listItem);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
+        fetch(local + '/api/messages')
+        .then(response => response.json())
+        .then(data => {
+            // Loop through the received data and create HTML elements to display each message
+            const messageList = document.getElementById('inbox-messages');
+            data.forEach(message => {
+                const listItem = document.createElement('div');
+                listItem.classList.add('message');
+                listItem.innerHTML = `
+                    <strong>ID:</strong> ${message.id}<br>
+                    <strong>From:</strong> ${message.from}<br>
+                    <strong>Subject:</strong> ${message.subject}<br>
+                    <p>${message.content}</p>
+                `;
+                messageList.appendChild(listItem);
             });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
     </script>
 </body>
 </html>
