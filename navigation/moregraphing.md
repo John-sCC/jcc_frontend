@@ -1,0 +1,104 @@
+---
+layout: default
+title: table
+permalink: /tables/
+---
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Two Quantitative Variables</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/regression"></script> 
+    <style>
+    </style>
+</head>
+<body>
+<div class="div0">
+    <div class="div1">
+        <div class="variables">
+            <p class="bigboyheader">ENTER DATA:</p>
+            <p> <label class="insert"> Explanatory Variable: <br> <input id="explanatoryName" placeholder="Variable name..."></label> </p>
+            <p> <label class="insert"> Explanatory Variable Observations: <br> <input id="explanatory" placeholder="Numbers here..."></label> </p>
+            <p> <label class="insert"> Response Variable: <br> <input id="responseName" placeholder="Variable name..."></label> </p>
+            <p> <label class="insert"> Response Variable Observations: <br> <input id="response" placeholder="Numbers here..."></label> </p>
+            <button onclick="generateTableAndGraph()">Generate Table and Graph</button>
+            <button onclick="generateRegression()">Generate Regression Model</button> <!-- its only going to log in console for now i'll fix it later -->
+        </div>
+        <div id="table" class="tablee">
+            <p class="bigboyheader">SUMMARY STATISTICS:</p>
+        </div>
+    </div>
+    <div class="div2">
+        <div class="several">
+            <div class="subnav">
+                <div class="subnavbtn">CHANGE GRAPH TYPE</div>
+                <div class="subnav-content">
+                    <p>HISTOGRAM</p>
+                    <p>BAR GRAPH</p>
+                    <p>SILLY GRAPH</p>
+                </div>
+            </div>
+            <div>a</div>
+            <div>b</div>
+            <div>c</div>
+        </div>
+        <div id="scatter-plot" class="graph"></div>
+    </div>
+</div>
+
+<script>
+function generateTableAndGraph() {
+    var explanatoryName = document.getElementById('explanatoryName').value;
+    var explanatory = document.getElementById('explanatory').value.split(',');
+    var responseName = document.getElementById('responseName').value;
+    var response = document.getElementById('response').value.split(',');
+
+    // Generate the table
+    var table = '<table><tr><th>' + explanatoryName + '</th><th>' + responseName + '</th></tr>';
+    for (var i = 0; i < Math.max(explanatory.length, response.length); i++) {
+        table += '<tr><td>' + (explanatory[i] || '') + '</td><td>' + (response[i] || '') + '</td></tr>';
+    }
+    table += '</table>';
+    document.getElementById('table').innerHTML += table;
+
+    // Generate the scatter plot
+    var data = [{
+        x: explanatory,
+        y: response,
+        mode: 'markers',
+        type: 'scatter'
+    }];
+
+    var layout = {
+        title: 'Scatter Plot',
+        xaxis: {title: explanatoryName},
+        yaxis: {title: responseName},
+        autosize: false,
+        width: 800,
+        height: 600,
+    };
+
+    Plotly.newPlot('scatter-plot', data, layout);
+}
+
+function generateRegression() {
+    var explanatory = document.getElementById('explanatory').value.split(',');
+    var response = document.getElementById('response').value.split(',');
+
+    // Prepare the data for regression analysis
+    var data = [];
+    for (var i = 0; i < Math.max(explanatory.length, response.length); i++) {
+        data.push([parseFloat(explanatory[i] || 0), parseFloat(response[i] || 0)]);
+    }
+
+    // Perform the regression analysis
+    var result = regression.linear(data);
+
+    // Log the regression equation to the console
+    console.log('Regression equation: y = ' + result.equation[0] + 'x + ' + result.equation[1]);
+}
+</script>
+</body>
+</html>
