@@ -13,8 +13,8 @@ layout: post
 
 <div id="inputDiv">
 </div>
-<button onclick="NewInput()">new thing</button>
-<button onclick="Generate()"> generate </button>
+<button onclick="NewInput()">New Link</button>
+<button onclick="Generate()">Generate QR Code</button>
 
 <script type="text/javascript">
     function NewInput(numb, link, freq){
