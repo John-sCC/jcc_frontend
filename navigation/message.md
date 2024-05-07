@@ -85,3 +85,56 @@ document.getElementById('composeForm').addEventListener('submit', function(event
 });
 </script>
 </html>
+
+
+<html lang="en">
+<head>
+  <title> JCC Emails</title>
+</head>
+<body>
+  <header>
+    <h1>Inbox</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">All</a></li>
+      <li><a href="#">Important</a></li>
+      <li><a href="#">Sent</a></li>
+      <li><a href="#">Drafts</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="emails">
+      <ul>
+        <li class="email">
+          <div class="sender">
+            <span class="name">Aiden Huynh, Christopher Jenkins</span>
+            <span class="date">May 2, 2024</span>
+          </div>
+          <div class="subject">
+            <a href="#">Stats Project - IMPORTANT!!!</a>
+          </div>
+          <div class="preview">
+            <p>Drew Reed!!!</p>
+          </div>
+        </li>
+        <li class="email">
+          <div class="sender">
+            <span class="name">Drew Reed</span>
+            <span class="date">Apr 15, 2024</span>
+          </div>
+          <div class="subject">
+            <a href="#">Welcome!</a>
+          </div>
+          <div class="preview">
+            <p>Erm, what the sigma</p>
+          </div>
+        </li>
+        </ul>
+    </section>
+  </main>
+</body>
+</html>
