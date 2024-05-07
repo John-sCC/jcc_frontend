@@ -1,0 +1,65 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+.search-bar {
+    width: 300px;
+    margin-right: 20px;
+}
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+nav {
+    background-color: #e0e0e0;
+    padding: 10px;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+main {
+    padding: 20px;
+}
+.emails {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+}
+.emails ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.email {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.sender {
+    display: flex;
+    justify-content
+}
