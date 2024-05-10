@@ -1,38 +1,37 @@
-.lable {
-    font-family: $nighthawk-font2;
-    font-size: 25px;
-}
-.flexbox {
+.flex-container {
     display: flex;
+    background-color: DodgerBlue;
     flex-direction: column;
-    align-items: center;
 }
-.insideFlexbox {
+.flex-container > div {
+    background-color: #f111f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
-.button {
-    height: 50px;
-    width: 120px;
-    font-family: $nighthawk-font2;
+.bigpapa {
+    justify-content: space-around;
 }
-.inphutbox {
-    font-family: "Lexend", sans-serif;
-    font-size: 20px;
+.sil {
+    background-color: red;
+}
+.wef {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: blue;
+}
+.wef > div {
+    margin: 5px;
+    padding: 5px;
+    background-color: pink;
     border-radius: 10px;
-    padding: 4px 5px;
 }
-.biginphutbox {
-    font-family: "Lexend", sans-serif;
-    font-size: 20px;
-    border-radius: 30px;
-    padding: 12px 20px;
+.wwwj {
+    background-color: purple;
 }
-#divForClass {
-    visibility: hidden;
-    text-align: center;
-}
-#formatting-options {
-    margin-bottom: 10px;
+#editor {
+    text-align: left;
 }

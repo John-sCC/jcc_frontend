@@ -1,0 +1,57 @@
+---
+layout: default
+title: Ass Request
+search_exclude: true
+permalink: /ass-request/
+---
+
+<body>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
+<div class="flex-container">
+    <div class="bigpapa">
+        <div class="sil">
+            <div><label>Title<input></label><br></div>
+            <div><label>Due Date<input></label></div>
+            <div><label>Points<input type="number"> </label></div>
+            <div><label>Submission Type</label><div class="wef">
+                <div class="wwwj">
+                    <label for="URL"><input type="checkbox" id="URL" name="URL"> URL</label><br>
+                    <label for="txt"><input type="checkbox" id="txt" name="txt"> Text Submissions</label><br>
+                    <label for="all"><input type="checkbox" id="all" name="all"> All file types</label><br>
+                    <label for="doc"><input type="checkbox" id="doc" name="doc"> .docx</label><br>
+                </div>
+                <div class="wwwj">
+                    <label for="png"><input type="checkbox" id="png" name="png"> .png</label><br>
+                    <label for="jpg"><input type="checkbox" id="jpg" name="jpg"> .jpg</label><br>
+                    <label for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
+                    <label for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
+                </div>
+            </div></div>
+        </div>
+        <div class="sil">
+            <div class="wef">
+                <div>Assign Classes</div>
+                <div>a-z</div>
+                <div>z-a</div>
+            </div>
+            <div class="wef">
+                <div>Deselect all</div>
+                <div style="flex-grow: 3;">Search...</div>
+                <div>0</div>
+            </div>
+            <div></div>
+        </div>
+    </div>
+    <div id="editor" rows="16" cols="125">
+        <p>Hello World!</p>
+        <p>Some initial <strong>bold</strong> text</p>
+        <p><br /></p>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+<script>
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+</script>
+</body>
