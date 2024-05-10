@@ -6,7 +6,7 @@ permalink: /twocategorical/
 
 ```html
 <!DOCTYPE html>
-<html>
+
 <head>
     <title>Page Title</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -181,4 +181,3 @@ permalink: /twocategorical/
         }
     </script>
 </body>
-</html>

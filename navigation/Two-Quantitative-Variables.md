@@ -55,7 +55,7 @@ function generateTableAndGraph() {
     var responseName = document.getElementById('responseName').value;
     var response = document.getElementById('response').value.split(',');
 
-    // Generate the table
+    // the table
     var table = '<table><tr><th>' + explanatoryName + '</th><th>' + responseName + '</th></tr>';
     for (var i = 0; i < Math.max(explanatory.length, response.length); i++) {
         table += '<tr><td>' + (explanatory[i] || '') + '</td><td>' + (response[i] || '') + '</td></tr>';
@@ -63,7 +63,7 @@ function generateTableAndGraph() {
     table += '</table>';
     document.getElementById('table').innerHTML += table;
 
-    // Generate the scatter plot
+    // the scatter plot
     var data = [{
         x: explanatory,
         y: response,
@@ -87,16 +87,16 @@ function generateRegression() {
     var explanatory = document.getElementById('explanatory').value.split(',');
     var response = document.getElementById('response').value.split(',');
 
-    // Prepare the data for regression analysis
+    // regression analysis
     var data = [];
     for (var i = 0; i < Math.max(explanatory.length, response.length); i++) {
         data.push([parseFloat(explanatory[i] || 0), parseFloat(response[i] || 0)]);
     }
 
-    // Perform the regression analysis
+    // regression analysis
     var result = regression.linear(data);
 
-    // Log the regression equation to the console
+    // regression equation to the console
     console.log('Regression equation: y = ' + result.equation[0] + 'x + ' + result.equation[1]);
 }
 </script>
