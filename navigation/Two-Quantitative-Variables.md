@@ -63,6 +63,8 @@ function generateTableAndGraph() {
     table += '</table>';
     document.getElementById('table').innerHTML += table;
 
+    postApi(explanatory, explanatoryName, response, responseName)
+    
     // the scatter plot
     var data = [{
         x: explanatory,
@@ -81,6 +83,7 @@ function generateTableAndGraph() {
     };
 
     Plotly.newPlot('scatter-plot', data, layout);
+
 }
 
 function generateRegression() {
@@ -98,6 +101,36 @@ function generateRegression() {
 
     // regression equation to the console
     console.log('Regression equation: y = ' + result.equation[0] + 'x + ' + result.equation[1]);
+}
+
+function postApi(explanatory, explanatoryName, response, responseName){
+    const url = 'http://localhost:8911/api/stats/newTwoQuantitative'; 
+
+    const twoQuantitativeRequest = {
+        explanatory: explanatory, 
+        response: response,
+        explanatoryName: explanatoryName,
+        responseName: responseName
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(twoQuantitativeRequest)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data))
+    .catch(error => {
+        console.error('Error:', error);
+        if (error instanceof SyntaxError) {
+            console.error('There was a syntax error in the response, possibly not JSON:', error.message);
+        } else {
+            console.error('There was a network or other error:', error.message);
+        }
+    });
+
 }
 </script>
 </body>
