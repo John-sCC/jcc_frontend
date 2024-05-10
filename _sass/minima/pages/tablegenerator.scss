@@ -195,16 +195,37 @@ button {
                     font-family: $nighthawk-font2;
                     font-size: 1.5vw;
                 }
-        
-                table td {
-                    background-color: $grayish !important; 
-                    color: black;
-                    width: 45%;
-                    table-layout: fixed;
-                }
 
-                td:first-child {
-                    width: 30%;
+                table {
+                    margin-bottom: 0;
+
+                    td {
+                        background-color: unset !important;
+                        color: black;
+                        width: 45%;
+                        table-layout: fixed;
+                        height: 3em;
+                    }
+    
+                    .dropzone {
+                        background-color: unset !important;
+
+                        td {
+                            border: none;
+                        }
+                    }
+
+                    .dropzone-hover {
+                        background-color: #001937 !important;
+                    }
+
+                    tr {
+                        background-color: $grayish;
+                    }
+
+                    &:first-child {
+                        width: 30%;
+                    }
                 }
             }
         }
@@ -216,7 +237,7 @@ button {
             display: flex;
             font-family: $nighthawk-font2;
 
-            input {
+            input, div {
                 border-radius: 5px;
                 height: 100%;
                 flex: 4;
@@ -224,6 +245,10 @@ button {
                 margin-right: 1vw;
                 border: none;
                 font-size: 2vw;
+                background: $grayish;
+                padding-left: 10px;
+                color: $nighthawk-green;
+                line-height: 2.5;
             }
 
             button {
@@ -242,12 +267,19 @@ button {
             align-items: center;
             display: flex;
 
-            textarea {
+            textarea, div {
                 height: 90%;
                 width: 90%;
                 margin: auto;
                 border-radius: 5px;
                 border: none;
+                background: $grayish;
+                color: black;
+                padding: 10px;
+
+                a {
+                    color: #33a379 !important; // random color idc
+                }
 
                 &::-webkit-scrollbar {
                     width: .5vw;
@@ -255,6 +287,21 @@ button {
         
                 &::-webkit-scrollbar-thumb {
                     background: gray;
+                }
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            ul {
+                margin-top: 1em;
+
+                li {
+                    color: black;
+                    list-style-type: circle;
+
+                    @include color-hover(black, $nighthawk-green)
                 }
             }
         }
@@ -284,3 +331,14 @@ button {
         }
     }
 }
+
+.ui-draggable-dragging {
+    z-index: 1;
+    background-color: rgba(239, 239, 239, .9) !important // grayish color with half opacity
+}
+
+.ui-droppable-hover {
+    filter: brightness(80%);
+    transition: filter(.2s)
+}
+
