@@ -10,8 +10,7 @@ $dark-nighthawk-blue: #021a3aff;
 
     .user-classes {
         display: flex;
-        margin-right: 3em;
-        flex: 7;
+        flex: 20;
         flex-direction: column;
 
         .title-container {
@@ -22,10 +21,9 @@ $dark-nighthawk-blue: #021a3aff;
             height: 4vw;
             border-radius: .5em;
             padding: 1vw;
-            padding-left: 2vw;
             margin-right: auto;
             font-family: $nighthawk-font2;
-            font-size: 1.5em;
+            font-size: 2vw;
         }
 
         .class-container {
@@ -33,6 +31,7 @@ $dark-nighthawk-blue: #021a3aff;
             background: $dark-nighthawk-blue;
             height: 100%;
             width: 100%;
+            border-radius: .5em;
 
             .class {
                 .class-name {
@@ -53,20 +52,39 @@ $dark-nighthawk-blue: #021a3aff;
         }
     }
 
+    .spacer {
+        flex: 1;
+        background: none;
+    }
+
     .user-assignments {
         display: flex;
-        flex: 2;
+        flex: 6;
+        flex-direction: column;
 
         .assignment-dropdown-container {
             display: flex;
+            position: absolute;
+            transform: translateY(-1.5vw);
             background: $nighthawk-blue;
+            width: 20%;
+            height: 4vw;
+            border-radius: .5em;
+            padding: 1vw;
+            padding-left: 2vw;
+            margin-right: auto;
+            font-family: $nighthawk-font2;
+            font-size: 2vw;
+            
         }
 
         .assignment-list-container {
             display: flex;
             background: $dark-nighthawk-blue;
             height: 100%;
-            width: 100%;
+            width: 95%;
+            margin: auto;
+            border-radius: 0.5em;
         }
     }
 }
