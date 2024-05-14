@@ -9,6 +9,16 @@ permalink: /dashboard-test/
     <div class="user-classes">
         <div class="title-container">YOUR CLASSES:</div> <!-- arrgh!! -->
         <div class="class-container">
+            <div class="class-row">
+                <div class="class-item">
+                    <div class="class-name">AP Balling</div>
+                    <div class="class-buttons"></div>
+                </div>
+                <div class="class-item">
+                    <div class="class-name">AP Balling</div>
+                    <div class="class-buttons"></div>
+                </div>
+            </div>
             <!-- tester stuff -->
         </div>
     </div>
