@@ -1,6 +1,29 @@
 .dashboard-container {
     background: red;
     display: flex;
-    height: 40vh;
+    flex-direction: row;
+    height: 40vw;
     width: 100%;
+    margin-top: 5em;
+    margin-bottom: 4em;
+
+    .user-classes {
+        .title-container {
+
+        }
+
+        .class-container {
+
+        }
+    }
+
+    .user-assignments {
+        .assignment-dropdown-container {
+
+        }
+
+        .assignment-list-container {
+            
+        }
+    }
 }
