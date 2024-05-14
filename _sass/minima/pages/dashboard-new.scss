@@ -1,3 +1,5 @@
+$dark-nighthawk-blue: #021a3aff;
+
 .dashboard-container {
     background: red;
     display: flex;
@@ -9,21 +11,21 @@
 
     .user-classes {
         .title-container {
-
+            background: $nighthawk-blue;
         }
 
         .class-container {
-
+            background: $dark-nighthawk-blue;
         }
     }
 
     .user-assignments {
         .assignment-dropdown-container {
-
+            background: $nighthawk-blue;
         }
 
         .assignment-list-container {
-            
+            background: $dark-nighthawk-blue;
         }
     }
 }
