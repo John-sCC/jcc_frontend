@@ -60,6 +60,10 @@ document.getElementById('composeForm').addEventListener('submit', function(event
     formData.forEach((value, key) => {
         message[key] = value;
     });
+    message["to"] = cookies.get({
+    url: "http://127.0.0.1:4000",
+    name: "jwtToken",
+  });
     console.log(message);
     // Send message data to API
     fetch('http://localhost:8911/api/messages', {
