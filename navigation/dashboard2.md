@@ -18,6 +18,10 @@ permalink: /dashboard-test/
                     <div class="class-name">AP Balling</div>
                     <div class="class-buttons"></div>
                 </div>
+                <div class="class-item">
+                    <div class="class-name">AP Balling</div>
+                    <div class="class-buttons"></div>
+                </div>
             </div>
             <!-- tester stuff -->
         </div>

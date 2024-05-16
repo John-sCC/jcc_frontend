@@ -41,17 +41,18 @@ $dark-nighthawk-blue: #021a3aff;
                 display: flex;
                 flex-direction: row;
                 vertical-align: middle;
+                justify-content: flex-start;
 
                 .class-item {
                     background: green;
                     height: 12vw;
-                    width: 14vw;
+                    width: 16vw;
                     margin: auto;
-                    margin-right: 4vw;
-                    margin-left: 4vw;
+                    margin-left: 4.6vw;
+                    margin-right: 0;
 
-                    &:first-child {
-                        margin-left: 8vw
+                    &:last-child {
+                        margin-right: auto;
                     }
 
                     .class-name {
