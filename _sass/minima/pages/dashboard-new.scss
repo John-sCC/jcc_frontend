@@ -34,12 +34,11 @@ $dark-nighthawk-blue: #021a3aff;
             width: 100%;
             border-radius: .5em;
             overflow-y: scroll;
-            scrollbar-color: gray gray;
+            scrollbar-color: gray $dark-nighthawk-blue;
 
             .class-row {
                 width: 100%;
                 height: 16vw;
-                background: red;
                 display: flex;
                 flex-direction: row;
                 vertical-align: middle;
