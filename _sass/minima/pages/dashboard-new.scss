@@ -26,6 +26,15 @@ $dark-nighthawk-blue: #021a3aff;
     margin-top: 5em;
     margin-bottom: 4em;
 
+    a {
+        color: white !important;
+
+        // I like this more for the links idk why
+        &:hover {
+            color: $nighthawk-green-bright !important;
+        }
+    }
+
     .user-classes {
         display: flex;
         flex: 20;
@@ -42,6 +51,7 @@ $dark-nighthawk-blue: #021a3aff;
             margin-right: auto;
             font-family: $nighthawk-font2;
             font-size: 2vw;
+            color: white;
         }
 
         .class-container {
@@ -53,6 +63,7 @@ $dark-nighthawk-blue: #021a3aff;
             border-radius: .5em;
             overflow-y: scroll;
             scrollbar-color: gray $dark-nighthawk-blue;
+            color: white;
 
             .class-row {
                 width: 100%;
@@ -78,6 +89,7 @@ $dark-nighthawk-blue: #021a3aff;
                     display: flex;
                     flex-direction: column;
                     font-family: $nighthawk-font2;
+                    color: white;
 
                     $radius: 0.8vw;
                     border-radius: $radius;
@@ -141,7 +153,7 @@ $dark-nighthawk-blue: #021a3aff;
             margin-right: auto;
             font-family: $nighthawk-font2;
             font-size: 2vw;
-            
+            color: white;
         }
 
         .assignment-list-container {
@@ -193,16 +205,12 @@ $dark-nighthawk-blue: #021a3aff;
                         font-size: 1.3vw;
                         margin-top: auto;
                         line-height: 1.7vw;
-
-                        @include color-hover(rgba(255, 255, 255, 0.87), $nighthawk-green-bright)
                     }
     
                     .class-name {
                         height: 1vw;
                         font-size: 0.8vw;
                         font-weight: bold;
-
-                        @include color-hover(rgba(255, 255, 255, 0.87), $nighthawk-green-bright)
                     }
     
                     .assignment-info {
