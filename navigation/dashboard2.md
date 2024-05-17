@@ -44,7 +44,16 @@ permalink: /dashboard-test/
     <div class="user-assignments">
         <div class="assignment-dropdown-container">TO-DO:</div>
         <div class="assignment-list-container">
-            <!-- Probably a table here -->
+            <div class="assignment-list-item">
+                <div class="assignment-icon-container">
+                <img src="../images/icons/white-assignment-icon.png">
+                </div>
+                <div class="assignment-text-container">
+                    <div class="assignment-name">Freaky Narrative</div>
+                    <div class="class-name">AP Gamer Gunk</div>
+                    <div class="assignment-info">100 pts | May 14th at 11:59 PM</div>
+                </div>
+            </div>
         <div>
     </div>
 </div>

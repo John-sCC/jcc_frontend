@@ -141,11 +141,51 @@ $dark-nighthawk-blue: #021a3aff;
 
         .assignment-list-container {
             display: flex;
+            flex-direction: column;
             background: $dark-nighthawk-blue;
             height: 100%;
             width: 95%;
             margin: auto;
             border-radius: 0.5em;
+
+            .assignment-list-item {
+                display: flex;
+                flex-direction: row;
+                height: 6vw;
+                margin: auto;
+
+                &:first-child {
+                    margin-top: 4vw;
+                }
+
+                .assignment-icon-container {
+                    margin: auto;
+                    flex: 1;
+
+                    img {
+                        width: 3vw;
+                        height: 3vw;
+                    }
+                }
+    
+                .assignment-text-container {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 4;
+    
+                    .assignment-name {
+    
+                    }
+    
+                    .class-name {
+    
+                    }
+    
+                    .assignment-info {
+    
+                    }
+                }
+            }
         }
     }
 }
