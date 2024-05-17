@@ -98,6 +98,7 @@ $dark-nighthawk-blue: #021a3aff;
                         margin-right: auto;
                     }
 
+                    // default
                     .class-name {
                         display: flex;
                         flex: 3;
@@ -107,6 +108,75 @@ $dark-nighthawk-blue: #021a3aff;
                         justify-content: center;
                     }
     
+                    // when editing
+                    .class-options {
+                        display: flex;
+                        flex-direction: column;
+                        background: $grayish;
+                        flex: 3;
+                        justify-content: center;
+                        text-align: center;
+                    
+                        .colors-row {
+                            display: flex;
+                            flex-direction: row;
+                            flex: 1
+                        }
+                    
+                        .color-square {
+                            width: 2vw;
+                            height: 2vw;
+                            background-color: red;
+                            margin: auto;
+                            border-radius: 0.4vw;
+                            border: 0.1vw solid black;
+
+                            // different hover because we don't want to change color
+                            &:hover {
+                                cursor: pointer;
+                                user-select: none;
+                            }
+                        }
+                    
+                        .custom-color {
+                            display: flex;
+                            flex-direction: row;
+                            flex: 1;
+
+                            input {
+                                height: 2vw;
+                                width: 11.8vw;
+                                margin: auto;
+                            }
+                        }
+                    
+                        .buttons {
+                            flex: 1;
+                            vertical-align: middle;
+
+                            button {
+                                color: white;
+                                font-family: $nighthawk-font2;
+                                border: 0.1vw black solid;
+                                border-radius: 0.1vw;
+                                width: 7vw;
+                                font-size: 1vw;
+                    
+                                &:first-child {
+                                    background-color: $grayish;
+                                    color: black;
+                                    @include basic-hover(light);
+                                }
+                    
+                                &:last-child {
+                                    background-color: $nighthawk-green-bright;
+                                    color: white;
+                                    @include basic-hover(light);
+                                }
+                            }
+                        }
+                    }
+
                     .class-buttons {
                         display: flex;
                         flex-direction: row;
