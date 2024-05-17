@@ -1,5 +1,23 @@
 $dark-nighthawk-blue: #021a3aff;
 
+@mixin image-hover() {
+    user-select: none;
+
+    // new hover to change img color
+    &:hover {
+        cursor: pointer;
+
+        // Changes to $nighthawk-green-bright, generated with https://codepen.io/sosuke/pen/Pjoqqp
+        filter: invert(43%) sepia(77%) saturate(420%) hue-rotate(107deg) brightness(94%) contrast(85%);
+        transition: filter 0.2s;
+    }
+
+    &:not(hover) {
+        filter: none;
+        transition: filter 0.2s;
+    }
+}
+
 .dashboard-container {
     display: flex;
     flex-direction: row;
@@ -91,21 +109,8 @@ $dark-nighthawk-blue: #021a3aff;
                             height: 2.5vw;
                             width: auto;
                             margin: auto;
-                            user-select: none;
 
-                            // new hover to change img color
-                            &:hover {
-                                cursor: pointer;
-
-                                // Changes to $nighthawk-green-bright, generated with https://codepen.io/sosuke/pen/Pjoqqp
-                                filter: invert(43%) sepia(77%) saturate(420%) hue-rotate(107deg) brightness(94%) contrast(85%);
-                                transition: filter 0.2s;
-                            }
-
-                            &:not(hover) {
-                                filter: none;
-                                transition: filter 0.2s;
-                            }
+                            @include image-hover();
                         }
                     }
                 }
@@ -147,42 +152,63 @@ $dark-nighthawk-blue: #021a3aff;
             width: 95%;
             margin: auto;
             border-radius: 0.5em;
+            overflow-y: scroll;
+            scrollbar-color: gray $dark-nighthawk-blue;
 
             .assignment-list-item {
                 display: flex;
                 flex-direction: row;
-                height: 6vw;
-                margin: auto;
+                height: 5vw;
+                border-bottom: 0.1vw solid #032147;
 
                 &:first-child {
-                    margin-top: 4vw;
+                    margin-top: 3vw;
                 }
 
                 .assignment-icon-container {
-                    margin: auto;
+                    display: flex;
                     flex: 1;
+                    justify-content: center;
+                    align-items: center;
+                    vertical-align: middle;
+                    margin: 1vw;
 
                     img {
-                        width: 3vw;
+                        width: auto;
                         height: 3vw;
+
+                        @include image-hover();
                     }
                 }
     
                 .assignment-text-container {
                     display: flex;
                     flex-direction: column;
-                    flex: 4;
+                    flex: 6;
+                    line-height: 1vw;
     
                     .assignment-name {
-    
+                        height: 1.4vw;
+                        font-family: $nighthawk-font2;
+                        font-size: 1.3vw;
+                        margin-top: auto;
+                        line-height: 1.7vw;
+
+                        @include color-hover(rgba(255, 255, 255, 0.87), $nighthawk-green-bright)
                     }
     
                     .class-name {
-    
+                        height: 1vw;
+                        font-size: 0.8vw;
+                        font-weight: bold;
+
+                        @include color-hover(rgba(255, 255, 255, 0.87), $nighthawk-green-bright)
                     }
     
                     .assignment-info {
-    
+                        height: 1vw;
+                        font-size: 0.5vw;
+                        margin-bottom: auto;
                     }
                 }
             }
