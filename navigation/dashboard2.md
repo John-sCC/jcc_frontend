@@ -4,7 +4,6 @@ title: Dashboard
 search_exclude: true
 permalink: /dashboard-test/
 ---
-
 <div class="dashboard-container">
     <div class="user-classes">
         <div class="title-container">YOUR CLASSES:</div> <!-- arrgh!! -->
@@ -100,3 +99,5 @@ permalink: /dashboard-test/
         </div>
     </div>
 </div>
+
+<script src="{{site.baseurl}}/assets/js/dashboard-new.js"></script>
