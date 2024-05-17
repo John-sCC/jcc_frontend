@@ -11,7 +11,6 @@ permalink: /one-variable/
     <title>One Quantitative Variable</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
-        /* Add your CSS styling here */
     </style>
 </head>
 <body>
@@ -77,7 +76,7 @@ function generateTableAndGraph() {
             break;
         case 'normalProbabilityPlot':
             // You would need to calculate the z-scores of your data to generate a normal probability plot
-            // This is a placeholder and may not work as expected
+            // This is a placeholder and may not work
             data = [{
                 x: variable,
                 y: variable,
