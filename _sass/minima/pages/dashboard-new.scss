@@ -61,6 +61,9 @@ $dark-nighthawk-blue: #021a3aff;
                     flex-direction: column;
                     font-family: $nighthawk-font2;
 
+                    $radius: 0.8vw;
+                    border-radius: $radius;
+
                     &:last-child {
                         margin-right: auto;
                     }
@@ -68,8 +71,10 @@ $dark-nighthawk-blue: #021a3aff;
                     .class-name {
                         display: flex;
                         flex: 3;
-                        justify-content: center;
                         align-items: center;
+                        font-size: 2vw;
+                        text-align: center;
+                        justify-content: center;
                     }
     
                     .class-buttons {
@@ -79,11 +84,14 @@ $dark-nighthawk-blue: #021a3aff;
                         background: lightgray;
                         flex: 1;
                         width: 100%;
+                        border-bottom-right-radius: $radius;
+                        border-bottom-left-radius: $radius;
     
                         img {
                             height: 2.5vw;
                             width: auto;
                             margin: auto;
+                            user-select: none;
 
                             // new hover to change img color
                             &:hover {
