@@ -44,15 +44,18 @@ permalink: /inbox/
             // Loop through the received data and create HTML elements to display each message
             const messageList = document.getElementById('inbox-messages');
             data.forEach(message => {
-                const listItem = document.createElement('div');
-                listItem.classList.add('message');
-                listItem.innerHTML = `
-                    <strong>ID:</strong> ${message.id}<br>
-                    <strong>From:</strong> ${message.from}<br>
-                    <strong>Subject:</strong> ${message.subject}<br>
-                    <p>${message.content}</p>
-                `;
-                messageList.appendChild(listItem);
+                if(message.to == localStorage.getItem("email")){
+                    const listItem = document.createElement('div');
+                    listItem.classList.add('message');
+                    listItem.innerHTML = `
+                        <strong>ID:</strong> ${message.id}<br>
+                        <strong>To:</strong> ${message.to}<br>
+                        <strong>From:</strong> ${message.from}<br>
+                        <strong>Subject:</strong> ${message.subject}<br>
+                        <p>${message.content}</p>
+                    `;
+                    messageList.appendChild(listItem);
+                }
             });
         })
         .catch(error => {

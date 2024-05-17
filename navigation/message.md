@@ -36,7 +36,7 @@ permalink: /message/
 <form id="composeForm">
     <div>
         <label for="to">To:</label>
-        <input type="text" id="from" name="from" required>
+        <input type="text" id="to" name="to" required>
     </div>
     <div>
         <label for="subject">Subject:</label>
@@ -51,6 +51,7 @@ permalink: /message/
 
 </body>
 <script>
+console.log(localStorage.getItem("email"))
     // Function to handle form submission
 document.getElementById('composeForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
@@ -60,10 +61,8 @@ document.getElementById('composeForm').addEventListener('submit', function(event
     formData.forEach((value, key) => {
         message[key] = value;
     });
-    message["to"] = cookies.get({
-    url: "http://127.0.0.1:4000",
-    name: "jwtToken",
-  });
+    message["from"] = localStorage.getItem("email");
+    //message["to"] = document.getElementById('username-field').value;;
     console.log(message);
     // Send message data to API
     fetch('http://localhost:8911/api/messages', {
