@@ -76,10 +76,10 @@
     <label class="text" id="testResult"></label>
     <script>
         $(document).ready(function() {
-            $('#testBtn').on('click', function() {
+            $('#testBtn').on('click', async function() {
                 var text = $('#text').val();
                 try {
-                    const response = axios.post(
+                    const response = await axios.post(
                         'https://api.sapling.ai/api/v1/aidetect',
                         {
                             key: '3FD1RYDAROYHTMOX0XL7PLKTFP06WTCP',
