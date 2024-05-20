@@ -1,7 +1,7 @@
 // Wait for HTML elements to load
 $(window).ready(function() {
     // Redirect buttons to respective pages
-    for (let link of ["classes", "sign-in", "dashboard", "about"]) {
+    for (let link of ["classes", "sign-in", "dashboard", "about", "blogs"]) {
         $(`#${link}`).click( function() { 
             location.href = `${baseurl}/${link}`
         })
