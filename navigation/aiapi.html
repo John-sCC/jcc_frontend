@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWT</title>
+    <title>AI Detector</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         .coolinput {
@@ -67,7 +67,7 @@
     </style>
 </head>
 <body>
-    <h2>JWT Demo</h2>
+    <h2>AI Detector</h2>
     <div class="coolinput">
         <label class="text">Text:</label>
         <input type="text" id="text" class="input">
@@ -75,9 +75,26 @@
     <button id="testBtn">Test AI</button>
     <label class="text" id="testResult"></label>
     <script>
+        import axios from 'axios';
         $(document).ready(function() {
             $('#testBtn').on('click', function() {
                 var text = $('#text').val();
+                try {
+                    const response = axios.post(
+                        'https://api.sapling.ai/api/v1/aidetect',
+                        {
+                            key: '3FD1RYDAROYHTMOX0XL7PLKTFP06WTCP',
+                            text,
+                        },
+                    );
+                    const {status, data} = response;
+                    console.log({status});
+                    console.log(JSON.stringify(data, null, 4));
+                } catch (err) {
+                    const { msg } = err.response.data;
+                    console.log({err: msg});
+                }
+                /*
                 fetch('https://api.sapling.ai/api/v1/aidetect', {
                     method: 'POST',
                     headers: {
@@ -93,7 +110,7 @@
                             if (data.status == 200) {
                                 console.log(JSON.stringify(data, null, 4));
                             }
-                        })
+                        })*/
             });
         });
     </script>
