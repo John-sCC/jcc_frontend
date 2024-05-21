@@ -19,8 +19,13 @@ permalink: /assignment-data
 </div>
 
 <script>
-    const local = 'http://localhost:8911';
-    const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
+    var local = "http://localhost:8911";
+    var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+    const currentUrl = window.location.href;
+    var fetchUrl = deployed;
+    if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+        fetchUrl = local;
+    }
 
     // this is method to extract the query parameter from URL
     function getParameterByName(name, url) {
@@ -38,7 +43,15 @@ permalink: /assignment-data
         var assignmentId = getParameterByName('id');
         if (assignmentId) {
             // Fetch assignment data using the assignment ID
-            fetch(`${deployed}/api/assignment/${assignmentId}`)
+            fetch(`${fetchUrl}/api/assignment/cookie/${assignmentId}`, {
+                method: 'GET',
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'include', // include, *same-origin, omit
+                headers: {
+                    // No need to set 'content-type' for FormData, apparently
+                },
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -72,7 +85,7 @@ permalink: /assignment-data
         const submissionTime = new Date().toISOString();
 
         try {
-            const response = await fetch(`${deployed}/api/assignment/submit/${getParameterByName('id')}/${submissionTime}`, {
+            const response = await fetch(`${fetchUrl}/api/assignment/submit/${getParameterByName('id')}/${submissionTime}`, {
                 method: 'POST',
                 body: formData,
                 mode: 'cors', // no-cors, *cors, same-origin
