@@ -26,10 +26,10 @@ permalink: /sign-up/
       <h1 id="login-header">Sign-Up</h1>
       <!--<div id="login-subheader">If you already have an account.</div>-->
       <form id="login-form">
-        <input type="text" name="username" id="username-field" class="signup-form-field" placeholder="Email">
-        <input type="text" name="firstname" id="firstname-field" class="signup-form-field" placeholder="First Name">
-        <input type="text" name="lastname" id="lastname-field" class="signup-form-field" placeholder="Last Name">
-        <input type="password" name="password" id="password-field" class="signup-form-field" placeholder="Password">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email">
+        <input type="text" name="firstname" id="firstname-field" class="login-form-field" placeholder="First Name">
+        <input type="text" name="lastname" id="lastname-field" class="login-form-field" placeholder="Last Name">
+        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
       </form>
       <input type="submit" value="Sign Up" id="login-form-submit" onclick="signIn()">
     </div>
