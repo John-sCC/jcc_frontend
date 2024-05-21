@@ -65,6 +65,7 @@ permalink: /inbox/
             background-color: #eaeaea;
             color: #002147ff;
         }
+        .hr
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -80,21 +81,11 @@ permalink: /inbox/
     <h1>Inbox</h1>
     <a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>
     <div class="container">
-        <div class="sidebar">
-            <!-- <div class="email-item">
-                <h4>Subject: Meeting Reminder</h4>
-                <p>From: John Doe</p>
-                <p>Snippet of the email...</p>
-            </div>
-            <div class="email-item">
-                <h4>Subject: Project Update</h4>
-                <p>From: Jane Smith</p>
-                <p>Snippet of the email...</p>
-            </div> -->
+        <div class="sidebar" id="message-list">
             <!-- Add more email items here -->
         </div>
         <div class="main-content">
-            <div class="email-content">
+            <div class="email-content" id="message-content">
                 <h2>Email Subject</h2>
                 <p>From: Sender Name</p>
                 <p>Date: Date and Time</p>
@@ -111,19 +102,30 @@ permalink: /inbox/
         .then(response => response.json())
         .then(data => {
             // Loop through the received data and create HTML elements to display each message
-            const messageList = document.getElementById('sidebar');
+            const messageContent = document.getElementById('message-content');
+            const messageList = document.getElementById('message-list');
             data.forEach(message => {
                 if(message.to == localStorage.getItem("email")){
                     const listItem = document.createElement('div');
                     listItem.classList.add('email-item');
                     listItem.innerHTML = `
-                        <strong>ID:</strong> ${message.id}<br>
                         <strong>To:</strong> ${message.to}<br>
                         <strong>From:</strong> ${message.from}<br>
                         <strong>Subject:</strong> ${message.subject}<br>
                         <p>${message.content}</p>
                     `;
                     messageList.appendChild(listItem);
+                    listItem.addEventListener('click', () => {
+                    messageContent.innerHTML = `
+                        <div class="email-content">
+                            <h2>${message.subject}</h2>
+                            <p>To: ${message.to}</p>
+                            <p>From: ${message.from}</p>
+                            <hr>
+                            <p>${message.content}</p>
+                        </div>
+                    `;
+                });
                 }
             });
         })
