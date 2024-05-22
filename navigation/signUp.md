@@ -3,11 +3,6 @@ layout: default
 title: Sign-Up
 permalink: /sign-up/
 ---
----
-layout: default
-title: Sign-Up
-permalink: /sign-up/
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +22,6 @@ permalink: /sign-up/
       padding: 5px;
       border-radius: 3px;
       cursor: text;
-      position: relative; /* Added to position the dropdown relative to this container */
     }
 
     .tags-input-container input {
@@ -54,13 +48,10 @@ permalink: /sign-up/
     }
 
     .suggestions-container {
-      position: absolute;
       z-index: 1000;
       width: calc(100% - 10px); /* Adjust to match the width of the tags input container */
       background-color: #fff;
       border: 1px solid #ddd;
-      top: 100%; /* Position below the input container */
-      left: 0; /* Align with the left of the input container */
       margin-top: 5px; /* Optional: Add some space between the input and dropdown */
     }
 
