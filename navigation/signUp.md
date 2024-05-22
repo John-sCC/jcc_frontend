@@ -16,6 +16,36 @@ permalink: /sign-up/
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
   <style>
+    .tags-input-container {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .tags-input-container input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+    }
+
+    .tag {
+      background-color: #007BFF;
+      color: white;
+      padding: 5px 10px;
+      margin: 2px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag .remove-tag {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
     .suggestions-container {
       position: relative;
       z-index: 1000;
@@ -33,27 +63,6 @@ permalink: /sign-up/
     .suggestion:hover {
       background-color: #f0f0f0;
     }
-
-    .tags-container {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .tag {
-      background-color: #007BFF;
-      color: white;
-      padding: 5px 10px;
-      margin: 5px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-    }
-
-    .tag .remove-tag {
-      margin-left: 10px;
-      cursor: pointer;
-    }
   </style>
 </head>
 
@@ -70,9 +79,11 @@ permalink: /sign-up/
         <input type="text" name="firstname" id="firstname-field" class="login-form-field" placeholder="First Name">
         <input type="text" name="lastname" id="lastname-field" class="login-form-field" placeholder="Last Name">
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-        <input type="text" name="subject" id="subject-field" class="login-form-field" placeholder="Favorite Subject">
+        <div class="tags-input-container">
+          <div id="tags-input"></div>
+          <input type="text" name="subject" id="subject-field" class="login-form-field" placeholder="Favorite Subject">
+        </div>
         <div id="subject-suggestions" class="suggestions-container"></div>
-        <div id="selected-tags" class="tags-container"></div>
       </form>
       <input type="submit" value="Sign Up" id="login-form-submit" onclick="signIn()">
     </div>
@@ -116,7 +127,7 @@ permalink: /sign-up/
     function addTag(subject) {
       if (!selectedSubjects.includes(subject)) {
         selectedSubjects.push(subject);
-        const tagsContainer = document.getElementById('selected-tags');
+        const tagsContainer = document.getElementById('tags-input');
         const tagDiv = document.createElement('div');
         tagDiv.className = 'tag';
         tagDiv.textContent = subject;
@@ -139,7 +150,7 @@ permalink: /sign-up/
       const index = selectedSubjects.indexOf(subject);
       if (index > -1) {
         selectedSubjects.splice(index, 1);
-        const tagsContainer = document.getElementById('selected-tags');
+        const tagsContainer = document.getElementById('tags-input');
         tagsContainer.innerHTML = '';
         selectedSubjects.forEach(tag => addTag(tag));
 
