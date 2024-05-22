@@ -27,18 +27,32 @@ permalink: /sign-up/
       cursor: pointer;
       padding: 8px;
       width: calc(100% - 16px);
+      color: black; /* Set the text color to black */
     }
 
     .suggestion:hover {
       background-color: #f0f0f0;
     }
 
-    .suggestions-container .suggestion {
-      border-bottom: none;
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
 
-    .suggestions-container .suggestion:last-child {
-      border-bottom: 1px solid #ddd;
+    .tag {
+      background-color: #007BFF;
+      color: white;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag .remove-tag {
+      margin-left: 10px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -58,6 +72,7 @@ permalink: /sign-up/
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
         <input type="text" name="subject" id="subject-field" class="login-form-field" placeholder="Favorite Subject">
         <div id="subject-suggestions" class="suggestions-container"></div>
+        <div id="selected-tags" class="tags-container"></div>
       </form>
       <input type="submit" value="Sign Up" id="login-form-submit" onclick="signIn()">
     </div>
@@ -65,8 +80,10 @@ permalink: /sign-up/
 
   <script>
     const subjects = [
-      'Biology', 'Chemistry', 'Physics', 'Computer Science', 'History', 'Engineering', 'Cybersecurity', 'Psychology','English'
+      'Biology', 'Chemistry', 'Physics', 'Computer Science', 'History', 'Engineering', 'Cybersecurity', 'Psychology'
     ];
+
+    const selectedSubjects = []; // Array to store selected subjects
 
     document.getElementById('subject-field').addEventListener('input', function() {
       const input = this.value.toLowerCase();
@@ -80,8 +97,9 @@ permalink: /sign-up/
           suggestionDiv.className = 'suggestion';
           suggestionDiv.textContent = subject;
           suggestionDiv.onclick = function() {
-            document.getElementById('subject-field').value = subject;
+            addTag(subject);
             suggestionsContainer.innerHTML = '';
+            document.getElementById('subject-field').value = '';
           };
           suggestionsContainer.appendChild(suggestionDiv);
         });
@@ -94,6 +112,40 @@ permalink: /sign-up/
         suggestionsContainer.innerHTML = '';
       }
     });
+
+    function addTag(subject) {
+      if (!selectedSubjects.includes(subject)) {
+        selectedSubjects.push(subject);
+        const tagsContainer = document.getElementById('selected-tags');
+        const tagDiv = document.createElement('div');
+        tagDiv.className = 'tag';
+        tagDiv.textContent = subject;
+
+        const removeSpan = document.createElement('span');
+        removeSpan.className = 'remove-tag';
+        removeSpan.textContent = 'x';
+        removeSpan.onclick = function() {
+          removeTag(subject);
+        };
+
+        tagDiv.appendChild(removeSpan);
+        tagsContainer.appendChild(tagDiv);
+
+        console.log(selectedSubjects); // Log the array of selected subjects
+      }
+    }
+
+    function removeTag(subject) {
+      const index = selectedSubjects.indexOf(subject);
+      if (index > -1) {
+        selectedSubjects.splice(index, 1);
+        const tagsContainer = document.getElementById('selected-tags');
+        tagsContainer.innerHTML = '';
+        selectedSubjects.forEach(tag => addTag(tag));
+
+        console.log(selectedSubjects); // Log the array of selected subjects
+      }
+    }
 
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
