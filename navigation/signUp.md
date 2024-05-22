@@ -4,13 +4,12 @@ title: Sign-Up
 permalink: /sign-up/
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
-
   <link rel="stylesheet" href="{{site.baseurl}}/signIn.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +21,7 @@ permalink: /sign-up/
       border: 1px solid #ddd;
       padding: 5px;
       border-radius: 3px;
+      cursor: text;
     }
 
     .tags-input-container input {
@@ -47,17 +47,17 @@ permalink: /sign-up/
     }
 
     .suggestions-container {
-      position: relative;
+      position: absolute;
       z-index: 1000;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #ddd;
     }
 
     .suggestion {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      cursor: pointer;
       padding: 8px;
-      width: calc(100% - 16px);
       color: black; /* Set the text color to black */
+      cursor: pointer;
     }
 
     .suggestion:hover {
@@ -65,7 +65,6 @@ permalink: /sign-up/
     }
   </style>
 </head>
-
 <body>
   <main id="main-holder">
     <div id="brand-logo">
@@ -73,14 +72,12 @@ permalink: /sign-up/
     </div>
     <div id="login-div">
       <h1 id="login-header">Sign-Up</h1>
-      <!--<div id="login-subheader">If you already have an account.</div>-->
       <form id="login-form">
         <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email">
         <input type="text" name="firstname" id="firstname-field" class="login-form-field" placeholder="First Name">
         <input type="text" name="lastname" id="lastname-field" class="login-form-field" placeholder="Last Name">
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-        <div class="tags-input-container">
-          <div id="tags-input"></div>
+        <div class="tags-input-container" id="tags-input-container">
           <input type="text" name="subject" id="subject-field" class="login-form-field" placeholder="Favorite Subject">
         </div>
         <div id="subject-suggestions" class="suggestions-container"></div>
@@ -124,10 +121,15 @@ permalink: /sign-up/
       }
     });
 
+    document.getElementById('tags-input-container').addEventListener('click', function() {
+      document.getElementById('subject-field').focus();
+    });
+
     function addTag(subject) {
       if (!selectedSubjects.includes(subject)) {
         selectedSubjects.push(subject);
-        const tagsContainer = document.getElementById('tags-input');
+
+        const tagsContainer = document.getElementById('tags-input-container');
         const tagDiv = document.createElement('div');
         tagDiv.className = 'tag';
         tagDiv.textContent = subject;
@@ -140,7 +142,7 @@ permalink: /sign-up/
         };
 
         tagDiv.appendChild(removeSpan);
-        tagsContainer.appendChild(tagDiv);
+        tagsContainer.insertBefore(tagDiv, document.getElementById('subject-field'));
 
         console.log(selectedSubjects); // Log the array of selected subjects
       }
@@ -150,9 +152,36 @@ permalink: /sign-up/
       const index = selectedSubjects.indexOf(subject);
       if (index > -1) {
         selectedSubjects.splice(index, 1);
-        const tagsContainer = document.getElementById('tags-input');
+        const tagsContainer = document.getElementById('tags-input-container');
         tagsContainer.innerHTML = '';
         selectedSubjects.forEach(tag => addTag(tag));
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.name = 'subject';
+        inputField.id = 'subject-field';
+        inputField.className = 'login-form-field';
+        inputField.placeholder = 'Favorite Subject';
+        inputField.addEventListener('input', function() {
+          const input = this.value.toLowerCase();
+          const suggestionsContainer = document.getElementById('subject-suggestions');
+          suggestionsContainer.innerHTML = '';
+
+          if (input) {
+            const filteredSubjects = subjects.filter(subject => subject.toLowerCase().includes(input));
+            filteredSubjects.forEach(subject => {
+              const suggestionDiv = document.createElement('div');
+              suggestionDiv.className = 'suggestion';
+              suggestionDiv.textContent = subject;
+              suggestionDiv.onclick = function() {
+                addTag(subject);
+                suggestionsContainer.innerHTML = '';
+                document.getElementById('subject-field').value = '';
+              };
+              suggestionsContainer.appendChild(suggestionDiv);
+            });
+          }
+        });
+        tagsContainer.appendChild(inputField);
 
         console.log(selectedSubjects); // Log the array of selected subjects
       }
@@ -221,5 +250,4 @@ permalink: /sign-up/
     }
   </script>
 </body>
-
 </html>
