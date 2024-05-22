@@ -87,7 +87,7 @@ permalink: /sign-up/
 
   <script>
     const subjects = [
-      'Biology', 'Chemistry', 'Physics', 'Computer Science', 'History', 'Engineering', 'Cybersecurity', 'Psychology','Bioengineering','Biochemistry','Calculus','Statistics','English','Literature','Physical Education','ENS','American Computer'
+      'Biology', 'Chemistry', 'Physics', 'Computer Science', 'History', 'Engineering', 'Cybersecurity', 'Psychology','Bioengineering','Biochemistry','Calculus','Statistics','English','Literature','Physical Education','ENS','3D Animation','Studio Art','Music Theory','Art History','Government and Politics','Environmental Science'
     ];
 
     const selectedSubjects = []; // Array to store selected subjects
