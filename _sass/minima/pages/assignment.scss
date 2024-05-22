@@ -12,4 +12,65 @@
         font-family: 'Arial';
         font-size: 120%;
     }
+    .data-box {
+        display: flex; /* Enable flexbox layout */
+        justify-content: space-around; /* Distribute space around items */
+        align-items: center; /* Center items vertically */
+        width: 100%;
+        border: 5px solid $nighthawk-gold; /* Adjust thickness as needed */
+        background-color: $nighthawk-blue;
+        color: white;
+        font-family: $nighthawk-font2;
+        border-radius: 15px; /* Adjust the radius as needed */
+        padding: 10px; /* Adjust padding as needed */
+        box-sizing: border-box;
+        white-space: nowrap; /* Prevents text from breaking into multiple lines */
+        overflow: hidden; /* Ensures content that overflows is hidden */
+        text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
+        font-size: 120%;
+    }
+    
+    .data-item {
+        margin: 0 10px; /* Optional: Add horizontal margin between items */
+    }
+
+    .divider {
+        margin: 0 10px; /* Same horizontal margin as data-item for consistency */
+        color: white; /* Ensure the separator is visible with the white text color */
+    }
+    
+    .data-box span {
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    .split-container {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+      }
+      
+      .split-container .left-side,
+      .split-container .right-side {
+        flex: 1;
+        padding: 10px;
+      }
+      
+      .split-container .divider {
+        width: 2px;
+        background-color: white;
+        margin: 20px;
+      }
+    
+    // @media (max-width: 600px) { /* Adjust the breakpoint as needed */
+    //     .data-box {
+    //         font-size: 12px; /* Adjust to a smaller font size */
+    //     }
+    // }
+    
+    // @media (max-width: 400px) { /* Adjust the breakpoint as needed */
+    //     .data-boxs {
+    //         font-size: 10px; /* Adjust to an even smaller font size */
+    //     }
+    // }
 }

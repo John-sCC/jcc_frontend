@@ -6,16 +6,23 @@ permalink: /assignment-data
 ---
 
 <div class="assignment">
-    <h1 id="assignment_name"></h1>
-    <h2 id="due_date">Loading...</h2>
-    <p id="content"></p>
-</div>
-<div id="submission_body" style="display: none;">
+    <h1 id="assignment_name">...</h1>
+    <div class="data-box" id="data_box"></div>
+    <div class="split-container">
+    <div class="left-side">
+        <p id="content"></p>
+    </div>
+    <div class="divider"></div>
+    <div class="right-side">
+        <div id="submission_body" style="display: none;">
     <h2>File Upload</h2> 
     <input type="file" id="fileInput" style="display: none">
     <label class="label" for="fileInput" id="customButton">Choose a File</label>
     <p id="fileName"></p>
     <button class="button" id="upload" onclick="submit()">Submit Assignment</button>
+</div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -26,6 +33,18 @@ permalink: /assignment-data
     if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
         fetchUrl = local;
     }
+
+    // variables for dates
+    let dateFormatter = new Intl.DateTimeFormat('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
+    let timeFormatter = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
 
     // this is method to extract the query parameter from URL
     function getParameterByName(name, url) {
@@ -49,7 +68,7 @@ permalink: /assignment-data
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'include', // include, *same-origin, omit
                 headers: {
-                    // No need to set 'content-type' for FormData, apparently
+                    // No need to set anything here
                 },
             })
                 .then(response => {
@@ -60,10 +79,29 @@ permalink: /assignment-data
                 })
                 .then(data => {
                     // Handle fetched assignment data here
-                    console.log('Fetched assignment data:', data);
-                    document.getElementById('assignment_name').innerHTML = data.name;
-                    document.getElementById('due_date').innerHTML = `Due: ${new Date(data.dateDue).toLocaleString()}`;
-                    document.getElementById('content').innerHTML = data.content;
+                    var assignmentData = data.data;
+                    console.log('Fetched assignment data from ' + assignmentData.name + ':', data);
+                    document.getElementById('assignment_name').innerHTML = assignmentData.name;
+                    var assignmentDate = new Date(assignmentData.dateDue);
+                    // chatGPT helped with this one!!
+                    let formattedDate = dateFormatter.format(assignmentDate);
+                    let formattedTime = timeFormatter.format(assignmentDate);
+                    let formattedDateTime = `${formattedDate} (${formattedTime})`;
+                    const dataBox = document.getElementById('data_box');
+                    // populating the data box with flex items
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Due: ${formattedDateTime}`}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Points: ${assignmentData.points}`}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Allowed Files: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Submissions: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`}));
+                    // document.getElementById('data_box').innerHTML = "" // populating the data box with info
+                    //                                               + `Due: ${formattedDateTime}`
+                    //                                               + `  |  Points: ${assignmentData.points}`
+                    //                                               + `  |  Allowed Files: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`
+                    //                                               + `  |  Submissions: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`;
+                    document.getElementById('content').innerHTML = assignmentData.content;
                     document.getElementById('submission_body').style = "display: block;";
                 })
                 .catch(error => console.error('Error fetching assignment data:', error));
