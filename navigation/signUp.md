@@ -29,7 +29,6 @@ permalink: /sign-up/
       outline: none;
       flex: 1;
       padding: 5px;
-      width: 40px;
     }
 
     .tag {
@@ -48,8 +47,7 @@ permalink: /sign-up/
     }
 
     .suggestions-container {
-      z-index: 1000;
-      width: calc(100% - 10px); /* Adjust to match the width of the tags input container */
+      z-index: 100;
       background-color: #fff;
       border: 1px solid #ddd;
       margin-top: 5px; /* Optional: Add some space between the input and dropdown */
