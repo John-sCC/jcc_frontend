@@ -3,7 +3,6 @@ layout: default
 title: Sign-Up
 permalink: /sign-up/
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +20,6 @@ permalink: /sign-up/
       border: 1px solid #ddd;
       padding: 5px;
       border-radius: 3px;
-      cursor: text;
     }
 
     .tags-input-container input {
@@ -29,6 +27,7 @@ permalink: /sign-up/
       outline: none;
       flex: 1;
       padding: 5px;
+      min-width: 150px;
     }
 
     .tag {
@@ -123,6 +122,14 @@ permalink: /sign-up/
 
     document.getElementById('tags-input-container').addEventListener('click', function() {
       document.getElementById('subject-field').focus();
+    });
+
+    document.getElementById('subject-field').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && this.value.trim() !== '') {
+        event.preventDefault();
+        addTag(this.value.trim());
+        this.value = '';
+      }
     });
 
     function addTag(subject) {
