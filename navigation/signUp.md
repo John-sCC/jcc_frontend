@@ -16,10 +16,12 @@ permalink: /sign-up/
   <style>
     .tags-input-container {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       border: 1px solid #ddd;
       padding: 5px;
       border-radius: 3px;
+      cursor: text;
     }
 
     .tags-input-container input {
@@ -55,7 +57,7 @@ permalink: /sign-up/
 
     .suggestion {
       padding: 8px;
-      color: black; /* Set the text color to black */
+      color: black;
       cursor: pointer;
     }
 
@@ -77,7 +79,7 @@ permalink: /sign-up/
         <input type="text" name="lastname" id="lastname-field" class="login-form-field" placeholder="Last Name">
         <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
         <div class="tags-input-container" id="tags-input-container">
-          <input type="text" name="subject" id="subject-field" class="login-form-field" placeholder="Favorite Subject">
+          <input type="text" id="subject-input" placeholder="Favorite Subject">
         </div>
         <div id="subject-suggestions" class="suggestions-container"></div>
       </form>
@@ -92,7 +94,7 @@ permalink: /sign-up/
 
     const selectedSubjects = []; // Array to store selected subjects
 
-    document.getElementById('subject-field').addEventListener('input', function() {
+    document.getElementById('subject-input').addEventListener('input', function() {
       const input = this.value.toLowerCase();
       const suggestionsContainer = document.getElementById('subject-suggestions');
       suggestionsContainer.innerHTML = '';
@@ -106,7 +108,7 @@ permalink: /sign-up/
           suggestionDiv.onclick = function() {
             addTag(subject);
             suggestionsContainer.innerHTML = '';
-            document.getElementById('subject-field').value = '';
+            document.getElementById('subject-input').value = '';
           };
           suggestionsContainer.appendChild(suggestionDiv);
         });
@@ -115,16 +117,16 @@ permalink: /sign-up/
 
     document.addEventListener('click', function(event) {
       const suggestionsContainer = document.getElementById('subject-suggestions');
-      if (!suggestionsContainer.contains(event.target) && event.target.id !== 'subject-field') {
+      if (!suggestionsContainer.contains(event.target) && event.target.id !== 'subject-input') {
         suggestionsContainer.innerHTML = '';
       }
     });
 
     document.getElementById('tags-input-container').addEventListener('click', function() {
-      document.getElementById('subject-field').focus();
+      document.getElementById('subject-input').focus();
     });
 
-    document.getElementById('subject-field').addEventListener('keydown', function(event) {
+    document.getElementById('subject-input').addEventListener('keydown', function(event) {
       if (event.key === 'Enter' && this.value.trim() !== '') {
         event.preventDefault();
         addTag(this.value.trim());
@@ -149,7 +151,7 @@ permalink: /sign-up/
         };
 
         tagDiv.appendChild(removeSpan);
-        tagsContainer.insertBefore(tagDiv, document.getElementById('subject-field'));
+        tagsContainer.insertBefore(tagDiv, document.getElementById('subject-input'));
 
         console.log(selectedSubjects); // Log the array of selected subjects
       }
@@ -164,9 +166,7 @@ permalink: /sign-up/
         selectedSubjects.forEach(tag => addTag(tag));
         const inputField = document.createElement('input');
         inputField.type = 'text';
-        inputField.name = 'subject';
-        inputField.id = 'subject-field';
-        inputField.className = 'login-form-field';
+        inputField.id = 'subject-input';
         inputField.placeholder = 'Favorite Subject';
         inputField.addEventListener('input', function() {
           const input = this.value.toLowerCase();
@@ -182,7 +182,7 @@ permalink: /sign-up/
               suggestionDiv.onclick = function() {
                 addTag(subject);
                 suggestionsContainer.innerHTML = '';
-                document.getElementById('subject-field').value = '';
+                document.getElementById('subject-input').value = '';
               };
               suggestionsContainer.appendChild(suggestionDiv);
             });
