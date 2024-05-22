@@ -29,7 +29,7 @@ permalink: /sign-up/
       outline: none;
       flex: 1;
       padding: 5px;
-      min-width: 50px;
+      min-width: 20px;
     }
 
     .tag {
