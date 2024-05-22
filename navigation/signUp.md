@@ -14,6 +14,13 @@ permalink: /sign-up/
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
   <style>
+    .login-form-field {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+
     .tags-input-container {
       display: flex;
       align-items: center;
@@ -22,6 +29,9 @@ permalink: /sign-up/
       padding: 5px;
       border-radius: 3px;
       cursor: text;
+      width: 100%;
+      max-width: 400px; /* Set a fixed width matching other input fields */
+      box-sizing: border-box;
     }
 
     .tags-input-container input {
@@ -29,7 +39,7 @@ permalink: /sign-up/
       outline: none;
       flex: 1;
       padding: 5px;
-      min-width: 150px;
+      width: auto;
     }
 
     .tag {
@@ -48,11 +58,13 @@ permalink: /sign-up/
     }
 
     .suggestions-container {
+      position: absolute;
       z-index: 1000;
-      width: calc(100% - 10px); /* Adjust to match the width of the tags input container */
+      width: 100%;
+      max-width: 400px; /* Match the width of the tags input container */
       background-color: #fff;
       border: 1px solid #ddd;
-      margin-top: 5px; /* Optional: Add some space between the input and dropdown */
+      margin-top: 5px;
     }
 
     .suggestion {
