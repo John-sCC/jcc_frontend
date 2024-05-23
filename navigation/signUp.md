@@ -225,7 +225,7 @@ permalink: /sign-up/
 
       console.log(requestBody);
 
-      fetch(local + '/api/person/post', {
+      fetch(deployed + '/api/person/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
