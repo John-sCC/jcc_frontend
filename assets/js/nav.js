@@ -1,18 +1,18 @@
 // Wait for HTML elements to load
 $(window).ready(function() {
     // Redirect buttons to respective pages
-    for (let link of ["classes", "sign-in", "blogs", "about"]) {
+    for (let link of ["classes", "sign-in", "dashboard", "about", "blogs"]) {
         $(`#${link}`).click( function() { 
             location.href = `${baseurl}/${link}`
         })
     }
 
-    // Redirect logo and title clicks to index
-    for (let home of ['nav-logo', 'nav-title']) {
-        $(`.${home}`).click( function() { 
-            location.href = `${baseurl}/`
-        })
-    }
+    //Redirect logo and title clicks to index
+    // for (let home of ['nav-logo', 'nav-title']) {
+    //     $(`.${home}`).click( function() { 
+    //         location.href = `${baseurl}/`
+    //     })
+    // }
 
     window.onscroll = function () { updateDivs() }
 
@@ -29,7 +29,7 @@ function updateDivs() {
     const base = ((window.innerWidth * .3) / 6) 
 
     // Define the farthest left button to move for logo
-    const classButton = $("#classes")[0]
+    const dashboardButton = $("#dashboard")[0]
 
     // Define the logo
     const logo = $(".nav-logo")[0]
@@ -60,7 +60,7 @@ function updateDivs() {
             const percent =  (window.pageYOffset - (base * 2.5)) / (base * 1.5)
 
             // Move button with margin left based on how far scrolled to animate
-            classButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
+            dashboardButton.style.marginLeft = `${(8 + (13.5 * percent))}vw`
 
             // Resize logo based on percent also
             logo.style.width = `${12 - (3.3 * percent)}vw`
@@ -71,7 +71,7 @@ function updateDivs() {
 
         else {
             // Set to initial positions
-            classButton.style.marginLeft = `${8}vw`
+            dashboardButton.style.marginLeft = `${8}vw`
             logo.style.width = `${12}vw`
             logo.style.backgroundSize = `${9.6}vw`
         }
@@ -88,4 +88,23 @@ function updateDivs() {
         logo.style.backgroundSize = `${6.96}vw`
 
     }
+}
+
+//for the menu 
+function toggleActive() {
+    document.body.classList.toggle('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.toggle('active');
+    });
+    document.querySelector('.nav-logo').classList.toggle('active');
+}
+
+function sectionClicked() {
+    document.body.classList.remove('active');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    setTimeout(() => {
+        document.querySelector('.nav-logo').classList.remove('active');
+    }, 100);
 }
