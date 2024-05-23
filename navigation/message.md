@@ -16,7 +16,7 @@ permalink: /message/
       h1 {
           text-align: center;
           padding-top: 20px;
-          font-family: 'Nighthawk', Raleway, sans-serif; /* Changed to Nighthawk Font */
+          font-family: 'Nighthawk', Raleway, sans-serif; /* Change to Nighthawk Font */
       }
       label {
           color: red;
