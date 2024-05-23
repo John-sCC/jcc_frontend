@@ -17,5 +17,5 @@ Backend POJO object
 }
 ```
 
-
+Add QrCode association to users - similar to roles implementation
 
