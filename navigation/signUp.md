@@ -81,7 +81,7 @@ permalink: /sign-up/
         </div>
         <div id="subject-suggestions" class="suggestions-container"></div>
       </form>
-      <input type="submit" value="Sign Up" id="login-form-submit" onclick="signIn()">
+      <input type="submit" value="Sign Up" id="login-form-submit">
     </div>
   </main>
 
@@ -195,53 +195,6 @@ permalink: /sign-up/
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
 
-    function signIn() {
-      console.log("button clicked");
-      var email = document.getElementById('username-field').value;
-      var password = document.getElementById('password-field').value;
-
-      var requestBody = {
-          email: email,
-          password: password
-      };
-
-      var requestOptions = {
-          method: 'POST',
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'include', // include, *same-origin, omit
-          body: JSON.stringify(requestBody),
-          headers: {
-              "content-type": "application/json",
-          },
-      };
-
-      fetch(deployed + '/authenticate', requestOptions)
-      .then((response => {
-        if (!response.ok) {
-            if (response.status == "401") {
-              throw new Error("Invalid email or password")
-            }
-            else {
-              throw new Error("HTTP Error: " + response.status)
-            }
-        }
-        return response.json();
-        })) // Get response text
-        .then(data => {
-          // Check response status
-          console.log(data.message);
-          localStorage.setItem('jwtToken', data.cookie);
-          window.location.replace("{{site.baseurl}}/dashboard/");
-          return;
-        }
-      )
-      .catch(error => {
-          console.error('There was an error:', error);
-          // Error occurred during sign-in
-          displayErrorMessage(error.message);
-      });
-    }
 
     function displayErrorMessage(message) {
       // check if error message already exists 
@@ -253,6 +206,49 @@ permalink: /sign-up/
         document.getElementById('login-div').appendChild(errorDiv);
       }
     }
+    document.getElementById('login-form-submit').addEventListener('click', function(event) { //Used for backend
+      event.preventDefault();
+
+      const email = document.getElementById('username-field').value;
+      const password = document.getElementById('password-field').value;
+      const name = document.getElementById('firstname-field').value + ' ' + document.getElementById('lastname-field').value;
+      const usn = email; // Assuming USN is the same as email
+      const subjectsOfInterest = selectedSubjects;
+
+      const requestBody = {
+        email: email,
+        password: password,
+        name: name,
+        usn: usn,
+        subjectsOfInterest: subjectsOfInterest
+      };
+
+      console.log(requestBody);
+
+      fetch(local + '/api/person/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        alert(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+        alert('Error: ' + error.message);
+      });
+      window.location.replace("{{site.baseurl}}/sign-in/");
+    });
   </script>
 </body>
 </html>
+
