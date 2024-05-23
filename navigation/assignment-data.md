@@ -5,7 +5,7 @@ search_exclude: true
 permalink: /assignment-data
 ---
 
-<div class="assignment">
+<div class="assignment" id="assignment_body" style="display: none;">
     <h1 id="assignment_name">...</h1>
     <div class="data-box" id="data_box"></div>
     <div class="split-container">
@@ -14,13 +14,20 @@ permalink: /assignment-data
     </div>
     <div class="divider"></div>
     <div class="right-side">
-        <div id="submission_body" style="display: none;">
-    <h2>File Upload</h2> 
-    <input type="file" id="fileInput" style="display: none">
-    <label class="label" for="fileInput" id="customButton">Choose a File</label>
-    <p id="fileName"></p>
-    <button class="button" id="upload" onclick="submit()">Submit Assignment</button>
-</div>
+        <div class="container">
+            <div class="header">Header</div>
+            <div class="upload-title">File Upload</div>
+            <input type="file" id="fileInput" class="file-upload">
+            <div class="placeholder">Placeholder</div>
+            <button class="submit-btn" onclick="submit()">Submit</button>
+        </div>
+        <!-- <div id="submission_body" style="display: none;">
+            <h2>File Upload</h2> 
+            <input type="file" id="fileInput" style="display: none">
+            <label class="label" for="fileInput" id="customButton">Choose a File</label>
+            <p id="fileName"></p>
+            <button class="button" id="upload" onclick="submit()">Submit Assignment</button>
+        </div> -->
   </div>
 </div>
 </div>
@@ -96,13 +103,8 @@ permalink: /assignment-data
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Allowed Files: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`}));
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Submissions: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`}));
-                    // document.getElementById('data_box').innerHTML = "" // populating the data box with info
-                    //                                               + `Due: ${formattedDateTime}`
-                    //                                               + `  |  Points: ${assignmentData.points}`
-                    //                                               + `  |  Allowed Files: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`
-                    //                                               + `  |  Submissions: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`;
                     document.getElementById('content').innerHTML = assignmentData.content;
-                    document.getElementById('submission_body').style = "display: block;";
+                    document.getElementById('assignment_body').style = "display: block;";
                 })
                 .catch(error => console.error('Error fetching assignment data:', error));
         }
