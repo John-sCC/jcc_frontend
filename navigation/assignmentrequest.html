@@ -1,19 +1,26 @@
 ---
 layout: default
-title: Ass Request
+title: Assign Request
 search_exclude: true
 permalink: /ass-request/
 ---
-
+<head>
+    <style>
+        ::placeholder {
+            font-size: 25px;
+        }
+    </style>
+</head>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
 <div class="flex-container">
     <div class="bigpapa">
-        <div class="sil">
-            <div><label>Title:<input class="inputis"></label><br></div>
-            <div><label>Due Date:<input class="inputis" type="date"></label><br></div>
-            <div><label>Points:<input class="inputis" type="number"></label><br></div>
-            <div><label>Submission Type</label><div class="wef">
+        <div class="sil1">
+            <div id="title">peanits</div>
+            <div><label>Title:<input id="assTitle" class="inputis" placeholder="Assignment Title..."></label><br></div>
+            <div><label>Due Date:<input id="assDue" class="inputis" type="date"></label><br></div> <!-- These are the super important data stuffs!!! -->
+            <div><label>Points:<input id="assPoint" class="inputis" type="number" placeholder="100 pts  "></label><br></div>
+            <div><label>Submission Type(s):</label><div class="wef1">
                 <div class="wwwj">
                     <label class="putis" for="URL"><input type="checkbox" id="URL" name="URL"> URL</label><br>
                     <label class="putis" for="txt"><input type="checkbox" id="txt" name="txt"> Text Submissions</label><br>
@@ -26,32 +33,41 @@ permalink: /ass-request/
                     <label class="putis" for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
                     <label class="putis" for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
                 </div>
-            </div></div>
+            </div>Allowed Submissions: <input id="numSubmis" type="number" placeholder="3"></div>
         </div>
-        <div class="sil">
-            <div class="wef">
-                <div id="assignclasse"> <div>Assign Classes</div> <div><img id="arrow" src="../images/arrow.png"></div></div>
+        <div class="sil2">
+            <div class="wef2">
+                <div id="assignclasse"> 
+                    <div>Assign Classes</div> 
+                    <div style="text-align: right;"><img id="arrow" src="../images/arrow.png"></div>
+                </div>
                 <div>a-z</div>
                 <div>z-a</div>
             </div>
-            <div class="wef">
+            <div class="wef2">
                 <div>Deselect all</div>
-                <div style="flex-grow: 3;">Search...</div>
+                <input id="searc" style="width: 60%;" placeholder="Search...">
                 <div>0</div>
             </div>
-            <div></div>
+            <div class="whitebox">
+                <p>hellodd</p>
+            </div>
         </div>
     </div>
+    <div id="title2">assignment</div>
     <div id="editor" rows="16" cols="125">
         <p>Hello World!</p>
         <p>Some initial <strong>bold</strong> text</p>
-        <p><br /></p>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
 <script>
     const quill = new Quill('#editor', {
-        theme: 'snow'
+        modules: {toolbar: true},
+        theme: 'snow',
     });
+    const text = quill.getText();  //plain text
+    const html = quill.getSemanticHTML();  //text with html tags
+    //run quill.getText or quill.getSemanticHTML when you need the contents. The variable doesn't stay up to date
 </script>
 </body>

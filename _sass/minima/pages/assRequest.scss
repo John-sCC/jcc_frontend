@@ -1,66 +1,141 @@
 .flex-container {
     display: flex;
-    background-color: DodgerBlue;
     flex-direction: column;
 }
 .flex-container > div {
-    background-color: #f111f1;
-    margin: 10px;
-    padding: 20px;
-    font-size: 25px;
-    display: flex;
+    margin: 1%;
+    padding: 1%;
+    font-size: 180%;
+    font-weight: 500;
+    display: flex;  
     flex-direction: row;
 }
 .bigpapa {
     justify-content: space-around;
 }
-.sil {
-    background-color: red;
-    width: 37%;
+.sil1 {
+    background-color: #001a39;
+    width: 40%;
+    border-radius: 15px;
 }
-.sil > div {
+.sil1 > div {
     padding-left: 3%;
     padding-right: 3%;
     padding-top: 1% ;
     padding-bottom: 1%;
 }
-.wef {
+.sil2 {
+    width: 40%;
+}
+.wef1 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: blue;
+    background-color: white;
     width: 100%;
+    border-radius: 15px;
 }
-.wef > div {
+.wef1 > div {
     margin: 3%;
     padding: 3%;
-    background-color: pink;
+    border-radius: 10px;
+}
+.wef2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.wef2 > div {
+    margin-bottom: 2%;
+    padding: 3%;
+    background-color: $nighthawk-blue;
     border-radius: 10px;
 }
 .wwwj {
-    background-color: purple;
+    color: black;
     width: 45%;
 }
 .wwwj2 {
-    background-color: purple;
+    color: black;
     width: 20%;
 }
 .inputis {
     border-radius: 15px;    
-    padding: 5px;
+    padding: 1%;
     width: 100%;
 }
 #editor {
     text-align: left;
+    border-radius: 15px;
+    color: black;
+    background-color: white;
+    border: 0px;
+    width: 80%;
+    align-self: center;
 }
 #assignclasse {
     text-align: left;
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    margin-right: 2%;
+    height: 40%;
+    width: 65%;
 }
 #arrow {
-    width: 20%;
-    height: 70%;
+    width: 60%;
+    height: 60%;
+}
+#numSubmis {
+    border-radius: 15px;
+    padding: 1%;
+    margin: 1%;
+    margin-right: 0%;
+    width: 58%;
+}
+#title {
+    width: 100%;
+    background-color: #002147;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 30%;
+    border-color: #002147;
+    font-family: $nighthawk-font2;
+    font-weight: 700;
+    font-size: 150%;
+}
+#title2 {
+    width: 100%;
+    background-color: #002147;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 30%;
+    border-color: #002147;
+    font-family: $nighthawk-font2;
+    font-weight: 700;
+    font-size: 250%;
+}
+#searc {
+    margin-bottom: 2%;
+    padding: 3%;
+    line-height: 1;
+    border-radius: 10px;
+    color: black;
+}
+::placeholder {
+    font-size: 25px;
+    color: red;
+}
+.whitebox {
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+    height: 75%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1% ;
+    padding-bottom: 1%;
 }
