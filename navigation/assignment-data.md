@@ -9,27 +9,24 @@ permalink: /assignment-data
     <h1 id="assignment_name">...</h1>
     <div class="data-box" id="data_box"></div>
     <div class="split-container">
-    <div class="left-side">
-        <p id="content"></p>
-    </div>
-    <div class="divider"></div>
-    <div class="right-side">
-        <div class="container">
-            <div class="header">Header</div>
-            <div class="upload-title">File Upload</div>
-            <input type="file" id="fileInput" class="file-upload">
-            <div class="placeholder">Placeholder</div>
-            <button class="submit-btn" onclick="submit()">Submit</button>
+        <div class="left-side">
+            <p id="content"></p>
         </div>
-        <!-- <div id="submission_body" style="display: none;">
-            <h2>File Upload</h2> 
-            <input type="file" id="fileInput" style="display: none">
-            <label class="label" for="fileInput" id="customButton">Choose a File</label>
-            <p id="fileName"></p>
-            <button class="button" id="upload" onclick="submit()">Submit Assignment</button>
-        </div> -->
-  </div>
-</div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <div class="container">
+                <div class="header">Header</div>
+                <div class="upload-title">File Upload</div>
+                <input type="file" id="fileInput" class="file-upload">
+                <div class="placeholder">Placeholder</div>
+                <button class="submit-btn" onclick="submit()">Submit</button>
+            </div>
+            <div class="container">
+                <div class="header">Preview</div>
+                <button class="getPreview" onclick="preview()">Preview</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -112,6 +109,39 @@ permalink: /assignment-data
 
     window.onload = fetchAssignmentData;
 
+    function preview() {
+        var assignmentID = getParameterByName('id');
+        console.log(assignmentID);
+
+        if (assignmentID) {
+            const url = `${fetchUrl}/api/assignment/previewCheck?assignmentID=${assignmentID}`;
+            fetch(`${fetchUrl}/api/assignment/previewCheck?id=${assignmentID}`, {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'include',
+                
+                headers: {
+                    // Add any necessary headers here
+                    'Content-Type': 'application/json',
+
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Response not ok, does assignment exist?');
+                }
+                return response.text(); // Assuming the response is plain text
+            })
+            .then(data => {
+                console.log('Fetched preview data:', data);
+                // Optionally, you can display the data on the page
+                // fetch(`${fetchUrl}/api/assignment/previewCheck?=
+            })
+            .catch(error => console.error('Error fetching preview data:', error));
+        }
+    }
+
     // RAYMOND CODE
     const submitFile = async (file) => {
         const formData = new FormData();
@@ -167,4 +197,4 @@ permalink: /assignment-data
         const fileName = fileInput.files[0].name;
         document.getElementById('customButton').innerText = fileName;
     });
-    </script>
+</script>
