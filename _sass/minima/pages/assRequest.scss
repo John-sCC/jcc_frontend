@@ -73,6 +73,7 @@
     border: 0px;
     width: 80%;
     align-self: center;
+    z-index: 0;
 }
 #assignclasse {
     text-align: left;
@@ -94,7 +95,8 @@
     padding: 1%;
     margin: 1%;
     margin-right: 0%;
-    width: 58%;
+    width: 10%;
+    font-weight: 700;
 }
 #title {
     width: 100%;
@@ -108,7 +110,6 @@
     font-size: 150%;
 }
 #title2 {
-    width: 100%;
     background-color: #002147;
     border-radius: 15px;
     border-style: solid;
@@ -116,7 +117,13 @@
     border-color: #002147;
     font-family: $nighthawk-font2;
     font-weight: 700;
-    font-size: 250%;
+    font-size: 180%;
+    position: absolute;
+    width: 19%;
+    height: 7%;
+    top: 138%;
+    left: 10%;
+    z-index: 1;
 }
 #searc {
     margin-bottom: 2%;
