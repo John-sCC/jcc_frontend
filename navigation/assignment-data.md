@@ -24,6 +24,12 @@ permalink: /assignment-data
             <div class="container">
                 <div class="header">Preview</div>
                 <button class="getPreview" onclick="preview()">Preview</button>
+                <div id="submissionid"></div>
+                <div id="name"></div>
+                <div id="filepath"></div>
+                <div id="timesubmitted"></div>
+                <div id="submissionnumber"></div>
+                <div id="filePreview"></div>
             </div>
         </div>
     </div>
@@ -114,7 +120,6 @@ permalink: /assignment-data
         console.log(assignmentID);
 
         if (assignmentID) {
-            const url = `${fetchUrl}/api/assignment/previewCheck?assignmentID=${assignmentID}`;
             fetch(`${fetchUrl}/api/assignment/previewCheck?id=${assignmentID}`, {
                 method: 'GET',
                 mode: 'cors',
@@ -129,16 +134,76 @@ permalink: /assignment-data
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Response not ok, does assignment exist?');
+                    throw new Error('Do not have access to view this assignment or assignment does not exist');
                 }
                 return response.text(); // Assuming the response is plain text
             })
             .then(data => {
                 console.log('Fetched preview data:', data);
                 // Optionally, you can display the data on the page
-                // fetch(`${fetchUrl}/api/assignment/previewCheck?=
+                const lines = data.split('\n');
+                console.log(lines[0]);
+                console.log(lines[1]);
+                console.log(lines[2]);
+                console.log(lines[3]);
+                console.log(lines[4]);
+                document.getElementById('submissionid').innerText = lines[0];
+                document.getElementById('name').innerText = lines[1];
+                const submitterString = lines[1];
+                const submitterName = submitterString.split(":")[1].trim();
+                document.getElementById('filepath').innerText = lines[2];
+                document.getElementById('timesubmitted').innerText = lines[3];
+                document.getElementById('submissionnumber').innerText = lines[4];
+                fetch(`${fetchUrl}/api/assignment/showFilePreview?id=${assignmentID}&submitter=${submitterName}`, {
+                    method: 'GET',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'include',
+                    headers: {
+                        // Add any necessary headers here
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch file preview');
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const fileUrl = URL.createObjectURL(blob);
+
+                    // Assuming you have a div with id 'filePreviewDiv' where you want to display the file
+                    var filePreviewDiv = document.getElementById('filePreview');
+
+                    // Clear previous content of the div, if any
+                    filePreviewDiv.innerHTML = '';
+
+                    // Create appropriate element based on file type
+                    const fileType = blob.type;
+                    if (fileType.startsWith('image/')) {
+                        // For images, display using img tag
+                        const img = document.createElement('img');
+                        img.src = fileUrl;
+                        filePreviewDiv.appendChild(img);
+                    } else if (fileType === 'application/pdf') {
+                        // For PDF files, display using iframe
+                        const iframe = document.createElement('iframe');
+                        iframe.src = fileUrl;
+                        iframe.width = '100%';
+                        iframe.height = '600px'; // Adjust height as needed
+                        filePreviewDiv.appendChild(iframe);
+                    } else {
+                        // For other file types, provide a download link
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = fileUrl;
+                        downloadLink.textContent = 'Download File';
+                        filePreviewDiv.appendChild(downloadLink);
+                    }
+                })
+                .catch(error => console.error('Error fetching file preview:', error));
+
             })
-            .catch(error => console.error('Error fetching preview data:', error));
         }
     }
 
