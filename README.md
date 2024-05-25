@@ -12,6 +12,7 @@ https://john-scc.github.io/jcc_frontend/
 - Create job postings📑 for students to apply.💼👔
 - Apply to job postings📑 to make bank.🤑🤑🤑
 - Build a resume to help you get that new job.💸
+- Send messages to your students and teachers.
 - Enhance your teaching today with Nighthawk Resources!🦅🦅
 
 ## Who was involved
