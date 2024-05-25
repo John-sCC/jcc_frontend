@@ -112,7 +112,6 @@ permalink: /inbox/
                         <strong>To:</strong> ${message.to}<br>
                         <strong>From:</strong> ${message.from}<br>
                         <strong>Subject:</strong> ${message.subject}<br>
-                        <p>${message.content}</p>
                     `;
                     messageList.appendChild(listItem);
                     listItem.addEventListener('click', () => {
