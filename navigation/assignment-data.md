@@ -11,18 +11,8 @@ permalink: /assignment-data
     <div class="split-container">
         <div class="left-side">
             <p id="content"></p>
-        </div>
-        <div class="divider"></div>
-        <div class="right-side">
-            <div class="container">
-                <div class="header">Header</div>
-                <div class="upload-title">File Upload</div>
-                <input type="file" id="fileInput" class="file-upload">
-                <div class="placeholder">Placeholder</div>
-                <button class="submit-btn" onclick="submit()">Submit</button>
-            </div>
-            <div class="container">
-                <div class="header">Preview</div>
+            <div class="container" id="file_preview_container" style="display: none;">
+                <div class="header">PREVIEW</div>
                 <button class="getPreview" onclick="preview()">Preview</button>
                 <div id="submissionid"></div>
                 <div id="name"></div>
@@ -32,10 +22,28 @@ permalink: /assignment-data
                 <div id="filePreview"></div>
             </div>
         </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <div class="container">
+                <div class="header">SUBMIT ASSIGNMENT</div>
+                <div class="upload-title">File Upload</div>
+                <input type="file" id="fileInput" class="file-upload">
+                <div class="placeholder" id="file_check">Click the box above to upload a file.</div>
+                <button class="submit-btn" onclick="submit()">SUBMIT</button>
+                <div id="submissions_for_preview" class="underline-pointer-hover">
+                    <div class="upload-title" style="margin-bottom:10px;">Your Submissions</div>
+                    <ol id="submission_list"></ol>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<br>
 
 <script>
+    // variables for preview display
+    var preview = false; // no preview of assignment submission is displayed by default
+    
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
     const currentUrl = window.location.href;
@@ -67,6 +75,9 @@ permalink: /assignment-data
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
+    // global variable for file upload validity check
+    const validFileTypes = [];
+
     function fetchAssignmentData() {
         // starting by extracting the assignment ID from query parameter
         var assignmentId = getParameterByName('id');
@@ -93,27 +104,76 @@ permalink: /assignment-data
                     console.log('Fetched assignment data from ' + assignmentData.name + ':', data);
                     document.getElementById('assignment_name').innerHTML = assignmentData.name;
                     var assignmentDate = new Date(assignmentData.dateDue);
+
+                    // identifying valid file types
+                    for (var i = 0; i < assignmentData.allowedFileTypes.length; i++) {
+                        validFileTypes.push(assignmentData.allowedFileTypes[i]);
+                    }
+
                     // chatGPT helped with this one!!
                     let formattedDate = dateFormatter.format(assignmentDate);
                     let formattedTime = timeFormatter.format(assignmentDate);
                     let formattedDateTime = `${formattedDate} (${formattedTime})`;
                     const dataBox = document.getElementById('data_box');
+
                     // populating the data box with flex items
-                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Due: ${formattedDateTime}`}));
+                    dataBox.innerHTML = "";
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`DUE: ${formattedDateTime}`}));
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
-                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Points: ${assignmentData.points}`}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`POINTS: ${assignmentData.points}`}));
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
-                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Allowed Files: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`}));
+                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`ALLOWED FILES: ${assignmentData.allowedFileTypes.map(str => str.toUpperCase()).join(', ')}`}));
                     dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'divider', textContent:` | `}));
-                    dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`Submissions: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`}));
+                    if (data.role == "teacher") {
+                        dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`SUBMISSIONS: ${assignmentData.submissions.length}/${assignmentData.allowedSubmissions}`}));
+                    } else {
+                        dataBox.appendChild(Object.assign(document.createElement('div'), {className: 'data-item', textContent:`SUBMISSIONS: ${data.submissions.length}/${assignmentData.allowedSubmissions}`}));
+                    }
                     document.getElementById('content').innerHTML = assignmentData.content;
+
+                    // populating student's own submissions, if applicable
+                    if (data.submissions.length > 0) {
+                        const submissionList = document.getElementById("submission_list");
+                        submissionList.innerHTML = "";
+                        for (var i = 0; i < data.submissions.length; i++) {
+                            var submissionListItem = document.createElement("li");
+                            var submissionItem = document.createElement("span");
+                            const submissionTimeSub = new Date(data.submissions[i].timeSubmitted);
+                            var formattedSubDate = dateFormatter.format(submissionTimeSub);
+                            var formattedSubTime = timeFormatter.format(submissionTimeSub);
+                            var formattedSubDateTime = `${formattedSubDate} (${formattedSubTime})`;
+                            var late = false;
+                            submissionItem.innerHTML = formattedSubDateTime;
+                            submissionListItem.appendChild(submissionItem)
+                            submissionList.appendChild(submissionListItem);
+                        }
+                    }
+
+                    // displaying information once it has been properly processed
                     document.getElementById('assignment_body').style = "display: block;";
                 })
                 .catch(error => console.error('Error fetching assignment data:', error));
         }
     }
 
+    // WHEN THE PAGE LOADS, ASSIGNMENT DATA IS FETCHED
     window.onload = fetchAssignmentData;
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const fileType = file.type;
+            const fileTypeParts = fileType.split('/');
+            const subtype = fileTypeParts[1];
+
+            if (validFileTypes.includes(subtype)) {
+                document.getElementById('file_check').innerHTML = "This file is valid to submit!";
+            } else {
+                document.getElementById('file_check').innerHTML = `Uh oh! This file is invalid. (Type: .${subtype})`;
+            }
+        }
+    });
 
     function preview() {
         var assignmentID = getParameterByName('id');
@@ -238,8 +298,8 @@ permalink: /assignment-data
 
             const filePath = await response.text();
             console.log('File uploaded successfully:', filePath);
-            document.getElementById('fileName').innerText = `File Name: ${file.name}`;
-
+            // NOW THAT IT'S SUCCESSFUL, HAVE IT RELOAD THE FRONTEND ELEMENTS WITH THAT INITIAL METHOD
+            fetchAssignmentData();
         } catch (error) {
             console.error('Error uploading file:', error.message);
         }
@@ -255,11 +315,4 @@ permalink: /assignment-data
             console.error('No file selected');
         }
     }
-
-    // Update the custom button text when a file is selected
-    const fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('change', () => {
-        const fileName = fileInput.files[0].name;
-        document.getElementById('customButton').innerText = fileName;
-    });
 </script>

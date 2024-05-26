@@ -9,7 +9,7 @@
         color: lightslategray;
     }
     p {
-        font-family: 'Arial';
+        font-family: $nighthawk-font3;
         font-size: 120%;
     }
     .data-box {
@@ -27,7 +27,7 @@
         white-space: nowrap; /* Prevents text from breaking into multiple lines */
         overflow: hidden; /* Ensures content that overflows is hidden */
         text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
-        font-size: 120%;
+        font-size: 110%;
     }
     
     .data-item {
@@ -63,38 +63,43 @@
       }
 
       .container {
-        border: 2px solid $nighthawk-gold;
+        border: 3px solid $nighthawk-gold;
+        font-family: $nighthawk-font3;
         border-radius: 15px;
         background-color: white;
-        padding: 20px;
-        width: 300px;
+        color: black;
+        padding: 0px 20px 20px 20px;
+        width: 100%;
         margin: 0 auto;
       }
       
       .header {
-        border-bottom: 2px solid $nighthawk-gold;
+        border: 3px solid $nighthawk-gold;
+        border-top: 0px; // getting rid of top border for proper formatting
         background-color: $nighthawk-blue;
         color: white;
         font-family: $nighthawk-font2;
+        font-size: 140%;
         text-align: center;
         padding: 10px;
-        border-top-left-radius: 13px;
-        border-top-right-radius: 13px;
+        border-bottom-left-radius: 13px;
+        border-bottom-right-radius: 13px;
       }
       
       .upload-title {
-        font-family: 'Lexend', sans-serif;
+        font-family: $nighthawk-font3;
         text-align: left;
         margin-top: 20px;
+        font-size: 115%;
         text-decoration: underline;
       }
       
       .file-upload {
         margin-top: 10px;
         display: block;
-        border: 2px solid $nighthawk-gold;
         border-radius: 10px;
         padding: 5px;
+        cursor: pointer;
         width: 100%;
       }
       
@@ -112,8 +117,34 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 120%;
         font-family: $nighthawk-font2;
       }
+
+      .underline-pointer-hover {
+        ol {
+    
+            li {
+                list-style-type: decimal; // Ensure <li> items are numbered
+                padding-left: 20px; // Optional: add some padding to the left for indentation
+
+                span {
+                    text-decoration: underline;
+                    cursor: pointer;
+                    transition: color 0.3s ease-in-out; // Smooth transition effect for color change
+                    color: black; // Default color
+
+                    &:hover {
+                        color: #38761d; // Change color on hover
+                    }
+
+                    .clicked {
+                        color: #38761d; // Permanent color on click
+                    }
+                }
+            }
+        }
+    }
     
     // @media (max-width: 600px) { /* Adjust the breakpoint as needed */
     //     .data-box {
