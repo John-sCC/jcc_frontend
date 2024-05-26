@@ -139,11 +139,13 @@ permalink: /assignment-data
                             var submissionListItem = document.createElement("li");
                             var submissionItem = document.createElement("span");
                             const submissionTimeSub = new Date(data.submissions[i].timeSubmitted);
-                            var formattedSubDate = dateFormatter.format(submissionTimeSub);
-                            var formattedSubTime = timeFormatter.format(submissionTimeSub);
-                            var formattedSubDateTime = `${formattedSubDate} (${formattedSubTime})`;
+                            var formattedSubDateTime = `${dateFormatter.format(submissionTimeSub)} (${timeFormatter.format(submissionTimeSub)})`;
                             var late = false;
-                            submissionItem.innerHTML = formattedSubDateTime;
+                            var grade = "(not graded)";
+                            if (data.submissions[i].score >= 0) {
+                                grade = `(${data.submissions[i].score}/${assignmentData.points})`;
+                            }
+                            submissionItem.innerHTML = `${formattedSubDateTime} ${grade}`;
                             submissionListItem.appendChild(submissionItem)
                             submissionList.appendChild(submissionListItem);
                         }
