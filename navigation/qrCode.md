@@ -1,20 +1,40 @@
 ---
-title: QR Code Generator with Backend
+title: QR Code Generator 
 description: A qr code generator with backend
 toc: True
 layout: post
+permalink: /qrCode/
 ---
 
 
 
-<div id="qrcode"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-
-<div id="inputDiv">
+<div id="contianer" class="container">
+    <div id="inputDiv" class="inputContainer">
+    </div>
+    <div id="qrCodeDiv" class="qrCodeContainer">
+        <div id="qrcode"></div>
+    </div>
 </div>
+
 <button onclick="NewInput()">New Link</button>
 <button onclick="Generate()">Generate QR Code</button>
+
+<style>
+    .container{
+        display:flex;
+    }
+    
+    .qrCodeContainer{
+        flex:2;
+    }
+    
+    .inputContainer{
+        flex:1;
+        margin:auto;
+    }
+</style>
 
 <script type="text/javascript">
     function NewInput(numb, link, freq){
@@ -33,6 +53,8 @@ layout: post
         if (link){
             inputQR.innerHTML = link;
         }
+
+        var individualInput = document.createElement('div');
 
         // Create second input element
         var inputFreq = document.createElement('input');
@@ -57,10 +79,12 @@ layout: post
         var container = document.getElementById('inputDiv');
 
         // Append the elements to the container
-        container.appendChild(inputQR);
-        container.appendChild(inputFreq);
-        container.appendChild(button);
-        container.appendChild(lineBreak);
+        individualInput.appendChild(inputQR);
+        individualInput.appendChild(inputFreq);
+        individualInput.appendChild(button);
+        individualInput.appendChild(lineBreak);
+
+        container.appendChild(individualInput);
     }
     
     function Remove(event){
@@ -74,7 +98,6 @@ layout: post
     }
 
     function Generate(){
-        console.log($("#inputDiv").find("input").length);
         if (document.getElementById("qrcode").innerHTML){
             document.getElementById("qrcode").innerHTML = "";
         }
@@ -125,6 +148,7 @@ layout: post
         
         return fetch(url, {
             method: 'POST', 
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json' 
             },

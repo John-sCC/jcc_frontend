@@ -64,8 +64,15 @@ permalink: /sign-in/
             "content-type": "application/json",
         },
     };
-   
-    fetch(deployed + '/authenticate', requestOptions)
+
+    if(window.location.href.includes("127.0.0.1")){
+        var url = local;
+    }
+    else {
+        var url = deployed;
+    }
+
+    fetch(url + '/authenticate', requestOptions)
     .then((response => {
       if (!response.ok) {
           if (response.status == "401") {

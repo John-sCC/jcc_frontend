@@ -76,8 +76,15 @@ permalink: /dashboard/
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
     function getUserData() {
+        if(window.location.href.includes("127.0.0.1")){
+            var url = local;
+        }
+        else {
+            var url = deployed;
+        }
+
         // making the fetch request
-        fetch(deployed + '/api/class_period/dashboard', {
+        fetch(url + '/api/class_period/dashboard', {
             method: 'GET',
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
