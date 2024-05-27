@@ -42,7 +42,11 @@ permalink: /sign-in/
 <script>
   var local = "http://localhost:8911";
   var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
-
+  const currentUrl = window.location.href;
+  var fetchUrl = deployed;
+  if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+    fetchUrl = local;
+  }
 
   function signIn() {
     console.log("button clicked");
@@ -65,7 +69,7 @@ permalink: /sign-in/
         },
     };
    
-    fetch(deployed + '/authenticate', requestOptions)
+    fetch(fetchUrl + '/authenticate', requestOptions)
     .then((response => {
       if (!response.ok) {
           if (response.status == "401") {
