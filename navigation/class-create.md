@@ -118,22 +118,36 @@ permalink: /class-create/
     }
     function getPersonsBySubject() {
         const subject = document.getElementById('subjectInput').value;
-        fetch(`http://localhost:8911/api/person/getBySubject/Chemistry`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                const subjectList = document.getElementById('subjectList');
-                subjectList.innerHTML = '';
-                data.forEach(person => {
-                    console.log(person);
-                    const personDiv = document.createElement('div');
-                    personDiv.textContent = `Name: ${person.name}, Email: ${person.email}`;
-                    subjectList.appendChild(personDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching persons by subject:', error);
+        fetch(`http://localhost:8911/api/person/getBySubject/Chemistry`, {
+                method: 'GET',
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'include', // include, *same-origin, omit
+                headers: {
+                    "content-type": "application/json",
+                },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle fetched person data here
+            console.log(data);
+            const subjectList = document.getElementById('subjectList');
+            subjectList.innerHTML = '';
+            data.forEach(person => {
+                console.log(person);
+                const personDiv = document.createElement('div');
+                personDiv.textContent = `Name: ${person.name}, Email: ${person.email}`;
+                subjectList.appendChild(personDiv);
             });
+        })
+        .catch(error => {
+            console.error('Error fetching persons by subject:', error);
+        });
     }
 </script>
 </body>
