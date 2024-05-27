@@ -17,7 +17,7 @@ permalink: /ass-request/
     <div class="bigpapa">
         <div class="sil1">
             <div id="asstitle">assignment details</div>
-            <div style="padding-top: 15%;"><label>Title:<input id="assTitle" class="inputis" placeholder="Assignment Title..."></label><br></div>
+            <div style="padding-top: 15%;"><label>Title:<input id="assTitlee" class="inputis" placeholder="Assignment Title..."></label><br></div>
             <div><label>Due Date:<input id="assDue" class="inputis" type="date"></label><br></div> <!-- These are the super important data stuffs!!! -->
             <div><label>Points:<input id="assPoint" class="inputis" type="number" placeholder="100 pts  "></label><br></div>
             <div><label>Submission Type(s):</label><div class="wef1">
@@ -33,7 +33,7 @@ permalink: /ass-request/
                     <label class="putis" for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
                     <label class="putis" for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
                 </div>
-            </div>Allowed Submissions: <input id="numSubmis" type="number" min="1" max="100" placeholder="###"><input type="button" value="create"></div>
+            </div>Allowed Submissions: <input id="numSubmis" type="number" min="1" max="100" placeholder="###"><input class="creeatbutton" onclick="postAssignment()" type="button" value="create"></div>
         </div> 
         <div class="sil2">
             <div class="wef2">
@@ -68,5 +68,95 @@ permalink: /ass-request/
     const text = quill.getText();  //plain text
     const html = quill.getSemanticHTML();  //text with html tags
     //run quill.getText or quill.getSemanticHTML when you need the contents. The variable doesn't stay up to date
+</script>
+<script>
+    function postAssignment() {
+        const d = document;
+        let name = d.getElementById("assTitlee").value;
+        let dateDue = d.getElementById("assDue").value;
+        let content = quill.getSemanticHTML();
+        //let classNames = [d.getElementById("className").value];
+        let points = d.getElementById("assPoint").value;
+        let allowedSubmissions = d.getElementById("numSubmis").value;
+        let allowedFileType = [];
+        if (document.querySelector('#URL').checked) {
+            allowedFileType.push("URL");
+        }
+        if (document.querySelector('#txt').checked) {
+            allowedFileType.push("txt");
+        }
+        if (document.querySelector('#all').checked) {
+            allowedFileType.push("all");
+        }
+        if (document.querySelector('#doc').checked) {
+            allowedFileType.push("doc");
+        }
+        if (document.querySelector('#png').checked) {
+            allowedFileType.push("png");
+        }
+        if (document.querySelector('#jpg').checked) {
+            allowedFileType.push("jpg");
+        }
+        if (document.querySelector('#peg').checked) {
+            allowedFileType.push("jpeg");
+        }
+        if (document.querySelector('#pdf').checked) {
+            allowedFileType.push("pdf");
+        }
+        const currentDate = new Date();
+        const dateCreated = currentDate.toISOString().slice(0, 10);
+        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+        //const apiUrl = 'http://localhost:8911/api/assignment/post';
+        // a
+        const requestData = {
+            name: name,
+            dateCreated: dateCreated,
+            dateDue: dateDue,  
+            content: content,
+            //classNames: classNames,
+            points: points,
+            allowedSubmissions: allowedSubmissions,
+            allowedFileType: allowedFileType
+        };
+        console.log(requestData);
+        //a
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            // Check if the response is JSON
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json();
+            } else {
+                // If the response is not JSON, return the text directly
+                return response.text();
+            }
+        })
+        .then(data => {
+            // Handle the data here
+            if (typeof data === 'object') {
+                // If it's JSON, proceed as before
+                console.log(data);
+                alert(`Assignment created successfully. ID: ${data.id}`);
+                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+            } else {
+                // If it's not JSON, handle it as per your requirement
+                console.log(data);
+                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error posting assignment:', error);
+            alert('Error posting assignment. Check the console for details.');
+        });
+    }
 </script>
 </body>
