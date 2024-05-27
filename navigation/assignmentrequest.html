@@ -13,11 +13,11 @@ permalink: /ass-request/
 </head>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
-<div class="flex-container">
+<div class="assflex-container">
     <div class="bigpapa">
         <div class="sil1">
-            <div id="title">peanits</div>
-            <div><label>Title:<input id="assTitle" class="inputis" placeholder="Assignment Title..."></label><br></div>
+            <div id="asstitle">assignment details</div>
+            <div style="padding-top: 15%;"><label>Title:<input id="assTitle" class="inputis" placeholder="Assignment Title..."></label><br></div>
             <div><label>Due Date:<input id="assDue" class="inputis" type="date"></label><br></div> <!-- These are the super important data stuffs!!! -->
             <div><label>Points:<input id="assPoint" class="inputis" type="number" placeholder="100 pts  "></label><br></div>
             <div><label>Submission Type(s):</label><div class="wef1">
@@ -33,37 +33,36 @@ permalink: /ass-request/
                     <label class="putis" for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
                     <label class="putis" for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
                 </div>
-            </div>Allowed Submissions: <input id="numSubmis" type="number" min="1" max="100" placeholder="333"></div>
+            </div>Allowed Submissions: <input id="numSubmis" type="number" min="1" max="100" placeholder="###"><input type="button" value="create"></div>
         </div> 
         <div class="sil2">
             <div class="wef2">
                 <div id="assignclasse"> 
-                    <div>Assign Classes</div> 
-                    <div style="text-align: right;"><img id="arrow" src="../images/arrow.png"></div>
+                    <div>ASSIGN CLASSES</div> 
                 </div>  
-                <div>a-z</div>
-                <div>z-a</div>
+                <div style="width: 11%;"><img class="ima" src="../images/a-z.png"></div>
+                <div style="width: 11%;"><img class="ima" src="../images/z-a.png"></div>
             </div>
             <div class="wef2">
-                <div>Deselect all</div>
-                <input id="searc" style="width: 60%;" placeholder="Search...">
-                <div>0</div>
+                <div>DESELECT ALL</div>
+                <input id="searc" style="width: 50%;" placeholder="Search...">
+                <div style="width: 11%;"><img class="ima" src="../images/searchIcon.png"></div>
             </div>
             <div class="whitebox">
-                <p>hellodd</p>
+                <p>hellodd</p>  <!--This is gonna have all the classes appear, I don't know how to do that-->
             </div>
         </div>
     </div>
-    <div id="title2">assignment description</div>
-    <div id="editor" rows="16" cols="125">
+    <div id="asstitle2">assignment description</div>
+    <div style="margin-top: 3%;" id="editor" rows="16" cols="125">
         <p>Hello World!</p>
-        <p>Some initial <strong>bold</strong> text</p>
+        <p>Some initial <strong>bold</strong> text</p>  <!--This is the assignment description, it includes tags like <strong> and <u>-->
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
 <script>
     const quill = new Quill('#editor', {
-        modules: {toolbar: true},
+        modules: {toolbar: false},
         theme: 'snow',
     });
     const text = quill.getText();  //plain text
