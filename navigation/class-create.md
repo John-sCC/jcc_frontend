@@ -29,6 +29,17 @@ permalink: /class-create/
             margin-top: 10px;
             cursor: pointer;
         }
+        .whitebox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .person-div {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -71,16 +82,19 @@ permalink: /class-create/
             </div>
             <div class="toolbarss">
                 <div id="stupiddiv">
-                    <div>SEARCH BY NAME</div>
+                    <div>SEARCH BY Subject</div>
                     <img id="arrow" src="../images/arrow.png">
                 </div>
-                <input id="studentsearc" style="width: 50%;" placeholder="Search..." oninput="getPersonsBySubject()">
+                <input id="subjectInput" style="width: 50%;" placeholder="Search..." oninput="getPersonsBySubject()">
                 <div style="width: 13%;">
                     <img class="hater" src="../images/searchIcon.png">
                 </div>
             </div>
             <div class="whitebox" id="studentList">
                 <p>hellodd</p>  <!--This is gonna have all the classes appear, I don't know how to do that-->
+            </div>
+            <div class="whitebox" id="subjectList">
+                <!-- Results will be inserted here -->
             </div>
             <div class="toolbarss">
                 <div id="stupiddiv">
@@ -107,25 +121,33 @@ permalink: /class-create/
         alert('Class Name: ' + className + '\nInstructors: ' + teachers);
         // Add your logic to handle the creation of the class here
     });
+
     function sortStudents(order) {
         // Add your logic to sort students here
         alert('Sorting students in ' + order + ' order');
     }
+
     function searchStudents() {
         // Add your logic to search students here
         const query = document.getElementById('studentsearc').value;
         alert('Searching for: ' + query);
     }
+
     function getPersonsBySubject() {
-        const subject = document.getElementById('subjectInput').value;
-        fetch(`http://localhost:8911/api/person/getBySubject/Chemistry`, {
-                method: 'GET',
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'include', // include, *same-origin, omit
-                headers: {
-                    "content-type": "application/json",
-                },
+        const subject = document.getElementById('subjectInput').value.trim();
+        if (subject.length < 1) {
+            document.getElementById('subjectList').innerHTML = ''; // Clear the list if input is empty
+            return;
+        }
+
+        fetch(`${local}/api/person/getBySubject/${subject}`, {
+            method: 'GET',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+                "content-type": "application/json",
+            },
         })
         .then(response => {
             if (!response.ok) {
@@ -138,12 +160,17 @@ permalink: /class-create/
             console.log(data);
             const subjectList = document.getElementById('subjectList');
             subjectList.innerHTML = '';
-            data.forEach(person => {
-                console.log(person);
-                const personDiv = document.createElement('div');
-                personDiv.textContent = `Name: ${person.name}, Email: ${person.email}`;
-                subjectList.appendChild(personDiv);
-            });
+            if (data.length === 0) {
+                subjectList.textContent = 'No persons found for the given subject.';
+            } else {
+                data.forEach(person => {
+                    console.log(person);
+                    const personDiv = document.createElement('div');
+                    personDiv.className = 'person-div';
+                    personDiv.textContent = `Name: ${person.name}, Email: ${person.email}`;
+                    subjectList.appendChild(personDiv);
+                });
+            }
         })
         .catch(error => {
             console.error('Error fetching persons by subject:', error);
