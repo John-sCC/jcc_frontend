@@ -140,6 +140,15 @@ permalink: /assignment-data
         document.getElementById("close_preview_button_teacher").style = "display: none;";
         document.querySelectorAll('.submission-item').forEach(function(element) {
             element.classList.remove('clicked'); // removing click for every other item
+            // removing any existing input and button elements
+            const existingInput = element.parentElement.querySelector('input');
+            const existingButton = element.parentElement.querySelector('button');
+            if (existingInput) {
+                existingInput.remove();
+            }
+            if (existingButton) {
+                existingButton.remove();
+            }
         });
     }
 
