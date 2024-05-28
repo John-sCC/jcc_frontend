@@ -31,7 +31,7 @@ permalink: /sign-in/
       <div id="forgot-password">Forgot Password?</div>
       <input type="submit" value="Sign In" id="login-form-submit" onclick="signIn()">
       <div id="no-account">No account?</div>
-      <div id="create-account">Click here to make one!</div>
+      <div id="create-account"><a href="{{site.baseurl}}/sign-up/" style="color: #22956b !important;">Click here to make one!</a></div>
     </div>
   </main>
 </body>
