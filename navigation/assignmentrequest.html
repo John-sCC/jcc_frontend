@@ -72,7 +72,7 @@ window.onload = (event) => {
         }
 };
     const quill = new Quill('#editor', {
-        modules: {toolbar: false},
+        modules: {toolbar: false}, //https://quilljs.com/docs/api#model  this is the editor
         theme: 'snow',
     });
     const text = quill.getText();  //plain text
