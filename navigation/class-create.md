@@ -80,18 +80,6 @@ permalink: /class-create/
             </div>
             <div class="whitebox" id="subjectList">
             </div>
-            <div class="toolbarss">
-                <div id="stupiddiv">
-                    <div>SEARCH BY STUDENT</div>
-                </div>
-                <input id="studentInput" style="width: 50%;" placeholder="Enter Student Name..." oninput="searchStudents()">
-                <div style="width: 13%;">
-                    <img class="hater" src="../images/searchIcon.png" onclick="searchStudents()">
-                </div>
-            </div>
-            <div class="whitebox" id="studentList">
-                <!-- Results will be inserted here -->
-            </div>
         </div>
     </div>
     <br><br><br><br><br><br><br><br>
