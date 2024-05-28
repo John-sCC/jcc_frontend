@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Detector</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .coolinput {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            position: static;
+            max-width: 240px;
+        }
+          
+        .coolinput label.text {
+            font-size: 0.75rem;
+            color: #6E6D70;
+            font-weight: 700;
+            position: relative;
+            top: 0.5rem;
+            margin: 0 0 0 7px;
+            padding: 0 3px;
+            background: #e8e8e8;
+            width: fit-content;
+        }
+          
+        .coolinput input[type=text].input {
+            padding: 11px 10px;
+            font-size: 0.75rem;
+            border: 2px #6E6D70 solid;
+            border-radius: 5px;
+            background: #e8e8e8;
+        }
+          
+        .coolinput input[type=text].input:focus {
+            outline: none;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table, th, td {
+            border: 2px solid #6E6D70;
+            font-family: "Times New Roman", Times, serif;
+        }
+        button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            border-radius: 6px;
+            border: none;
+          
+            background: #6E6D70;
+            box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+            color: #DFDEDF;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            }
+            button:focus {
+                box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+                outline: 0;
+            }
+    </style>
+</head>
+<body>
+    <h2>AI Detector</h2>
+    <div class="coolinput">
+        <label class="text">Text:</label>
+        <input type="text" id="text" class="input">
+    </div>
+    <button id="testBtn">Test AI</button>
+    <label class="text" id="testResult"></label>
+    <script>
+        $(document).ready(function() {
+            $('#testBtn').on('click', async function() {
+                var text = $('#text').val();
+                try {
+                    const response = await axios.post(
+                        'https://api.sapling.ai/api/v1/aidetect',
+                        {
+                            key: '3FD1RYDAROYHTMOX0XL7PLKTFP06WTCP',
+                            text,
+                        },
+                    );
+                    const {status, data} = response;
+                    console.log({status});
+                    console.log(JSON.stringify(data, null, 4));
+                } catch (err) {
+                    const { msg } = err.response.data;
+                    console.log({err: msg});
+                }
+                /*
+                fetch('https://api.sapling.ai/api/v1/aidetect', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        key: '3FD1RYDAROYHTMOX0XL7PLKTFP06WTCP',
+                        text,
+                    },
+                    body: JSON.stringify(requestBody),
+                    })
+                        .then(response => response.json())
+                        .then((data) => {
+                            console.log({status});
+                            if (data.status == 200) {
+                                console.log(JSON.stringify(data, null, 4));
+                            }
+                        })*/
+            });
+        });
+    </script>
+</body>
+</html>
