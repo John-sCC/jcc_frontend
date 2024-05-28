@@ -2,8 +2,13 @@ window.addEventListener('load', function() {
     getUserData();
 });
 
-const local = 'http://localhost:8911';
-const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
+var local = "http://localhost:8911";
+var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+const currentUrl = window.location.href;
+var fetchUrl = deployed;
+if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+fetchUrl = local;
+}
 
 // global for class being edited
 var savedClassData = null
@@ -11,7 +16,7 @@ var savedColor = null
 
 function getUserData() {
     // making the fetch request
-    fetch(deployed + '/api/class_period/dashboard', {
+    fetch(fetchUrl + '/api/class_period/dashboard', {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
