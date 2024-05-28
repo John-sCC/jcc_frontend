@@ -108,7 +108,7 @@ function postApi(){
         var url = 'http://localhost:8911/api/stats/newTwoQuantitative';
     }
     else {
-        var url = 'https://https://jcc.stu.nighthawkcodingsociety.com/api/stats/newTwoQuantitative'; 
+        var url = 'https://jcc.stu.nighthawkcodingsociety.com/api/stats/newTwoQuantitative'; 
     }
 
     var explanatoryName = document.getElementById('explanatoryName').value;
