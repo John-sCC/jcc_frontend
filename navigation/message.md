@@ -134,7 +134,6 @@ permalink: /message/
             });
         });
     </script>
-</body>
 <script>
  window.onload = (event) => {
       console.log("Page is fully loaded");
