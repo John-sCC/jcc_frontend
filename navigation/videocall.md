@@ -23,18 +23,19 @@ layout: default
 </body>
 <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
 <script>
-  function themeChange() {
-            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
-            const newDarkMode = !DarkMode;
-            if (DarkMode) {
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
-            } else {
-                document.body.classList.add('light');
-                document.body.classList.remove('dark');
-            }
-            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
-  }
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
 window.onload = function () {
     function getUrlParams(url) {
         let urlStr = url.split('?')[1];

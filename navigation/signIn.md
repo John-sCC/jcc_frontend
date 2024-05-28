@@ -41,25 +41,46 @@ permalink: /sign-in/
 
 <script>
   const brandLogoImg = document.getElementById('brand-logo-img');
-  function themeChange() {
-            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
-            const newDarkMode = !DarkMode;
-            if (DarkMode) {
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
-                if (brandLogoImg) {
+  window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+        if (brandLogoImg) {
                   console.log("dark")
                   brandLogoImg.src = "../images/icons/alternate_dnhs_logo.png";
-                }
-            } else {
-                document.body.classList.add('light');
-                document.body.classList.remove('dark');
-               if (brandLogoImg) {
+        }
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+        if (brandLogoImg) {
                   brandLogoImg.src = "../images/icons/dnhs_logo.png";
-                }
-            }
-            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
-  }
+        }
+      }
+};
+
+  // function themeChange() {
+  //           const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+  //           const newDarkMode = !DarkMode;
+  //           if (DarkMode) {
+  //               document.body.classList.add('dark');
+  //               document.body.classList.remove('light');
+                // if (brandLogoImg) {
+                //   console.log("dark")
+                //   brandLogoImg.src = "../images/icons/alternate_dnhs_logo.png";
+                // }
+  //           } else {
+  //               document.body.classList.add('light');
+  //               document.body.classList.remove('dark');
+              //  if (brandLogoImg) {
+              //     brandLogoImg.src = "../images/icons/dnhs_logo.png";
+              //   }
+  //           }
+  //           localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+  // }
 
   var local = "http://localhost:8911";
   var deployed = "https://jcc.stu.nighthawkcodingsociety.com";

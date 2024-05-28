@@ -7,8 +7,18 @@ $(window).ready(function() {
         })
     }
 
-    var DarkMode = false;
-    console.log(DarkMode);
+    let DarkMode = localStorage.getItem('DarkMode');
+    if (DarkMode === null) {
+      console.log("not there");
+      DarkMode = false;
+      localStorage.setItem('DarkMode', JSON.stringify(DarkMode));
+    } else {
+      // Convert the retrieved value from string to boolean
+      DarkMode = JSON.parse(DarkMode);
+    }
+    
+
+    console.log("m" + DarkMode);
 
     //Redirect logo and title clicks to index
     // for (let home of ['nav-logo', 'nav-title']) {
@@ -113,14 +123,23 @@ function sectionClicked() {
 }
 
 function themeChange() {
-    let DarkMode = localStorage.getItem('DarkMode');
-
-    console.log(DarkMode);
-    DarkMode = !DarkMode;
-
-    localStorage.setItem('DarkMode', DarkMode);
-    console.log(DarkMode);
+    let DarkMode = JSON.parse(localStorage.getItem('DarkMode'));
+    
+    const newDarkMode = !DarkMode;
+    
+    if (newDarkMode) {
+        console.log("dark");
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+    } else {
+        console.log("light");
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+    }
+    
+    localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+    
+    console.log("h" + DarkMode);
 }
-
 
 
