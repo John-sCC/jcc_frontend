@@ -15,18 +15,19 @@ permalink: /student-class-data
 </div>
 
 <script>
-    function themeChange() {
-            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
-            const newDarkMode = !DarkMode;
-            if (DarkMode) {
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
-            } else {
-                document.body.classList.add('light');
-                document.body.classList.remove('dark');
-            }
-            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
-    }
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
     const local = 'http://localhost:8911';
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 

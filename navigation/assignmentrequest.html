@@ -11,7 +11,7 @@ permalink: /ass-request/
         }
     </style>
 </head>
-<body>
+<body class="light">
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
 <div class="assflex-container">
     <div class="bigpapa">
@@ -61,6 +61,19 @@ permalink: /ass-request/
 </div>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
 <script>
+window.onload = (event) => {
+        console.log("Page is fully loaded");
+        let DarkMode = localStorage.getItem('DarkMode');
+        DarkMode = (DarkMode === 'true'); // Convert to boolean
+        console.log(DarkMode);
+        if (DarkMode) {
+          document.body.classList.add('dark');
+          document.body.classList.remove('light');
+        } else {
+          document.body.classList.add('light');
+          document.body.classList.remove('dark');
+        }
+};
     const quill = new Quill('#editor', {
         modules: {toolbar: false},
         theme: 'snow',
