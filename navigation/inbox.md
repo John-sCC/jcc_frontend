@@ -25,6 +25,7 @@ permalink: /inbox/
             display: inline-block;
             margin-bottom: 32px;
             border-color: #91976cff;
+            border-radius: 25px;
         }
         body {
             font-family: Arial, sans-serif;

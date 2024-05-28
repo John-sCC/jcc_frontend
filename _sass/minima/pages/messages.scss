@@ -1,65 +1,55 @@
-// body {
-//     font-family: sans-serif;
+// body, html {
+//     height: 100%;
 //     margin: 0;
-//     padding: 0;
-// }
-// header {
 //     background-color: #f0f0f0;
-//     padding: 20px;
+//     font-family: "Collegiate Inside";
+// }
+// h1 {
+//     text-align: center;
+//     padding-top: 20px;
+//     font-family: "Collegiate Inside";
+// }
+// label {
+//     color: white;
+//     display: block;
+//     margin-bottom: 5px;
+// }
+// input, textarea {
+//     background-color: #D3D3D3;
+//     border: none;
+//     width: calc(100% - 40px);
+//     padding: 12px 20px;
+//     margin: 8px 0;
+//     box-sizing: border-box;
+//     border-radius: 25px;
+// }
+// .container {
 //     display: flex;
-//     justify-content: space-between;
+//     justify-content: center;
 //     align-items: center;
-// }
-// header h1 {
-//     font-size: 20px;
-//     margin: 0;
-// }
-// .search-bar {
-//     width: 300px;
-//     margin-right: 20px;
-// }
-// .search-bar input {
+//     height: 100%;
 //     width: 100%;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
 // }
-// nav {
-//     background-color: #e0e0e0;
-//     padding: 10px;
-// }
-// nav ul {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-// }
-// nav li {
-//     display: inline-block;
-//     margin-right: 20px;
-// }
-// nav a {
-//     text-decoration: none;
-//     color: #333;
-// }
-// main {
+// .content {
+//     width: 80%;
+//     background-color: #002147ff;
 //     padding: 20px;
-// }
-// .emails {
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     padding: 10px;
-// }
-// .emails ul {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-// }
-// .email {
-//     margin-bottom: 10px;
-//     border-bottom: 1px solid #ddd;
-//     padding: 10px;
-// }
-// .sender {
+//     border-radius: 25px;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 //     display: flex;
-//     //justify-content;
+//     flex-direction: column;
+// }
+// button {
+//     width: 100%;
+//     padding: 12px;
+//     border: none;
+//     border-radius: 25px;
+//     background-color: #154734ff;
+//     color: white;
+//     font-size: 16px;
+//     cursor: pointer;
+//     margin-top: 10px;
+// }
+// button:hover {
+//     background-color: #22956b;
 // }
