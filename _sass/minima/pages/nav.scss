@@ -257,7 +257,7 @@
 .light {
     .nav {
         display: flex;
-        z-index: 1;
+        z-index: 2;
         flex-direction: column;
         width:100%;
         height: 30vw;
@@ -272,7 +272,7 @@
             width: 100%;
             height: calc(30vw/6);
             position: absolute;
-            z-index: 1;
+            z-index: 2;
     
             .nav-title {
                 @include basic-hover(dark);
@@ -362,7 +362,7 @@
             background-size: 100%;
             position: relative;
             top: calc(30vw/6);
-            z-index: 0;
+            z-index: 1;
         }
     
         .nav-bottom {
@@ -374,6 +374,7 @@
             flex-direction: row;
             position: relative;
             top: calc(30vw/6);
+            z-index: 1;
     
             .nav-button {
                 @include basic-hover(dark);
@@ -413,7 +414,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: 9.6vw;
-        z-index: 2;
+        z-index: 3;
         transition: transform 0.5s ease;
     }
     
@@ -515,7 +516,7 @@
 .dark {
     .nav {
         display: flex;
-        z-index: 1;
+        z-index: 2;
         flex-direction: column;
         width:100%;
         height: 30vw;
@@ -530,7 +531,7 @@
             width: 100%;
             height: calc(30vw/6);
             position: absolute;
-            z-index: 1;
+            z-index: 2;
     
             .nav-title {
                 @include basic-hover(dark);
@@ -620,7 +621,7 @@
             background-size: 100%;
             position: relative;
             top: calc(30vw/6);
-            z-index: 0;
+            z-index: 1;
         }
     
         .nav-bottom {
@@ -671,7 +672,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: 9.6vw;
-        z-index: 2;
+        z-index: 3;
         transition: transform 0.5s ease;
     }
     
