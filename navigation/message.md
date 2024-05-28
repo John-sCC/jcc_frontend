@@ -4,7 +4,6 @@ title: Message
 permalink: /message/
 ---
 <body class="light">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,4 +149,3 @@ permalink: /message/
             localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
   }
 </script>
-</html>
