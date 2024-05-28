@@ -4,7 +4,7 @@ title: Dashboard
 search_exclude: true
 permalink: /dashboard/
 ---
-
+<body class="light">
 <!--<button id="test_button" onclick="getUserData()">Click here for test</button>-->
 <div id="dashboard_container" class="dashboard" style="display:none;">
     <h1>DASHBOARD</h1>
@@ -54,6 +54,19 @@ permalink: /dashboard/
 </div>
 
 <script>
+   function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+  }
+
     // Check if the required cookie is present on page load
     // window.addEventListener('load', function() {
     //     if (!hasCookie('jwt')) {
