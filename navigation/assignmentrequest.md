@@ -4,7 +4,7 @@ title: Ass Request
 search_exclude: true
 permalink: /ass-request/
 ---
-
+<body class="dark">
 <head>
     <style>
         .flexbox {
