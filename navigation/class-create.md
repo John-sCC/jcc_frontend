@@ -119,7 +119,7 @@ permalink: /class-create/
     var redoStack = [];
     var lastActionType = '';
     document.addEventListener('DOMContentLoaded', function() {
-        fetch(`${local}/api/person/`, {
+        fetch(`${deployed}/api/person/`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -156,7 +156,7 @@ permalink: /class-create/
             studentIds: studentIds
         };
         console.log(requestBody);
-        fetch(`${local}/api/class_period/post`, {
+        fetch(`${deployed}/api/class_period/post`, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -283,7 +283,7 @@ permalink: /class-create/
             return; // Don't perform search if the query is empty
         }
         // Fetch data from the server based on the search query
-        fetch(`${local}/api/person/searchInstructors/${query}`, {
+        fetch(`${deployed}/api/person/searchInstructors/${query}`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -329,7 +329,7 @@ permalink: /class-create/
             return;
         }
         // Fetch data from the server based on the subject query
-        fetch(`${local}/api/person/getBySubject/${subject}`, {
+        fetch(`${deployed}/api/person/getBySubject/${subject}`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
