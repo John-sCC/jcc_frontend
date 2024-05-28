@@ -3,7 +3,7 @@ layout: default
 title: Inbox
 permalink: /inbox/
 ---
-
+<body class="light">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,18 @@ permalink: /inbox/
     <!--<a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>-->
     <div id="inbox-messages"></div>
     <script>
+      function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+      }
         var local = "http://localhost:8911";
         var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
         fetch(deployed + '/api/messages')

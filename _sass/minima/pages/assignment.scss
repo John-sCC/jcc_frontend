@@ -9,7 +9,211 @@
         color: lightslategray;
     }
     p {
-        font-family: 'Arial';
-        font-size: 120%;
+        font-family: $nighthawk-font3;
+        font-size: 1.2vw;
     }
+    .data-box {
+        display: flex; /* Enable flexbox layout */
+        justify-content: space-around; /* Distribute space around items */
+        align-items: center; /* Center items vertically */
+        width: 100%;
+        border: 3px solid $nighthawk-gold; /* Adjust thickness as needed */
+        background-color: $nighthawk-blue;
+        color: white;
+        font-family: $nighthawk-font2;
+        border-radius: 15px; /* Adjust the radius as needed */
+        padding: 10px; /* Adjust padding as needed */
+        box-sizing: border-box;
+        white-space: nowrap; /* Prevents text from breaking into multiple lines */
+        overflow: hidden; /* Ensures content that overflows is hidden */
+        text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
+        font-size: 1.4vw;
+        margin-bottom: 20px;
+    }
+    
+    .data-item {
+        margin: 0 10px; /* Optional: Add horizontal margin between items */
+    }
+
+    .divider {
+        margin: 0 10px; /* Same horizontal margin as data-item for consistency */
+        color: white; /* Ensure the separator is visible with the white text color */
+    }
+    
+    .data-box span {
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    .split-container {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+      }
+      
+      .split-container .left-side,
+      .split-container .right-side {
+        flex: 1;
+        padding: 10px;
+      }
+      
+      .split-container .divider {
+        width: 3px;
+        background-color: $nighthawk-gold;
+        margin: 20px;
+      }
+
+      .container {
+        border: 3px solid $nighthawk-gold;
+        font-family: $nighthawk-font3;
+        border-radius: 15px;
+        background-color: white;
+        color: black;
+        padding: 0px 20px 20px 20px;
+        width: 90%;
+        margin: 0 auto;
+      }
+      
+      .header {
+        border: 3px solid $nighthawk-gold;
+        border-top: 0px; // getting rid of top border for proper formatting
+        background-color: $nighthawk-blue;
+        color: white;
+        font-family: $nighthawk-font2;
+        font-size: 140%;
+        text-align: center;
+        padding: 10px;
+        border-bottom-left-radius: 13px;
+        border-bottom-right-radius: 13px;
+      }
+      
+      .upload-title {
+        font-family: $nighthawk-font3;
+        text-align: left;
+        margin-top: 20px;
+        font-size: 115%;
+        text-decoration: underline;
+      }
+      
+      .file-upload {
+        margin-top: 10px;
+        display: block;
+        border-radius: 10px;
+        padding: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .placeholder {
+        text-align: left;
+        margin-top: 10px;
+      }
+      
+      .submit-btn {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background-color: $nighthawk-blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 120%;
+        font-family: $nighthawk-font2;
+      }
+
+      .underline-pointer-hover {
+        color: black; // Default color
+
+        ol {
+    
+            li {
+                list-style-type: decimal; // Ensure <li> items are numbered
+                padding-left: 20px; // Optional: add some padding to the left for indentation
+
+                span {
+                    text-decoration: underline;
+                    cursor: pointer;
+                    transition: color 0.15s ease-in-out; // Smooth transition effect for color change
+
+                    &:hover {
+                        color: #38761d; // Change color on hover
+                    }
+
+                    &.clicked {
+                        color: #38761d; // Permanent color on click
+                    }
+                }
+            }
+        }
+    }
+
+    .full-submission-list {
+        font-size: 1.1vw;
+
+        ul {
+            list-style-type: disc;
+            
+            li {
+                list-style-type: inherit;
+    
+                ol {
+                    list-style-type: decimal;
+                    margin-left: 20px;
+    
+                    li {
+                        list-style-type: inherit;
+
+                        // display: inline;
+
+                        input, button {
+                            display: inline-block;
+                            vertical-align: middle; /* Ensure proper vertical alignment */
+                            margin-left: 5px; /* Space between elements */
+                        }
+
+                        input {
+                            width: 4ch;
+                        }
+
+                        button {
+                            padding: 5px 5px;
+                            background-color: $nighthawk-blue;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-family: $nighthawk-font2;
+                        }
+    
+                        span {
+                            text-decoration: underline;
+                            cursor: pointer;
+                            transition: color 0.15s ease-in-out;
+    
+                            &:hover {
+                                color: #38761d;
+                            }
+    
+                            &.clicked {
+                                color: #38761d;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // @media (max-width: 600px) { /* Adjust the breakpoint as needed */
+    //     .data-box {
+    //         font-size: 12px; /* Adjust to a smaller font size */
+    //     }
+    // }
+    
+    // @media (max-width: 400px) { /* Adjust the breakpoint as needed */
+    //     .data-boxs {
+    //         font-size: 10px; /* Adjust to an even smaller font size */
+    //     }
+    // }
 }
