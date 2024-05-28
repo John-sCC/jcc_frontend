@@ -105,11 +105,80 @@ permalink: /class-create/
     var undoStack = [];
     var redoStack = [];
     var lastActionType = '';
-
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch(`${local}/api/person/`, {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            // Use all persons as instructors
+            data.forEach(person => {
+                Myinstructors.push(person); // Add each person to Myinstructors array
+            });
+            console.log(Myinstructors);
+            // Handle the instructors data as needed (e.g., display in UI)
+            displayInstructors(Myinstructors);
+        })
+        .catch(error => {
+            console.error('Error fetching persons:', error);
+        });
+    });
+    document.getElementById('createButton').addEventListener('click', function() {
+        const className = document.getElementById('className').value;
+        const requestBody = {
+            name: className,
+            leaderIds: leaderIds,
+            studentIds: studentIds
+        };
+        console.log(requestBody);
+        fetch(`${local}/api/class_period/post`, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: JSON.stringify(requestBody),
+            credentials: 'include',
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Class created successfully!');
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error creating class');
+        });
+    });
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+        }
+        return null; // Return null if the cookie is not found
+    }
     // Add event listeners for undo and redo buttons
     document.getElementById('undoButton').addEventListener('click', undo);
     document.getElementById('redoButton').addEventListener('click', redo);
-
     // Function to handle undo operation
     function undo() {
         if (undoStack.length > 0) {
@@ -118,7 +187,6 @@ permalink: /class-create/
             performUndoRedo(action, true);
         }
     }
-
     // Function to handle redo operation
     function redo() {
         if (redoStack.length > 0) {
@@ -127,39 +195,27 @@ permalink: /class-create/
             performUndoRedo(action, false);
         }
     }
-
-    // Function to perform undo and redo actions
-    // Function to perform undo and redo actions
     // Function to perform undo and redo actions
     function performUndoRedo(action, isUndo) {
         switch (action.type) {
             case 'ADD_STUDENT':
                 const studentList = document.getElementById('curStu');
-                const emailList = document.getElementById('curEmails'); // Assuming you have an element for emails
                 if (isUndo) {
                     const lastStudentDiv = studentList.lastElementChild;
-                    const lastEmailDiv = emailList.lastElementChild;
-                    if (lastStudentDiv && lastEmailDiv) {
+                    if (lastStudentDiv) {
                         studentList.removeChild(lastStudentDiv); // Remove the last added student
-                        emailList.removeChild(lastEmailDiv); // Remove the corresponding email
                         studentIds.pop(); // Remove the most recent ID added
                     }
                 } else {
                     const studentDiv = document.createElement('div');
-                    studentDiv.textContent = action.name;
+                    studentDiv.textContent = `Name: ${action.name}, Email: ${action.email}`;
                     studentList.appendChild(studentDiv);
-                    studentIds.push(action.id); // Add the ID to the studentIds array
-                
-                    const emailDiv = document.createElement('div');
-                    emailDiv.textContent = action.email; // Assuming action.email contains the email
-                    emailList.appendChild(emailDiv);
+                    studentIds.push(action.id); // Add the ID to the studentIds array      
                 }
                 break;
             // Add cases for other types of actions if needed
         }
     }
-
-
     function sortStudents(order) {
         alert('Sorting students in ' + order + ' order');
     }
@@ -170,7 +226,9 @@ permalink: /class-create/
     function addStudentToClass(student) {
         const action = {
             type: 'ADD_STUDENT',
-            name: student.name
+            id: student.id,
+            name: student.name,
+            email: student.email
         };
         undoStack.push(action); // Push the action to undo stack
         redoStack = []; // Clear redo stack when a new action is added
@@ -185,8 +243,7 @@ permalink: /class-create/
         } else {
             alert('Student already added to the class.');
         }
-    }
-    function addInstructorToClass() {
+    }   function addInstructorToClass() {
         const instructorName = document.getElementById('newInstructor').value.trim();
         const foundInstructor = Myinstructors.find(inst => inst.name === instructorName);
         if (foundInstructor) {
@@ -210,7 +267,7 @@ permalink: /class-create/
         const instructorList = document.getElementById('instructorList');
         if (query.length < 1) {
             instructorList.classList.remove('show'); // Hide the white box if query is empty
-           return; // Don't perform search if the query is empty
+            return; // Don't perform search if the query is empty
         }
         // Fetch data from the server based on the search query
         fetch(`${local}/api/person/searchInstructors/${query}`, {
@@ -234,15 +291,15 @@ permalink: /class-create/
                 instructorList.classList.add('show'); // Show the white box with message
             } else {
                 instructorList.innerHTML = ''; // Clear previous search results
-                    data.forEach(instructor => {
-                        const instructorDiv = document.createElement('div');
-                        instructorDiv.className = 'person-div';
-                        instructorDiv.textContent = `Name: ${instructor.name}, Email: ${instructor.email}`;
-                        const addButton = document.createElement('button');
-                        addButton.textContent = 'Add';
-                        addButton.onclick = () => addInstructorToClass(instructor);
-                        instructorDiv.appendChild(addButton);
-                        instructorList.appendChild(instructorDiv);
+                data.forEach(instructor => {
+                    const instructorDiv = document.createElement('div');
+                    instructorDiv.className = 'person-div';
+                    instructorDiv.textContent = `Name: ${instructor.name}, Email: ${instructor.email}`;
+                    const addButton = document.createElement('button');
+                    addButton.textContent = 'Add';
+                    addButton.onclick = () => addInstructorToClass(instructor);
+                    instructorDiv.appendChild(addButton);
+                    instructorList.appendChild(instructorDiv);
                 });
                 instructorList.classList.add('show'); // Show the white box with search results
             }
