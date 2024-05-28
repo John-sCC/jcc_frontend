@@ -104,10 +104,9 @@ function updateDivs() {
         navBottom.classList.add("sticky");
         
         // Offset margin and set logo size to final position
-        classButton.style.marginLeft = `${21.5}vw`;
+        dashboardButton.style.marginLeft = `${21.5}vw`;
         logo.style.width = `${8.7}vw`;
         logo.style.backgroundSize = `${6.96}vw`;
-
     }
 }
 
