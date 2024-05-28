@@ -22,6 +22,7 @@ permalink: /one-variable/
             <p> <label class="insert"> Variable Observations: <br> <input id="variable" placeholder="Numbers here..."></label> </p>
             <button onclick="postApi()">Post to Backend</button>
             <button onclick="generateTableAndGraph()">Generate Table and Graph</button>
+            <button onclick="getUserData()">See Your Old Data</button>
         </div>
         <div id="table" class="tablee">
             <p class="bigboyheader">SUMMARY STATISTICS:</p>
@@ -42,6 +43,7 @@ permalink: /one-variable/
             <div>c</div>
         </div>
         <div id="plot" class="graph"></div>
+        <div id="userData"></div>
     </div>
 </div>
 
@@ -121,6 +123,7 @@ function postApi(){
 
     fetch(url, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -136,8 +139,122 @@ function postApi(){
             console.error('There was a network or other error:', error.message);
         }
     });
-
 }
+async function newData(data) {
+    try {
+        
+        var dataEntry = document.createElement('p');
+        dataEntry.id =  data["id"];
+        dataEntry.innerHTML = data["name"] + " " + data["data"];
+
+        // Create button element
+        var button = document.createElement('button');
+        button.id = data["id"];
+        button.textContent = 'See This Data';
+        button.onclick = function() {
+            document.getElementById('variableName').value = data["name"];
+            document.getElementById('variable').value = data["data"];
+        };
+
+        // Create a line break element
+        var lineBreak = document.createElement('br');
+
+        // Create a container div
+        var individualInput = document.createElement('div');
+
+        // Append elements to the container div
+        individualInput.appendChild(dataEntry);
+        individualInput.appendChild(button);
+        individualInput.appendChild(lineBreak);
+
+        // Append the container div to the main container
+        var container = document.getElementById('userData');
+        container.appendChild(individualInput);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function getUserData() {
+    try {
+        const data = await fetchApi();
+
+        // Use a for...of loop to handle async/await properly
+        for (const item of data) {
+            await newData(item);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function fetchApi() {
+    let url;
+    if (window.location.href.includes("127.0.0.1")) {
+        url = 'http://localhost:8911/api/person/quantitatives';
+    } else {
+        url = 'https://jcc.stu.nighthawkcodingsociety.com/api/person/quantitatives';
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        if (error instanceof SyntaxError) {
+            console.error('There was a syntax error in the response, possibly not JSON:', error.message);
+        } else {
+            console.error('There was a network or other error:', error.message);
+        }
+        throw error;
+    }
+}
+
+async function getQuantitative(id) {
+    let url;
+    if (window.location.href.includes("127.0.0.1")) {
+        url = `http://localhost:8911/api/stats/getQuantitative${id}`;
+    } else {
+        url = `https://jcc.stu.nighthawkcodingsociety.com/api/stats/getQuantitative${id}`;
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        if (error instanceof SyntaxError) {
+            console.error('There was a syntax error in the response, possibly not JSON:', error.message);
+        } else {
+            console.error('There was a network or other error:', error.message);
+        }
+        throw error;
+    }
+}
+
+
 
 </script>
 </body>
