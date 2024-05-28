@@ -88,6 +88,8 @@ permalink: /message/
         </div>
     </div>
     <script>
+        var local = "http://localhost:8911";
+        var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
         console.log(localStorage.getItem("email"))
         document.getElementById('composeForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -98,7 +100,7 @@ permalink: /message/
             });
             message["from"] = localStorage.getItem("email");
             console.log(message);
-            fetch('http://localhost:8911/api/messages', {
+            fetch(deployed + '/api/messages', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

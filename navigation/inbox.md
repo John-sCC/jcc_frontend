@@ -98,7 +98,7 @@ permalink: /inbox/
     <script>
         var local = "http://localhost:8911";
         var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
-        fetch(local + '/api/messages')
+        fetch(deployed + '/api/messages')
         .then(response => response.json())
         .then(data => {
             // Loop through the received data and create HTML elements to display each message
