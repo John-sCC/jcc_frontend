@@ -12,17 +12,17 @@
         display: flex;
         align-items: stretch;
         height: 100%;
-      }
+    }
       
-      .split-container .left-side,
-      .split-container .right-side {
+    .split-container .left-side,
+    .split-container .right-side {
         flex: 1;
         padding: 10px;
-      }
+    }
       
-      .split-container .divider {
+    .split-container .divider {
         width: 3px;
         background-color: $nighthawk-gold;
         margin: 20px;
-      }
+    }
 }

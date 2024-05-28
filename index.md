@@ -12,6 +12,7 @@ hide: true
                     <img src="{{site.baseurl}}/images/icons/dnhs_logo.png" id="brand-logo-img" alt="Brand Logo">
                 </div>
             </div>
+            <div class="divider"></div>
             <div class="right-side"></div>
         </div>
     </div>
