@@ -17,7 +17,7 @@ permalink: /sign-in/
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="light">
   <main id="main-holder">
     <div id="brand-logo">
       <img src="../images/icons/dnhs_logo.png" alt="Brand Logo">
@@ -40,6 +40,19 @@ permalink: /sign-in/
 </html>
 
 <script>
+  function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+  }
+
   var local = "http://localhost:8911";
   var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
 

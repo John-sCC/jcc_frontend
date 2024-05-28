@@ -7,6 +7,9 @@ $(window).ready(function() {
         })
     }
 
+    var DarkMode = false;
+    console.log(DarkMode)
+
     //Redirect logo and title clicks to index
     // for (let home of ['nav-logo', 'nav-title']) {
     //     $(`.${home}`).click( function() { 
@@ -108,3 +111,15 @@ function sectionClicked() {
         document.querySelector('.nav-logo').classList.remove('active');
     }, 100);
 }
+
+function themeChange() {
+    let DarkMode = localStorage.getItem('darkMode') === 'true';
+
+    DarkMode = !DarkMode;
+
+    localStorage.setItem('darkMode', DarkMode);
+    console.log(DarkMode)
+}
+
+
+

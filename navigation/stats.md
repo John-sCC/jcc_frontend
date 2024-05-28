@@ -4,7 +4,7 @@ title: Statistics
 toc: false
 permalink: /stats
 ---
-
+<body class="light">
 <div class="options">
   <div>
     <button class="stats-dropdown" onclick="toggleDropdown()">Data Analysis</button>
@@ -25,6 +25,18 @@ permalink: /stats
     <h1><div class="stats-container"><button class="button single-group">Single Group</button><button class="button multi-group">Multi Groups</button></div></h1>
 </div>
 <script>
+function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+}
 function toggleDropdown() {
   var dropdown = document.getElementById("statsDropdown");
   dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";

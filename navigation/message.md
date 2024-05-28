@@ -3,7 +3,7 @@ layout: default
 title: Message
 permalink: /message/
 ---
-
+<body class="light">
 <html lang="en">
 <style>
     input {
@@ -43,4 +43,18 @@ permalink: /message/
         <input type="submit" value="Send Message">
     </form>
 </body>
+<script>
+  function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+  }
+</script>
 </html>

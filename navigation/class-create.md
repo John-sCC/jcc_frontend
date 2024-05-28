@@ -4,7 +4,7 @@ title: Class Creation (Beta)
 search_exclude: true
 permalink: /class-create/
 ---
-
+<body class="light">
 <h2>Create Class</h2>
 
 <form id="postForm">
@@ -14,6 +14,19 @@ permalink: /class-create/
 </form>
 
 <script>
+    function themeChange() {
+            const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
+            const newDarkMode = !DarkMode;
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
+  }
+  
   const local = "http://localhost:8911/api/class_period/post?";
   const deployed = "https://jcc.stu.nighthawkcodingsociety.com/api/class_period/post?";
 
