@@ -7,75 +7,88 @@ permalink: /stapplet/
 
 
 <!-- DOESN'T WORK I NEED TO FIX ! :) -->
-```html
-<!DOCTYPE html>
+<!-- ```html  -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Webpage Layout</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #1a1a1a;
-        color: white;
+@import url('https://fonts.googleapis.com/css2?family=Becka+Script+Plain+Regular&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Collegiate+Inside&display=swap');
+
+body {
+    font-family: "Becka Script Plain Regular", sans-serif;
+    padding: 20px;
+    background-color: #002147ff; 
+    color: #fff; 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+
+.box {
+    background-color: #002147ff; 
+    padding: 20px;
+    border-radius: 5px;
+    width: calc(50% - 40px); 
+    margin-bottom: 20px;
+    border: 5px solid #91976cff; 
+    margin-right: 20px; 
+}
+
+
+.title {
+    font-family: "Collegiate Inside", sans-serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #91976cff; 
+}
+
+.description {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.tool-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tool-item {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.tool-link {
+    color: #22956b; 
+
+    &:hover {
+        text-decoration: underline;
     }
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .section-title {
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
-    }
-    .button-row {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-    .button {
-        background-color: #006400;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 25px;
-    }
+    .box:last-child {
+    margin-right: 0;
+}
+
+}
 </style>
 </head>
 <body>
-<div class="container">
-    <div class="section-title">
-        <img src="" alt="Checkmark Icon" class="checkmark-icon">
-        <h2>DATA ANALYSIS</h2>
+    <h1 class="title">Select Your Graphing Tool</h1>
+    <p class="description">Please select the graphing tool you want to use for your stats data:</p>
+    <div class="box">
+        <h2 class="title">Categorical</h2>
+        <ul class="tool-list">
+            <li class="tool-item"><a href="/jcc_frontend/twocategorical/" class="tool-link">Single Categorical</a></li>
+            <li class="tool-item"><a href="/jcc_frontend/twocategorical/" class="tool-link">Two Categorical</a></li>
+        </ul>
     </div>
-    <div class="button-row">
-        <a href="#" class="button">1 CATEGORICAL VARIABLE</a>
-        <a href="#" class="button">SINGLE GROUP</a>
-        <a href="#" class="button">MULTI GROUP</a>
+    <div class="box">
+        <h2 class="title">Quantitative</h2>
+        <ul class="tool-list">
+            <li class="tool-item"><a href="/jcc_frontend/one-variable/" class="tool-link">One Quantitative Variable</a></li>
+            <li class="tool-item"><a href="/jcc_frontend/tables/" class="tool-link">Two Quantitative Variables</a></li>
+        </ul>
     </div>
-    <div class="button-row">
-        <a href="#" class="button">2 QUANTITATIVE VARIABLES</a>
-    </div>
-    <div class="section-title">
-        <img src="" alt="Checkmark Icon" class="checkmark-icon">
-        <h2>COLLABORATIVE</h2>
-    </div>
-    <div class="button-row">
-        <a href="#" class="button">1 QUANTITATIVE VARIABLE</a>
-        <a href="#" class="button">SINGLE GROUP</a>
-        <a href="#" class="button">MULTI GROUP</a>
-    </div>
-    <div class="button-row">
-        <a href="#" class="button">MULTIPLE REGRESSION</a>
-    </div>
-</div>
 </body>
 </html>
+

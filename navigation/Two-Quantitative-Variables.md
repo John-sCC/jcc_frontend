@@ -4,8 +4,7 @@ title: table
 permalink: /tables/
 ---
 
-```html
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>Two Quantitative Variables</title>
