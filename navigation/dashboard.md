@@ -54,19 +54,6 @@ permalink: /dashboard/
 </div>
 
 <script>
-    // Check if the required cookie is present on page load
-    // window.addEventListener('load', function() {
-    //     if (!hasCookie('jwt')) {
-    //         // Redirect to the login page if the cookie is not present
-    //         window.location.href = '/sign-in/'; // Replace '/login' with your actual login page URL
-    //     }
-    // });
-
-    // // Function to check if a cookie is present
-    // function hasCookie(cookieName) {
-    //     return document.cookie.split(';').some((cookie) => cookie.trim().startsWith(cookieName + '='));
-    // }
-
     window.addEventListener('load', function() {
         getUserData();
     });
