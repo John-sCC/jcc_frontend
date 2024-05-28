@@ -23,6 +23,7 @@ permalink: /tables/
             <p> <label class="insert"> Explanatory Variable Observations: <br> <input id="explanatory" placeholder="Numbers here..."></label> </p>
             <p> <label class="insert"> Response Variable: <br> <input id="responseName" placeholder="Variable name..."></label> </p>
             <p> <label class="insert"> Response Variable Observations: <br> <input id="response" placeholder="Numbers here..."></label> </p>
+            <button onclick="postApi()">Post to Backend</button>
             <button onclick="generateTableAndGraph()">Generate Table and Graph</button>
             <button onclick="generateRegression()">Generate Regression Model</button> <!-- its only going to log in console for now i'll fix it later -->
         </div>
@@ -62,8 +63,6 @@ function generateTableAndGraph() {
     }
     table += '</table>';
     document.getElementById('table').innerHTML += table;
-
-    postApi(explanatory, explanatoryName, response, responseName)
     
     // the scatter plot
     var data = [{
@@ -103,8 +102,18 @@ function generateRegression() {
     console.log('Regression equation: y = ' + result.equation[0] + 'x + ' + result.equation[1]);
 }
 
-function postApi(explanatory, explanatoryName, response, responseName){
-    const url = 'http://localhost:8911/api/stats/newTwoQuantitative'; 
+function postApi(){
+    if(window.location.href.includes("127.0.0.1")){
+        var url = 'http://localhost:8911/api/stats/newTwoQuantitative';
+    }
+    else {
+        var url = 'https://https://jcc.stu.nighthawkcodingsociety.com/api/stats/newTwoQuantitative'; 
+    }
+
+    var explanatoryName = document.getElementById('explanatoryName').value;
+    var explanatory = document.getElementById('explanatory').value.split(',');
+    var responseName = document.getElementById('responseName').value;
+    var response = document.getElementById('response').value.split(',');
 
     const twoQuantitativeRequest = {
         explanatory: explanatory, 

@@ -20,6 +20,7 @@ permalink: /one-variable/
             <p class="bigboyheader">ENTER DATA:</p>
             <p> <label class="insert"> Variable: <br> <input id="variableName" placeholder="Variable name..."></label> </p>
             <p> <label class="insert"> Variable Observations: <br> <input id="variable" placeholder="Numbers here..."></label> </p>
+            <button onclick="postApi()">Post to Backend</button>
             <button onclick="generateTableAndGraph()">Generate Table and Graph</button>
         </div>
         <div id="table" class="tablee">
@@ -101,6 +102,43 @@ function changeGraphType(type) {
     graphType = type;
     generateTableAndGraph();
 }
+
+function postApi(){
+    if(window.location.href.includes("127.0.0.1")){
+        var url = 'http://localhost:8911/api/stats/newQuantitative';
+    }
+    else {
+        var url = 'https://https://jcc.stu.nighthawkcodingsociety.com/api/stats/newQuantitative'; 
+    }
+
+    var name = document.getElementById('variableName').value;
+    var variable = document.getElementById('variable').value.split(',');
+
+    const quantitativeRequest = {
+        data: variable, 
+        name: name
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(quantitativeRequest)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Success:', data))
+    .catch(error => {
+        console.error('Error:', error);
+        if (error instanceof SyntaxError) {
+            console.error('There was a syntax error in the response, possibly not JSON:', error.message);
+        } else {
+            console.error('There was a network or other error:', error.message);
+        }
+    });
+
+}
+
 </script>
 </body>
 </html>
