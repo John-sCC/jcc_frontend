@@ -96,7 +96,7 @@
     border-radius: 15px;
     padding: 1%;
     margin: 1%;
-    margin-right: 0%;
+    margin-top: 0%;
     width: 10%;
     font-weight: 700;
 }
@@ -152,8 +152,21 @@
     padding-right: 3%;
     padding-top: 1% ;
     padding-bottom: 1%;
+    font-size: 150%;
 }
 .ima {
     width: 100%;
     height: 100%;
+}
+.creeatbutton {
+    background-color: $nighthawk-blue;
+    border-style: solid;
+    border-color: $nighthawk-gold;
+    font-family: $nighthawk-font2;
+    color: white;
+    width: 40%;
+    font-size: 150%;
+    border-radius: 15px;
+    margin: 1%;
+    margin-top: 3%;
 }
