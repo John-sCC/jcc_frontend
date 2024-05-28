@@ -117,6 +117,7 @@
         flex-direction: row;
         position: relative;
         top: calc(30vw/6);
+        z-index: 1;
 
         .nav-button {
             @include basic-hover(dark);
@@ -633,6 +634,7 @@
             flex-direction: row;
             position: relative;
             top: calc(30vw/6);
+            z-index: 1;
     
             .nav-button {
                 @include basic-hover(dark);
