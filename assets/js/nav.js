@@ -115,6 +115,7 @@ function sectionClicked() {
 function themeChange() {
     let DarkMode = localStorage.getItem('darkMode') === 'true';
 
+    console.log(DarkMode)
     DarkMode = !DarkMode;
 
     localStorage.setItem('darkMode', DarkMode);
