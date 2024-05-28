@@ -4,7 +4,7 @@ title: Login (Test)
 search_exclude: true
 permalink: /login-test/
 ---
-
+<body class="light">
 <body>
     <h2>Login</h2>
     <form id="loginForm">
@@ -15,6 +15,19 @@ permalink: /login-test/
         <button type="button" onclick="signIn()">Sign In</button>
     </form>
     <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
         function signIn() {
             // Get values from input fields
             var email = document.getElementById('email').value;

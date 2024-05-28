@@ -64,7 +64,7 @@ permalink: /sign-up/
     }
   </style>
 </head>
-<body>
+<body class="light">
   <main id="main-holder">
     <div id="brand-logo">
       <img src="../images/icons/dnhs_logo.png" alt="Brand Logo">
@@ -86,6 +86,20 @@ permalink: /sign-up/
   </main>
 
   <script>
+ window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
+
     const subjects = [
       'Biology', 'Chemistry', 'Physics', 'Computer Science', 'History', 'Engineering', 'Cybersecurity', 'Psychology','Bioengineering','Biochemistry','Calculus','Statistics','English','Literature','Physical Education','ENS','3D Animation','Studio Art','Music Theory','Art History','Government and Politics','Environmental Science'
     ];

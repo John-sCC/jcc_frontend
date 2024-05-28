@@ -4,7 +4,7 @@ title: Class Creation (Beta)
 search_exclude: true
 permalink: /class-create/
 ---
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@ permalink: /class-create/
         /* Your existing styles */
     </style>
 </head>
-<body>
+<body class="light">
 <div class="classflex-container">
     <div class="bigpapa">
         <div>
@@ -83,6 +83,19 @@ permalink: /class-create/
     <br><br><br><br><br><br><br><br>
 </div>
 <script>
+    window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
     var studentIds = [];

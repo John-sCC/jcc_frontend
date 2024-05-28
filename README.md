@@ -20,6 +20,7 @@ See our up-to-date Scrum Board [here]().
 - Create neat graphs, data tables, and survey QR codes for AP Statistics.📊
 - Create job postings📑 for students to apply.💼👔
 - Build a resume to help you get that new job.💸
+- Send messages to your students and teachers.
 - Enhance your teaching today with Nighthawk Resources!🦅🦅
 
 ## Who was involved

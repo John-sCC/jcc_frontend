@@ -5,6 +5,7 @@ description: make tables for ya classessssss
 toc: false
 permalink: /tablegenerator
 ---
+<body class="light">
 <div class="table-generator">
     <div class="text-container">
         <div class="text">
@@ -26,3 +27,18 @@ permalink: /tablegenerator
 </div>
 
 <script src="{{site.baseurl}}/assets/js/tablegenerator.js"></script>
+<script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
+</script>
