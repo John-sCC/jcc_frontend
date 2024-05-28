@@ -1,10 +1,20 @@
 ---
 layout: default
-title: Five Nights At Freddy's Roleplay
+title: Nighthawk Resources
 hide: true
 ---
 
 <body class="light">
+    <div class="index">
+        <div class="split-container">
+            <div class="left-side">
+                <div id="brand-logo">
+                    <img src="{{site.baseurl}}/images/icons/dnhs_logo.png" id="brand-logo-img" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="right-side"></div>
+        </div>
+    </div>
 </body>
 <script>
       function themeChange() {

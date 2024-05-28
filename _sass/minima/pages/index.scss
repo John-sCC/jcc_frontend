@@ -1,0 +1,28 @@
+.index {
+    h1 {
+        font-family: $nighthawk-font2;
+        font-size: 3em;
+    }
+    h2 {
+        font-family: $nighthawk-font2;
+        font-size: 1.5em;
+        color: lightslategray;
+    }
+    .split-container {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+      }
+      
+      .split-container .left-side,
+      .split-container .right-side {
+        flex: 1;
+        padding: 10px;
+      }
+      
+      .split-container .divider {
+        width: 3px;
+        background-color: $nighthawk-gold;
+        margin: 20px;
+      }
+}
