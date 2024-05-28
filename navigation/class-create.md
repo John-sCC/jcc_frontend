@@ -10,36 +10,7 @@ permalink: /class-create/
     <meta charset="UTF-8">
     <title>Create a Class</title>
     <style>
-        ::placeholder {
-            font-size: 25px;
-        }
-        .classtitle {
-            width: 100px; /* Set the width to 100px */
-            margin: 10 auto; /* Center the element */
-        }
-        .inputis {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            box-sizing: border-box;
-        }
-        .createbutt {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .whitebox {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .person-div {
-            padding: 5px;
-            border-bottom: 1px solid #eee;
-        }
+        /* Your existing styles */
     </style>
 </head>
 <body>
@@ -55,7 +26,8 @@ permalink: /class-create/
                 </div>
                 <div>
                     <label>Other Instructors:
-                        <input id="Teachers" class="inputis" placeholder="Enter Instructors Name...">
+                        <input id="newInstructor" class="inputis" placeholder="Enter Instructor Name...">
+                        <button onclick="addInstructor()">Add Instructor</button>
                     </label><br>
                 </div>
                 <div>Current Students:
@@ -67,6 +39,8 @@ permalink: /class-create/
                 </div>
             </div>
             <input class="createbutt" type="button" value="create" id="createButton">
+            <button onclick="undo()">Undo</button>
+            <button onclick="redo()">Redo</button>
         </div>
         <div class="addstudents">
             <div class="toolbarss">
@@ -90,22 +64,18 @@ permalink: /class-create/
                     <img class="hater" src="../images/searchIcon.png">
                 </div>
             </div>
-            <div class="whitebox" id="studentList">
-                <p>hellodd</p>  <!--This is gonna have all the classes appear, I don't know how to do that-->
-            </div>
             <div class="whitebox" id="subjectList">
-                <!-- Results will be inserted here -->
             </div>
             <div class="toolbarss">
                 <div id="stupiddiv">
-                    <div>SEARCH BY SUBJECT</div>
+                    <div>SEARCH BY STUDENT</div>
                 </div>
-                <input id="subjectInput" style="width: 50%;" placeholder="Enter Subject..." oninput="getPersonsBySubject()">
+                <input id="studentInput" style="width: 50%;" placeholder="Enter Student Name..." oninput="searchStudents()">
                 <div style="width: 13%;">
-                    <img class="hater" src="../images/searchIcon.png" onclick="getPersonsBySubject()">
+                    <img class="hater" src="../images/searchIcon.png" onclick="searchStudents()">
                 </div>
             </div>
-            <div class="whitebox" id="subjectList">
+            <div class="whitebox" id="studentList">
                 <!-- Results will be inserted here -->
             </div>
         </div>
@@ -115,36 +85,59 @@ permalink: /class-create/
 <script>
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+    var studentIds = [];
+    var leaderIds = [];
+    function addStudent() {
+        const studentInput = document.getElementById('studentInput');
+        const studentName = studentInput.value.trim();
+        if (studentName) {
+            const studentList = document.getElementById('curStu');
+            const studentDiv = document.createElement('div');
+            studentDiv.textContent = studentName;
+            studentList.appendChild(studentDiv);
+            studentIds.push(studentName);
+            studentInput.value = '';
+            fetch(`${local}/api/class_period/addStudent`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentName)
+            });
+        }
+    }
+    function addInstructor() {
+        const instructorInput = document.getElementById('newInstructor');
+        const instructorName = instructorInput.value.trim();
+        if (instructorName) {
+            const instructorList = document.getElementById('curIns');
+            const instructorDiv = document.createElement('div');
+            instructorDiv.textContent = instructorName;
+            instructorList.appendChild(instructorDiv);
+            leaderIds.push(instructorName);
+            instructorInput.value = '';
+            fetch(`${local}/api/class_period/addInstructor`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(instructorName)
+            });
+        }
+    }
     document.getElementById('createButton').addEventListener('click', function() {
         const className = document.getElementById('className').value;
-        const teachers = document.getElementById('Teachers').value;
-        alert('Class Name: ' + className + '\nInstructors: ' + teachers);
-        // Add your logic to handle the creation of the class here
-    });
-
-    function sortStudents(order) {
-        // Add your logic to sort students here
-        alert('Sorting students in ' + order + ' order');
-    }
-
-    function searchStudents() {
-        // Add your logic to search students here
-        const query = document.getElementById('studentsearc').value;
-        alert('Searching for: ' + query);
-    }
-
-    function getPersonsBySubject() {
-        const subject = document.getElementById('subjectInput').value.trim();
-        if (subject.length < 1) {
-            document.getElementById('subjectList').innerHTML = ''; // Clear the list if input is empty
-            return;
-        }
-
-        fetch(`${local}/api/person/getBySubject/${subject}`, {
-            method: 'GET',
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'include', // include, *same-origin, omit
+        const requestBody = {
+            name: className,
+            leaderIds: leaderIds,
+            studentIds: studentIds
+        };
+        fetch(`${local}/api/class_period/post`, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: JSON.stringify(requestBody),
+            credentials: 'include',
             headers: {
                 "content-type": "application/json",
             },
@@ -156,7 +149,100 @@ permalink: /class-create/
             return response.json();
         })
         .then(data => {
-            // Handle fetched person data here
+            alert('Class created successfully!');
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error creating class');
+        });
+    });
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+        }
+        return null; // Return null if the cookie is not found
+    }
+    function undo() {
+        fetch(`${local}/api/class_period/undo`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(action => {
+            if (action) {
+                if (action.type === 'ADD_STUDENT') {
+                    // Remove the last added student from the current students list
+                    const studentList = document.getElementById('curStu');
+                    const lastStudentDiv = studentList.lastElementChild;
+                    if (lastStudentDiv) {
+                        studentList.removeChild(lastStudentDiv);
+                    }
+                }
+                // Handle other undo actions if needed
+            }
+        });
+    }
+    function redo() {
+        fetch(`${local}/api/class_period/redo`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(action => {
+            if (action) {
+                if (action.type === 'ADD_STUDENT') {
+                    // Redo the last undone action by adding the student back to the list
+                    const studentList = document.getElementById('curStu');
+                    const studentDiv = document.createElement('div');
+                    studentDiv.textContent = action.name;
+                    studentList.appendChild(studentDiv);
+                }
+                // Handle other redo actions if needed
+            }
+        });
+    }
+    function sortStudents(order) {
+        alert('Sorting students in ' + order + ' order');
+    }
+    function searchStudents() {
+        const query = document.getElementById('studentInput').value;
+        alert('Searching for: ' + query);
+    }
+    function addStudentToClass(student) {
+        if (!studentIds.includes(student.email)) {
+            studentIds.push(student.email);
+            const curStuDiv = document.getElementById('curStu');
+            const studentDiv = document.createElement('div');
+            studentDiv.className = 'person-div';
+            studentDiv.textContent = `Name: ${student.name}, Email: ${student.email}`;
+            curStuDiv.appendChild(studentDiv);
+        } else {
+            alert('Student already added to the class.');
+        }
+    }
+    function getPersonsBySubject() {
+        const subject = document.getElementById('subjectInput').value.trim();
+        if (subject.length < 1) {
+            document.getElementById('subjectList').innerHTML = '';
+            return;
+        }
+        fetch(`${local}/api/person/getBySubject/${subject}`, {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
             console.log(data);
             const subjectList = document.getElementById('subjectList');
             subjectList.innerHTML = '';
@@ -168,6 +254,10 @@ permalink: /class-create/
                     const personDiv = document.createElement('div');
                     personDiv.className = 'person-div';
                     personDiv.textContent = `Name: ${person.name}, Email: ${person.email}`;
+                    const addButton = document.createElement('button');
+                    addButton.textContent = 'Add';
+                    addButton.onclick = () => addStudentToClass(person);
+                    personDiv.appendChild(addButton);
                     subjectList.appendChild(personDiv);
                 });
             }
