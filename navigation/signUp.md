@@ -208,6 +208,11 @@ permalink: /sign-up/
 
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+    const currentUrl = window.location.href;
+    var fetchUrl = deployed;
+    if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+        fetchUrl = local;
+    }
 
 
     function displayErrorMessage(message) {
@@ -239,7 +244,7 @@ permalink: /sign-up/
 
       console.log(requestBody);
 
-      fetch(deployed + '/api/person/post', {
+      fetch(fetchUrl + '/api/person/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -250,15 +255,21 @@ permalink: /sign-up/
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
+        return response.text().then(text => {
+          // Try to parse the response as JSON
+          try {
+            return JSON.parse(text);
+          } catch (error) {
+            // If parsing fails, return the text as is
+            return text;
+          }
+        });
       })
       .then(data => {
         console.log(data);
-        alert(data);
       })
       .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
-        alert('Error: ' + error.message);
       });
       window.location.replace("{{site.baseurl}}/sign-in/");
     });

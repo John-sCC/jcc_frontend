@@ -96,7 +96,7 @@ window.onload = (event) => {
 
     function getUserData() {
         // making the fetch request
-        fetch(fetchUrl + '/api/class_period/dashboard', {
+        fetch(local + '/api/class_period/dashboard', {
             method: 'GET',
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
