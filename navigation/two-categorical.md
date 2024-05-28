@@ -7,7 +7,7 @@ permalink: /twocategorical/
 
 
 <head>
-    <title>Page Title</title>
+    <title>Two Categorical</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         .div0 {
@@ -177,6 +177,50 @@ permalink: /twocategorical/
             };
 
             Plotly.newPlot('bar-graph', data, layout);
+        }
+
+        function postApi(){
+            // Check the current URL to determine the API endpoint
+            var url;
+            if (window.location.href.includes("127.0.0.1")) {
+                url = 'http://localhost:8911/api/stats/newTwoCategorical';
+            } else {
+                url = 'https://jcc.stu.nighthawkcodingsociety.com/api/stats/newTwoCategorical'; 
+            }
+
+            // Extract data from input fields
+            var explanatory = document.getElementById('categoryName').value;
+            var response = document.getElementById('categoryValues').value.split(',');
+            var freq = parseInt(document.getElementById('frequency').value); // Assuming 'frequency' is the ID of the input field for frequency
+            var relFreq = parseFloat(document.getElementById('relativeFrequency').value); // Assuming 'relativeFrequency' is the ID of the input field for relative frequency
+
+            // Create request body
+            const twoCategoricalRequest = {
+                explanatory: explanatory,
+                response: response,
+                freq: freq,
+                relFreq: relFreq
+            };
+
+            // Send POST request to the backend API
+            fetch(url, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(twoCategoricalRequest)
+            })
+            .then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch(error => {
+                console.error('Error:', error);
+                if (error instanceof SyntaxError) {
+                    console.error('There was a syntax error in the response, possibly not JSON:', error.message);
+                } else {
+                    console.error('There was a network or other error:', error.message);
+                }
+            });
         }
     </script>
 </body>
