@@ -20,4 +20,4 @@ permalink: /dashboard/
     </div>
 </div>
 
-<script src="{{site.baseurl}}/assets/js/dashboard-new.js"></script>
+<script src="{{site.baseurl}}/assets/js/dashboard.js"></script>
