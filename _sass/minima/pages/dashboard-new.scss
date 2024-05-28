@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 $dark-nighthawk-blue: #021a3aff;
 
 @mixin image-hover() {
@@ -122,22 +124,32 @@ $dark-nighthawk-blue: #021a3aff;
                         .colors-row {
                             display: flex;
                             flex-direction: row;
-                            flex: 1
+                            flex: 2;
+                            flex-wrap: wrap;
                         }
                     
                         .color-square {
                             width: 2vw;
                             height: 2vw;
                             background-color: red;
-                            margin: auto;
+                            margin: 0.6vw;
                             border-radius: 0.4vw;
                             border: 0.1vw solid black;
                             user-select: none;
 
-                            // different hover because we don't want to change color
-                            // also hover only shows on the selectable ones, not the input
-                            &:not(:only-of-type):hover {
-                                cursor: pointer;
+                            // different behavior for the selectables/not the user input one
+                            &:not(:only-of-type) {
+                                $default-colors: #ea9999ff #f9cc9dff #f9cc9dff #b6d8a9ff #a2c4c9ff #a5c2f4ff #a0c5e8ff #b4a7d7ff #d5a7bdff #ccccccff;
+
+                                @each $color in $default-colors {
+                                    &:nth-child(#{index($default-colors, $color)}) {
+                                        background-color: $color;
+                                    }
+                                }
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
                             }
                         }
                     
@@ -162,14 +174,17 @@ $dark-nighthawk-blue: #021a3aff;
                         .buttons {
                             flex: 1;
                             vertical-align: middle;
+                            display: flex;
+                            flex-direction: row;
 
                             button {
                                 color: white;
                                 font-family: $nighthawk-font2;
                                 border: 0.1vw black solid;
                                 border-radius: 0.1vw;
-                                width: 7.2vw;
+                                width: 6.9vw;
                                 font-size: 1vw;
+                                margin: auto;
                     
                                 &:first-child {
                                     background-color: $grayish;

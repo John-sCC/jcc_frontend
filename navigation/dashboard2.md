@@ -17,8 +17,6 @@ permalink: /dashboard-test/
                             <div class="color-square"></div>
                             <div class="color-square"></div>
                             <div class="color-square"></div>
-                        </div>
-                        <div class="colors-row">
                             <div class="color-square"></div>
                             <div class="color-square"></div>
                             <div class="color-square"></div>

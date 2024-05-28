@@ -7,7 +7,7 @@ const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
 function getUserData() {
     // making the fetch request
-    fetch(deployed + '/api/class_period/dashboard', {
+    fetch(local + '/api/class_period/dashboard', {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -24,14 +24,12 @@ function getUserData() {
     })
     .then(data => {
         console.log(JSON.stringify(data));
-        populateAssignmentContainer(data.student);
-        populateClassesContainer(data.student, false);
-        populateClassesContainer(data.leader, true);
-        document.getElementById("dashboard_container").style = "display:block;";
+        // populateAssignmentContainer(data.student);
+        populateClassesContainer(data);
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
-        window.location.replace(`${baseurl}/sign-in/`);
+        // window.location.replace(`${baseurl}/sign-in/`);
     });
 }
 
@@ -68,57 +66,65 @@ function populateAssignmentContainer(studentData) {
     }
 }
 
-function populateClassesContainer(studentData, isLeader) {
-    var bigContainer = document.getElementById('student_class_container_container');
-    var container = document.getElementById('student_class_container');
-    if (isLeader) {
-        bigContainer = document.getElementById('leader_class_container_container');
-        container = document.getElementById('leader_class_container');
-    }
-    container.innerHTML = '';
+function populateClassesContainer(studentData) {
+    console.log("test")
+    const classContainer = $(".class-container")
 
-    for (var classPeriod of studentData) {
-        var card = document.createElement('div');
-        card.classList.add('card');
+    // these will be implemented better later
+    const classTypes = ["leader", "student"]
 
-        var classPeriodName = document.createElement('div');
-        classPeriodName.classList.add('main-name');
-        classPeriodName.textContent = classPeriod.name;
+    for (classType of classTypes) {
+        for (let i = 0; i < studentData[classType].length; i ++) {
+            var classPeriod = studentData[classType][i]
 
-        // adding a click event listener to the assignmentName div
-        if (isLeader) {
-            classPeriodName.setAttribute("onclick", "classLeaderRedirect(" + String(classPeriod.id) + ")");
-        } else {
-            classPeriodName.setAttribute("onclick", "classStudentRedirect(" + String(classPeriod.id) + ")");
-        }
-
-        var leaderNames = document.createElement('div');
-        leaderNames.classList.add('second-name');
-        leaderNames.textContent = "Leaders: ";
-        for (var i = 0; i < classPeriod.leaders.length; i++) {
-            leaderNames.textContent += classPeriod.leaders[i].name;
-            if ((i + 1) < classPeriod.leaders.length) {
-                leaderNames.textContent += ", ";
+            // Create a new row every 3 classes (/ 0, 1, 2, / 3, 4, 5 / 6...)
+            if (classContainer.children().last().children().length == 3) {
+                console.log("new row")
+                let newRow = document.createElement("div")
+                newRow.className = "class-row"
+                classContainer.append(newRow)
             }
+
+            // use newest row
+            const classRow = classContainer.children().last()
+
+            // make new class container with all the funky stuff
+            const classItem = document.createElement("div")
+            classItem.className = "class-item"
+
+            // container for the title
+            const classNameContainer = document.createElement("div")
+            classNameContainer.className = "class-name"
+
+            // title text with redirect
+            const classRedirectText = document.createElement("a")
+            classRedirectText.innerHTML = classPeriod["name"]
+            classRedirectText.onclick = function() { classRedirect(classPeriod.id, classType) }
+         
+            const classButtons = document.createElement("div")
+            classButtons.className = "class-buttons"
+
+            // Simplify all the buttons with a loop
+            const buttons = [
+                ["assignment-icon.png", "Assignments"],
+                ["speaker-icon.png", "Announcements"],
+                ["gradebook-icon.png", "Grades"],
+                ["ellipsis-v-icon.png", "Options"]
+            ]
+
+            for (buttonData of buttons) {
+                const classButton = document.createElement("img")
+                classButton.src = `../images/icons/${buttonData[0]}`
+                classButton.title = buttonData[1]
+                classButtons.appendChild(classButton)
+            }
+
+            // append all divs to right parts
+            classNameContainer.appendChild(classRedirectText)
+            classItem.appendChild(classNameContainer)
+            classItem.appendChild(classButtons)
+            classRow.append(classItem)
         }
-
-        var numberOfAssignments = document.createElement('div');
-        numberOfAssignments.classList.add('third-name');
-        var assNumber = classPeriod.assignments.length;
-        var plurality = "s";
-        if (assNumber == 1) plurality = "";
-        numberOfAssignments.textContent = String(assNumber) + " Assignment" + plurality;
-
-        card.appendChild(classPeriodName);
-        card.appendChild(leaderNames);
-        card.appendChild(numberOfAssignments);
-
-        container.appendChild(card);
-    }
-    if (container.children.length === 0) {
-        bigContainer.style.display = 'none';
-    } else {
-        bigContainer.style.display = 'block';
     }
 }
 
@@ -126,14 +132,6 @@ function assignmentRedirect(id) {
     window.location.href = `${baseurl}/assignment-data?id=` + id;
 }
 
-function classStudentRedirect(id) {
-    window.location.href = `${baseurl}/student-class-data?id=` + id;
-}
-
-function classLeaderRedirect(id) {
-    window.location.href = `${baseurl}/leader-class-data?id=` + id;
-}
-
-function generalRedirect(urlExtension) {
-    window.location.href = `${baseurl}` + urlExtension;
+function classRedirect(id, type) {
+    window.location.href = `${baseurl}/${type}-class-data?id=` + id;
 }
