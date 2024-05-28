@@ -54,19 +54,19 @@ permalink: /dashboard/
 </div>
 
 <script>
-window.onload = (event) => {
-      console.log("Page is fully loaded");
-      let DarkMode = localStorage.getItem('DarkMode');
-      DarkMode = (DarkMode === 'true'); // Convert to boolean
-      console.log(DarkMode);
-      if (DarkMode) {
-        document.body.classList.add('dark');
-        document.body.classList.remove('light');
-      } else {
-        document.body.classList.add('light');
-        document.body.classList.remove('dark');
-      }
-};
+    window.onload = (event) => {
+        console.log("Page is fully loaded");
+        let DarkMode = localStorage.getItem('DarkMode');
+        DarkMode = (DarkMode === 'true'); // Convert to boolean
+        console.log(DarkMode);
+        if (DarkMode) {
+            document.body.classList.add('dark');
+            document.body.classList.remove('light');
+        } else {
+            document.body.classList.add('light');
+            document.body.classList.remove('dark');
+        }
+    };
 
     // Check if the required cookie is present on page load
     // window.addEventListener('load', function() {
