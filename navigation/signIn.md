@@ -106,6 +106,7 @@ permalink: /sign-in/
         // Check response status
         console.log(data.message);
         localStorage.setItem('jwtToken', data.cookie);
+        localStorage.setItem("email", email);
         window.location.replace("{{site.baseurl}}/dashboard/");
         return;
       }
