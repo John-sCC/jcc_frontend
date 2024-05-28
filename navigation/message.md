@@ -66,6 +66,7 @@ permalink: /message/
         }
     </style>
 </head>
+<body class="light">
 <body>
     <div class="container">
         <div class="content">
