@@ -255,15 +255,21 @@ permalink: /sign-up/
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
+        return response.text().then(text => {
+          // Try to parse the response as JSON
+          try {
+            return JSON.parse(text);
+          } catch (error) {
+            // If parsing fails, return the text as is
+            return text;
+          }
+        });
       })
       .then(data => {
         console.log(data);
-        alert(data);
       })
       .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
-        alert('Error: ' + error.message);
       });
       window.location.replace("{{site.baseurl}}/sign-in/");
     });
