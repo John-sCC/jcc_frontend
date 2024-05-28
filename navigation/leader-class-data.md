@@ -4,21 +4,36 @@ title: Leader Class Data
 search_exclude: true
 permalink: /leader-class-data
 ---
-
+<body class="light">
 <div class="class-period">
     <h1 id="class_name"></h1>
     <h3 id="class_leaders">Loading...</h3>
     <h2>Assignments</h2>
+    <p><a href="{{site.baseurl}}/ass-request/">Click here</a> to create a new assignment.</p>
     <div id="assignment_container" class="container">
         <!-- Assignment cards will be dynamically added here -->
     </div>
     <h2>Students</h2>
-    <div id="students_container">
+    <ul id="students_container">
         <!-- Students in the class will be dynamically added here -->
-    </div>
+    </ul>
+    <br>
 </div>
 
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
     const local = 'http://localhost:8911';
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
@@ -55,6 +70,11 @@ permalink: /leader-class-data
                         if (i < (data.leaders.length - 1)) {
                             document.getElementById('class_leaders').innerHTML += ", ";
                         }
+                    }
+                    for (var i = 0; i < data.students.length; i++) {
+                        var newStudent = document.createElement('li');
+                        newStudent.innerHTML = data.students[i].name;
+                        document.getElementById('students_container').appendChild(newStudent);
                     }
                     populateAssignmentContainer(data);
                 })

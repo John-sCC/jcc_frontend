@@ -1,0 +1,319 @@
+@use 'sass:list';
+
+$dark-nighthawk-blue: #021a3aff;
+
+@mixin image-hover() {
+    user-select: none;
+
+    // new hover to change img color
+    &:hover {
+        cursor: pointer;
+
+        // Changes to $nighthawk-green-bright, generated with https://codepen.io/sosuke/pen/Pjoqqp
+        filter: invert(43%) sepia(77%) saturate(420%) hue-rotate(107deg) brightness(94%) contrast(85%);
+        transition: filter 0.2s;
+    }
+
+    &:not(hover) {
+        filter: none;
+        transition: filter 0.2s;
+    }
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    height: 40vw;
+    width: 100%;
+    margin-top: 5em;
+    margin-bottom: 4em;
+
+    a {
+        color: white !important;
+
+        // I like this more for the links idk why
+        &:hover {
+            color: $nighthawk-green-bright !important;
+        }
+    }
+
+    .user-classes {
+        display: flex;
+        flex: 20;
+        flex-direction: column;
+
+        .title-container {
+            background: #002147ff;
+            position: absolute;
+            transform: translate(-.5vw, -1.5vw);
+            width: 40vw;
+            height: 4vw;
+            border-radius: .5em;
+            padding: 1vw;
+            margin-right: auto;
+            font-family: $nighthawk-font2;
+            font-size: 2vw;
+            color: white;
+        }
+
+        .class-container {
+            display: flex;
+            flex-direction: column;
+            background: $dark-nighthawk-blue;
+            height: 100%;
+            width: 100%;
+            border-radius: .5em;
+            overflow-y: scroll;
+            scrollbar-color: gray $dark-nighthawk-blue;
+            color: white;
+
+            .class-row {
+                width: 100%;
+                height: 16vw;
+                display: flex;
+                flex-direction: row;
+                vertical-align: middle;
+                justify-content: flex-start;
+                margin-top: 0;
+                margin-bottom: 3vw;
+
+                &:first-child {
+                    margin-top: 4vw;
+                }
+
+                .class-item {
+                    background: green;
+                    height: 16vw;
+                    width: 16vw;
+                    margin: auto;
+                    margin-left: 3.5vw;
+                    margin-right: 0;
+                    display: flex;
+                    flex-direction: column;
+                    color: white;
+
+                    $radius: 0.8vw;
+                    border-radius: $radius;
+
+                    &:last-child {
+                        margin-right: auto;
+                    }
+
+                    // default
+                    .class-name {
+                        font-family: $nighthawk-font2;
+                        display: flex;
+                        flex: 3;
+                        align-items: center;
+                        font-size: 2vw;
+                        text-align: center;
+                        justify-content: center;
+                    }
+    
+                    // when editing
+                    .class-options {
+                        display: flex;
+                        flex-direction: column;
+                        background: $grayish;
+                        flex: 3;
+                        justify-content: center;
+                        text-align: center;
+                        border-top-right-radius: $radius;
+                        border-top-left-radius: $radius;
+                    
+                        .colors-row {
+                            display: flex;
+                            flex-direction: row;
+                            flex: 2;
+                            flex-wrap: wrap;
+                        }
+                    
+                        .color-square {
+                            width: 2vw;
+                            height: 2vw;
+                            background-color: red;
+                            margin: 0.6vw;
+                            border-radius: 0.4vw;
+                            border: 0.1vw solid black;
+                            user-select: none;
+
+                            // different behavior for the selectables/not the user input one
+                            &:not(:only-of-type) {
+                                $default-colors: #ea9999ff #f9cc9dff #f9cc9dff #b6d8a9ff #a2c4c9ff #a5c2f4ff #a0c5e8ff #b4a7d7ff #d5a7bdff #ccccccff;
+
+                                @each $color in $default-colors {
+                                    &:nth-child(#{index($default-colors, $color)}) {
+                                        background-color: $color;
+                                    }
+                                }
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    
+                        .custom-color {
+                            display: flex;
+                            flex-direction: row;
+                            flex: 1;
+
+                            input {
+                                height: 2vw;
+                                width: 11.8vw;
+                                margin: auto;
+                                font-size: 1vw;
+
+                                &::placeholder {
+                                    font-size: 1vw;
+                                    font-family: unset;
+                                }
+                            }
+                        }
+                    
+                        .buttons {
+                            flex: 1;
+                            vertical-align: middle;
+                            display: flex;
+                            flex-direction: row;
+
+                            button {
+                                color: white;
+                                font-family: $nighthawk-font2;
+                                border: 0.1vw black solid;
+                                border-radius: 0.1vw;
+                                width: 6.9vw;
+                                font-size: 1vw;
+                                margin: auto;
+                    
+                                &:first-child {
+                                    background-color: $grayish;
+                                    color: black;
+                                    @include basic-hover(light);
+                                }
+                    
+                                &:last-child {
+                                    background-color: $nighthawk-green-bright;
+                                    color: white;
+                                    @include basic-hover(light);
+                                }
+                            }
+                        }
+                    }
+
+                    .class-buttons {
+                        display: flex;
+                        flex-direction: row;
+                        margin: auto;
+                        background: lightgray;
+                        flex: 1;
+                        width: 100%;
+                        border-bottom-right-radius: $radius;
+                        border-bottom-left-radius: $radius;
+    
+                        img {
+                            height: 2.5vw;
+                            width: auto;
+                            margin: auto;
+
+                            @include image-hover();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .spacer {
+        flex: 1;
+        background: none;
+    }
+
+    .user-assignments {
+        display: flex;
+        flex: 8;
+        flex-direction: column;
+
+        .assignment-dropdown-container {
+            display: flex;
+            position: absolute;
+            transform: translateY(-1.5vw);
+            background: $nighthawk-blue;
+            width: 24.7%;
+            height: 4vw;
+            border-radius: .5em;
+            padding: 1vw;
+            padding-left: 2vw;
+            margin-right: auto;
+            font-family: $nighthawk-font2;
+            font-size: 2vw;
+            color: white;
+        }
+
+        .assignment-list-container {
+            display: flex;
+            flex-direction: column;
+            background: $dark-nighthawk-blue;
+            height: 100%;
+            width: 95%;
+            margin: auto;
+            border-radius: 0.5em;
+            overflow-y: scroll;
+            scrollbar-color: gray $dark-nighthawk-blue;
+
+            .assignment-list-item {
+                display: flex;
+                flex-direction: row;
+                height: 5vw;
+                border-bottom: 0.3vw solid #032147;
+
+                &:first-child {
+                    margin-top: 3vw;
+                }
+
+                .assignment-icon-container {
+                    display: flex;
+                    flex: 1;
+                    justify-content: center;
+                    align-items: center;
+                    vertical-align: middle;
+                    margin: 1vw;
+
+                    img {
+                        width: auto;
+                        height: 3vw;
+
+                        @include image-hover();
+                    }
+                }
+    
+                .assignment-text-container {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 6;
+                    line-height: 1vw;
+    
+                    .assignment-name {
+                        height: 1.4vw;
+                        font-family: $nighthawk-font2;
+                        font-size: 1vw;
+                        margin-top: auto;
+                        line-height: 1.7vw;
+                    }
+    
+                    .class-name {
+                        height: 1vw;
+                        font-size: 0.8vw;
+                        font-weight: bold;
+                    }
+    
+                    .assignment-info {
+                        height: 1vw;
+                        font-size: 0.5vw;
+                        margin-bottom: auto;
+                    }
+                }
+            }
+        }
+    }
+}
