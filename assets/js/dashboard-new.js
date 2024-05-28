@@ -5,6 +5,10 @@ window.addEventListener('load', function() {
 const local = 'http://localhost:8911';
 const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
+// global for class being edited
+var savedClassData = null
+var savedColor = null
+
 function getUserData() {
     // making the fetch request
     fetch(local + '/api/class_period/dashboard', {
@@ -31,6 +35,14 @@ function getUserData() {
         console.error('There was a problem with the fetch operation:', error);
         // window.location.replace(`${baseurl}/sign-in/`);
     });
+}
+
+function assignmentRedirect(id) {
+    window.location.href = `${baseurl}/assignment-data?id=` + id;
+}
+
+function classRedirect(id, type) {
+    window.location.href = `${baseurl}/${type}-class-data?id=` + id;
 }
 
 function populateAssignmentContainer(studentData) {
@@ -103,8 +115,51 @@ function populateAssignmentContainer(studentData) {
     }
 }
 
+function createClassDiv(classPeriod, classType) {
+    // make new class container with all the funky stuff
+    const classItem = document.createElement("div")
+    classItem.className = "class-item"
+    classItem.id = `class-${classPeriod["id"]}`
+
+    // container for the title
+    const classNameContainer = document.createElement("div")
+    classNameContainer.className = "class-name"
+
+    // title text with redirect
+    const classRedirectText = document.createElement("a")
+    classRedirectText.innerHTML = classPeriod["name"];
+    (function(id) {
+        classRedirectText.onclick = function() { classRedirect(id, classType) };
+    })(classPeriod["id"])         
+    const classButtons = document.createElement("div")
+    classButtons.className = "class-buttons"
+
+    // Simplify all the buttons with a loop
+    const buttons = [
+        ["assignment-icon.png", "Assignments", function() { console.log("needs to be implemented") }],
+        ["speaker-icon.png", "Announcements", function() { console.log("needs to be implemented") }],
+        ["gradebook-icon.png", "Grades", function() { console.log("needs to be implemented") }],
+        ["ellipsis-v-icon.png", "Options", function() { editClassContainer(classPeriod["id"]) }]
+    ]
+
+    for (buttonData of buttons) {
+        const classButton = document.createElement("img")
+        classButton.src = `../images/icons/${buttonData[0]}`
+        classButton.title = buttonData[1]
+        classButtons.appendChild(classButton)
+        classButton.onclick = buttonData[2]
+    }
+    
+    // append all divs to right parts
+    classNameContainer.appendChild(classRedirectText)
+    classItem.appendChild(classNameContainer)
+    classItem.appendChild(classButtons)
+    classItem.classType = classType // set this for use
+
+    return classItem
+}
+
 function populateClassesContainer(studentData) {
-    console.log("test")
     const classContainer = $(".class-container")
 
     // these will be implemented better later
@@ -116,7 +171,6 @@ function populateClassesContainer(studentData) {
 
             // Create a new row every 3 classes (/ 0, 1, 2, / 3, 4, 5 / 6...)
             if (classContainer.children().last().children().length == 3) {
-                console.log("new row")
                 let newRow = document.createElement("div")
                 newRow.className = "class-row"
                 classContainer.append(newRow)
@@ -125,51 +179,118 @@ function populateClassesContainer(studentData) {
             // use newest row
             const classRow = classContainer.children().last()
 
-            // make new class container with all the funky stuff
-            const classItem = document.createElement("div")
-            classItem.className = "class-item"
-
-            // container for the title
-            const classNameContainer = document.createElement("div")
-            classNameContainer.className = "class-name"
-
-            // title text with redirect
-            const classRedirectText = document.createElement("a")
-            classRedirectText.innerHTML = classPeriod["name"];
-            (function(id) {
-                classRedirectText.onclick = function() { classRedirect(id, classType) };
-            })(classPeriod["id"])         
-            const classButtons = document.createElement("div")
-            classButtons.className = "class-buttons"
-
-            // Simplify all the buttons with a loop
-            const buttons = [
-                ["assignment-icon.png", "Assignments"],
-                ["speaker-icon.png", "Announcements"],
-                ["gradebook-icon.png", "Grades"],
-                ["ellipsis-v-icon.png", "Options"]
-            ]
-
-            for (buttonData of buttons) {
-                const classButton = document.createElement("img")
-                classButton.src = `../images/icons/${buttonData[0]}`
-                classButton.title = buttonData[1]
-                classButtons.appendChild(classButton)
-            }
-
-            // append all divs to right parts
-            classNameContainer.appendChild(classRedirectText)
-            classItem.appendChild(classNameContainer)
-            classItem.appendChild(classButtons)
-            classRow.append(classItem)
+            classRow.append(createClassDiv(classPeriod, classType))
         }
     }
 }
 
-function assignmentRedirect(id) {
-    window.location.href = `${baseurl}/assignment-data?id=` + id;
+function editClassContainer(id) {
+    // one at a time, ladies
+    if (savedClassData != null) {
+        alert(`Please finish editing "${editing}" before editing another class.`)
+        return
+    }
+
+    const classContainer = $(`#class-${id}`)
+
+    // Store the original class data
+    originalClassData = {
+        id: id,
+        name: classContainer.find(".class-name a").text(),
+        type: classContainer[0].classType
+    }
+
+    // Access and store current color (container > title container)
+    savedColor = window.getComputedStyle(classContainer[0]).backgroundColor
+
+    // Clear div
+    classContainer.children().first().remove()
+
+    // Create main editing container
+    const editContainer = document.createElement('div')
+    editContainer.className = "class-options"
+
+    // create the row of color options
+    const colorContainer = document.createElement('div')
+    colorContainer.className = "colors-row"
+
+    // create the 10 default color squares with loop power!
+    for (let i = 0; i < 10; i ++) {
+        const colorSquare = document.createElement('div')
+        colorSquare.className = 'color-square'
+
+        colorSquare.onclick = function() {
+            setColorFromSquare(window.getComputedStyle(colorSquare).backgroundColor)
+        }
+
+        colorContainer.appendChild(colorSquare)
+    }
+
+    // Create container for custom color
+    const customColorContainer = document.createElement('div')
+    customColorContainer.className = 'custom-color'
+
+    // Create items for custom color section and append
+    const customColorSquare = document.createElement('div')
+    customColorSquare.className = 'color-square'
+    customColorSquare.id = 'custom-color-square'
+    customColorContainer.appendChild(customColorSquare)
+
+    const customColorInput = document.createElement('input')
+    customColorInput.placeholder = "#FFFFFF"
+    customColorInput.id = "custom-color-input"
+    customColorContainer.appendChild(customColorInput)
+
+    // Create container for buttons
+    const customContainerButtons = document.createElement('div')
+    customContainerButtons.className = 'buttons'
+
+    // Loop to make buttons
+    const buttons = [
+        ["CANCEL", function() { cancelEdits(id) }],
+        ["APPLY", function() { applyEdits(id) }],
+    ]
+
+    for (buttonData of buttons) {
+        const button = document.createElement('button')
+        button.innerHTML = buttonData[0]
+        button.onclick = buttonData[1]
+        customContainerButtons.appendChild(button)
+    }
+
+    // Append all to the editing container
+    editContainer.appendChild(colorContainer)
+    editContainer.appendChild(customColorContainer)
+    editContainer.appendChild(customContainerButtons)
+
+    // Append editing container
+    classContainer.prepend(editContainer)
 }
 
-function classRedirect(id, type) {
-    window.location.href = `${baseurl}/${type}-class-data?id=` + id;
+function cancelEdits(id) {
+    const thisClass = $(`#class-${id}`)
+
+    // Use the originalClassData to restore the class div
+    const newClass = createClassDiv(originalClassData, originalClassData.type)
+    
+    // Replace old class
+    thisClass.replaceWith(newClass)
+
+    // Restore the original background color
+    $(`#class-${id}`).css("background-color", savedColor)
+
+    // Clear the stored original data
+    originalClassData = null 
+}
+
+
+function saveEdits(id) {
+    savedClassData = null
+}
+
+function setColorFromSquare(color) {
+    const colorSquare = document.getElementById('custom-color-square')
+
+    colorSquare.style.backgroundColor = color
+    savedColor = color
 }
