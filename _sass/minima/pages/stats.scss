@@ -1,0 +1,241 @@
+.light {
+.stats {
+    display: flex;
+    height: auto;
+    width: 60%;
+    padding: 1vw 0 1vw 0;
+    margin: 0 auto 5vw auto;
+    border-radius: 4vw;
+    background-color: $nighthawk-blue;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .stats-container {
+        display: flex;
+        height: 12vw;
+        width: 12vw;
+        margin: 1vw;
+        border-radius: 1vw;
+        background-color: $nighthawk-green;
+        flex-wrap: wrap;
+    }
+
+    h1 {
+        font-family: $nighthawk-font2;
+        text-align: center;
+        margin-top: auto;
+        font-size: 1.75vw;
+    }
+}
+
+.options{
+    display: flex;
+    justify-content: center;
+    margin: 2vw;
+    z-index: 1; 
+}
+
+.stats-dropdown {
+    height: 4.5vw;
+    width: 15vw;
+    margin-right: 3vw;
+    padding: 1vw;
+    border-radius: 1vw;
+    background-color: $nighthawk-blue;
+    font-family: $nighthawk-font2;
+    color: white;
+    font-size: 1.5vw;
+    display: flex;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: darken($color: $nighthawk-blue, $amount: 5%);
+    height: auto;
+    width: 13vw;
+    padding: auto;
+    margin: 0 1vw 0 1vw;
+    border-radius: 0 0 1vw 1vw;
+    font-size:1vw;
+    z-index: 1;
+
+    & p {
+        display: block;
+        height: auto;
+        width: auto;
+        padding: 1vw;
+        margin: 1vw;
+        border-radius: 1vw;
+        font-family: $nighthawk-font2;
+        color: white;
+    }
+    & p:hover {
+        color: $nighthawk-green-bright;
+    }
+}
+
+.button {
+    height: 4.5vw;
+    width: 15vw;
+    padding: 1vw;
+    border-radius: 1vw;
+    background-color: #555555;
+    font-family: $nighthawk-font2;
+    color: white;
+    font-size: 1.75vw;
+    display: flex;
+
+    &.multi-group {
+        border-radius: 0 0 1vw 1vw;
+        width: fit-content;
+        height: 50%;
+        padding: 0 0 1vw 0;
+        &.active {
+            background-color: $nighthawk-green;
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &.single-group {
+        border-radius: 1vw 1vw 0 0;
+        width: fit-content;
+        height: 50%;
+        padding: 0 0 1vw 0;
+        &.active {
+            background-color: $nighthawk-green;
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &.active {
+        background-color: $nighthawk-blue;
+        transition: background-color 0.3s ease;
+    }
+
+    &:not(.active) {
+        transition: background-color 0.3s ease;
+    }
+}
+}
+
+.dark {
+    .stats {
+        display: flex;
+        height: auto;
+        width: 60%;
+        padding: 1vw 0 1vw 0;
+        margin: 0 auto 5vw auto;
+        border-radius: 4vw;
+        background-color: rgb(10, 31, 55);
+        flex-wrap: wrap;
+        justify-content: center;
+    
+        .stats-container {
+            display: flex;
+            height: 12vw;
+            width: 12vw;
+            margin: 1vw;
+            border-radius: 1vw;
+            background-color: $nighthawk-blue-bright;
+            flex-wrap: wrap;
+        }
+    
+        h1 {
+            font-family: $nighthawk-font2;
+            text-align: center;
+            margin-top: auto;
+            font-size: 1.75vw;
+        }
+    }
+    
+    .options{
+        display: flex;
+        justify-content: center;
+        margin: 2vw;
+        z-index: 1; 
+    }
+    
+    .stats-dropdown {
+        height: 4.5vw;
+        width: 15vw;
+        margin-right: 3vw;
+        padding: 1vw;
+        border-radius: 1vw;
+        background-color: $nighthawk-blue;
+        font-family: $nighthawk-font2;
+        color: white;
+        font-size: 1.5vw;
+        display: flex;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: darken($color: $nighthawk-blue, $amount: 5%);
+        height: auto;
+        width: 13vw;
+        padding: auto;
+        margin: 0 1vw 0 1vw;
+        border-radius: 0 0 1vw 1vw;
+        font-size:1vw;
+        z-index: 1;
+    
+        & p {
+            display: block;
+            height: auto;
+            width: auto;
+            padding: 1vw;
+            margin: 1vw;
+            border-radius: 1vw;
+            font-family: $nighthawk-font2;
+            color: white;
+        }
+        & p:hover {
+            color: $nighthawk-green-bright;
+        }
+    }
+    
+    .button {
+        height: 4.5vw;
+        width: 15vw;
+        padding: 1vw;
+        border-radius: 1vw;
+        background-color: #555555;
+        font-family: $nighthawk-font2;
+        color: white;
+        font-size: 1.75vw;
+        display: flex;
+    
+        &.multi-group {
+            border-radius: 0 0 1vw 1vw;
+            width: fit-content;
+            height: 50%;
+            padding: 0 0 1vw 0;
+            &.active {
+                background-color: $nighthawk-blue-bright;
+                transition: background-color 0.3s ease;
+            }
+        }
+    
+        &.single-group {
+            border-radius: 1vw 1vw 0 0;
+            width: fit-content;
+            height: 50%;
+            padding: 0 0 1vw 0;
+            &.active {
+                background-color: $nighthawk-blue-bright;
+                transition: background-color 0.3s ease;
+            }
+        }
+    
+        &.active {
+            background-color: $nighthawk-blue;
+            transition: background-color 0.3s ease;
+        }
+    
+        &:not(.active) {
+            transition: background-color 0.3s ease;
+        }
+    }
+    }

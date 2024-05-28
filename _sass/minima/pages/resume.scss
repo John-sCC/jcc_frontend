@@ -1,0 +1,191 @@
+.light {
+    .wrapper-div {
+        width: 70%;
+        height: 80%;
+        margin-left: 10%;
+        background-color: rgba(255, 255, 255, 0);
+        border: 2px solid #c1b576;
+        padding: 30px;
+        padding-top: 10px;
+        padding-left: 10%;
+    }
+
+    .formStyle {
+        font-size: 13px;
+        margin-bottom: 30px;
+        width: 500px;
+    }
+
+    .title {
+        font-family: $nighthawk-font2;
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .instruction {
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+
+    .tab-header {
+        background-color: $nighthawk-blue;
+        height: calc(30vw/6);
+        border-top: 2px $nighthawk-gold solid;
+        border-bottom: 2px $nighthawk-gold solid;
+        display: flex;
+        width: 115%;
+        margin-left: -70px;
+        flex-direction: row;
+        position: relative;
+        margin-bottom: 30px;
+
+        .tab-button {
+            @include basic-hover(dark);
+
+            font-family: $nighthawk-font2;
+            color: white;
+            background-color: transparent;
+            border-color: transparent;
+            margin-right: auto;
+            font-size: 25px;
+            position: relative;
+            top: 5px;
+            user-select: none;
+
+            &:last-child {
+                margin-right: 8vw
+            }
+            
+            &:first-child {
+                margin-left: 8vw
+            }
+        }
+    }
+
+    .bottomButtons {
+        margin-left: 15px;
+        font-family: $nighthawk-font2;
+        font-size: 20px;
+        background-color:  $nighthawk-blue;
+        color: white;
+        border-radius: 10px;
+        width: 200px;
+    }
+}
+
+.dark {
+    .wrapper-div {
+        width: 70%;
+        height: 80%;
+        margin-left: 10%;
+        background-color: rgba(255, 255, 255, 0);
+        border: 2px solid $nighthawk-blue-bright;
+        padding: 30px;
+        padding-top: 10px;
+        padding-left: 10%;
+    }
+
+    .formStyle {
+        font-size: 13px;
+        margin-bottom: 30px;
+        width: 500px;
+    }
+
+    .title {
+        font-family: $nighthawk-font2;
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .instruction {
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+
+    .tab-header {
+        background-color: $darkmode-base;
+        height: calc(30vw/6);
+        border-top: 2px $nighthawk-blue-bright solid;
+        border-bottom: 2px $nighthawk-blue-bright  solid;
+        display: flex;
+        width: 115%;
+        margin-left: -70px;
+        flex-direction: row;
+        position: relative;
+        margin-bottom: 30px;
+
+        .tab-button {
+            @include basic-hover(dark);
+
+            font-family: $nighthawk-font2;
+            color: white;
+            background-color: transparent;
+            border-color: transparent;
+            margin-right: auto;
+            font-size: 25px;
+            position: relative;
+            top: 5px;
+            user-select: none;
+
+            &:last-child {
+                margin-right: 8vw
+            }
+            
+            &:first-child {
+                margin-left: 8vw
+            }
+        }
+    }
+
+    .bottomButtons {
+        margin-left: 15px;
+        font-family: $nighthawk-font2;
+        font-size: 20px;
+        background-color:  $nighthawk-green-bright;
+        color: white;
+        border-radius: 10px;
+        width: 200px;
+    }
+}
+
+    // .tab-header {
+    //     display: flex;
+    //     margin-left: 10%;
+    //     width: 100%;
+    // }
+
+    // .tab-button {
+    //     position: relative;
+    //     margin-bottom: 30px;
+    //     margin-left: -40px;
+    //     margin-right: 90px;
+    //     font-size: 15px;
+    //     border-radius: 4px;
+    //     background-color: #002147ff;
+    //     color: white;
+    //     font-family: $nighthawk-font2;
+    //     width: 120px; 
+    //     height: 35px;
+    //     transition-duration: 0.4s;
+    // }
+
+    // .tab-button:hover {
+    //     background-color: #c1b576; 
+    //     color: white;
+    // }

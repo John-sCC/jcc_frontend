@@ -1,0 +1,303 @@
+---
+layout: default
+title: Assign Request
+search_exclude: true
+permalink: /ass-request/
+---
+<head>
+    <style>
+        ::placeholder {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body class="light">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
+<div class="assflex-container">
+    <div class="bigpapa">
+        <div class="sil1">
+            <div id="asstitle">assignment details</div>
+            <div style="padding-top: 15%;"><label>Title:<input id="assTitlee" class="inputis" placeholder="Assignment Title..."></label><br></div>
+            <div><label>Due Date:<input id="assDue" class="inputis" type="datetime-local"></label><br></div> <!-- These are the super important data stuffs!!! -->
+            <div><label>Points:<input id="assPoint" class="inputis" type="number" placeholder="100 pts  "></label><br></div>
+            <div><label>Submission Type(s):</label><div class="wef1">
+                <div class="wwwj">
+                    <label class="putis" for="all"><input type="checkbox" id="all" name="all"> All file types</label><br>
+                    <label class="putis" for="txt"><input type="checkbox" id="txt" name="txt"> Text Submissions</label><br>
+                    <label class="putis" for="doc"><input type="checkbox" id="doc" name="doc"> .docx</label><br>
+                    <label class="putis" for="png"><input type="checkbox" id="png" name="png"> .png</label><br>
+                </div>
+                <div class="wwwj2">
+                    <label class="putis" for="jpg"><input type="checkbox" id="jpg" name="jpg"> .jpg</label><br>
+                    <label class="putis" for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
+                    <label class="putis" for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
+                </div>
+            </div>Allowed Submissions: <input id="numSubmis" type="number" min="1" max="100" placeholder="###"><input class="creeatbutton" onclick="postAssignment()" type="button" value="create"></div>
+        </div> 
+        <div class="sil2">
+            <div class="wef2">
+                <div id="assignclasse"> 
+                    <div>ASSIGN CLASSES</div> 
+                </div>  
+                <div style="width: 11%;"><img class="ima" src="../images/a-z.png"></div>
+                <div style="width: 11%;"><img class="ima" src="../images/z-a.png"></div>
+            </div>
+            <div class="wef2">
+                <div>DESELECT ALL</div>
+                <input id="searc" style="width: 50%;" placeholder="Search...">
+                <div style="width: 11%;"><img class="ima" src="../images/searchIcon.png"></div>
+            </div>
+            <div class="whitebox"></div>
+        </div>
+    </div>
+    <div id="asstitle2">assignment description</div>
+    <div style="margin-top: 3%;" id="editor" rows="16" cols="125">
+        <p>Hello World!</p>
+        <p>Some initial <strong>bold</strong> text</p>  <!--This is the assignment description, it includes tags like <strong> and <u>-->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+<script>
+window.onload = (event) => {
+        console.log("Page is fully loaded");
+        let DarkMode = localStorage.getItem('DarkMode');
+        DarkMode = (DarkMode === 'true'); // Convert to boolean
+        console.log(DarkMode);
+        if (DarkMode) {
+          document.body.classList.add('dark');
+          document.body.classList.remove('light');
+        } else {
+          document.body.classList.add('light');
+          document.body.classList.remove('dark');
+        }
+};
+    const quill = new Quill('#editor', {
+        modules: {toolbar: false},
+        theme: 'snow',
+    });
+    const text = quill.getText();  //plain text
+    const html = quill.getSemanticHTML();  //text with html tags
+    //run quill.getText or quill.getSemanticHTML when you need the contents. The variable doesn't stay up to date
+</script>
+<script>
+    function getUserData() {
+        // making the fetch request
+        fetch("https://jcc.stu.nighthawkcodingsociety.com/api/class_period/dashboard", {
+            method: 'GET',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(JSON.stringify(data));
+            populateClassesContainer(data.leader, true);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            //window.location.replace("{{site.baseurl}}/sign-in/");
+        });
+    }
+    function populateClassesContainer(studentData, isLeader) {
+        if (isLeader == false) {
+            return;
+        }
+        var bigContainer = document.getElementById('student_class_container_container');
+        var container = document.getElementById('student_class_container');
+        if (isLeader) {
+            bigContainer = document.getElementById('leader_class_container_container');
+            container = document.getElementById('leader_class_container');
+        }
+        container.innerHTML = '';
+
+        for (var classPeriod of studentData) {
+            const label = document.createElement('label');
+            label.className = 'class-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = classItem.id;
+            checkbox.id = "a" + classItem.id;
+            ibs.push(classItem.id);
+
+            const span = document.createElement('span');
+            span.textContent = classItem.name;
+
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            container.appendChild(label);
+        }
+    }
+    let ibs = [];
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUserId = 1; // Replace this with the actual current user's ID
+
+        fetch('https://jcc.stu.nighthawkcodingsociety.com/api/class_period/')
+            .then(response => response.json())
+            .then(data => {
+                const classes = data; // The fetched data is an array of class objects
+                const container = document.querySelector('.whitebox');
+
+                // Filter classes where the user is a leader
+                const leaderClasses = classes.filter(classItem => 
+                    classItem.leaders.some(leader => leader.id === currentUserId)
+                );
+
+                // Check if there are any leader classes
+                if (leaderClasses.length > 0) {
+                    // Iterate over the leader classes and create elements for them
+                    leaderClasses.forEach(classItem => {
+                        const label = document.createElement('label');
+                        label.className = 'class-item';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.value = classItem.id;
+                        checkbox.id = "a" + classItem.id;
+                        ibs.push(classItem.id);
+
+                        const span = document.createElement('span');
+                        span.textContent = classItem.name;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(span);
+                        container.appendChild(label);
+                    });
+                } else {
+                    // If no leader classes, display a message
+                    const noClassesMessage = document.createElement('p');
+                    noClassesMessage.textContent = 'You are not a leader of any classes.';
+                    container.appendChild(noClassesMessage);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching classes:', error);
+            });
+        });
+
+    function postAssignment() {
+        const d = document;
+        let name = d.getElementById("assTitlee").value;
+        let content = quill.getSemanticHTML();
+        let classIds = [];
+        const bigstring = ibs.map(String);
+
+        let dateDued = d.getElementById("assDue").value;
+        const date = new Date(dateDued);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        const dateDue = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+        for (let i = 0; i < bigstring.length; i++) {
+            x = "#a" + bigstring[i];
+            if(d.querySelector(x).checked){
+                classIds.push(Number(bigstring[i]));
+            }
+        }
+        if (classIds.length == 0) {
+            alert("You need to assign this assignment to at least one class")
+            return
+        }
+
+        let points = Number(d.getElementById("assPoint").value);
+        let allowedSubmissions = Number(d.getElementById("numSubmis").value);
+        let allowedFileType = [];
+        if (document.querySelector('#txt').checked) {
+            allowedFileType.push("txt");
+        }
+        if (document.querySelector('#all').checked) {
+            allowedFileType.push("all");
+        }
+        if (document.querySelector('#doc').checked) {
+            allowedFileType.push("doc");
+        }
+        if (document.querySelector('#png').checked) {
+            allowedFileType.push("png");
+        }
+        if (document.querySelector('#jpg').checked) {
+            allowedFileType.push("jpg");
+        }
+        if (document.querySelector('#peg').checked) {
+            allowedFileType.push("jpeg");
+        }
+        if (document.querySelector('#pdf').checked) {
+            allowedFileType.push("pdf");
+        }
+        if (allowedFileType.length == 0) {
+            alert("You need choose at least one submission type")
+            return
+        }
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        const formattedTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        const dateCreated = `${formattedDate} ${formattedTime}`;
+        const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
+        //const apiUrl = 'http://localhost:8911/api/assignment/post';
+        // a
+        const requestData = {
+            name: name,
+            dateCreated: now,
+            dateDue: date,  
+            content: content,
+            classIds: classIds,
+            points: points,
+            allowedSubmissions: allowedSubmissions,
+            allowedFileTypes: allowedFileType
+        };
+        console.log(requestData);
+        //a
+        fetch(apiUrl, {
+            method: 'POST',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            // Check if the response is JSON
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json();
+            } else {
+                // If the response is not JSON, return the text directly
+                return response.text();
+            }
+        })
+        .then(data => {
+            // Handle the data here
+            if (typeof data === 'object') {
+                // If it's JSON, proceed as before
+                console.log(data);
+                alert(`Assignment created successfully. ID: ${data.id}`);
+                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+            } else {
+                // If it's not JSON, handle it as per your requirement
+                console.log(data);
+                window.location.href = `{{site.baseurl}}/assignment-data?id=${data.id}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error posting assignment:', error);
+            alert('Error posting assignment. Check the console for details.');
+        });
+    }
+</script>
+</body>

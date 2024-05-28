@@ -1,0 +1,97 @@
+.classflex-container {
+    display: flex;
+    flex-direction: column;
+}
+.classflex-container > div {
+    margin: 1%;
+    padding: 1%;
+    font-size: 180%;
+    font-weight: 500;
+    display: flex;  
+    flex-direction: row;
+}
+.classperiodcreation {
+    background-color: #001a39;
+    width: 118%;
+    border-radius: 15px;
+}
+.classperiodcreation > div {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1% ;
+    padding-bottom: 1%;
+}
+#classtitle {
+    width: 34.5%;
+    background-color: #002147;
+    border-radius: 15px;
+    border-color: #002147;
+    font-family: $nighthawk-font2;
+    font-weight: 700;
+    font-size: 150%;
+    position: absolute;
+    padding-left: 3%;
+    padding-top: 1%;
+    height: 8%;
+    left: 9.5%;
+}
+.addstudents {
+    width: 50%;
+}
+.toolbarss {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.toolbarss > div {
+    margin-bottom: 2%;
+    padding: 3%;
+    background-color: $nighthawk-blue;
+    border-radius: 10px;
+    font-family: $nighthawk-font2;
+}
+#stupiddiv {
+    text-align: left;
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2%;
+    height: 40%;
+    width: 65%;
+    font-family: $nighthawk-font2;
+}
+#arrow {
+    width: 17%;
+    height: 17%;
+}
+#studentsearc {
+    margin-bottom: 2%;
+    padding: 1%;
+    line-height: 1;
+    border-radius: 10px;
+    color: black;
+    margin-right: 2%;
+}
+::placeholder {
+    font-size: 25px;
+    color: red;
+}
+.hater {
+    width: 100%;
+    height: 100%;
+}
+.createbutt {
+    background-color: $nighthawk-blue;
+    border-style: solid;
+    border-color: $nighthawk-gold;
+    font-family: $nighthawk-font2;
+    color: white;
+    width: 40%;
+    font-size: 150%;
+    border-radius: 15px;
+    margin-left: 40%;
+    margin-top: 5%;
+}
