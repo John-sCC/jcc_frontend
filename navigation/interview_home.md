@@ -4,7 +4,7 @@ search_exclude: true
 permalink: /interview/
 layout: default
 ---
-
+<body class="light">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -36,6 +36,19 @@ layout: default
   </div>
 </div>
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
   function loadAndDisplayUsers() {
     // check if the user is connected
     const connectedUser = localStorage.getItem('connectedUser');
