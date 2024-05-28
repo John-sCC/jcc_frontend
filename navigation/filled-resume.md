@@ -3,6 +3,8 @@ layout: default
 title: Your Resume
 permalink: /filledresume/
 ---
+
+<body class="light">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -102,4 +104,19 @@ permalink: /filledresume/
         </div>
     </div>
 <script src="{{site.baseurl}}/assets/js/filled-resume.js"></script>
+<script>
+ window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+    };
+</script>
 </html>

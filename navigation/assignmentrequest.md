@@ -4,7 +4,7 @@ title: Ass Request
 search_exclude: true
 permalink: /ass-request/
 ---
-
+<body class="light">
 <head>
     <style>
         .flexbox {
@@ -24,6 +24,19 @@ permalink: /ass-request/
         }
     </style>
     <script>
+    window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+    };
         function postAssignment() {
             const d = document;
             let name = d.getElementById("name").value;

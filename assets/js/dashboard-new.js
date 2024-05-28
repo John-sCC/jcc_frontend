@@ -11,7 +11,7 @@ var savedColor = null
 
 function getUserData() {
     // making the fetch request
-    fetch(local + '/api/class_period/dashboard', {
+    fetch(deployed + '/api/class_period/dashboard', {
         method: 'GET',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -194,14 +194,14 @@ function editClassContainer(id) {
     const classContainer = $(`#class-${id}`)
 
     // Store the original class data
-    originalClassData = {
+    savedClassData = {
         id: id,
         name: classContainer.find(".class-name a").text(),
         type: classContainer[0].classType
     }
 
     // Access and store current color (container > title container)
-    savedColor = window.getComputedStyle(classContainer[0]).backgroundColor
+    savedColor = rgbToHex(window.getComputedStyle(classContainer[0]).backgroundColor)
 
     // Clear div
     classContainer.children().first().remove()
@@ -220,7 +220,7 @@ function editClassContainer(id) {
         colorSquare.className = 'color-square'
 
         colorSquare.onclick = function() {
-            setColorFromSquare(window.getComputedStyle(colorSquare).backgroundColor)
+            setColorFromSquare(rgbToHex(window.getComputedStyle(colorSquare).backgroundColor))
         }
 
         colorContainer.appendChild(colorSquare)
@@ -234,11 +234,13 @@ function editClassContainer(id) {
     const customColorSquare = document.createElement('div')
     customColorSquare.className = 'color-square'
     customColorSquare.id = 'custom-color-square'
+    customColorSquare.style.backgroundColor = savedColor
     customColorContainer.appendChild(customColorSquare)
 
     const customColorInput = document.createElement('input')
-    customColorInput.placeholder = "#FFFFFF"
+    customColorInput.placeholder = savedColor
     customColorInput.id = "custom-color-input"
+    customColorInput.onkeyup = function () { setColorFromInput(id) }
     customColorContainer.appendChild(customColorInput)
 
     // Create container for buttons
@@ -270,8 +272,8 @@ function editClassContainer(id) {
 function cancelEdits(id) {
     const thisClass = $(`#class-${id}`)
 
-    // Use the originalClassData to restore the class div
-    const newClass = createClassDiv(originalClassData, originalClassData.type)
+    // Use the savedClassData to restore the class div
+    const newClass = createClassDiv(savedClassData, savedClassData.type)
     
     // Replace old class
     thisClass.replaceWith(newClass)
@@ -280,17 +282,59 @@ function cancelEdits(id) {
     $(`#class-${id}`).css("background-color", savedColor)
 
     // Clear the stored original data
-    originalClassData = null 
+    savedClassData = null 
 }
 
+function applyEdits(id) {
+    const color = document.getElementById('custom-color-square').style.backgroundColor
+    const thisClass = $(`#class-${id}`)
 
-function saveEdits(id) {
-    savedClassData = null
+    // Use the savedClassData to restore the class div
+    const newClass = createClassDiv(savedClassData, savedClassData.type)
+    
+    // Replace old class
+    thisClass.replaceWith(newClass)
+
+    // Restore the original background color
+    $(`#class-${id}`).css("background-color", color)
+
+    // Clear the stored original data
+    savedClassData = null 
 }
 
 function setColorFromSquare(color) {
-    const colorSquare = document.getElementById('custom-color-square')
+    console.log(color)
+    const colorSquare = document.getElementById('custom-color-square');
+    const colorInput = document.getElementById('custom-color-input');
 
-    colorSquare.style.backgroundColor = color
-    savedColor = color
+    colorSquare.style.backgroundColor = color;
+    colorInput.placeholder = color;
 }
+
+
+function setColorFromInput() {
+    const input = document.getElementById("custom-color-input")
+    const color = input.value
+
+    // #------
+    if (color.length > 6 && color.length < 10) {
+        document.getElementById('custom-color-square').style.backgroundColor = color
+    }
+}
+
+// I took this from the internet
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+  
+function rgbToHex(rgb) {
+    const values = rgb.slice(4, rgb.length - 1).split(", ");
+    const r = parseInt(values[0]);
+    const g = parseInt(values[1]);
+    const b = parseInt(values[2]);
+    
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+  

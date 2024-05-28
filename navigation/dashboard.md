@@ -4,7 +4,7 @@ title: Dashboard
 search_exclude: true
 permalink: /dashboard/
 ---
-
+<body class="light">
 <!--<button id="test_button" onclick="getUserData()">Click here for test</button>-->
 <div id="dashboard_container" class="dashboard" style="display:none;">
     <h1>DASHBOARD</h1>
@@ -54,6 +54,20 @@ permalink: /dashboard/
 </div>
 
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
+
     // Check if the required cookie is present on page load
     // window.addEventListener('load', function() {
     //     if (!hasCookie('jwt')) {
@@ -72,12 +86,17 @@ permalink: /dashboard/
     });
 
 
-    const local = 'http://localhost:8911';
-    const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
+    var local = "http://localhost:8911";
+    var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
+    const currentUrl = window.location.href;
+    var fetchUrl = deployed;
+    if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
+        fetchUrl = local;
+    }
 
     function getUserData() {
         // making the fetch request
-        fetch(deployed + '/api/class_period/dashboard', {
+        fetch(local + '/api/class_period/dashboard', {
             method: 'GET',
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -101,7 +120,7 @@ permalink: /dashboard/
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
-            window.location.replace("{{site.baseurl}}/sign-in/");
+            //window.location.replace("{{site.baseurl}}/sign-in/");
         });
     }
 

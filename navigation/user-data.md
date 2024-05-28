@@ -66,7 +66,7 @@ permalink: /dashboard-debug/
         // getting values from input fields
         var id = document.getElementById('id_number').value;
         // making the first fetch request
-        fetch(deployed + '/api/class_period/students/' + String(id), {
+        fetch(local + '/api/class_period/students/' + String(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

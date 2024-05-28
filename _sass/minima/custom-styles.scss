@@ -63,9 +63,22 @@
     max-width: unset;
 }
 
+//theme switch I AM A GODDAMN GENIUS LETS GOOO
+
 html, body {
+    .light {
     background-color: $nighthawk-green !important;
+    }
+    .dark {
+        background-color: $darkmode-base !important;
+    }
 }
+
+.dark {
+    background-color: $darkmode-base !important;
+}
+
+
 
 section {
     width: 90vw;
@@ -92,8 +105,12 @@ a:hover {
 @import "pages/assignment.scss";
 @import "pages/class-period.scss";
 @import "pages/blogs.scss";
+@import "pages/dataAnalysis.scss";
+@import "pages/assRequest.scss";
 @import "pages/resume.scss";
 @import "pages/filled-resume.scss";
 @import "pages/stats.scss";
 @import "pages/signIn.scss";
 @import "pages/dashboard-new.scss";
+@import "pages/messages.scss";
+@import "pages/classCreation.scss";

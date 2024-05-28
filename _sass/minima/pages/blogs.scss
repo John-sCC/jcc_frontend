@@ -1,3 +1,5 @@
+.light {
+
 .post-list > li > div {
     background-color: $nighthawk-blue !important;
     font-family: $nighthawk-font2 !important;
@@ -5,4 +7,16 @@
 
 .post-link {
     color: $nighthawk-green-bright !important
+}
+}
+
+.dark {
+    .post-list > li > div {
+        background-color: $darkmode-base !important;
+        font-family: $nighthawk-font2 !important;
+    }
+    
+    .post-link {
+        color: $nighthawk-green-bright !important
+    }
 }
