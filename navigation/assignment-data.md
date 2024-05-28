@@ -5,6 +5,7 @@ search_exclude: true
 permalink: /assignment-data
 ---
 
+<body class="light">
 <div class="assignment" id="assignment_body" style="display: none;">
     <h1 id="assignment_name">...</h1>
     <div class="data-box" id="data_box"></div>
@@ -41,8 +42,23 @@ permalink: /assignment-data
     </div>
 </div>
 <br>
+</body>
 
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
+
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
     const currentUrl = window.location.href;

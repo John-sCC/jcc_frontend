@@ -45,7 +45,7 @@ permalink: /assigning-upload/
   
 </style>
 
-<body>
+<body class="light">
     <h2>File Upload</h2> 
     <input type="file" id="fileInput" style="display: none">
     <label class="label" for="fileInput" id="customButton">Choose a File</label>
@@ -53,6 +53,20 @@ permalink: /assigning-upload/
     <button class="button" id="upload" onclick="upload()">Submit Assignment</button>
 
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
+
 const uploadFile = async (file) => {
     const formData = new FormData();
     formData.append('file', file);

@@ -83,6 +83,19 @@
                 user-select: none;
             }
         }
+        .themebutton {
+            background: transparent;
+            img {
+                @include basic-hover(dark);
+            }
+            height: 3vw;
+            width: 3vw;
+            margin: auto;
+            margin-top: 10px;
+            margin-left: 0;
+            user-select: none;
+            border: none;
+        }
     }
 
     .nav-img {
@@ -239,4 +252,520 @@
     position: fixed !important;
     top: 0 !important;
     width: 100%;
+}
+
+.light {
+    .nav {
+        display: flex;
+        z-index: 1;
+        flex-direction: column;
+        width:100%;
+        height: 30vw;
+        margin: 0;
+        margin-bottom: 3vw;
+    
+        .nav-top {
+            background-color: $nighthawk-blue;
+            border-bottom: .3vw $nighthawk-gold solid;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: calc(30vw/6);
+            position: absolute;
+            z-index: 1;
+    
+            .nav-title {
+                @include basic-hover(dark);
+                
+                font-family: $nighthawk-font2;
+                color: white;
+                font-size: 3vw;
+                margin: auto;
+                margin-right: 2vw;
+                position: relative;
+                top: .4vw;
+                user-select: none;
+            }
+    
+            .nav-search {
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                margin-left: 4vw;
+                margin-right: 0;
+    
+                img {
+                    @include basic-hover(dark);
+    
+                    height: 3vw;
+                    width: 3vw;
+                    margin: auto;
+                    margin-right: 3vw;
+                    margin-left: 0;
+                    user-select: none;
+                    filter: invert(1);
+                }
+    
+                input {
+                    margin-left: 2vw;
+                    margin-right: 2vw;
+                    width: 20vw;
+                    height: 3vw;
+                    border-radius: 1.5vw;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    font-size: 1.5vw;
+                }
+    
+                input::placeholder {
+                    font-style: italic;
+                    user-select: none;
+                }
+            }
+            .nav-inbox {
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                margin-left: 0;
+                margin-right: 0;
+    
+                img {
+                    @include basic-hover(dark);
+    
+                    height: 3vw;
+                    width: 3vw;
+                    margin: auto;
+                    margin-right: 3vw;
+                    margin-left: 0;
+                    user-select: none;
+                }
+            }
+            .themebutton {
+                background: transparent;
+                img {
+                    @include basic-hover(dark);
+                }
+                height: 3vw;
+                width: 3vw;
+                margin: auto;
+                margin-top: 10px;
+                margin-left: 0;
+                user-select: none;
+                border: none;
+            }
+        }
+    
+        .nav-img {
+            background-image: url($baseurl + "/images/DNHS.jpeg");
+            height: calc(30vw*4/6);
+            background-position-y: 30%;
+            background-size: 100%;
+            position: relative;
+            top: calc(30vw/6);
+            z-index: 0;
+        }
+    
+        .nav-bottom {
+            background-color: $nighthawk-blue;
+            height: calc(30vw/6);
+            border-top: .3vw $nighthawk-gold solid;
+            border-bottom: .3vw $nighthawk-gold solid;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            top: calc(30vw/6);
+    
+            .nav-button {
+                @include basic-hover(dark);
+    
+                font-family: $nighthawk-font2;
+                color: white;
+                margin: auto;
+                font-size: 2.5vw;
+                position: relative;
+                top: 0.4vw;
+                user-select: none;
+    
+                &:last-child {
+                    margin-right: 8vw
+                }
+                
+                &:first-child {
+                    margin-left: 8vw
+                }
+            }
+        }
+    }
+    
+    .nav-logo {
+        @include basic-hover(dark);
+    
+        background-color: $nighthawk-green;
+        cursor: pointer;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        width: 12vw;
+        position: absolute;
+        top: 0.3vw;
+        left: 2vw;
+        border: .3vw solid $nighthawk-gold;
+        background-image: url($baseurl + "/images/icons/dnhs_logo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 9.6vw;
+        z-index: 2;
+        transition: transform 0.5s ease;
+    }
+    
+    .nav-logo.active {
+        transform: translateX(-100%) translateY(-100%);
+    }
+    
+    .section {
+        -webkit-tap-highlight-color: transparent;
+        background: #000;
+        border-radius: 50%;
+        box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        height: 400px;
+        left: -200px;
+        position: absolute;
+        top: -200px;
+        width: 400px;
+        transform: translateX(-200px) translateY(-200px);
+        transition: transform 300ms;
+    }
+    
+    .section-color:hover {
+        opacity: 0.85;
+    }
+    
+    .section-color:active {
+        opacity: 0.7;
+    }
+    
+    .section1 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+        transition-delay: 30ms;
+    }
+    
+    .section2 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+        transition-delay: 60ms;
+    }
+    
+    .section3 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+        transition-delay: 90ms;
+    }
+    
+    .section4 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+        transition-delay: 120ms;
+    }
+    
+    .section-color {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    
+    .section-color1 {
+        background: linear-gradient(135deg, #444, #c1b576);
+        clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+    }
+    
+    .section-color2 {
+        background: linear-gradient(135deg, #444, #8a7845);
+        clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+    }
+    
+    .section-color3 {
+        background: linear-gradient(135deg, #444, #c1b576);
+        clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+    }
+    
+    .section-color4 {
+        background: linear-gradient(135deg, #444, #8a7845);
+        clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+    }
+    
+    .active .section {
+        transform: translateX(0) translateY(0);
+    }
+    
+    
+    .sticky {
+        position: fixed !important;
+        top: calc(30vw * 1/6 - 0.5vw) !important; 
+        width: 100%;
+    }
+    
+    .sticky-top {
+        position: fixed !important;
+        top: 0 !important;
+        width: 100%;
+    }
+}
+
+.dark {
+    .nav {
+        display: flex;
+        z-index: 1;
+        flex-direction: column;
+        width:100%;
+        height: 30vw;
+        margin: 0;
+        margin-bottom: 3vw;
+    
+        .nav-top {
+            background-color: $darkmode-base;
+            border-bottom: .3vw $nighthawk-blue-bright solid;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: calc(30vw/6);
+            position: absolute;
+            z-index: 1;
+    
+            .nav-title {
+                @include basic-hover(dark);
+                
+                font-family: $nighthawk-font2;
+                color: white;
+                font-size: 3vw;
+                margin: auto;
+                margin-right: 2vw;
+                position: relative;
+                top: .4vw;
+                user-select: none;
+            }
+    
+            .nav-search {
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                margin-left: 4vw;
+                margin-right: 0;
+    
+                img {
+                    @include basic-hover(dark);
+    
+                    height: 3vw;
+                    width: 3vw;
+                    margin: auto;
+                    margin-right: 3vw;
+                    margin-left: 0;
+                    user-select: none;
+                    filter: invert(1);
+                }
+    
+                input {
+                    margin-left: 2vw;
+                    margin-right: 2vw;
+                    width: 20vw;
+                    height: 3vw;
+                    border-radius: 1.5vw;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    font-size: 1.5vw;
+                }
+    
+                input::placeholder {
+                    font-style: italic;
+                    user-select: none;
+                }
+            }
+            .nav-inbox {
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                margin-left: 0;
+                margin-right: 0;
+    
+                img {
+                    @include basic-hover(dark);
+    
+                    height: 3vw;
+                    width: 3vw;
+                    margin: auto;
+                    margin-right: 3vw;
+                    margin-left: 0;
+                    user-select: none;
+                }
+            }
+            .themebutton {
+                background: transparent;
+                img {
+                    @include basic-hover(dark);
+                }
+                height: 3vw;
+                width: 3vw;
+                margin: auto;
+                margin-top: 10px;
+                margin-left: 0;
+                user-select: none;
+                border: none;
+            }
+        }
+    
+        .nav-img {
+            background-image: url($baseurl + "/images/DNHS.jpeg");
+            height: calc(30vw*4/6);
+            background-position-y: 30%;
+            background-size: 100%;
+            position: relative;
+            top: calc(30vw/6);
+            z-index: 0;
+        }
+    
+        .nav-bottom {
+            background-color: $darkmode-base;
+            height: calc(30vw/6);
+            border-top: .3vw $nighthawk-blue-bright solid;
+            border-bottom: .3vw $nighthawk-blue-bright solid;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            top: calc(30vw/6);
+    
+            .nav-button {
+                @include basic-hover(dark);
+    
+                font-family: $nighthawk-font2;
+                color: white;
+                margin: auto;
+                font-size: 2.5vw;
+                position: relative;
+                top: 0.4vw;
+                user-select: none;
+    
+                &:last-child {
+                    margin-right: 8vw
+                }
+                
+                &:first-child {
+                    margin-left: 8vw
+                }
+            }
+        }
+    }
+    
+    .nav-logo {
+        @include basic-hover(dark);
+    
+        background-color: $darkmode-base;
+        cursor: pointer;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        width: 12vw;
+        position: absolute;
+        top: 0.3vw;
+        left: 2vw;
+        border: .3vw solid $nighthawk-blue-bright;
+        background-image: url($baseurl + "/images/icons/alternate_dnhs_logo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 9.6vw;
+        z-index: 2;
+        transition: transform 0.5s ease;
+    }
+    
+    .nav-logo.active {
+        transform: translateX(-100%) translateY(-100%);
+    }
+    
+    .section {
+        -webkit-tap-highlight-color: transparent;
+        background: #000;
+        border-radius: 50%;
+        box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        height: 400px;
+        left: -200px;
+        position: absolute;
+        top: -200px;
+        width: 400px;
+        transform: translateX(-200px) translateY(-200px);
+        transition: transform 300ms;
+    }
+    
+    .section-color:hover {
+        opacity: 0.85;
+    }
+    
+    .section-color:active {
+        opacity: 0.7;
+    }
+    
+    .section1 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+        transition-delay: 30ms;
+    }
+    
+    .section2 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+        transition-delay: 60ms;
+    }
+    
+    .section3 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+        transition-delay: 90ms;
+    }
+    
+    .section4 {
+        position: absolute;
+        clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+        transition-delay: 120ms;
+    }
+    
+    .section-color {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    
+    .section-color1 {
+        background: linear-gradient(135deg, #444, #c1b576);
+        clip-path: polygon(200px 200px, 270px 400px, 0 400px);
+    }
+    
+    .section-color2 {
+        background: linear-gradient(135deg, #444, #8a7845);
+        clip-path: polygon(200px 200px, 270px 400px, 344px 344px);
+    }
+    
+    .section-color3 {
+        background: linear-gradient(135deg, #444, #c1b576);
+        clip-path: polygon(200px 200px, 344px 344px, 450px 280px);
+    }
+    
+    .section-color4 {
+        background: linear-gradient(135deg, #444, #8a7845);
+        clip-path: polygon(200px 200px, 450px 280px, 400px 0);
+    }
+    
+    .active .section {
+        transform: translateX(0) translateY(0);
+    }
+    
+    
+    .sticky {
+        position: fixed !important;
+        top: calc(30vw * 1/6 - 0.5vw) !important; 
+        width: 100%;
+    }
+    
+    .sticky-top {
+        position: fixed !important;
+        top: 0 !important;
+        width: 100%;
+    }
 }

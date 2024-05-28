@@ -4,7 +4,7 @@ title: Student Class Data
 search_exclude: true
 permalink: /student-class-data
 ---
-
+<body class="light">
 <div class="class-period">
     <h1 id="class_name"></h1>
     <h3 id="class_leaders">Loading...</h3>
@@ -15,6 +15,19 @@ permalink: /student-class-data
 </div>
 
 <script>
+window.onload = (event) => {
+      console.log("Page is fully loaded");
+      let DarkMode = localStorage.getItem('DarkMode');
+      DarkMode = (DarkMode === 'true'); // Convert to boolean
+      console.log(DarkMode);
+      if (DarkMode) {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      } else {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      }
+};
     const local = 'http://localhost:8911';
     const deployed = 'https://jcc.stu.nighthawkcodingsociety.com';
 
