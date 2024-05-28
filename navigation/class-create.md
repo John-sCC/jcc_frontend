@@ -39,7 +39,7 @@ permalink: /class-create/
                 <div>
                     <label>Other Instructors:
                         <input id="newInstructor" class="inputis" placeholder="Enter Instructor Name...">
-                        <button onclick="addInstructorToClass()">Add Instructor</button>
+                        <button onclick="addInstructorToClass()" class="createbutt">Add Instructor</button>
                     </label><br>
                 </div>
                 <div>Current Students:
@@ -272,7 +272,7 @@ permalink: /class-create/
                 alert('Instructor already added to the class.');
             }
         } else {
-            alert('Instructor not found in Myinstructors array.');
+            alert('Instructor not found.');
         }
     }
     function searchInstructors() {
