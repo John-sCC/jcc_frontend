@@ -125,11 +125,15 @@ permalink: /ass-request/
         for (let i = 0; i < bigstring.length; i++) {
             x = "#a" + bigstring[i];
             if(d.querySelector(x).checked){
-                classIds.push(bigstring[i]);
+                classIds.push(Number(bigstring[i]));
             }
         }
-        let points = d.getElementById("assPoint").value;
-        let allowedSubmissions = d.getElementById("numSubmis").value;
+        if (classIds.length == 0) {
+            alert("You need to assign this assignment to at least one class")
+            return
+        }
+        let points = Number(d.getElementById("assPoint").value);
+        let allowedSubmissions = Number(d.getElementById("numSubmis").value);
         let allowedFileType = [];
         if (document.querySelector('#URL').checked) {
             allowedFileType.push("URL");
@@ -154,6 +158,10 @@ permalink: /ass-request/
         }
         if (document.querySelector('#pdf').checked) {
             allowedFileType.push("pdf");
+        }
+        if (allowedFileType.length == 0) {
+            alert("You need choose at least one submission type")
+            return
         }
         const currentDate = new Date();
         const dateCreated = currentDate.toISOString().slice(0, 10);
