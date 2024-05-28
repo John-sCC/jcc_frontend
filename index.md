@@ -29,6 +29,7 @@ hide: true
                     <li>ANYONE can create classes and assignments!</li>
                     <li>An inbox system allowing communication between users!</li>
                     <li>AP Statistics graphing features (no more Stapplet)!</li>
+                    <li>Additional stats features that Stapplet doesn't have! (Probability visualization, sharing graphs)</li>
                     <li>QR Code generators for AP Statistics surveys!</li>
                     <li>Image recognition for digital data sets!</li>
                     <li>Light Mode and Dark Mode!</li>
