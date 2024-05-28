@@ -79,7 +79,13 @@ html, body {
     background-color: $darkmode-base !important;
 }
 
+a {
+    color: #22956b !important;
 
+    &:hover {
+        color: #1bf8a7 !important;
+    }
+}
 
 section {
     width: 90vw;
