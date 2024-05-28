@@ -13,7 +13,7 @@ permalink: /message/
             height: 100%;
             margin: 0;
             background-color: #f0f0f0;
-            font-family: "Collegiate Inside";
+            font-family: "Lexend";
         }
         h1 {
             text-align: center;

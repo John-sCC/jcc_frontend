@@ -19,6 +19,7 @@ permalink: /dashboard/
         </div>
     </div>
 </div>
+<button onclick = "window.location.href = {{site.baseurl}}/class-create">Create a class!</button>
 
 <script src="{{site.baseurl}}/assets/js/dashboard.js"></script>
 <script>

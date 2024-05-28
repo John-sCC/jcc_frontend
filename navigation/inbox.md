@@ -39,6 +39,7 @@ permalink: /inbox/
             display: flex;
             flex: 1;
             gap: 30px; 
+            margin-bottom: 10vw;
         }
         .sidebar {
             width: 30%;
@@ -59,7 +60,8 @@ permalink: /inbox/
             cursor: pointer;
         }
         .email-item:hover {
-            background-color: #eaeaea;
+            filter: brightness(80%);
+            transition: filter 0.2s
         }
         .email-content {
             padding: 20px;
