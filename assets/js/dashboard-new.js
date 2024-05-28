@@ -62,9 +62,10 @@ function populateAssignmentContainer(studentData) {
             
             // create redirect for assignment name
             const assignmentNameRedirect = document.createElement('a')
-            assignmentNameRedirect.innerHTML = assignment.name
-            assignmentNameRedirect.onclick = function() { assignmentRedirect(assignment.id) }
-            
+            assignmentNameRedirect.innerHTML = assignment.name;
+            (function(id) {
+                assignmentNameRedirect.onclick = function() { assignmentRedirect(id) };
+            })(assignment.id);            
             // append redirect to name container
             assignmentNameDiv.appendChild(assignmentNameRedirect)
 
@@ -74,8 +75,10 @@ function populateAssignmentContainer(studentData) {
             
             // create redirect for class name
             const classNameRedirect = document.createElement('a')
-            classNameRedirect.innerHTML = classPeriod.name
-            classNameRedirect.onclick = function() { classRedirect(classPeriod.id, "student") }
+            classNameRedirect.innerHTML = classPeriod.name;
+            (function(id) {
+                classNameRedirect.onclick = function() { classRedirect(id, "student") };
+            })(classPeriod.id);     
 
             // append redirect to name container
             classNameDiv.appendChild(classNameRedirect)
@@ -132,9 +135,10 @@ function populateClassesContainer(studentData) {
 
             // title text with redirect
             const classRedirectText = document.createElement("a")
-            classRedirectText.innerHTML = classPeriod["name"]
-            classRedirectText.onclick = function() { classRedirect(classPeriod.id, classType) }
-         
+            classRedirectText.innerHTML = classPeriod["name"];
+            (function(id) {
+                classRedirectText.onclick = function() { classRedirect(id, classType) };
+            })(classPeriod["id"])         
             const classButtons = document.createElement("div")
             classButtons.className = "class-buttons"
 
