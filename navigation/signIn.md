@@ -20,7 +20,7 @@ permalink: /sign-in/
 <body class="light">
   <main id="main-holder">
     <div id="brand-logo">
-      <img src="../images/icons/dnhs_logo.png" alt="Brand Logo">
+      <img src="../images/icons/dnhs_logo.png" id="brand-logo-img" alt="Brand Logo">
     </div>
     <div id="login-div">
       <h1 id="login-header">Sign-in</h1>
@@ -40,15 +40,23 @@ permalink: /sign-in/
 </html>
 
 <script>
+  const brandLogoImg = document.getElementById('brand-logo-img');
   function themeChange() {
             const DarkMode = JSON.parse(localStorage.getItem('DarkMode')) || false;
             const newDarkMode = !DarkMode;
             if (DarkMode) {
                 document.body.classList.add('dark');
                 document.body.classList.remove('light');
+                if (brandLogoImg) {
+                  console.log("dark")
+                  brandLogoImg.src = "../images/icons/alternate_dnhs_logo.png";
+                }
             } else {
                 document.body.classList.add('light');
                 document.body.classList.remove('dark');
+               if (brandLogoImg) {
+                  brandLogoImg.src = "../images/icons/dnhs_logo.png";
+                }
             }
             localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
   }
