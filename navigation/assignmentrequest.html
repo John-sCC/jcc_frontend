@@ -18,17 +18,16 @@ permalink: /ass-request/
         <div class="sil1">
             <div id="asstitle">assignment details</div>
             <div style="padding-top: 15%;"><label>Title:<input id="assTitlee" class="inputis" placeholder="Assignment Title..."></label><br></div>
-            <div><label>Due Date:<input id="assDue" class="inputis" type="date"></label><br></div> <!-- These are the super important data stuffs!!! -->
+            <div><label>Due Date:<input id="assDue" class="inputis" type="datetime-local"></label><br></div> <!-- These are the super important data stuffs!!! -->
             <div><label>Points:<input id="assPoint" class="inputis" type="number" placeholder="100 pts  "></label><br></div>
             <div><label>Submission Type(s):</label><div class="wef1">
                 <div class="wwwj">
-                    <label class="putis" for="URL"><input type="checkbox" id="URL" name="URL"> URL</label><br>
-                    <label class="putis" for="txt"><input type="checkbox" id="txt" name="txt"> Text Submissions</label><br>
                     <label class="putis" for="all"><input type="checkbox" id="all" name="all"> All file types</label><br>
+                    <label class="putis" for="txt"><input type="checkbox" id="txt" name="txt"> Text Submissions</label><br>
                     <label class="putis" for="doc"><input type="checkbox" id="doc" name="doc"> .docx</label><br>
+                    <label class="putis" for="png"><input type="checkbox" id="png" name="png"> .png</label><br>
                 </div>
                 <div class="wwwj2">
-                    <label class="putis" for="png"><input type="checkbox" id="png" name="png"> .png</label><br>
                     <label class="putis" for="jpg"><input type="checkbox" id="jpg" name="jpg"> .jpg</label><br>
                     <label class="putis" for="peg"><input type="checkbox" id="peg" name="peg"> .jpeg</label><br>
                     <label class="putis" for="pdf"><input type="checkbox" id="pdf" name="pdf"> .pdf</label><br>
@@ -68,6 +67,62 @@ permalink: /ass-request/
     //run quill.getText or quill.getSemanticHTML when you need the contents. The variable doesn't stay up to date
 </script>
 <script>
+    function getUserData() {
+        // making the fetch request
+        fetch(fetchUrl + '/api/class_period/dashboard', {
+            method: 'GET',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(JSON.stringify(data));
+            populateClassesContainer(data.leader, true);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            //window.location.replace("{{site.baseurl}}/sign-in/");
+        });
+    }
+    function populateClassesContainer(studentData, isLeader) {
+        if (isLeader == false) {
+            return;
+        }
+        var bigContainer = document.getElementById('student_class_container_container');
+        var container = document.getElementById('student_class_container');
+        if (isLeader) {
+            bigContainer = document.getElementById('leader_class_container_container');
+            container = document.getElementById('leader_class_container');
+        }
+        container.innerHTML = '';
+
+        for (var classPeriod of studentData) {
+            const label = document.createElement('label');
+            label.className = 'class-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = classItem.id;
+            checkbox.id = "a" + classItem.id;
+            ibs.push(classItem.id);
+
+            const span = document.createElement('span');
+            span.textContent = classItem.name;
+
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            container.appendChild(label);
+        }
+    }
     let ibs = [];
     document.addEventListener('DOMContentLoaded', function() {
         const currentUserId = 1; // Replace this with the actual current user's ID
@@ -118,10 +173,20 @@ permalink: /ass-request/
     function postAssignment() {
         const d = document;
         let name = d.getElementById("assTitlee").value;
-        let dateDue = d.getElementById("assDue").value;
         let content = quill.getSemanticHTML();
         let classIds = [];
         const bigstring = ibs.map(String);
+
+        let dateDued = d.getElementById("assDue").value;
+        const date = new Date(dateDued);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        const dateDue = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
         for (let i = 0; i < bigstring.length; i++) {
             x = "#a" + bigstring[i];
             if(d.querySelector(x).checked){
@@ -132,12 +197,10 @@ permalink: /ass-request/
             alert("You need to assign this assignment to at least one class")
             return
         }
+
         let points = Number(d.getElementById("assPoint").value);
         let allowedSubmissions = Number(d.getElementById("numSubmis").value);
         let allowedFileType = [];
-        if (document.querySelector('#URL').checked) {
-            allowedFileType.push("URL");
-        }
         if (document.querySelector('#txt').checked) {
             allowedFileType.push("txt");
         }
@@ -163,8 +226,10 @@ permalink: /ass-request/
             alert("You need choose at least one submission type")
             return
         }
-        const currentDate = new Date();
-        const dateCreated = currentDate.toISOString().slice(0, 10);
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        const formattedTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        const dateCreated = `${formattedDate} ${formattedTime}`;
         //const apiUrl = 'https://jcc.stu.nighthawkcodingsociety.com/api/assignment/post';
         const apiUrl = 'http://localhost:8911/api/assignment/post';
         // a
@@ -182,8 +247,11 @@ permalink: /ass-request/
         //a
         fetch(apiUrl, {
             method: 'POST',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
             headers: {
-                'Content-Type': 'application/json',
+                "content-type": "application/json",
             },
             body: JSON.stringify(requestData),
         })
