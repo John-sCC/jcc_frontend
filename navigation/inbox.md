@@ -10,6 +10,9 @@ permalink: /inbox/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Message Page</title>
     <style>
+        .body {
+            font-family: Arial, sans-serif;
+        }
         .message {
             border: 1px solid #ccc;
             padding: 10px;
@@ -27,7 +30,26 @@ permalink: /inbox/
             border-color: #91976cff;
             border-radius: 25px;
         }
-        body {
+        .body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            gap: 30px; 
+        }
+        .sidebar {
+            width: 30%;
+            background-color: #002147ff;
+            overflow-y: auto;
+            border-radius: 25px;
+        }
+        .body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -78,7 +100,7 @@ permalink: /inbox/
 
     </style>
 </head>
-<body>
+<div class="body">
     <h1>Inbox</h1>
     <a href="{{site.baseurl}}/message/"><button class="compose-btn">Compose</button></a>
     <div class="container">
@@ -145,5 +167,5 @@ permalink: /inbox/
             console.error('Error fetching data:', error);
         });
     </script>
-</body>
+</div>
 </html>
