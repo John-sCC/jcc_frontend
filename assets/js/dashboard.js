@@ -33,7 +33,7 @@ function getUserData() {
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
-        // window.location.replace(`${baseurl}/sign-in/`);
+        window.location.replace(`${baseurl}/sign-in/`);
     });
 }
 
