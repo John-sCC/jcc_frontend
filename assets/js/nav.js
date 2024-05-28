@@ -107,7 +107,6 @@ function updateDivs() {
         dashboardButton.style.marginLeft = `${21.5}vw`;
         logo.style.width = `${8.7}vw`;
         logo.style.backgroundSize = `${6.96}vw`;
-        console.log('bone-zone')
     }
 }
 
