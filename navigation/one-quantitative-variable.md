@@ -4,8 +4,6 @@ title: One quanatative Varible
 permalink: /one-variable/
 ---
 
-```html
-<!DOCTYPE html>
 <html>
 <head>
     <title>One Quantitative Variable</title>

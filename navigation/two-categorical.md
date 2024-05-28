@@ -4,8 +4,7 @@ title: table
 permalink: /twocategorical/
 ---
 
-```html
-<!DOCTYPE html>
+
 
 <head>
     <title>Page Title</title>
@@ -141,9 +140,9 @@ permalink: /twocategorical/
                 <div class="subnav">
                     <div class="subnavbtn">CHANGE GRAPH TYPE</div>
                     <div class="subnav-content">
-                        <p>HISTOGRAM</p>
-                        <p>BAR GRAPH</p>
-                        <p>SILLY GRAPH</p>
+                        <p>HISTOGRAM</p> <!-- todo change this! -->
+                        <p>BAR GRAPH</p> <!-- todo change this! -->
+                        <p>SILLY GRAPH</p> <!-- todo change this! -->
                     </div>
                 </div>
             </div>
@@ -173,8 +172,8 @@ permalink: /twocategorical/
             }];
 
             var layout = {
-                width: 800,  // Adjust the width as needed
-                height: 600  // Adjust the height as needed
+                width: 800,  
+                height: 600  
             };
 
             Plotly.newPlot('bar-graph', data, layout);
