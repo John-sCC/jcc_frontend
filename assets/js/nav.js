@@ -1,11 +1,14 @@
 // Wait for HTML elements to load
 $(window).ready(function() {
     // Redirect buttons to respective pages
-    for (let link of ["classes", "sign-in", "dashboard", "about", "blogs"]) {
+    for (let link of ["classes", "sign-in", "dashboard", "about"]) {
         $(`#${link}`).click( function() { 
             location.href = `${baseurl}/${link}`
         })
     }
+
+    var DarkMode = false;
+    console.log(DarkMode)
 
     //Redirect logo and title clicks to index
     // for (let home of ['nav-logo', 'nav-title']) {
@@ -108,3 +111,16 @@ function sectionClicked() {
         document.querySelector('.nav-logo').classList.remove('active');
     }, 100);
 }
+
+function themeChange() {
+    let DarkMode = localStorage.getItem('darkMode') === 'true';
+
+    console.log(DarkMode)
+    DarkMode = !DarkMode;
+
+    localStorage.setItem('darkMode', DarkMode);
+    console.log(DarkMode)
+}
+
+
+
