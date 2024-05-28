@@ -24,7 +24,7 @@ function getUserData() {
     })
     .then(data => {
         console.log(JSON.stringify(data));
-        // populateAssignmentContainer(data.student);
+        populateAssignmentContainer(data.student);
         populateClassesContainer(data);
     })
     .catch(error => {
@@ -34,34 +34,68 @@ function getUserData() {
 }
 
 function populateAssignmentContainer(studentData) {
-    const container = document.getElementById('assignment_container');
-    container.innerHTML = ''; // clear previous content
+    // iterate through each class, then each assignment in each class
     for (var classPeriod of studentData) {
-        var classPeriodName = classPeriod.name;
         for (var assignment of classPeriod.assignments) {
-            var card = document.createElement('div');
-            card.classList.add('card');
+            // create main container for assignment item
+            const assignmentListItem = document.createElement('div')
+            assignmentListItem.className = 'assignment-list-item'
 
-            var assignmentName = document.createElement('div');
-            assignmentName.classList.add('main-name');
-            assignmentName.textContent = assignment.name;
+            // create container for icon
+            const assignmentIconContainer = document.createElement('div')
+            assignmentIconContainer.className = 'assignment-icon-container'
+
+            // create icon
+            const assignmentIcon = document.createElement('img')
+            assignmentIcon.src = "../images/icons/white-assignment-icon.png"
+
+            // append icon to container
+            assignmentIconContainer.appendChild(assignmentIcon)
             
-            // adding a click event listener to the assignmentName div
-            assignmentName.setAttribute("onclick", "assignmentRedirect(" + String(assignment.id) + ")");
+            // create parent div for all text items
+            const assignmentTextContainer = document.createElement('div')
+            assignmentTextContainer.className = 'assignment-text-container'
 
-            var className = document.createElement('div');
-            className.classList.add('second-name');
-            className.textContent = classPeriodName;
+            // create div for assignment name
+            var assignmentNameDiv = document.createElement('div');
+            assignmentNameDiv.className = "assignment-name"
+            
+            // create redirect for assignment name
+            const assignmentNameRedirect = document.createElement('a')
+            assignmentNameRedirect.innerHTML = assignment.name
+            assignmentNameRedirect.onclick = function() { assignmentRedirect(assignment.id) }
+            
+            // append redirect to name container
+            assignmentNameDiv.appendChild(assignmentNameRedirect)
 
+            // create div for class name
+            var classNameDiv = document.createElement('div');
+            classNameDiv.className = "class-name"
+            
+            // create redirect for class name
+            const classNameRedirect = document.createElement('a')
+            classNameRedirect.innerHTML = classPeriod.name
+            classNameRedirect.onclick = function() { classRedirect(classPeriod.id, "student") }
+
+            // append redirect to name container
+            classNameDiv.appendChild(classNameRedirect)
+
+            // create div for due date (will need more info later)
             var dueDate = document.createElement('div');
-            dueDate.classList.add('third-name');
-            dueDate.textContent = `Due: ${new Date(assignment.dateDue).toLocaleDateString()}`;
+            dueDate.className = "assignment-info"
+            dueDate.innerHTML = `Due: ${new Date(assignment.dateDue).toLocaleDateString()}`;
 
-            card.appendChild(assignmentName);
-            card.appendChild(className);
-            card.appendChild(dueDate);
+            // Append all info to text container
+            assignmentTextContainer.appendChild(assignmentNameDiv)
+            assignmentTextContainer.appendChild(classNameDiv)
+            assignmentTextContainer.appendChild(dueDate)
 
-            container.appendChild(card);
+            // append all children to item
+            assignmentListItem.appendChild(assignmentIconContainer)
+            assignmentListItem.appendChild(assignmentTextContainer)
+            
+            // append item to main list
+            $(".assignment-list-container").append(assignmentListItem)
         }
     }
 }
