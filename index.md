@@ -21,6 +21,7 @@ hide: true
                 <h1>NIGHTHAWK RESOURCES</h1>
             </div>
         </div>
+        <br>
         <div class="split-container">
             <div class="left-side">
                 <h2>Like Canvas, but <b>BETTER</b></h2>
@@ -33,7 +34,8 @@ hide: true
                     <li>Light Mode and Dark Mode!</li>
                 </ul>
             </div>
-            <div class="right-side">
+            <div class="right-side" style="padding-bottom: 0px;">
+                <img src="{{site.baseurl}}/images/nighthawk grin.gif" alt="Nighthawk grinning" class="nighthawk2">
             </div>
         </div>
     </div>
