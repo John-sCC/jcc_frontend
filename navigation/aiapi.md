@@ -80,8 +80,8 @@ permalink: /aichecker/
   //           localStorage.setItem('DarkMode', JSON.stringify(newDarkMode));
   // }
 
-  var local = "http://localhost:8911/api/textAI";
-  var deployed = "https://jcc.stu.nighthawkcodingsociety.com/api/textAI";
+  var local = "http://localhost:8911/api/texts";
+  var deployed = "https://jcc.stu.nighthawkcodingsociety.com/api/texts";
   const currentUrl = window.location.href;
   var fetchUrl = deployed;
   if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
