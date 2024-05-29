@@ -23,7 +23,7 @@ permalink: /aichecker/
     </div>
     <div id="text-div">
       <form id="text-form">
-        <input type="text" name="name" id="name-field" class="login-form-field" placeholder="Email">
+        <input type="text" name="name" id="name-field" class="login-form-field">
         <textarea name="text" id="text-field" rows="10" cols="50"></textarea>
       </form>
       <input type="submit" value="Create" id="text-create" onclick="createText()">
@@ -88,7 +88,7 @@ permalink: /aichecker/
     fetchUrl = local;
   }
 
-  function create() {
+  function createText() {
     console.log("creating text");
     var name = document.getElementById('name-field').value;
     var text = document.getElementById('text-field').value;
