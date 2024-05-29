@@ -94,7 +94,7 @@ permalink: /aichecker/
     var text = document.getElementById('text-field').value;
 
     var requestBody = {
-        name: text,
+        name: name,
         text: text
     };
 
@@ -110,6 +110,216 @@ permalink: /aichecker/
     };
    
     fetch(fetchUrl + '/create', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data.message);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+  }
+
+  function getText() {
+    console.log("creating text");
+    var name = document.getElementById('name-field').value;
+
+    var requestBody = {
+        name: name,
+    };
+
+    var requestOptions = {
+        method: 'GET',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        body: JSON.stringify(requestBody),
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(fetchUrl + '/get', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data.message);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+  }
+
+  function updateText() {
+    console.log("creating text");
+    var name = document.getElementById('name-field').value;
+    var text = document.getElementById('text-field').value;
+
+    var requestBody = {
+        name: name,
+        text: text
+    };
+
+    var requestOptions = {
+        method: 'PUT',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        body: JSON.stringify(requestBody),
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(fetchUrl + '/updateText', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data.message);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+  }
+
+  function checkTest() {
+    console.log("creating text");
+    var name = document.getElementById('name-field').value;
+    var text = document.getElementById('text-field').value;
+
+    var requestBody = {
+        key: '3FD1RYDAROYHTMOX0XL7PLKTFP06WTCP',
+        text: text
+    };
+
+    var requestOptions = {
+        method: 'POST',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        body: JSON.stringify(requestBody),
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data.message);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+
+    var requestBody = {
+        name: name,
+        score: 50
+    };
+
+    var requestOptions = {
+        method: 'PUT',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        body: JSON.stringify(requestBody),
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(fetchUrl + '/updateScore', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data.message);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+  }
+
+  function deleteText() {
+    console.log("creating text");
+    var name = document.getElementById('name-field').value;
+
+    var requestBody = {
+        name: name,
+    };
+
+    var requestOptions = {
+        method: 'DELETE',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        body: JSON.stringify(requestBody),
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(fetchUrl + '/delete', requestOptions)
     .then((response => {
       if (!response.ok) {
           if (response.status == "401") {
