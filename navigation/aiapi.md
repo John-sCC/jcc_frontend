@@ -218,7 +218,7 @@ permalink: /aichecker/
     });
   }
 
-  function checkTest() {
+  function checkText() {
     console.log("creating text");
     var name = document.getElementById('name-field').value;
     var text = document.getElementById('text-field').value;
