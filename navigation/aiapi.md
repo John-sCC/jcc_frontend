@@ -255,7 +255,7 @@ permalink: /aichecker/
       })) // Get response text
       .then(data => {
         // Check response status
-        console.log(data.message);
+        console.log(data);
         return;
       }
     )
@@ -282,7 +282,6 @@ permalink: /aichecker/
     fetch(fetchUrl + '/updateScore', requestOptions)
     .then((response => {
       if (!response.ok) {
-          console.log("fail");
           if (response.status == "401") {
             throw new Error("Invalid name")
           }
@@ -290,8 +289,6 @@ permalink: /aichecker/
             throw new Error("HTTP Error: " + response.status)
           }
       }
-      console.log("success!");
-      console.log(response);
       return response.json();
       })) // Get response text
       .then(data => {
