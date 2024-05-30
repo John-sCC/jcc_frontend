@@ -27,10 +27,11 @@ permalink: /aichecker/
         <textarea name="text" id="text-field" rows="10" cols="50"></textarea>
       </form>
       <input type="submit" value="Create" id="text-create" onclick="createText()">
-      <input type="submit" value="Get" id="text-create" onclick="getText()">
-      <input type="submit" value="Update" id="text-create" onclick="updateText()">
-      <input type="submit" value="Check" id="text-create" onclick="checkText()">
-      <input type="submit" value="Delete" id="text-create" onclick="deleteText()">
+      <input type="submit" value="Get" id="text-get" onclick="getText()">
+      <input type="submit" value="Update" id="text-update" onclick="updateText()">
+      <input type="submit" value="Check" id="text-check" onclick="checkText()">
+      <input type="submit" value="Delete" id="text-delete" onclick="deleteText()">
+      <p id="score-field"></p>
     </div>
   </main>
 </body>
@@ -255,7 +256,8 @@ permalink: /aichecker/
       })) // Get response text
       .then(data => {
         // Check response status
-        console.log(data);
+        console.log(data["score"]);
+        document.getElementById("score-field").textContent=data["score"];
         return;
       }
     )
