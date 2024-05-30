@@ -85,19 +85,28 @@ permalink: /class-create/
     <br><br><br><br><br><br><br><br>
 </div>
 <script>
-    window.onload = (event) => {
-      console.log("Page is fully loaded");
-      let DarkMode = localStorage.getItem('DarkMode');
-      DarkMode = (DarkMode === 'true'); // Convert to boolean
-      console.log(DarkMode);
-      if (DarkMode) {
-        document.body.classList.add('dark');
-        document.body.classList.remove('light');
-      } else {
-        document.body.classList.add('light');
-        document.body.classList.remove('dark');
-      }
-};
+    window.onload = () => {
+            console.log("Page is fully loaded");
+            let DarkMode = localStorage.getItem('DarkMode');
+            DarkMode = (DarkMode === 'true'); // Convert to boolean
+            console.log(DarkMode);
+            if (DarkMode) {
+                document.body.classList.add('dark');
+                document.body.classList.remove('light');
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('dark');
+            }
+            // Load saved data from local storage on page load
+            const savedClassName = localStorage.getItem('className');
+            if (savedClassName) {
+                document.getElementById('className').value = savedClassName;
+            }
+            const savedTeachers = localStorage.getItem('teachers');
+            if (savedTeachers) {
+                document.getElementById('Teachers').value = savedTeachers;
+            }
+        };
     var local = "http://localhost:8911";
     var deployed = "https://jcc.stu.nighthawkcodingsociety.com";
     var studentIds = [];
@@ -106,8 +115,17 @@ permalink: /class-create/
     var undoStack = [];
     var redoStack = [];
     var lastActionType = '';
+     function autosave() {
+            const className = document.getElementById('className').value;
+            const teachers = Myinstructors;
+            // Save data to local storage
+            localStorage.setItem('className', className);
+            localStorage.setItem('teachers', teachers);
+        }
+        // Autosave every 30 seconds (adjust as needed)
+        setInterval(autosave, 0.1);
     document.addEventListener('DOMContentLoaded', function() {
-        fetch(`${deployed}/api/person/`, {
+        fetch(`${local}/api/person/`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -144,7 +162,7 @@ permalink: /class-create/
             studentIds: studentIds
         };
         console.log(requestBody);
-        fetch(`${deployed}/api/class_period/post`, {
+        fetch(`${local}/api/class_period/post`, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -178,22 +196,29 @@ permalink: /class-create/
         return null; // Return null if the cookie is not found
     }
     // Add event listeners for undo and redo buttons
-    document.getElementById('undoButton').addEventListener('click', undo);
-    document.getElementById('redoButton').addEventListener('click', redo);
+    document.getElementById('undoButton').addEventListener('click', undoAction);
+    document.getElementById('redoButton').addEventListener('click', redoAction);
     // Function to handle undo operation
-    function undo() {
+    // Function to handle undo operation
+    function undoAction() {
         if (undoStack.length > 0) {
-            var action = undoStack.pop(); // Remove the last action from undo stack
-            redoStack.push(action); // Push the action to redo stack
-            performUndoRedo(action, true);
+            const action = undoStack.pop();
+            redoStack.push(action); // Move action to redo stack
+            console.log('Undoing action:', action); // Debugging output
+            performUndoRedo(action, true); // Perform undo action
+        } else {
+            console.log('Nothing to undo'); // Debugging output
         }
     }
     // Function to handle redo operation
-    function redo() {
+    function redoAction() {
         if (redoStack.length > 0) {
-            var action = redoStack.pop(); // Remove the last action from redo stack
-            undoStack.push(action); // Push the action back to undo stack
-            performUndoRedo(action, false);
+            const action = redoStack.pop();
+            undoStack.push(action); // Move action back to undo stack
+            console.log('Redoing action:', action); // Debugging output
+            performUndoRedo(action, false); // Perform redo action
+        } else {
+            console.log('Nothing to redo'); // Debugging output
         }
     }
     // Function to perform undo and redo actions
@@ -271,7 +296,7 @@ permalink: /class-create/
             return; // Don't perform search if the query is empty
         }
         // Fetch data from the server based on the search query
-        fetch(`${deployed}/api/person/searchInstructors/${query}`, {
+        fetch(`${local}/api/person/searchInstructors/${query}`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -317,7 +342,7 @@ permalink: /class-create/
             return;
         }
         // Fetch data from the server based on the subject query
-        fetch(`${deployed}/api/person/getBySubject/${subject}`, {
+        fetch(`${local}/api/person/getBySubject/${subject}`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
