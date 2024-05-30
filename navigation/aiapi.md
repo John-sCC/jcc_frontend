@@ -280,6 +280,7 @@ permalink: /aichecker/
     fetch(fetchUrl + '/updateScore', requestOptions)
     .then((response => {
       if (!response.ok) {
+          console.log("fail");
           if (response.status == "401") {
             throw new Error("Invalid name")
           }
