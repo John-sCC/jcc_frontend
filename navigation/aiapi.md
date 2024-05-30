@@ -249,6 +249,8 @@ permalink: /aichecker/
             throw new Error("HTTP Error: " + response.status)
           }
       }
+      console.log("success!");
+      console.log(response);
       return response.json();
       })) // Get response text
       .then(data => {
