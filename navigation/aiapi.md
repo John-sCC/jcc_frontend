@@ -133,7 +133,7 @@ permalink: /aichecker/
   }
 
   function getText() {
-    console.log("creating text");
+    console.log("getting text");
     var name = document.getElementById('name-field').value;
 
     var requestBody = {
@@ -175,7 +175,7 @@ permalink: /aichecker/
   }
 
   function updateText() {
-    console.log("creating text");
+    console.log("updating text");
     var name = document.getElementById('name-field').value;
     var text = document.getElementById('text-field').value;
 
@@ -219,7 +219,7 @@ permalink: /aichecker/
   }
 
   function checkText() {
-    console.log("creating text");
+    console.log("checking text");
     var name = document.getElementById('name-field').value;
     var text = document.getElementById('text-field').value;
 
@@ -287,6 +287,8 @@ permalink: /aichecker/
             throw new Error("HTTP Error: " + response.status)
           }
       }
+      console.log("success!");
+      console.log(response);
       return response.json();
       })) // Get response text
       .then(data => {
@@ -301,7 +303,7 @@ permalink: /aichecker/
   }
 
   function deleteText() {
-    console.log("creating text");
+    console.log("deleting text");
     var name = document.getElementById('name-field').value;
 
     var requestBody = {
