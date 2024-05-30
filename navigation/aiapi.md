@@ -239,7 +239,7 @@ permalink: /aichecker/
         },
     };
    
-    await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
+    fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
     .then((response => {
       if (!response.ok) {
           if (response.status == "401") {
@@ -257,6 +257,43 @@ permalink: /aichecker/
         // Check response status
         console.log(data["score"]);
         document.getElementById("score-field").textContent=data["score"];
+        var requestBody = {
+            name: name,
+            score: 50
+        };
+
+        var requestOptions = {
+            method: 'PUT',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            body: JSON.stringify(requestBody),
+            headers: {
+                "content-type": "application/json",
+            },
+        };
+      
+        fetch(fetchUrl + '/updateScore', requestOptions)
+        .then((response => {
+          if (!response.ok) {
+              if (response.status == "401") {
+                throw new Error("Invalid name")
+              }
+              else {
+                throw new Error("HTTP Error: " + response.status)
+              }
+          }
+          return response.json();
+          })) // Get response text
+          .then(data => {
+            // Check response status
+            console.log(data.message);
+            return;
+          }
+        )
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
         return;
       }
     )
@@ -264,43 +301,7 @@ permalink: /aichecker/
         console.error('There was an error:', error);
     });
 
-    var requestBody = {
-        name: name,
-        score: 50
-    };
-
-    var requestOptions = {
-        method: 'PUT',
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
-        body: JSON.stringify(requestBody),
-        headers: {
-            "content-type": "application/json",
-        },
-    };
-   
-    fetch(fetchUrl + '/updateScore', requestOptions)
-    .then((response => {
-      if (!response.ok) {
-          if (response.status == "401") {
-            throw new Error("Invalid name")
-          }
-          else {
-            throw new Error("HTTP Error: " + response.status)
-          }
-      }
-      return response.json();
-      })) // Get response text
-      .then(data => {
-        // Check response status
-        console.log(data.message);
-        return;
-      }
-    )
-    .catch(error => {
-        console.error('There was an error:', error);
-    });
+    
   }
 
   function deleteText() {
