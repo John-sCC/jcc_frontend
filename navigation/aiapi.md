@@ -239,7 +239,7 @@ permalink: /aichecker/
         },
     };
    
-    fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
+    await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
     .then((response => {
       if (!response.ok) {
           if (response.status == "401") {
