@@ -9,10 +9,10 @@ permalink: /message/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compose Message</title>
     <style>
-        body, html {
+        .body {
             height: 100%;
             margin: 0;
-            background-color: #f0f0f0;
+            /*background-color: #f0f0f0;*/
             font-family: "Collegiate Inside";
         }
         h1 {
@@ -67,7 +67,7 @@ permalink: /message/
     </style>
 </head>
 <body class="light">
-<body>
+<div class="body">
     <div class="container">
         <div class="content">
             <h1>Compose New Message</h1>
@@ -134,7 +134,6 @@ permalink: /message/
             });
         });
     </script>
-</body>
 <script>
  window.onload = (event) => {
       console.log("Page is fully loaded");

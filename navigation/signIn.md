@@ -11,7 +11,6 @@ permalink: /sign-in/
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
 
-  <link rel="stylesheet" href="{{site.baseurl}}/signIn.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -32,7 +31,7 @@ permalink: /sign-in/
       <div id="forgot-password">Forgot Password?</div>
       <input type="submit" value="Sign In" id="login-form-submit" onclick="signIn()">
       <div id="no-account">No account?</div>
-      <div id="create-account">Click here to make one!</div>
+      <div id="create-account"><a href="{{site.baseurl}}/sign-up/" style="color: #22956b !important;">Click here to make one!</a></div>
     </div>
   </main>
 </body>

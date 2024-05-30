@@ -1,0 +1,94 @@
+.index {
+    h1 {
+        font-family: $nighthawk-font2;
+        font-size: 4vw;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    h2 {
+        font-family: $nighthawk-font2;
+        font-size: 2vw;
+        color: lightslategray;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .split-container {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+    }
+      
+    .split-container .left-side,
+    .split-container .right-side {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+
+        .star-list {
+            list-style: none; // Remove default bullets
+            padding: 0; // Remove default padding
+            font-family: $nighthawk-font3;
+            text-align: left;
+            font-size: 1.5vw;
+          
+            li {
+              position: relative;
+              padding-left: 1.5em; // Space for the star
+          
+              &::before {
+                content: '★'; // Unicode star character
+                position: absolute;
+                left: 0;
+                color: $nighthawk-gold; // Change to desired color
+              }
+            }
+          }
+    }
+      
+    .split-container .divider {
+        width: 3px;
+        background-color: $nighthawk-gold;
+        margin: 20px;
+    }
+
+    $animation-duration: 7s; // Adjust the speed of the animation
+
+    .animation-container {
+    position: relative;
+    z-index: 0;
+    width: 113vw;
+    right: 20%;
+    height: 14vh;
+    overflow: hidden;
+    margin-bottom: 20px;
+    }
+
+    .nighthawk {
+    position: absolute;
+    z-index: 0;
+    top: 40%;
+    left: -30%; // Start slightly off-screen to the left
+    transform: translateY(-50%);
+    width: 14vw; // nice and plump
+    animation: fly $animation-duration linear infinite;
+    overflow: hidden;
+    }
+
+    @keyframes fly {
+    0% {
+        left: -30%;
+    }
+    50% {
+        left: 130%; // Move fully off-screen to the right
+    }
+    50.01% {
+        left: -30%; // Reset position to start again from the left
+    }
+    100% {
+        left: 130%; // Move to the right again
+    }
+    }
+}

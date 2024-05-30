@@ -1,7 +1,7 @@
 // Wait for HTML elements to load
 $(window).ready(function() {
     // Redirect buttons to respective pages
-    for (let link of ["classes", "sign-in", "dashboard", "about"]) {
+    for (let link of ["dashboard", "sign-in", "blogs", "about"]) {
         $(`#${link}`).click( function() { 
             location.href = `${baseurl}/${link}`
         })
@@ -20,6 +20,14 @@ $(window).ready(function() {
 
     console.log("m" + DarkMode);
 
+    const body = document.getElementsByTagName("body")[0]
+
+    if (DarkMode) {
+        body.className = "dark"
+    }
+    else {
+        body.className = 'light'
+    }
     //Redirect logo and title clicks to index
     // for (let home of ['nav-logo', 'nav-title']) {
     //     $(`.${home}`).click( function() { 
@@ -96,10 +104,9 @@ function updateDivs() {
         navBottom.classList.add("sticky");
         
         // Offset margin and set logo size to final position
-        classButton.style.marginLeft = `${21.5}vw`;
+        dashboardButton.style.marginLeft = `${21.5}vw`;
         logo.style.width = `${8.7}vw`;
         logo.style.backgroundSize = `${6.96}vw`;
-
     }
 }
 

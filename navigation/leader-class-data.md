@@ -9,13 +9,15 @@ permalink: /leader-class-data
     <h1 id="class_name"></h1>
     <h3 id="class_leaders">Loading...</h3>
     <h2>Assignments</h2>
+    <p><a href="{{site.baseurl}}/ass-request/">Click here</a> to create a new assignment.</p>
     <div id="assignment_container" class="container">
         <!-- Assignment cards will be dynamically added here -->
     </div>
     <h2>Students</h2>
-    <div id="students_container">
+    <ul id="students_container">
         <!-- Students in the class will be dynamically added here -->
-    </div>
+    </ul>
+    <br>
 </div>
 
 <script>
@@ -68,6 +70,11 @@ window.onload = (event) => {
                         if (i < (data.leaders.length - 1)) {
                             document.getElementById('class_leaders').innerHTML += ", ";
                         }
+                    }
+                    for (var i = 0; i < data.students.length; i++) {
+                        var newStudent = document.createElement('li');
+                        newStudent.innerHTML = data.students[i].name;
+                        document.getElementById('students_container').appendChild(newStudent);
                     }
                     populateAssignmentContainer(data);
                 })
