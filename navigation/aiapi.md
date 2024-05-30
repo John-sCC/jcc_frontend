@@ -84,10 +84,9 @@ permalink: /aichecker/
   var local = "http://localhost:8911/api/texts";
   var deployed = "https://jcc.stu.nighthawkcodingsociety.com/api/texts";
   const currentUrl = window.location.href;
-  var fetchUrl = deployed;
-  if (currentUrl.includes("localhost") || currentUrl.includes("127.0.0.1")) {
-    fetchUrl = local;
-  }
+  var fetchUrl;
+  // fetchUrl = deployed;
+  fetchUrl = local;
 
   function createText() {
     console.log("creating text");
