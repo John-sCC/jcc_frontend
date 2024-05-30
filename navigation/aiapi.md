@@ -259,7 +259,7 @@ permalink: /aichecker/
         document.getElementById("score-field").textContent=data["score"];
         var requestBody = {
             name: name,
-            score: 50
+            score: data["score"]
         };
 
         var requestOptions = {
