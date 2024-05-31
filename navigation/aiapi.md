@@ -34,7 +34,8 @@ permalink: /aichecker/
       <p id="score-field"></p>
     </div>
     <div id="table" class="tablee">
-            <p class="bigboyheader">Current Objects:</p>
+      <p class="bigboyheader">Current Texts:</p>
+      <p id="table-field"></p>
     </div>
   </main>
 </body>
@@ -385,6 +386,12 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data);
+        var table = '<table><tr><th>Name</th><th>Last Updated</th></tr>';
+        for (var i = 0; i < data.length; i++) {
+            table += '<tr><td>' + data[i]["name"] + '</td><td>' + data[i]["timeUpdated"] + '</td></tr>';
+        }
+        table += '</table>';
+        document.getElementById('table-field').innerHTML = table;
         if (score==-1){
           document.getElementById("score-field").innerHTML="Click the Check button to check your text."
         } else {
