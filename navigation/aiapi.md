@@ -165,14 +165,12 @@ permalink: /aichecker/
           }
       }
       return response.json();
-      })) // Get response text
-      .then(data => {
-        // Check response status
-        document.getElementById("text-field").innerText=data["text"];
-        console.log(data["text"]);
-        return;
-      }
-    )
+    })) // Get response text
+    .then(data => {
+      // Check response status
+      document.getElementById("text-field").innerText=data["text"];
+      console.log(data["text"]);
+    })
     .catch(error => {
         console.error('There was an error:', error);
     });
