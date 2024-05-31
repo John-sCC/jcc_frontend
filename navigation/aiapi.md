@@ -168,8 +168,9 @@ permalink: /aichecker/
     })) // Get response text
     .then(data => {
       // Check response status
-      document.getElementById("text-field").innerText=data["text"];
-      console.log(data["text"]);
+      console.log(data);
+      document.getElementById("text-field").value=data["text"];
+      return;
     })
     .catch(error => {
         console.error('There was an error:', error);
