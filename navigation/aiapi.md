@@ -24,7 +24,7 @@ permalink: /aichecker/
     <div id="text-div">
       <form id="text-form">
         <input type="text" name="name" id="name-field" class="login-form-field">
-        <textarea name="text" id="text-field" rows="10" cols="50" class="login-form-field"></textarea>
+        <textarea name="text" id="text-field" rows="10" cols="50" class="login-form-area"></textarea>
       </form>
       <div class="div0">
         <div class="div1">
