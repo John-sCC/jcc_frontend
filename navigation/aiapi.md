@@ -126,7 +126,7 @@ permalink: /aichecker/
       })) // Get response text
       .then(data => {
         // Check response status
-        console.log(data.message);
+        console.log(data);
         return;
       }
     )
@@ -213,7 +213,7 @@ permalink: /aichecker/
       })) // Get response text
       .then(data => {
         // Check response status
-        console.log(data.message);
+        console.log(data);
         return;
       }
     )
@@ -291,7 +291,7 @@ permalink: /aichecker/
           })) // Get response text
           .then(data => {
             // Check response status
-            console.log(data.message);
+            console.log(data);
             return;
           }
         )
@@ -341,7 +341,7 @@ permalink: /aichecker/
       })) // Get response text
       .then(data => {
         // Check response status
-        console.log(data.message);
+        console.log(data);
         return;
       }
     )
