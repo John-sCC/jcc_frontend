@@ -33,6 +33,9 @@ permalink: /aichecker/
       <input type="submit" value="Delete" id="text-delete" onclick="deleteText()">
       <p id="score-field"></p>
     </div>
+    <div id="table" class="tablee">
+            <p class="bigboyheader">Current Objects:</p>
+    </div>
   </main>
 </body>
 
@@ -141,7 +144,7 @@ permalink: /aichecker/
     };
 
     var requestOptions = {
-        method: 'GET',
+        method: 'POST',
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'include', // include, *same-origin, omit
