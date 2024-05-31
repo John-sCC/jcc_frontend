@@ -127,6 +127,7 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data);
+        format(-1);
         return;
       }
     )
@@ -170,6 +171,11 @@ permalink: /aichecker/
       // Check response status
       console.log(data);
       document.getElementById("text-field").value=data["text"];
+      if (data["tested"]){
+        format(date["score"]);
+      } else {
+        format(-1);
+      }
       return;
     })
     .catch(error => {
@@ -213,6 +219,7 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data);
+        format(-1);
         return;
       }
     )
@@ -259,7 +266,6 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data["score"]);
-        document.getElementById("score-field").innerHTML="Your Score is: "+Math.round(100*data["score"])+"% AI.";
         var requestBody = {
             name: name,
             text: text,
@@ -292,6 +298,7 @@ permalink: /aichecker/
           .then(data => {
             // Check response status
             console.log(data);
+            format(Math.round(100*data["score"]));
             return;
           }
         )
@@ -342,6 +349,47 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data);
+        format(-1);
+        return;
+      }
+    )
+    .catch(error => {
+        console.error('There was an error:', error);
+    });
+  }
+
+    function format(score) {
+    console.log("formatting");
+    var requestOptions = {
+        method: 'GET',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+   
+    fetch(fetchUrl + '/', requestOptions)
+    .then((response => {
+      if (!response.ok) {
+          if (response.status == "401") {
+            throw new Error("Invalid name")
+          }
+          else {
+            throw new Error("HTTP Error: " + response.status)
+          }
+      }
+      return response.json();
+      })) // Get response text
+      .then(data => {
+        // Check response status
+        console.log(data);
+        if (score==-1){
+          document.getElementById("score-field").innerHTML="Click the Check button to check your text."
+        } else {
+          document.getElementById("score-field").innerHTML="Your Text is: "+score+"% AI."
+        }
         return;
       }
     )
