@@ -262,7 +262,7 @@ permalink: /aichecker/
         document.getElementById("score-field").value="Your Score is: "+(Math.round(100*data["score"])).toString()+"%.";
         var requestBody = {
             name: name,
-            score: data["score"]
+            score: Math.round(100*data["score"])
         };
 
         var requestOptions = {
