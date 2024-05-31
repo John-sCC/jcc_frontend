@@ -32,6 +32,7 @@ hide: true
                     <li>Additional stats features that Stapplet doesn't have! (Probability visualization, sharing graphs)</li>
                     <li>QR Code generators for AP Statistics surveys!</li>
                     <li>Image recognition for digital data sets!</li>
+                    <li>Text Editor and AI Detection!</li>
                     <li>Light Mode and Dark Mode!</li>
                     <li><a href="{{site.baseurl}}/tablegenerator">Random table generator</a></li>
                 </ul>
