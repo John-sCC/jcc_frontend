@@ -169,7 +169,7 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         document.getElementById("text-field").textContent=data["text"];
-        console.log(data.message);
+        console.log(data["text"]);
         return;
       }
     )
