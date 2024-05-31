@@ -26,11 +26,17 @@ permalink: /aichecker/
         <input type="text" name="name" id="name-field" class="login-form-field">
         <textarea name="text" id="text-field" rows="10" cols="50" class="login-form-area"></textarea>
       </form>
-      <input type="submit" value="Create" id="text-create" onclick="createText()">
-      <input type="submit" value="Get" id="text-get" onclick="getText()">
-      <input type="submit" value="Update" id="text-update" onclick="updateText()">
-      <input type="submit" value="Check" id="text-check" onclick="checkText()">
-      <input type="submit" value="Delete" id="text-delete" onclick="deleteText()">
+      <div class="div0">
+        <div class="div1">
+          <div class="variables">
+            <input type="submit" class="login-form-submit" value="Create" id="text-create" onclick="createText()">
+            <input type="submit" class="login-form-submit" value="Get" id="text-get" onclick="getText()">
+            <input type="submit" class="login-form-submit" value="Update" id="text-update" onclick="updateText()">
+            <input type="submit" class="login-form-submit" value="Check" id="text-check" onclick="checkText()">
+            <input type="submit" class="login-form-submit" value="Delete" id="text-delete" onclick="deleteText()">
+            <p id="score-field"></p>
+          </div>
+        </div>
       </div>
     </div>
     <div id="table" class="tablee">
