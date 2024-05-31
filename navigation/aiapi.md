@@ -259,7 +259,7 @@ permalink: /aichecker/
       .then(data => {
         // Check response status
         console.log(data["score"]);
-        document.getElementById("score-field").value="Your Score is: "+(Math.round(100*data["score"])).toString()+"%.";
+        document.getElementById("score-field").value="Your Score is: "+(Math.round(100*data["score"])).toString()+"% AI.";
         var requestBody = {
             name: name,
             score: Math.round(100*data["score"])
