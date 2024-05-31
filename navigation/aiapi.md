@@ -29,11 +29,11 @@ permalink: /aichecker/
       <div class="div0">
         <div class="div1">
           <div class="variables">
-            <button id="text-create" onclick="createText()">Create</button>
-            <button id="text-get" onclick="getText()">Get</button>
-            <button id="text-update" onclick="updateText()">Update</button>
-            <button id="text-check" onclick="checkText()">Check</button>
-            <button id="text-delete" onclick="deleteText()">Delete</button>
+            <input type="submit" value="Create"id="text-create" onclick="createText()">
+            <input type="submit" value="Get"id="text-get" onclick="getText()">
+            <input type="submit" value="Update"id="text-update" onclick="updateText()">
+            <input type="submit" value="Check"id="text-check" onclick="checkText()">
+            <input type="submit" value="Delete"id="text-delete" onclick="deleteText()">
             <p id="score-field"></p>
           </div>
         </div>
