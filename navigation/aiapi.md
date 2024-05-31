@@ -403,6 +403,6 @@ permalink: /aichecker/
     .catch(error => {
         console.error('There was an error:', error);
     });
-    format(-1);
   }
+  format(-1)
 </script>
