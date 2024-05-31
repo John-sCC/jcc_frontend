@@ -298,7 +298,7 @@ permalink: /aichecker/
           .then(data => {
             // Check response status
             console.log(data);
-            format(Math.round(100*data["score"]));
+            format(data["score"]);
             return;
           }
         )
