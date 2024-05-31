@@ -24,13 +24,13 @@ permalink: /aichecker/
     <div id="text-div">
       <form id="text-form">
         <input type="text" name="name" id="name-field" class="login-form-field">
-        <textarea name="text" id="text-field" rows="10" cols="50"></textarea>
+        <textarea name="text" id="text-field" rows="10" cols="50" class="login-form-field"></textarea>
       </form>
-      <input type="submit" value="Create" id="text-create" onclick="createText()">
-      <input type="submit" value="Get" id="text-get" onclick="getText()">
-      <input type="submit" value="Update" id="text-update" onclick="updateText()">
-      <input type="submit" value="Check" id="text-check" onclick="checkText()">
-      <input type="submit" value="Delete" id="text-delete" onclick="deleteText()">
+      <button id="text-create" onclick="createText()">Create</button>
+      <button id="text-get" onclick="getText()">Get</button>
+      <button id="text-update" onclick="updateText()">Update</button>
+      <button id="text-check" onclick="checkText()">Check</button>
+      <button id="text-delete" onclick="deleteText()">Delete</button>
       <p id="score-field"></p>
     </div>
     <div id="table" class="tablee">
